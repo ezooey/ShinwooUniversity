@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>도서 신청</title>
+    <title>도서 등록</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
@@ -41,7 +41,7 @@
             margin: 20px;
         }
 
-        .reqTitle {
+        .regTitle {
             padding-top: 5px;
             padding-bottom: 3px;
             display: block;
@@ -51,6 +51,7 @@
             float: right;
             padding-top: 20px;
         }
+
         .bottomBtn input {
             margin: 10px;
         }
@@ -72,6 +73,44 @@
             border-top: 1px solid #eee;
         }
 
+        .filebox .upload-name {
+            display: inline-block;
+            height: 40px;
+            padding: 0 45px;
+            vertical-align: middle;
+            border: none;
+            width: 86%;
+            color: #999999;
+            background-color: #F9F9FF;
+        }
+
+        .filebox label {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            vertical-align: middle;
+            background-color: #6785FF;
+            cursor: pointer;
+            height: 40px;
+            margin-left: 10px;
+        }
+
+        .filebox input[type="file"] {
+            position: absolute;
+            width: 0;
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
+        }
+
+        .fa-image {
+            position: absolute;
+            top: 50%;
+            margin-top: 12px;
+            margin-left: 1%;
+            z-index: 1;
+        }
     </style>
 </head>
 
@@ -125,35 +164,20 @@
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h2 id="currentMenu">도서 신청</h2>
+                <h2 id="currentMenu">도서 등록</h2>
             </div>
         </div>
 
         <!--? Start Align Area -->
         <div class="whole-wrap">
             <div class="container box_1170">
-                <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-md-8 mt-sm-30">
-                            <h3 class="mb-20">도서 신청 시 유의 사항</h3>
-                            <div>
-                                <ul class="noneList">
-                                    <li><i class="fas fa-check-circle"></i> 희망 도서 신청 권수</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1인당 월 1권, 1년에 10권으로 제한</li>
-                                    <li><i class="fas fa-check-circle"></i> 희망 도서 진행 절차</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;신청한 도서가 절차를 거쳐 신청이 승인되는 경우 신청자에게 대출 우선권 부여</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="section-top-border borderTop">
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
-                            <h3 class="mb-30">신청 도서 정보 입력</h3>
+                            <h3 class="mb-30">등록 도서 정보 입력</h3>
                             <form action="#">
                                 <div>
-                                    <span class="reqTitle">도서명</span>
+                                    <span class="regTitle">도서명</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fa fa-book" aria-hidden="true"></i></div>
                                         <input type="text" name="bookTitle" placeholder="도서명을 입력하세요" required
@@ -162,7 +186,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="reqTitle">저자</span>
+                                    <span class="regTitle">저자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-pencil-alt"></i></div>
                                         <input type="text" name="author" placeholder="저자를 입력하세요" required
@@ -171,7 +195,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="reqTitle">출판사</span>
+                                    <span class="regTitle">출판사</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-bookmark"></i></div>
                                         <input type="text" name="publisher" placeholder="출판사를 입력하세요" required
@@ -180,22 +204,48 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="reqTitle">신청일자</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fas fa-calendar-day"></i></div>
-                                        <input type="text" name="reqDate" readonly="" required class="single-input">
+                                    <span class="regTitle">카테고리</span>
+                                    <div class="default-select" id="default-select">
+                                        <select>
+                                            <option value=" 1">소설/시</option>
+                                            <option value="1">경제/경영</option>
+                                            <option value="1">자기 계발</option>
+                                            <option value="1">인문/사회</option>
+                                            <option value="1">역사/종교/예술</option>
+                                            <option value="1">과학/it</option>
+                                            <option value="1">취미/여행</option>
+                                            <option value="1">어린이</option>
+                                            <option value="1">언어</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="reqTitle">신청의견</span>
+                                    <span class="regTitle">등록일자</span>
+                                    <div class="input-group-icon mt-10">
+                                        <div class="icon"><i class="fas fa-calendar-day"></i></div>
+                                        <input type="text" name="regDate" readonly="" required class="single-input">
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="regTitle">표지 이미지</span>
+                                    <div class="input-group-icon mt-10 filebox">
+                                        <div class="icon"><i class="far fa-image"></i></div>
+                                        <input class="upload-name" value="표지 이미지를 업로드하세요" placeholder="표지 이미지를 업로드하세요">
+                                        <label for="file">파일 찾기</label>
+                                        <input type="file" id="file" accept=".gif, .jpg, .png">
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="regTitle">참고사항</span>
                                     <div class="mt-10">
-                                        <textarea class="single-textarea" placeholder="신청 이유를 입력하세요"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '신청 이유를 입력하세요'"
+                                        <textarea class="single-textarea" placeholder="참고사항을 입력하세요"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '참고사항을 입력하세요'"
                                             required></textarea>
                                     </div>
                                 </div>
                                 <div class="bottomBtn">
-                                    <input type="submit" class="genric-btn info circle" value="신청">
+                                    <input type="submit" class="genric-btn info circle" value="등록">
                                     <input type="reset" class="genric-btn danger circle" value="취소">
                                 </div>
                             </form>
@@ -295,9 +345,14 @@
             var year = now.getFullYear();
             var month = now.getMonth() + 1;
             var date = now.getDate();
-            $('input[name=reqDate]').val(year + '-' + month + '-' + date);
-            $('input[name=reqDate]').css('color', 'gray');
+            $('input[name=regDate]').val(year + '-' + month + '-' + date);
+            $('input[name=regDate]').css('color', 'gray');
             console.log(now);
+        });
+
+        $("#file").on('change', function () {
+            var fileName = $("#file").val();
+            $(".upload-name").val(fileName);
         });
     </script>
     <!-- JS here -->
