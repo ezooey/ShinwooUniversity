@@ -105,6 +105,14 @@ public class MemberDAO {
 			pstmt.setString(3, m.getAddress());
 			pstmt.setString(4, m.getEmail());
 			pstmt.setString(5, m.getMemberId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	public int updatePwd(Connection conn, Member m) {
 		PreparedStatement pstmt = null;
@@ -116,7 +124,7 @@ public class MemberDAO {
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setString(1, m.getMemberPwd());
-			pstmt.setString(2, m.getMenberId());
+			pstmt.setString(2, m.getMemberId());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -140,7 +148,7 @@ public class MemberDAO {
 			pstmt.setString(1, m.getPhone());
 			pstmt.setString(2, m.getAddress());
 			pstmt.setString(3, m.getEmail());
-			pstmt.setString(4, m.getMenberId());
+			pstmt.setString(4, m.getMemberId());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -148,13 +156,6 @@ public class MemberDAO {
 		} finally {
 			close(pstmt);
 		}
-		return result;
-	
-		
-		
-		
-	}
-		
 		return result;
 	}
 
