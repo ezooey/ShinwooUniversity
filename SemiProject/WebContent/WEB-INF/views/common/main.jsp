@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="member.vo.Member"%>
+ <%
+	Member loginUser= (Member)session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,8 +109,13 @@
 
 <body>
 	<header><a href ="http://www.naver.com">   신우대학교</a>
-		<input type ="submit" value = "로그인" style=" float:right; width : 80px; height : 40px;
-		 background-color : #5D5E60; color : white; font-weight : bold; border-radius: 5px;" >
+		<% if(loginUser == null) {%>
+		<input type ="button" value = "로그인" style=" float:right; width : 80px; height : 40px;
+		 background-color : #5D5E60; color : white; font-weight : bold; border-radius: 5px;" onclick="location.href='<%= request.getContextPath() %>/loginForm.me'" >
+		 <%}else{%>
+		 <input type ="button" value = "로그아웃" style=" float:right; width : 80px; height : 40px;
+		 background-color : #5D5E60; color : white; font-weight : bold; border-radius: 5px;" onclick="location.href='<%= request.getContextPath() %>/logout.me'" >
+		 <%} %>
 		<a href ="http://www.naver.com"></a>
 	</header>
 	
