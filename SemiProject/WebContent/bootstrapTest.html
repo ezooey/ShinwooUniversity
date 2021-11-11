@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>도서 신청</title>
+    <title>도서 등록</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
@@ -32,8 +32,7 @@
         #currentMenu {
             color: white;
             padding: 20px;
-            padding-left: 2.5%;
-            font-size: 30px;
+            font-size: 40px;
             font-weight: 700;
         }
 
@@ -42,7 +41,7 @@
         }
 
         .reqTitle {
-            padding-top: 5px;
+            padding-top: 10px;
             padding-bottom: 3px;
             display: block;
         }
@@ -64,14 +63,8 @@
         }
 
         .section-top-border {
-            padding-top: 30px;
-            padding-bottom: 30px;
+            padding: 40px;
         }
-
-        .borderTop {
-            border-top: 1px solid #eee;
-        }
-
     </style>
 </head>
 
@@ -103,11 +96,10 @@
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="index.html">도서관 소개</a></li>
-                                    <li class="active"><a href="about.html">도서 신청 확인</a></li>
-                                    <li><a href="services.html">회원 목록</a></li>
-                                    <li><a href="blog.html">도서 대출 목록</a></li>
-                                    <li><a href="contact.html">도서 관리</a></li>
-                                    <li><a href="contact.html">독후감</a></li>
+                                    <li class="active"><a href="about.html">도서 신청</a></li>
+                                    <li><a href="services.html">도서 검색</a></li>
+                                    <li><a href="blog.html">독후감</a></li>
+                                    <li><a href="contact.html">마이페이지</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -115,7 +107,11 @@
                 </div>
                 <div class="header-right d-none d-lg-block">
                     <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그아웃</button>
+                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
+                </div>
+                <!-- Mobile Menu -->
+                <div class="col-12">
+                    <div class="mobile_menu d-block d-lg-none"></div>
                 </div>
             </div>
         </div>
@@ -123,8 +119,8 @@
     </header>
     <main>
         <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
                 <h2 id="currentMenu">도서 신청</h2>
             </div>
         </div>
@@ -147,7 +143,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="section-top-border borderTop">
+                <hr>
+                <div class="section-top-border">
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
                             <h3 class="mb-30">신청 도서 정보 입력</h3>
@@ -296,7 +293,6 @@
             var month = now.getMonth() + 1;
             var date = now.getDate();
             $('input[name=reqDate]').val(year + '-' + month + '-' + date);
-            $('input[name=reqDate]').css('color', 'gray');
             console.log(now);
         });
     </script>
