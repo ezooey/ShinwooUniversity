@@ -38,10 +38,38 @@ public class MemberService {
 		}else {
 			rollback(conn);
 		}
+	public int updateMember(Member m) {
+		Connection conn = getConnection();
+		
+		int result = mDAO.updateMember(conn, m);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int updatePwd(Member m) {
+		Connection conn = getConnection();
+		
+		int result = mDAO.updatePwd(conn, m);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
 		close(conn);
 		
 		return result;
 	}
 	
 	
+
 }
