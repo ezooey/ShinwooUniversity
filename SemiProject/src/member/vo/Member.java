@@ -27,21 +27,19 @@ public class Member {
 		this.status = status;
 	}
 
-<<<<<<< HEAD
 	public String getMemberId() {
 		return memberId;
 	}
 
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
-=======
+	}
 	public String getMenberId() {
 		return memberId;
 	}
 
 	public void setMenberId(String menberId) {
 		this.memberId = menberId;
->>>>>>> 4528603acd39c7d5930673e2d8ccb60a4146907c
 	}
 
 	public String getMemberPwd() {
