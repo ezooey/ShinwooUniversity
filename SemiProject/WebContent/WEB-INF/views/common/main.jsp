@@ -162,7 +162,7 @@
           nextArrow : "<button type='button' class='slick-next'>Next</button>",      
           dotsClass : "slick-dots",    
           draggable : true,     
-          
+
           responsive: [ 
               {  
                   breakpoint: 960, 

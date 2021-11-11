@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
-
 import member.vo.Member;
 
 public class MemberDAO {
@@ -25,6 +24,7 @@ public class MemberDAO {
 		}
 	}
 
+	
 	public Member loginMember(String memberId, String memberPwd, Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -105,6 +105,9 @@ public class MemberDAO {
 			pstmt.setString(3, m.getAddress());
 			pstmt.setString(4, m.getEmail());
 			pstmt.setString(5, m.getMemberId());
+			
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
