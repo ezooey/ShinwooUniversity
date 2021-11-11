@@ -220,7 +220,7 @@ input:read-only {
 					<td colspan="2">
 						<div class="mt-10">
 							<input type="text" name="number2" class="single-input" placeholder="- 제외" onfocus="this.placeholder = ''" onblur="this.placeholder = '- 제외'" required
-								   value="<%=  %>">
+								   >
 						</div>
 					</td>
 				</tr>
@@ -228,7 +228,7 @@ input:read-only {
 					<td class="category">이메일</td>
 					<td colspan="2">
 						<div class="input-group-icon mt-10">
-							<input type="text" name="email1" required class="single-input resize" value="<%=  %>">
+							<input type="text" name="email1" required class="single-input resize">
 						</div>
 					</td>
 					<td>
@@ -271,7 +271,7 @@ input:read-only {
 					<td colspan="2">
 						<div class="mt-10">
 							<input type="text" name="address2" class="single-input" placeholder="도로명 주소 입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소 입력'" required
-								   value="<%=  %>">
+								  >
 						</div>
 					</td>
 				</tr>

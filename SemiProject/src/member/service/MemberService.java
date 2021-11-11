@@ -38,6 +38,12 @@ public class MemberService {
 		}else {
 			rollback(conn);
 		}
+		
+		close(conn);
+		
+		return result;
+	}
+		
 	public int updateMember(Member m) {
 		Connection conn = getConnection();
 		
