@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(loginUser != null) {
 			HttpSession session = request.getSession();
-			session.setMaxInactiveInterval(6000); 	//6000√  µ⁄ ººº« ¡æ∑·
+			session.setMaxInactiveInterval(6000); 	
 			session.setAttribute("loginUser", loginUser);
 			String status = new MemberService().isFirstLogin(memberId);
 			if(status.equals("N")) {
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 		}else {
-			request.setAttribute("msg", "∑Œ±◊¿Œ Ω«∆–");
+			request.setAttribute("msg", "Î°úÍ∑∏Ïù∏ Ïã§Ìå®");
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp");
 			view.forward(request, response);
 		}

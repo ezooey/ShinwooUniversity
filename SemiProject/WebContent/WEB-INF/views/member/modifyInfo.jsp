@@ -1,99 +1,108 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="member.vo.Member" %>
+<% 
+	Member m = (Member)request.getAttribute("m"); 
+	String phone = m.getPhone();
+	String number1 = phone.substring(0, 3);
+	String number2 = phone.substring(3);
+	String address = m.getAddress();
+	String address1 = address.split(" ")[0];
+	String address2 = address.substring(address.indexOf(address1) + address1.length() + 1);
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>내 정보 수정</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
-<link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
-<!-- CSS here -->
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="assets/css/slicknav.css">
-<link rel="stylesheet" href="assets/css/flaticon.css">
-<link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
-<link rel="stylesheet" href="assets/css/gijgo.css">
-<link rel="stylesheet" href="assets/css/animate.min.css">
-<link rel="stylesheet" href="assets/css/animated-headline.css">
-<link rel="stylesheet" href="assets/css/magnific-popup.css">
-<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="assets/css/themify-icons.css">
-<link rel="stylesheet" href="assets/css/slick.css">
-<link rel="stylesheet" href="assets/css/nice-select.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/all.min.css">
-
-<style>
-#currentMenu {
-	color: white;
-	padding: 20px;
-	font-size: 40px;
-	font-weight: 700;
-}
-
-#login {
-	margin: 20px;
-}
-
-.reqTitle {
-	padding-top: 10px;
-	padding-bottom: 3px;
-	display: block;
-}
-
-.bottomBtn {
-	float: right;
-	padding-top: 20px;
-}
-
-.bottomBtn input {
-	margin: 10px;
-}
-
-.noneList {
-	list-style: none;
-}
-
-.fa-check-circle {
-	color: #6785FF;
-}
-
-.section-top-border {
-	padding: 40px;
-}
-
-#modifyTable {
-	width: 40%;
-	height: 600px;
-	margin: auto;
-}
-
-.category {
-	font-weight: bold;
-	font-family: 'Gowun Dodum', sans-serif;
-	width: 150px;
-}
-
-input:read-only {
-	background-color: #dedede
-}
-
-#notice1 {
-	text-align: center;
-	font-size: 3px;
-	font-family: 'Gowun Dodum', sans-serif;
-}
-
-#Btns {
-	text-align: center;
-}
-
-</style>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>내 정보 수정</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+	
+	<!-- CSS here -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/slicknav.css">
+	<link rel="stylesheet" href="assets/css/flaticon.css">
+	<link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
+	<link rel="stylesheet" href="assets/css/gijgo.css">
+	<link rel="stylesheet" href="assets/css/animate.min.css">
+	<link rel="stylesheet" href="assets/css/animated-headline.css">
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" href="assets/css/slick.css">
+	<link rel="stylesheet" href="assets/css/nice-select.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/all.min.css">
+	
+	<style>
+	#currentMenu {
+		color: white;
+		padding: 20px;
+		font-size: 40px;
+		font-weight: 700;
+	}
+	
+	#login {
+		margin: 20px;
+	}
+	
+	.reqTitle {
+		padding-top: 10px;
+		padding-bottom: 3px;
+		display: block;
+	}
+	
+	.bottomBtn {
+		float: right;
+		padding-top: 20px;
+	}
+	
+	.bottomBtn input {
+		margin: 10px;
+	}
+	
+	.noneList {
+		list-style: none;
+	}
+	
+	.fa-check-circle {
+		color: #6785FF;
+	}
+	
+	.section-top-border {
+		padding: 40px;
+	}
+	
+	#modifyTable {
+		width: 40%;
+		height: 600px;
+		margin: auto;
+	}
+	
+	.category {
+		font-weight: bold;
+		font-family: 'Gowun Dodum', sans-serif;
+		width: 150px;
+	}
+	
+	input:read-only {
+		background-color: #dedede
+	}
+	
+	#notice1 {
+		text-align: center;
+		font-size: 3px;
+		font-family: 'Gowun Dodum', sans-serif;
+	}
+	
+	#Btns {
+		text-align: center;
+	}
+	
+	</style>
 </head>
 
 <body>
@@ -169,19 +178,19 @@ input:read-only {
 				<tr>
 					<td class="category">학번</td>
 					<td colspan="2">
-						<div id="studentNo"></div>
+						<div id="studentNo"><%= m.getMemberId() %></div>
 					</td>
 				</tr>
 				<tr>
 					<td class="category">이름</td>
 					<td colspan="2">
-						<div id="name"></div>
+						<div id="name"><%= m.getMemberName() %></div>
 					</td>
 				</tr>
 				<tr>
 					<td class="category">학과</td>
 					<td colspan="2">
-						<div id="major"></div>
+						<div id="major"><%= m.getDepartment() %></div>
 					</td>
 				</tr>
 				<tr>
@@ -219,16 +228,16 @@ input:read-only {
 					</td>
 					<td colspan="2">
 						<div class="mt-10">
-							<input type="text" name="number2" class="single-input" placeholder="- 제외" onfocus="this.placeholder = ''" onblur="this.placeholder = '- 제외'" required
-								   >
+							<input type="text" name="number2" class="single-input" placeholder="- 제외" onfocus="this.placeholder = ''" onblur="this.placeholder = '- 제외'"
+								   value="<%= number2 %>">
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td class="category">이메일</td>
 					<td colspan="2">
-						<div class="input-group-icon mt-10">
-							<input type="text" name="email1" required class="single-input resize">
+						<div>
+							<input type="text" name="email1" required class="single-input">
 						</div>
 					</td>
 					<td>
@@ -270,8 +279,8 @@ input:read-only {
 					</td>
 					<td colspan="2">
 						<div class="mt-10">
-							<input type="text" name="address2" class="single-input" placeholder="도로명 주소 입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소 입력'" required
-								  >
+							<input type="text" name="address2" class="single-input" placeholder="도로명 주소 입력" onfocus="this.placeholder = ''" 
+								   onblur="this.placeholder = '도로명 주소 입력'" value="<%= address2 %>">
 						</div>
 					</td>
 				</tr>
@@ -415,6 +424,11 @@ input:read-only {
 				return false;
 			}
 		}
+		
+		$(function() {
+			$('select[name="number1"]').find('option:contains("<%= number1 %>")').attr("selected",true);
+			$('select[name="address1"]').find('option:contains("<%= address1 %>")').attr("selected",true);
+		});
 	</script>
 
 	<!-- JS here -->
