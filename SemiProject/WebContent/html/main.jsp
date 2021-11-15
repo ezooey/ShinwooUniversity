@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD:SemiProject/WebContent/html/main.jsp
     pageEncoding="UTF-8"%>
     
+=======
+    pageEncoding="UTF-8" import="member.vo.Member"%>
+ <%
+	Member loginUser= (Member)session.getAttribute("loginUser");
+%>
+>>>>>>> e8d8092e9fd8ded14c64188e9f02da0fa7b7d1f5:SemiProject/WebContent/WEB-INF/views/common/main.jsp
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,6 +141,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD:SemiProject/WebContent/html/main.jsp
    <!-- ? Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -176,6 +184,26 @@
                 </div>
             </div>
         </div>
+=======
+	<header><a href ="http://www.naver.com">   신우대학교</a>
+		<% if(loginUser == null) {%>
+		<input type ="button" value = "로그인" style=" float:right; width : 80px; height : 40px;
+		 background-color : #5D5E60; color : white; font-weight : bold; border-radius: 5px;" onclick="location.href='<%= request.getContextPath() %>/loginForm.me'" >
+		 <%}else{%>
+		 <input type ="button" value = "로그아웃" style=" float:right; width : 80px; height : 40px;
+		 background-color : #5D5E60; color : white; font-weight : bold; border-radius: 5px;" onclick="location.href='<%= request.getContextPath() %>/logout.me'" >
+		 <%} %>
+		<a href ="http://www.naver.com"></a>
+	</header>
+	
+	<nav class ="nav" >	
+		<ul>
+			<li class = "header-item"><a href ="http://www.naver.com">도서관 소개</a></li>
+			<li class = "header-item"><a href ="http://www.naver.com">도서신청</a></li>
+			<li class = "header-item"><a href ="http://www.naver.com">마이페이지</a></li>
+		</ul>
+	</nav>
+>>>>>>> e8d8092e9fd8ded14c64188e9f02da0fa7b7d1f5:SemiProject/WebContent/WEB-INF/views/common/main.jsp
 
 	<main>
    		<div id="wholewhole">
@@ -212,7 +240,7 @@
           nextArrow : "<button type='button' class='slick-next'>Next</button>",      
           dotsClass : "slick-dots",    
           draggable : true,     
-          
+
           responsive: [ 
               {  
                   breakpoint: 960, 

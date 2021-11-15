@@ -1,7 +1,7 @@
 package member.vo;
 
 public class Member {
-	private String menberId;
+	private String memberId;
 	private String memberPwd;
 	private String memberName;
 	private String department;
@@ -13,10 +13,10 @@ public class Member {
 	
 	public Member() {}
 	
-	public Member(String menberId, String memberPwd, String memberName, String department, String phone, String address,
+	public Member(String memberId, String memberPwd, String memberName, String department, String phone, String address,
 			String email, String memberType, String status) {
 		super();
-		this.menberId = menberId;
+		this.memberId = memberId;
 		this.memberPwd = memberPwd;
 		this.memberName = memberName;
 		this.department = department;
@@ -27,12 +27,12 @@ public class Member {
 		this.status = status;
 	}
 
-	public String getMenberId() {
-		return menberId;
+	public String getMemberId() {
+		return memberId;
 	}
 
-	public void setMenberId(String menberId) {
-		this.menberId = menberId;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getMemberPwd() {
@@ -101,7 +101,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [menberId=" + menberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName
+		return "Member [memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName
 				+ ", department=" + department + ", phone=" + phone + ", address=" + address + ", email=" + email
 				+ ", memberType=" + memberType + ", status=" + status + "]";
 	}
