@@ -206,4 +206,30 @@ public class MemberDAO {
 		}
 		return member;
 	}
+
+	public String findPwd(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String email = null;
+		
+		String query = prop.getProperty("findPwd");
+		// findPwd=SELECT EMAIL FROM MEMBER WHERE MEMBER_ID = ?
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				email = rset.getString("email");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return email;
+	}
 }

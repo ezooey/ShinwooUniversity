@@ -95,6 +95,19 @@ public class MemberService {
 		
 		return m;
 	}
+
+	public String findPwd(String memberId) {
+		Connection conn = getConnection();
+		String email = mDAO.findPwd(conn, memberId);
+		
+		if(email != null) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return email;
+	}
 	
 	
 
