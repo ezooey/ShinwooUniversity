@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChangeInfoForm</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    .input-form {
+      max-width: 680px;
+      margin-top: 80px;
+      padding: 32px;
+      background: #fff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="input-form-backgroud row">
+      <div class="input-form col-md-12 mx-auto">
+        <h4 class="mb-3">회원 정보 변경</h4>
+        <form action="<%= request.getContextPath() %>/userInfoUpdate.ui" method="post" class="validation-form" novalidate>
+         
+		<div class="row">
+			<div class="col-md-8 mb-3">
+				<div class="row g-2">
+					<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+					  <option value="1" name ="userName">이름</option>
+					  <option value="2" name ="userDepartment">학과</option>
+					  <option value="3" name ="userEmail">이메일</option>
+					</select>
+					<input type="text" class="form-control" placeholder="해리" >
+				</div>
+			</div>
+		</div>
+          <div class="mb-4">
+	          <button class="btn btn-primary" type="submit">취소</button>
+	          <button class="btn btn-primary" type="submit" onclick="location.href='javascript:history.go(-1);'" id="cancleBtn">확인</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
