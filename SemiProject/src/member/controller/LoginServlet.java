@@ -49,7 +49,6 @@ public class LoginServlet extends HttpServlet {
 			}else {
 				response.sendRedirect(request.getContextPath());
 			}
-			
 		}else {
 			request.setAttribute("msg", "로그인 실패");
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp");

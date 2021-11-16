@@ -34,6 +34,13 @@ public class Member {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+	public String getMenberId() {
+		return memberId;
+	}
+
+	public void setMenberId(String menberId) {
+		this.memberId = menberId;
+	}
 
 	public String getMemberPwd() {
 		return memberPwd;
