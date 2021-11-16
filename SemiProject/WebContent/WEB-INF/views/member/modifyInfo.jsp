@@ -144,7 +144,8 @@
 											<li><a href="blog.html">대출도서목록</a></li>
 											<li><a href="blog_details.html">신청도서목록</a></li>
 											<li><a href="elements.html">내정보 수정</a></li>
-										</ul></li>
+										</ul>
+									</li>
 								</ul>
 							</nav>
 						</div>
@@ -197,7 +198,7 @@
 					<td class="category">비밀번호</td>
 					<td colspan="3">
 						<div class="mt-10">
-							<input type="password" name="password" onfocus="this.placeholder = ''" required class="single-input">
+							<input type="password" name="password" onfocus="this.placeholder = ''" class="single-input">
 						</div>
 						<span id="notice1">비밀번호를 변경하지 않으려면 빈칸으로 두세요.</span>
 
@@ -207,7 +208,7 @@
 					<td class="category">비밀번호 확인</td>
 					<td colspan="3">
 						<div class="mt-10">
-							<input type="password" name="passConfirm" onfocus="this.placeholder = ''" required class="single-input">
+							<input type="password" name="passConfirm" onfocus="this.placeholder = ''" class="single-input">
 						</div>
 					</td>
 				</tr>
