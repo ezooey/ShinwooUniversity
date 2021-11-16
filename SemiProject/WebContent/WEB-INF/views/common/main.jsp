@@ -109,6 +109,7 @@
 
 <body>
 	<header><a href ="http://www.naver.com">   신우대학교</a>
+		
 		<% if(loginUser == null) {%>
 		<input type ="button" value = "로그인" style=" float:right; width : 80px; height : 40px;
 		 background-color : #5D5E60; color : white; font-weight : bold; border-radius: 5px;" onclick="location.href='<%= request.getContextPath() %>/loginForm.me'" >
@@ -123,7 +124,7 @@
 		<ul>
 			<li class = "header-item"><a href ="http://www.naver.com">도서관 소개</a></li>
 			<li class = "header-item"><a href ="http://www.naver.com">도서신청</a></li>
-			<li class = "header-item"><a href ="http://www.naver.com">마이페이지</a></li>
+			<li class = "header-item"><a href ="<%= request.getContextPath() %>/myPage.me">마이페이지</a></li>
 		</ul>
 	</nav>
 

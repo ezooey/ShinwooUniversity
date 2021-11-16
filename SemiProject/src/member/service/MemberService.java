@@ -75,6 +75,15 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public int checkPwd(String userId, String userPwd) {
+		Connection conn = getConnection();
+		
+		int result = mDAO.checkPwd(conn, userId, userPwd);
+		
+		close(conn);
+		return result;
+	}
 	
 	
 

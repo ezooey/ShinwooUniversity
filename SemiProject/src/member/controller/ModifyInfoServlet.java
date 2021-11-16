@@ -14,7 +14,7 @@ import member.vo.Member;
 /**
  * Servlet implementation class ModifyInfoServlet
  */
-@WebServlet("/modify.info")
+@WebServlet(name="ModifyInfoServlet", urlPatterns="/modify.info")
 public class ModifyInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,7 +49,7 @@ public class ModifyInfoServlet extends HttpServlet {
 			int PwResult = mService.updatePwd(m);
 			
 			if(PwResult < 0) {
-				request.setAttribute("msg", "비밀번호 수정 실패");
+				request.setAttribute("msg", "에러");
 				request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 			}
 		}
@@ -57,9 +57,9 @@ public class ModifyInfoServlet extends HttpServlet {
 		int result = mService.updateMember(m);
 		
 		if(result > 0) {
-			// 마이페이지로
+			// 留덉씠�럹�씠吏�濡�
 		} else {
-			request.setAttribute("msg", "정보 수정 실패");
+			request.setAttribute("msg", "에러");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
 	}

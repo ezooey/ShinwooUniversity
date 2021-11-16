@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.vo.Member"%>
-<%
-	Member m = (Member)request.getAttribute("loginUser");
+    pageEncoding="UTF-8" import="java.util.ArrayList, review.model.vo.*, member.vo.*"%>
+<% 	ArrayList<Review> list = (ArrayList)request.getAttribute("list");
+Member loginUser= (Member)session.getAttribute("loginUser");
+PageInfo pi = (PageInfo)request.getAttribute("pi");
 %>
-<!DOCTYPE html>
-<html class="no-js">
 
+<!DOCTYPE html>
+<html>
 <head>
+<!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>신우대학교 전자도서관입니다 - 회원 등록</title>
-    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
     <link rel="manifest" href="site.webmanifest">
@@ -33,8 +37,10 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
 
+    <title>Hello, world!</title>
     <style>
-        #currentMenu {
+    
+    #currentMenu {
             color: white;
             padding: 20px;
             font-size: 40px;
@@ -70,60 +76,121 @@
         .section-top-border {
             padding: 40px;
         }
-		#enrollTable{
-
+        .invId{
+        	display:none;
+        }
+        
+        
+       /*
+    header {
+	height : 70px; 
+	background : #aacec2; padding : 30px;
+	font-size : 15px; font-weight : bold;
+	padding-top: 10px; padding-bottom: 0px; z-index:1;
+	}/*
+ header {
+	height : 70px; 
+	background : #aacec2; padding : 30px;
+	font-size : 15px; font-weight : bold;
+	padding-top: 10px; padding-bottom: 0px; z-index:1;
+	}
 	
-		width:500px; height:600px;
-		margin:auto;
+	header a {text-decoration : none; color : #404040;z-index:1; font-size:45px;}
 	
-		}
+	nav.bar li{display: inline-block; font-size: 20px; text-align : center;  padding-right: 100px;
+	font-weight: bold; z-index:1;}
 	
-		.category{
-			font-weight:bold;
-			font-family: 'Gowun Dodum', sans-serif;
-			width: 150px;
-		}
-		#notice{
-			text-align:center;
-			font-size:3px;
-			font-family: 'Gowun Dodum', sans-serif;
-		}
-		.red{color:red;}
-		input:read-only{background-color:#dedede}
-		.confirm{
-			text-align:center;
-			font-size:3px;
-			font-family: 'Gowun Dodum', sans-serif;
-		}
-		#memberEnroll{
-			text-align:center;
-		}
+  	nav.bar{
+  		height : 80px; background : #aacec2;  position:absolute;
+  		position: sticky;
+  		padding-top: 5px; padding-bottom: 0px; 
+  		text-align : center; top: -20px;z-index:1;
+  		padding-right: 0px;}
+	
+	.header-item a {text-align : center; text-decoration : none; color : #404040;
+	display : block; padding : 10px 0px 0px 40px; line-height: 45px; text-align : center;}
+	*/
+   .firstdiv{background:#6785FF; height:130px; font-size:40px; text-align:left; padding-left:60px; padding-top:35px;font-weight : bold; color:white;
+    	}
+    	
+    #personalInf{
+    	margin-left:18%; margin-right:18%; border-radius: 2em;
+    }
+    
+    .borrowed{
+    	background:#d2e2e9; height:100px; padding-left:160px; font-size:30px; padding-top:20px;font-weight : bold; color:#404040
+    }
+    
+    .personal{
+    	font-size:20px;
+    	}
+    	
+    
+    .card img{
+    	width:145px;
+    }
+    
+    .imgdiv{
+    	text-align:center; border-radius: 2em;
+    	
+    }
+    
+    .borrowed button{
+    	margin-left:20px;
+    	margin-top:-20px;
+    	font-size:15px;
+    }
+    
+    .bookpage{ text-align : center;
+    	margin-top:40px;
+    }
+    
+    .bookp{ display:inline-block;
+    }
+    #ddaydiv{background: rgba(255, 0, 0, 0.5);}
+    #dday{color:red;}
+    .card-title{font-size:20px;}
+    .card-body{text-align:center;}
+    .card-body button{margin-top:10px;}
+    div.card{border-radius: 2em; margin-top:10px; opacity: 0.8; margin-left:20px; margin-right:20px;}
+    .tableBody{height:60px;}
+    th, td {
+  vertical-align : middle;
+}
+    th.returnBook, td.returnBook {
+  text-align: center;
+}
+	.submitDiv1{
+		padding-right:100px;
+		margin-right:100px;
+	}
 	
 	
     </style>
 </head>
-
-<body onload="alert('최초로 로그인하셨습니다. 정보입력이 필요합니다.')">
-    <!-- ? Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/loder.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Preloader Start -->
-    <header>
+<body>
+<!-- <header><a href ="http://www.naver.com">   신우대학교</a>
+		<input type ="submit" value = "로그인" style=" float:right; width : 80px; height : 40px;
+		 background-color : #5D5E60; color : white; font-weight : bold; border-radius: 5px;" >
+		<a href ="http://www.naver.com"></a>
+	</header>
+	
+	<nav class='bar'>	
+		<ul>
+			<li class = "header-item"><a href ="http://www.naver.com">도서관 소개</a></li>
+			<li class = "header-item"><a href ="http://www.naver.com">도서신청</a></li>
+			<li class = "header-item"><a href ="http://www.naver.com">마이페이지</a></li>
+		</ul>
+	</nav>-->
+	
+   <header>
         <!-- Header Start -->
         <div class="header-area">
             <div class="main-header header-sticky">
                 <!-- Logo -->
                 <div class="header-left">
                     <div class="logo">
-                        <a href="index.html"><img src="images/shinwooLogo.PNG" alt=""></a>
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
                     </div>
                     <div class="menu-wrapper  d-flex align-items-center">
                         <!-- Main-menu -->
@@ -134,8 +201,7 @@
                                     <li><a href="about.html">도서 신청</a></li>
                                     <li><a href="services.html">도서 검색</a></li>
                                     <li><a href="blog.html">독후감</a></li>
-                                    <li class="active"><a href="contact.html">마이페이지</a></li>
-                                    
+                                    <li><a href="contact.html">마이페이지</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -153,141 +219,87 @@
         </div>
         <!-- Header End -->
     </header>
-    <main>
-        <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 150px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 150px;">
-                <h3 id="currentMenu">최초 등록</h3>
-            </div>
-        </div>
-        <br><br>
-
-	
-		<form action='<%= request.getContextPath() %>/firstLogin.me' method='post' ">
-    	<table id ="enrollTable">
-    		<tr>
-    			<td class="category">학번</td>
-    			<td colspan="2"><div id="studentNo"><%= m.getMemberId() %></div></td>
-    			<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
-    		</tr>
-    		<tr>
-    			<td class="category">이름</td>
-    			<td><div id="name"><%= m.getMemberName() %></div></td>
-    		</tr>
-    		<tr>
-    			<td class="category">학과</td>
-    			<td><div id="major"> <%= m.getDepartment() %></div></td>
-    		</tr>
-    		<tr>
-    			<td class="category">비밀번호<span class="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td>
-    			<td>
-    				<div class="mt-10">
-					<input type="password" name="password" id ="password"
-					onfocus="this.placeholder = ''"  required
-					class="single-input">
-					</div>
-					<div id="notice">비밀번호는 영문, 숫자, 특수문자(!,@,#,$,%,^,&,*) 포함 8자리 이상 입력해주세요.'</div>								
-    			</td>
-    		</tr>
-    		<tr>
-    			<td class="category">비밀번호 확인<span class="red">&nbsp;&nbsp;*</span></td>
-    			<td>
-    			<div class="mt-10">
-					<input type="password" name="passConfirm" id ="passConfirm"
-					 onblur="confirm();" required
-					class="single-input" >
-				</div><div class="confirm" id = "notice2"></div></td>
-    		</tr>
-    		<tr>
-    			<td class="category">전화번호</td>
-    			<td>
-	    			<div class="single-element-widget mt-30">
-						<div class="phone" id="number1">
-							<select name="number1">
-								<option value="010" selected>010</option>
-								<option value="011">011</option>
-								<option value="016">016</option>
-								<option value="018">018</option>
-								<option value="019">019</option>
-							</select>
-						</div>
-					</div>&nbsp;&nbsp;
-					<div class="mt-10">
-						<input type="text" name="number2" placeholder="- 제외"
-						onfocus="this.placeholder = ''" onblur="this.placeholder = '- 제외'"
-						class="single-input">
-					</div>
-				</td>
-    		</tr>
-    		<tr>
-    			<td class="category">이메일 <span class="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td>
-    			<td>
-    				<div class="input-group-icon mt-10">
-						<div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
-					<input type="text" name="email1"  required class="single-input">
-					</div>
-					<!-- <div class="input-group-icon mt-10">
-						<div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
-					<input type="text" name="email1"  required class="single-input">
-					</div>-->
-					<div>
-						<select class="email" name="email2" onChange="selectEmail(this)">
-							<option value="@naver.com">@naver.com</option>
-							<option value="@gmail.com">@gmail.com</option>
-							<option value="@daum.net">@daum.net</option>
-							<option value="@nate.com">@nate.com</option>
-							<option value="etc">기타</option>
-						</select>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="category">주소</td>
-				<td>
-				<div>
-					<select class="address" id="address1" name="address1">
-						<option value="강원도">강원</option>
-						<option value="경기도">경기</option>
-						<option value="경상남도">경남</option>
-						<option value="경상북도">경북</option>
-						<option value="광주광역시">광주</option>
-						<option value="대구광역시">대구</option>
-						<option value="대전광역시">대전</option>
-						<option value="부산광역시">부산</option>
-						<option value="서울특별시">서울</option>
-						<option value="울산광역시">울산</option>
-						<option value="인천광역시">인천</option>
-						<option value="전라남도">전남</option>
-						<option value="전라북도">전북</option>
-						<option value="제주특별자치도">제주</option>
-						<option value="충청남도">충남</option>
-						<option value="충청북도">충북</option>
-					</select>&nbsp;&nbsp;
-					<span class="mt-10">
-						<input type="text" name="address2" placeholder="도로명 주소 입력"
-						onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소 입력'"
-						class="single-input">
-					</span>
-					</div>
-				</td>
-				
-			</tr>
-			<tr>
-				<td colspan="3">
-				<br><br>
-				<div id="memberEnroll">
-					<button type="submit" class="genric-btn info circle" onclick= "submitAlarm();">초기설정완료</button>
-				</div>
-				</td>
-			</tr>
-   	
-    	</table>
-    </form>
+<div class="firstdiv">독후감</div>
+<p><br>
+   <p><br>
+    <div class="jumbotron" id="personalInf">
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">제목</th>
+      <th scope="col">책명</th>
+      <th scope="col">작성자</th>
+      <th scope="col">조회수</th>
+      <th scopr="col">등록일자</th>
+    </tr>
+  </thead>
+  <tbody>
     
+                                            <% if(list.isEmpty()){ %>
+											<tr>
+												<td colspan="5">존재하는 공지사항이 없습니다.</td>
+											</tr>
+											<% } else{%>
+													
+											<%		String bookName = null;
+													for(int i = 0; i < list.size(); i++){ %>
+											<tr><% 		if(list.get(i).getBookName().length()>10){
+														bookName = list.get(i).getBookName().substring(0, 10);
+														}else{
+														bookName = list.get(i).getBookName();
+														}%>
+												<td class="invId"><%= list.get(i).getReviewNo() %>
+												<td><%= list.get(i).getReviewTitle()%></td>
+												<td><%= bookName %></td>
+												<td><%= list.get(i).getReviewWriter() %></td>
+												<td><%= list.get(i).getViews() %></td>
+												<td><%= list.get(i).getReviewDate() %></td>
+											</tr>
+											<%		} %>
+											<% } %>
+                                            
 
-     
-    </main>
-    <footer>
+    <script>
+    $('td').on("click", function(){
+    	var num = $(this).parent().children().eq(0).text();
+    	location.href='<%= request.getContextPath() %>/detail.rv?rId=' + num;
+    });
+    </script>
+  </tbody>
+</table>
+<div class= "pagingArea" align='center'>
+			<!-- 맨처음으로 -->
+			<button onclick="location.href='<%= request.getContextPath() %>/reviewList.rv?currentPage=1'"><<</button>
+			<!-- 이전 페이지로 -->
+			<button   id="beforeBtn" onclick="location.href='<%= request.getContextPath() %>/reviewList.rv?currentPage=<%= pi.getCurrentPage()-1 %>'"><</button>
+			<script>
+				if(<%= pi.getCurrentPage() %> <= 1){
+					$('#beforeBtn').prop('disabled', true);
+				}
+			</script>
+			<!-- 숫자버튼 -->
+			<% for(int p = pi.getStartPage(); p<=pi.getEndPage(); p++){ %>
+			<% 		if(p == pi.getCurrentPage()){ %>
+						<button id = "choosen"   disable><%= p %></button>
+			<%		}else{ %>
+						<button id="numBtn" onclick="location.href='<%= request.getContextPath() %>/reviewList.rv?currentPage=<%= p %>'"><%= p %></button>
+			<% 			} %>
+			<% } %>
+			<!-- 다음페이지로 -->
+			<button id="afterBtn" onclick="location.href='<%= request.getContextPath() %>/reviewList.rv?currentPage=<%= pi.getCurrentPage()+1 %>'">></button>
+			<script>
+				if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>){
+					$('#afterBtn').prop('disabled',true);
+				}
+			</script>
+			<!-- 맨끝으로 -->
+			<button  onclick="location.href='<%= request.getContextPath() %>/reviewList.rv?currentPage=<%= pi.getMaxPage() %>'">>></button>
+		</div>
+										<% if(loginUser != null){ %>
+                                    <div id="submitDiv1"><div id="submitDiv" align="right"><input type="button" value="작성" class="btn btn-dark" onclick="location.href='<%= request.getContextPath() %>/writeReviewForm.rv'"></div></div>
+                                    <% } %>
+    </div>
+     <footer>
         <!-- Footer Start-->
         <div class="footer-area footer-padding">
             <div class="container">
@@ -297,7 +309,7 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo mb-35">
-                                    <a href="index.html"><img src="images/shinwooLogo.PNG" alt=""></a>
+                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -369,99 +381,17 @@
     <div id="back-top">
         <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
     </div>
-    
-    
-    <!-- java script -->
-	<script>
-	
-	function selectEmail(ele){ 
-  		var $ele = $(ele); 
-  		var $email2 = $('input[name=email2]'); //
-  		if($ele.val() == "etc"){ 
-  			$email2.attr('readonly', false); 
-  			$email2.val(''); 
-  		} else { 
-  			$email2.attr('readonly', true); 
-  			$email2.val($ele.val()); 
-  		} 
-  	}
- 
-	function confirm(){
-		var pass = document.getElementByName('password');
-		var pass2 = document.getElementByName('passConfirm');
-		var notice = document.getElementById('notice2');
-
-		
-		if(pass2.value ==''|| pass2.value.length ==0){
-			notice.innerText = '';
-		}else if(pass.value != pass2.value){
-			notice.innerText = '비밀번호가 일치하지 않습니다.';
-			notice.style.color = 'red';
-		}else{
-			notice.innerText = '비밀번호가 일치합니다.';
-			notice.style.color = 'green';
-		}
-	} 
-
-	 /* 	$("#password").change(function(){
-		    checkPassword($('#password').val());
-		});
-		function checkPassword(password){
-		    
-		    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*])(?=.*[0-9]).{8,25}$/.test(password)){            
-		        $('#notice').text('알맞은 비밀번호 입니다.');
-		        $('#passConfirm').focus();
-		        return false;
-		    }    
-		
-		}
-		
-	
-		
-		 $('#password').on('blur', function(){
-			if($('#passConfirm').val() == ''){
-				$('#notice2').text('비밀번호를 한 번 더  입력하세요');		
-			}else if($('#password').val() != $('#passConfirm').val()){
-				$('#notice2').text('비밀번호가 일치하지 않습니다.').css('color', 'red');
-			}else {
-				$('#notice2').text('비밀번호가 서로 일치합니다.').css('color', 'green');
-			}
-		});
-		 */
-		function submitAlarm(){
-			if($('#password').val() == ''){
-				alert('비밀번호를 입력해주세요');
-				$('#password').focus();
-				return false;
-			}
-			if($('#password').val() != $('#passConfirm').val()){
-				alert('비밀번호가 일치하지 않습니다.');
-				$('#password').val("");
-				$('#passConfirm').val("");
-				$('#password').focus();
-				return false;
-			}
-			if($('#email').val() == ''){
-				alert('이메일이 입력되지 않았습니다.');
-				$('#email').val("");
-				$('#email').focus();
-				return false;
-				
-			}
-		} 
-	
-	</script>
-
-  	
-  	
-  	
-    
-    
-    
-    
-    
+    <script>
+        $(function () {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var date = now.getDate();
+            $('input[name=reqDate]').val(year + '-' + month + '-' + date);
+            console.log(now);
+        });
+    </script>
     <!-- JS here -->
-
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
@@ -502,6 +432,10 @@
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/all.min.js"></script>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
-
 </html>

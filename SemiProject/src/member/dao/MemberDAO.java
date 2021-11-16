@@ -23,7 +23,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
 	
 	public Member loginMember(String memberId, String memberPwd, Connection conn) {
 		PreparedStatement pstmt = null;
@@ -159,6 +159,36 @@ public class MemberDAO {
 		} finally {
 			close(pstmt);
 		}
+		return result;
+	}
+
+
+	public int checkPwd(Connection conn, String userId, String userPwd) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("checkPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
 		return result;
 	}
 
