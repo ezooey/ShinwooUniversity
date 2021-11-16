@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>신우대학교 전자도서관입니다 - 회원 등록</title>
+    <title>회원 등록</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
@@ -84,11 +84,12 @@
 			width: 150px;
 		}
 		#notice{
-			text-align:center;
 			font-size:3px;
 			font-family: 'Gowun Dodum', sans-serif;
 		}
-		.red{color:red;}
+		.red{
+			color:red;
+		}
 		input:read-only{background-color:#dedede}
 		.confirm{
 			text-align:center;
@@ -98,8 +99,16 @@
 		#memberEnroll{
 			text-align:center;
 		}
-	
-	
+		
+		#notice1 {
+			text-align: center;
+			font-size: 3px;
+			font-family: 'Gowun Dodum', sans-serif;
+		}
+		
+		#Btns {
+			text-align: center;
+		}
     </style>
 </head>
 
@@ -163,73 +172,72 @@
         <br><br>
 
 	
-		<form action='<%= request.getContextPath() %>/firstLogin.me' method='post' ">
+		<form id="firstLoginForm" action='<%= request.getContextPath() %>/firstLogin.me' method='post'>
     	<table id ="enrollTable">
     		<tr>
     			<td class="category">학번</td>
-    			<td colspan="2"><div id="studentNo"><%= m.getMemberId() %></div></td>
-    			<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
+    			<td colspan="2">
+    				<div id="studentNo"><%= m.getMemberId() %></div>
+	    			<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
+    			</td>
     		</tr>
     		<tr>
     			<td class="category">이름</td>
-    			<td><div id="name"><%= m.getMemberName() %></div></td>
+    			<td colspan="2"><div id="name"><%= m.getMemberName() %></div></td>
     		</tr>
     		<tr>
     			<td class="category">학과</td>
-    			<td><div id="major"> <%= m.getDepartment() %></div></td>
+    			<td colspan="2"><div id="major"> <%= m.getDepartment() %></div></td>
     		</tr>
     		<tr>
-    			<td class="category">비밀번호<span class="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td>
-    			<td>
+    			<td class="category">비밀번호<span class="red">*</span></td>
+    			<td colspan="3">
     				<div class="mt-10">
 					<input type="password" name="password" id ="password"
 					onfocus="this.placeholder = ''"  required
 					class="single-input">
 					</div>
-					<div id="notice">비밀번호는 영문, 숫자, 특수문자(!,@,#,$,%,^,&,*) 포함 8자리 이상 입력해주세요.'</div>								
+					<div id="notice">영문, 숫자, 특수문자(!,@,#,$,%,^,&,*) 포함 8자리 이상 입력</div>								
     			</td>
     		</tr>
     		<tr>
-    			<td class="category">비밀번호 확인<span class="red">&nbsp;&nbsp;*</span></td>
-    			<td>
+    			<td class="category">비밀번호 확인<span class="red">*</span></td>
+    			<td colspan="3">
     			<div class="mt-10">
 					<input type="password" name="passConfirm" id ="passConfirm"
 					 onblur="confirm();" required
 					class="single-input" >
-				</div><div class="confirm" id = "notice2"></div></td>
+				</div><div class="confirm" id="notice2"></div></td>
     		</tr>
     		<tr>
     			<td class="category">전화번호</td>
-    			<td>
-	    			<div class="single-element-widget mt-30">
+				<td width="1%">
+					<div class="mt-10">
 						<div class="phone" id="number1">
 							<select name="number1">
-								<option value="010" selected>010</option>
+								<option value="010">010</option>
 								<option value="011">011</option>
 								<option value="016">016</option>
 								<option value="018">018</option>
 								<option value="019">019</option>
 							</select>
 						</div>
-					</div>&nbsp;&nbsp;
+					</div>
+				</td>
+				<td colspan="2">
 					<div class="mt-10">
-						<input type="text" name="number2" placeholder="- 제외"
-						onfocus="this.placeholder = ''" onblur="this.placeholder = '- 제외'" required
-						class="single-input">
+						<input type="text" name="number2" class="single-input" placeholder="- 제외" onfocus="this.placeholder = ''" onblur="this.placeholder = '- 제외'">
 					</div>
 				</td>
     		</tr>
     		<tr>
-    			<td class="category">이메일 <span class="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td>
-    			<td>
-    				<div class="input-group-icon mt-10">
-						<div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
-					<input type="text" name="email1"  required class="single-input">
+    			<td class="category">이메일 <span class="red">*</span></td>
+    			<td colspan="2">
+    				<div>
+						<input type="text" name="email1"  required class="single-input">
 					</div>
-					<!-- <div class="input-group-icon mt-10">
-						<div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
-					<input type="text" name="email1"  required class="single-input">
-					</div>-->
+				</td>
+				<td>
 					<div>
 						<select class="email" name="email2" onChange="selectEmail(this)">
 							<option value="@naver.com">@naver.com</option>
@@ -244,36 +252,36 @@
 			<tr>
 				<td class="category">주소</td>
 				<td>
-				<div>
-					<select class="address" id="address1" name="address1">
-						<option value="강원도">강원</option>
-						<option value="경기도">경기</option>
-						<option value="경상남도">경남</option>
-						<option value="경상북도">경북</option>
-						<option value="광주광역시">광주</option>
-						<option value="대구광역시">대구</option>
-						<option value="대전광역시">대전</option>
-						<option value="부산광역시">부산</option>
-						<option value="서울특별시">서울</option>
-						<option value="울산광역시">울산</option>
-						<option value="인천광역시">인천</option>
-						<option value="전라남도">전남</option>
-						<option value="전라북도">전북</option>
-						<option value="제주특별자치도">제주</option>
-						<option value="충청남도">충남</option>
-						<option value="충청북도">충북</option>
-					</select>&nbsp;&nbsp;
-					<span class="mt-10">
-						<input type="text" name="address2" placeholder="도로명 주소 입력"
-						onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소 입력'" required
-						class="single-input">
-					</span>
+					<div>
+						<select class="address" id="address1" name="address1">
+							<option>시/도</option>
+							<option value="강원도">강원도</option>
+							<option value="경기도">경기도</option>
+							<option value="경상남도">경상남도</option>
+							<option value="경상북도">경상북도</option>
+							<option value="광주광역시">광주광역시</option>
+							<option value="대구광역시">대구광역시</option>
+							<option value="대전광역시">대전광역시</option>
+							<option value="부산광역시">부산광역시</option>
+							<option value="서울특별시">서울특별시</option>
+							<option value="울산광역시">울산광역시</option>
+							<option value="인천광역시">인천광역시</option>
+							<option value="전라남도">전라남도</option>
+							<option value="전라북도">전라북도</option>
+							<option value="제주특별자치도">제주특별자치도</option>
+							<option value="충청남도">충청남도</option>
+							<option value="충청북도">충청북도</option>
+						</select>
 					</div>
 				</td>
-				
+				<td colspan="2">
+					<div class="mt-10">
+						<input type="text" name="address2" class="single-input" placeholder="도로명 주소 입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소 입력'">
+					</div>
+				</td>
 			</tr>
 			<tr>
-				<td colspan="3">
+				<td colspan="6">
 				<br><br>
 				<div id="memberEnroll">
 					<button type="submit" class="genric-btn info circle" onclick= "submitAlarm();">초기설정완료</button>

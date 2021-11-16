@@ -107,7 +107,6 @@ public class MemberDAO {
 			pstmt.setString(5, m.getMemberId());
 			
 			result = pstmt.executeUpdate();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -160,6 +159,39 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public Member selectMember(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		
+		String query = prop.getProperty("selectMember");
+			
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				member = new Member(rset.getString("MEMBER_ID"), 
+									rset.getString("PW"),  
+									rset.getString("MEMBER_NAME"), 
+									rset.getString("DEPARTMENT"), 
+									rset.getString("PHONE"), 
+									rset.getString("ADDRESS"), 
+									rset.getString("EMAIL"),
+									rset.getString("MEMBER_TYPE"),
+									rset.getString("STATUS"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return member;
 	}
 
 }

@@ -75,6 +75,16 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public Member selectMember(String memberId) {
+		Connection conn = getConnection();
+		
+		Member m = mDAO.selectMember(conn, memberId);
+		
+		close(conn);
+		
+		return m;
+	}
 	
 	
 
