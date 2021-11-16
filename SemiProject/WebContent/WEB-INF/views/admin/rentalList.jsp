@@ -1,18 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.vo.Member"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, book.vo.Book"%>
+    
 <%
-	Member m = (Member)request.getAttribute("loginUser");
-%>
-<!DOCTYPE html>
+	ArrayList<Book> list =  (ArrayList)request.getAttribute("list");
+
+%>    
+<!doctype html>
 <html class="no-js">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>회원 등록</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+       
+    <title>adminRentalList</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+
+
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
@@ -32,6 +39,13 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/datatables.min.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
+	
+
+
 
     <style>
         #currentMenu {
@@ -70,49 +84,18 @@
         .section-top-border {
             padding: 40px;
         }
-		#enrollTable{
-
-	
-		width:500px; height:600px;
-		margin:auto;
-	
-		}
-	
-		.category{
-			font-weight:bold;
-			font-family: 'Gowun Dodum', sans-serif;
-			width: 150px;
-		}
-		#notice{
-			font-size:3px;
-			font-family: 'Gowun Dodum', sans-serif;
-		}
-		.red{
-			color:red;
-		}
-		input:read-only{background-color:#dedede}
-		.confirm{
-			text-align:center;
-			font-size:3px;
-			font-family: 'Gowun Dodum', sans-serif;
-		}
-		#memberEnroll{
-			text-align:center;
-		}
-		
-		#notice1 {
-			text-align: center;
-			font-size: 3px;
-			font-family: 'Gowun Dodum', sans-serif;
-		}
-		
-		#Btns {
-			text-align: center;
-		}
+        
+        .searchBar{
+        	padding-top: 10%;
+        	padding-left: 60%;
+        }
+        .paging1{
+        	padding-left: 47%;
+        }
     </style>
 </head>
 
-<body onload="alert('최초로 로그인하셨습니다. 정보입력이 필요합니다.')">
+<body>
     <!-- ? Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -132,7 +115,7 @@
                 <!-- Logo -->
                 <div class="header-left">
                     <div class="logo">
-                        <a href="index.html"><img src="images/shinwooLogo.PNG" alt=""></a>
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
                     </div>
                     <div class="menu-wrapper  d-flex align-items-center">
                         <!-- Main-menu -->
@@ -140,11 +123,12 @@
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="index.html">도서관 소개</a></li>
-                                    <li><a href="about.html">도서 신청</a></li>
+                                    <li><a href="about.html">도서 신청 확인</a></li>
                                     <li><a href="services.html">도서 검색</a></li>
+                                    <li><a href="contact.html">회원 목록</a></li>
+                                    <li class="active"><a href="contact.html">대출 도서 목록</a></li>
+                                    <li><a href="contact.html">도서관리</a></li>
                                     <li><a href="blog.html">독후감</a></li>
-                                    <li class="active"><a href="contact.html">마이페이지</a></li>
-                                    
                                 </ul>
                             </nav>
                         </div>
@@ -152,7 +136,7 @@
                 </div>
                 <div class="header-right d-none d-lg-block">
                     <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
+                    <button type="button" class="genric-btn primary circle" id="login">로그아웃</button>
                 </div>
                 <!-- Mobile Menu -->
                 <div class="col-12">
@@ -164,136 +148,62 @@
     </header>
     <main>
         <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 150px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 150px;">
-                <h3 id="currentMenu">최초 등록</h3>
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
+                <h2 id="currentMenu">대출 도서 목록</h2>
             </div>
         </div>
-        <br><br>
 
-	
-		<form id="firstLoginForm" action='<%= request.getContextPath() %>/firstLogin.me' method='post'>
-    	<table id ="enrollTable">
-    		<tr>
-    			<td class="category">학번</td>
-    			<td colspan="2">
-    				<div id="studentNo"><%= m.getMemberId() %></div>
-	    			<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
-    			</td>
-    		</tr>
-    		<tr>
-    			<td class="category">이름</td>
-    			<td colspan="2"><div id="name"><%= m.getMemberName() %></div></td>
-    		</tr>
-    		<tr>
-    			<td class="category">학과</td>
-    			<td colspan="2"><div id="major"> <%= m.getDepartment() %></div></td>
-    		</tr>
-    		<tr>
-    			<td class="category">비밀번호<span class="red">*</span></td>
-    			<td colspan="3">
-    				<div class="mt-10">
-					<input type="password" name="password" id ="password"
-					onfocus="this.placeholder = ''"  required
-					class="single-input">
-					</div>
-					<div id="notice">영문, 숫자, 특수문자(!,@,#,$,%,^,&,*) 포함 8자리 이상 입력</div>								
-    			</td>
-    		</tr>
-    		<tr>
-    			<td class="category">비밀번호 확인<span class="red">*</span></td>
-    			<td colspan="3">
-    			<div class="mt-10">
-					<input type="password" name="passConfirm" id ="passConfirm"
-					 onblur="confirm();" required
-					class="single-input" >
-				</div><div class="confirm" id="notice2"></div></td>
-    		</tr>
-    		<tr>
-    			<td class="category">전화번호</td>
-				<td width="1%">
-					<div class="mt-10">
-						<div class="phone" id="number1">
-							<select name="number1">
-								<option value="010">010</option>
-								<option value="011">011</option>
-								<option value="016">016</option>
-								<option value="018">018</option>
-								<option value="019">019</option>
-							</select>
+		<!--? Start Align Area -->
+		<div class="whole-wrap">
+			<div class="container box_1170">
+				<div class="section-top-border">
+					<div class="row">
+						<div class="col-md-8 mt-sm-30">
 						</div>
 					</div>
-				</td>
-				<td colspan="2">
-					<div class="mt-10">
-						<input type="text" name="number2" class="single-input" placeholder="- 제외" onfocus="this.placeholder = ''" onblur="this.placeholder = '- 제외'">
-					</div>
-				</td>
-    		</tr>
-    		<tr>
-    			<td class="category">이메일 <span class="red">*</span></td>
-    			<td colspan="2">
-    				<div>
-						<input type="text" name="email1"  required class="single-input">
-					</div>
-				</td>
-				<td>
-					<div>
-						<select class="email" name="email2" onChange="selectEmail(this)">
-							<option value="@naver.com">@naver.com</option>
-							<option value="@gmail.com">@gmail.com</option>
-							<option value="@daum.net">@daum.net</option>
-							<option value="@nate.com">@nate.com</option>
-							<option value="etc">기타</option>
-						</select>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="category">주소</td>
-				<td>
-					<div>
-						<select class="address" id="address1" name="address1">
-							<option>시/도</option>
-							<option value="강원도">강원도</option>
-							<option value="경기도">경기도</option>
-							<option value="경상남도">경상남도</option>
-							<option value="경상북도">경상북도</option>
-							<option value="광주광역시">광주광역시</option>
-							<option value="대구광역시">대구광역시</option>
-							<option value="대전광역시">대전광역시</option>
-							<option value="부산광역시">부산광역시</option>
-							<option value="서울특별시">서울특별시</option>
-							<option value="울산광역시">울산광역시</option>
-							<option value="인천광역시">인천광역시</option>
-							<option value="전라남도">전라남도</option>
-							<option value="전라북도">전라북도</option>
-							<option value="제주특별자치도">제주특별자치도</option>
-							<option value="충청남도">충청남도</option>
-							<option value="충청북도">충청북도</option>
-						</select>
-					</div>
-				</td>
-				<td colspan="2">
-					<div class="mt-10">
-						<input type="text" name="address2" class="single-input" placeholder="도로명 주소 입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소 입력'">
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="6">
-				<br><br>
-				<div id="memberEnroll">
-					<button type="submit" class="genric-btn info circle" onclick= "submitAlarm();">초기설정완료</button>
 				</div>
-				</td>
-			</tr>
-   	
-    	</table>
-    </form>
+				<table id="foo-table" class="table table-bordered">  
+					<thead>  
+						<tr>  
+							<th>No.</th>
+							<th>도서코드</th>
+							<th>도서명</th>
+							<th>저자</th>
+							<th>대출자명</th>
+							<th>대출일자</th>
+							<th>반납일자</th>  
+						</tr>  
+					</thead>  
+					<tbody>  
+						<% if(list.isEmpty()){ %>
+							<tr>
+								<td colspan="6">대출 된 도서가 없습니다.</td>
+							</tr>
+						<% } else { %>
+						<%		for(int i = 0; i <list.size(); i++){ %>
+						<tr>
+							<td><%= list.get(i).getBookNo() %></td>
+							<td><%= list.get(i).getBookTitle() %></td>
+							<td><%= list.get(i).getAuthor() %></td>
+							<td><%= list.get(i).getMemberName() %></td>
+							<td><%= list.get(i).getRentalDate() %></td>
+							<td><%= list.get(i).getReturnDate() %></td>
+						</tr>
+						<%		} %>
+						<% } %>
+					</tbody>  
+				</table>  
+				<script type="text/javascript">
+					jQuery(function($){ 
+						$("#foo-table").DataTable(); 
+					});
+				</script>   	
+		<!-- table end -->	
+		    </div>
+		</div>
     
-
-     
+        <!-- End Align Area -->
     </main>
     <footer>
         <!-- Footer Start-->
@@ -305,7 +215,7 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo mb-35">
-                                    <a href="index.html"><img src="images/shinwooLogo.PNG" alt=""></a>
+                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -377,97 +287,16 @@
     <div id="back-top">
         <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
     </div>
-    
-    
-    <!-- java script -->
-	<script>
-	
-	function selectEmail(ele){ 
-  		var $ele = $(ele); 
-  		var $email2 = $('input[name=email2]'); //
-  		if($ele.val() == "etc"){ 
-  			$email2.attr('readonly', false); 
-  			$email2.val(''); 
-  		} else { 
-  			$email2.attr('readonly', true); 
-  			$email2.val($ele.val()); 
-  		} 
-  	}
- 
-	function confirm(){
-		var pass = document.getElementByName('password');
-		var pass2 = document.getElementByName('passConfirm');
-		var notice = document.getElementById('notice2');
-
-		
-		if(pass2.value ==''|| pass2.value.length ==0){
-			notice.innerText = '';
-		}else if(pass.value != pass2.value){
-			notice.innerText = '비밀번호가 일치하지 않습니다.';
-			notice.style.color = 'red';
-		}else{
-			notice.innerText = '비밀번호가 일치합니다.';
-			notice.style.color = 'green';
-		}
-	} 
-
-	 /* 	$("#password").change(function(){
-		    checkPassword($('#password').val());
-		});
-		function checkPassword(password){
-		    
-		    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*])(?=.*[0-9]).{8,25}$/.test(password)){            
-		        $('#notice').text('알맞은 비밀번호 입니다.');
-		        $('#passConfirm').focus();
-		        return false;
-		    }    
-		
-		}
-		
-	
-		
-		 $('#password').on('blur', function(){
-			if($('#passConfirm').val() == ''){
-				$('#notice2').text('비밀번호를 한 번 더  입력하세요');		
-			}else if($('#password').val() != $('#passConfirm').val()){
-				$('#notice2').text('비밀번호가 일치하지 않습니다.').css('color', 'red');
-			}else {
-				$('#notice2').text('비밀번호가 서로 일치합니다.').css('color', 'green');
-			}
-		});
-		 */
-		function submitAlarm(){
-			if($('#password').val() == ''){
-				alert('비밀번호를 입력해주세요');
-				$('#password').focus();
-				return false;
-			}
-			if($('#password').val() != $('#passConfirm').val()){
-				alert('비밀번호가 일치하지 않습니다.');
-				$('#password').val("");
-				$('#passConfirm').val("");
-				$('#password').focus();
-				return false;
-			}
-			if($('#email').val() == ''){
-				alert('이메일이 입력되지 않았습니다.');
-				$('#email').val("");
-				$('#email').focus();
-				return false;
-				
-			}
-		} 
-	
-	</script>
-
-  	
-  	
-  	
-    
-    
-    
-    
-    
+    <script>
+        $(function () {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var date = now.getDate();
+            $('input[name=reqDate]').val(year + '-' + month + '-' + date);
+            console.log(now);
+        });
+    </script>
     <!-- JS here -->
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>

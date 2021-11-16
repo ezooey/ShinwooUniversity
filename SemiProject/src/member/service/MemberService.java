@@ -76,6 +76,7 @@ public class MemberService {
 		return result;
 	}
 
+
 	public int checkPwd(String userId, String userPwd) {
 		Connection conn = getConnection();
 		
@@ -83,6 +84,16 @@ public class MemberService {
 		
 		close(conn);
 		return result;
+	}
+
+	public Member selectMember(String memberId) {
+		Connection conn = getConnection();
+		
+		Member m = mDAO.selectMember(conn, memberId);
+		
+		close(conn);
+		
+		return m;
 	}
 	
 	
