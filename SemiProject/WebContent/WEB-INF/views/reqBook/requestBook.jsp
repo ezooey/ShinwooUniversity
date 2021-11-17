@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>도서 등록</title>
+    <title>도서 신청</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
@@ -42,7 +42,7 @@
             margin: 20px;
         }
 
-        .regTitle {
+        .reqTitle {
             padding-top: 5px;
             padding-bottom: 3px;
             display: block;
@@ -52,7 +52,6 @@
             float: right;
             padding-top: 20px;
         }
-
         .bottomBtn input {
             margin: 10px;
         }
@@ -74,49 +73,6 @@
             border-top: 1px solid #eee;
         }
 
-        .filebox .upload-name {
-            display: inline-block;
-            height: 40px;
-            padding: 0 45px;
-            vertical-align: middle;
-            border: none;
-            width: 86%;
-            color: #999999;
-            background-color: #F9F9FF;
-        }
-
-        .filebox label {
-            display: inline-block;
-            padding: 10px 20px;
-            color: #fff;
-            vertical-align: middle;
-            background-color: #6785FF;
-            cursor: pointer;
-            height: 40px;
-            margin-left: 10px;
-        }
-
-        .filebox input[type="file"] {
-            position: absolute;
-            width: 0;
-            height: 0;
-            padding: 0;
-            overflow: hidden;
-            border: 0;
-        }
-
-        .fa-image {
-            position: absolute;
-            top: 50%;
-            margin-top: 12px;
-            margin-left: 1%;
-            z-index: 1;
-        }
-        
-        .booksearch {
-        	margin-top: 3px;
-        	float: right;
-        }
     </style>
 </head>
 
@@ -138,31 +94,44 @@
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h2 id="currentMenu">도서 등록</h2>
+                <h2 id="currentMenu">도서 신청</h2>
             </div>
         </div>
 
         <!--? Start Align Area -->
         <div class="whole-wrap">
             <div class="container box_1170">
+                <div class="section-top-border">
+                    <div class="row">
+                        <div class="col-md-8 mt-sm-30">
+                            <h3 class="mb-20">도서 신청 시 유의 사항</h3>
+                            <div>
+                                <ul class="noneList">
+                                    <li><i class="fas fa-check-circle"></i> 희망 도서 신청 권수</li>
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1인당 월 1권, 1년에 10권으로 제한</li>
+                                    <li><i class="fas fa-check-circle"></i> 희망 도서 진행 절차</li>
+                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;신청한 도서가 절차를 거쳐 신청이 승인되는 경우 신청자에게 대출 우선권 부여</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="section-top-border borderTop">
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
-                            <h3 class="mb-30">등록 도서 정보 입력</h3>
-                            <form action="<%= request.getContextPath() %>/register.bo" id="regBook" name="regBook" method="post" encType="multipart/form-data">
+                            <h3 class="mb-30">신청 도서 정보 입력</h3>
+                            <form action="<%= request.getContextPath() %>/request.bo" id="reqBook" name="reqBook" method="post">
                                 <div>
-                                    <span class="regTitle">도서명</span>
-                                    <div class="input-group-icon mt-10 bookname">
+                                    <span class="reqTitle">도서명</span>
+                                    <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fa fa-book" aria-hidden="true"></i></div>
                                         <input type="text" name="bookTitle" placeholder="도서명을 입력하세요" required
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '도서명을 입력하세요'"
                                             class="single-input">
-                                        <div class="booksearch"><input type="button" class="genric-btn info circle booksearch" id="searchBook" value="도서 검색"></div>
                                     </div>
                                 </div>
-                                <br clear="right">
                                 <div>
-                                    <span class="regTitle">저자</span>
+                                    <span class="reqTitle">저자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-pencil-alt"></i></div>
                                         <input type="text" name="author" placeholder="저자를 입력하세요" required
@@ -171,7 +140,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="regTitle">출판사</span>
+                                    <span class="reqTitle">출판사</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-bookmark"></i></div>
                                         <input type="text" name="publisher" placeholder="출판사를 입력하세요" required
@@ -180,55 +149,22 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="regTitle">카테고리</span>
-                                    <div class="default-select" id="default-select">
-                                        <select name = "category">
-                                            <option disabled>카테고리 선택</option>
-                                            <option value="100">소설/시</option>
-                                            <option value="200">경제/경영</option>
-                                            <option value="300">자기 계발</option>
-                                            <option value="400">인문/사회</option>
-                                            <option value="500">역사/종교/예술</option>
-                                            <option value="600">과학/IT</option>
-                                            <option value="700">취미/여행</option>
-                                            <option value="800">어린이</option>
-                                            <option value="900">언어</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="regTitle">등록일자</span>
+                                    <span class="reqTitle">신청일자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-calendar-day"></i></div>
-                                        <input type="text" name="regDate" readonly class="single-input">
+                                        <input type="text" name="reqDate" readonly class="single-input">
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="regTitle">표지 이미지</span>
-                                    <div class="input-group-icon mt-10 filebox">
-                                        <div class="icon"><i class="far fa-image"></i></div>
-                                        <input class="upload-name" value="표지 이미지를 업로드하세요" readonly placeholder="표지 이미지를 업로드하세요">
-                                        <label for="file">파일 찾기</label>
-                                        <input type="file" id="file" name="bookImage" accept=".gif, .jpg, .png" required>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="regTitle">줄거리</span>
+                                    <span class="reqTitle">신청의견</span>
                                     <div class="mt-10">
-                                        <textarea class="single-textarea" name="bookInfo" placeholder="줄거리"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '줄거리를 입력하세요'"></textarea>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="regTitle">참고사항</span>
-                                    <div class="mt-10">
-                                        <textarea class="single-textarea" name="refer" placeholder="참고사항을 입력하세요"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '참고사항을 입력하세요'"></textarea>
+                                        <textarea class="single-textarea" placeholder="신청 이유를 입력하세요" name="reqComment"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '신청 이유를 입력하세요'"></textarea>
                                     </div>
                                 </div>
                                 <div class="bottomBtn">
-                                    <input type="submit" class="genric-btn info circle" id="regOk" value="등록">
-                                    <input type="reset" class="genric-btn danger circle" id="regCancle" value="취소">
+                                    <input type="submit" class="genric-btn info circle" value="신청">
+                                    <input type="reset" class="genric-btn danger circle" value="취소">
                                 </div>
                             </form>
                         </div>
@@ -239,32 +175,98 @@
         </div>
         <!-- End Align Area -->
     </main>
-    	<%@ include file="../common/footer.jsp" %>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo mb-35">
+                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
+                                    </div>
+                                </div>
+                                <!-- social -->
+                                <div class="footer-social">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Services </h4>
+                                <ul>
+                                    <li><a href="#">- 주요 전화번호</a></li>
+                                    <li><a href="#">- 개인정보처리방침</a></li>
+                                    <li><a href="#">- 무단수집거부</a></li>
+                                    <li><a href="#">- 원격지원</a></li>
+                                    <li><a href="#">- 찾아오는길</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Contect</h4>
+                                <ul>
+                                    <li class="number"><a href="#">(02) 123-4567</a></li>
+                                    <li><a href="#">shinwoo@universty.kr</a></li>
+                                    <li><a href="#">서울시 강남구 역삼로</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-center">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                        href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
     <script>
         $(function () {
             var now = new Date();
             var year = now.getFullYear();
             var month = now.getMonth() + 1;
             var date = now.getDate();
-            $('input[name=regDate]').val(year + '-' + month + '-' + date);
-            $('input[name=regDate]').css('color', 'gray');
+            $('input[name=reqDate]').val(year + '-' + month + '-' + date);
+            $('input[name=reqDate]').css('color', 'gray');
             console.log(now);
         });
 
-        $("#file").on('change', function () {
-            var fileName = $("#file").val();
-            $(".upload-name").val(fileName);
+        $("#reqBook").submit(function(){
+            alert("도서 신청이 완료되었습니다.");
         });
-
-        $("#regBook").submit(function(){
-            alert("도서 등록이 완료되었습니다.");
-        });
-        
-        document.getElementById('searchBook').onclick = function() {
-        	window.open('searchregbook.bo', 'searchRegBook', 'width=500, height=300');
-		}
-        
-        
     </script>
     <!-- JS here -->
 

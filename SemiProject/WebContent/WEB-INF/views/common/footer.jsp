@@ -85,5 +85,8 @@
         </div>
         <!-- Footer End-->
     </footer>
+    <div>
+        <a title="1:1 문의" onclick="location.href='<%= request.getContextPath() %>/inquiryWriteForm.in'"><i class="fas fa-question"></i></a>
+    </div>
 </body>
 </html>

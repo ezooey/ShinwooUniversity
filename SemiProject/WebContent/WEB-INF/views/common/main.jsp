@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	import="member.vo.Member,java.util.ArrayList" %>
-<% Member loginUser=(Member)session.getAttribute("loginUser"); 
-// ArrayList<Write>list=(ArrayList)request.getAttribute("list"); %>
+
 <!DOCTYPE html>
 <html>
 
@@ -373,7 +372,7 @@
 	</div>
 	
 	<!-- Preloader Start -->
-	<%@ include file="../common/headerAdmin.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 		<main>
 			<div id="wholewhole">
 				<div id="wholeslide-div">

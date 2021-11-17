@@ -1,11 +1,15 @@
 package member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import member.service.MemberService;
+import member.vo.Member;
 
 /**
  * Servlet implementation class ModifyFormServlet
@@ -26,7 +30,22 @@ public class ModifyFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/member/modifyInfo.jsp").forward(request, response);
+		request.setCharacterEncoding("UTF-8");
+		
+		String memberId = ((Member)(request.getSession().getAttribute("loginUser"))).getMemberId();
+		
+		Member m = new MemberService().selectMember(memberId);
+
+		String page = null;
+		if(m != null) {
+			request.setAttribute("m", m);
+			page = "WEB-INF/views/member/modifyInfo.jsp";
+			
+		} else {
+			request.setAttribute("msg", "회원 정보 로딩 실패");
+			page = "WEB-INF/views/common/errorPage.jsp";
+		}
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

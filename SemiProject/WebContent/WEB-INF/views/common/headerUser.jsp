@@ -14,7 +14,7 @@
                 <!-- Logo -->
                 <div class="header-left">
                     <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                        <a href="index.jsp"><img src="assets/img/logo/logo.png" alt=""></a>
                     </div>
                     <div class="menu-wrapper  d-flex align-items-center">
                         <!-- Main-menu -->
@@ -22,10 +22,10 @@
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="index.html">도서관 소개</a></li>
-                                    <li><a href="about.html">도서 신청</a></li>
+                                    <li><a href="<%= request.getContextPath() %>/reqbookForm.bo">도서 신청</a></li>
                                     <li><a href="services.html">도서 검색</a></li>
-                                    <li><a href="blog.html">독후감</a></li>
-                                    <li><a href="blog.html">마이페이지</a></li>
+                                    <li><a href="<%= request.getContextPath() %>/reviewList.rv">독후감</a></li>
+                                    <li><a href="<%= request.getContextPath() %>/myPage.me">마이페이지</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="header-right d-none d-lg-block">
                     <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그아웃</button>
+                    <button type="button" class="genric-btn primary circle" id="login" onclick="location.href='<%= request.getContextPath() %>/logout.me'">로그아웃</button>
 				</div>
 			</div>	
 		</div>		
