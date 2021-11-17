@@ -72,13 +72,22 @@
         
         .req{margin-left: 200px; margin-right: 200px;}
         
-		.title, .contents{
+		.inquiry, .answer{
 			cursor: pointer;
 			border: 1px solid #DCDDDD;
 			padding: 10px;
 		}
-		.contents{display: none;}
+		.answer{display: none;}
+		
 		.writer, .date{font-size: 9px; color: gray;}
+		
+		#writeQst{
+			height: 35px;
+			width: 90px;
+			border: 0px;
+			background: #6785FF;
+			border-radius: 20px;
+		}
     </style>
 </head>
 
@@ -95,38 +104,7 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-        <div class="header-area">
-            <div class="main-header header-sticky">
-                <!-- Logo -->
-                <div class="header-left">
-                    <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                    </div>
-                    <div class="menu-wrapper  d-flex align-items-center">
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li><a href="about.html">도서 신청</a></li>
-                                    <li><a href="services.html">도서 검색</a></li>
-                                    <li><a href="blog.html">독후감</a></li>
-                                    <li class="active"><a href="contact.html">마이페이지</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-right d-none d-lg-block">
-                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그아웃</button>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
+    <%@ include file="../common/header.jsp" %>
     <main>
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
@@ -140,9 +118,23 @@
             <div class="container box_1170">
                 <div class="section-top-border">
                     <div class="req">
-                    <form action="<%= request.getContextPath() %>/inquiryWirteForm.in" method="post">
-                    	<textarea rows="15" cols="60" name="content" style="resize:none;"></textarea>
-					</form>
+                    
+						<div class="inquiry" id="quest_Cont">
+							독후감은 어떻게 써야 하나요?
+							<input type="hidden" id="quest_No">
+							<br>
+							<span class="writer" id="quest_Id">남나눔</span>&nbsp;<span class="date" id="quest_Date">2021-11-02</span>
+						</div>
+						<p class="answer" id="answer">
+							독후감 게시판을 이용해 주세요.
+						</p>
+						<br>
+						<button id="writeQst" onclick="location.href='<%= request.getContextPath() %>/questionWriteForm.in'">문의 작성</button>
+						<script>
+							$('.inquiry').click(function(){
+								$(this).next().slideToggle();
+							});
+						</script>
                    	</div>
                 </div>
             </div>

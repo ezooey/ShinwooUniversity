@@ -2,8 +2,8 @@ package question.model.service;
 
 import java.sql.Connection;
 import static common.JDBCTemplate.*;
-import inquiry.model.dao.QuestionDAO;
-import inquiry.model.vo.Question;
+import question.model.dao.QuestionDAO;
+import question.model.vo.Question;
 
 public class QuestionService {
 	private QuestionDAO qDAO = new QuestionDAO();

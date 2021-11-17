@@ -1,33 +1,23 @@
 package book.model.service;
 
+import java.sql.Connection;
+
+import book.model.dao.bookDAO;
+import book.model.vo.Book;
+
 import static common.JDBCTemplate.*;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
-import book.model.dao.BookDAO;
-import book.model.vo.Book;
-import photo.model.vo.Photo;
-
 public class BookService {
-	
-	private BookDAO bkDAO = new BookDAO();
+	private bookDAO bDAO = new bookDAO();
 
-	public int insertThumbnail(Book b, Photo p) {
+	public Book selectBook(int bId) {
 		Connection conn = getConnection();
+		int result = 0;
 		
-		int result1 = bkDAO.insertBook(conn, b);
-		int result2 = bkDAO.insertPhoto(conn, p);
+		Book b = null;
 		
-		if(result1 > 0 && result2 > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
 		
-		close(conn);
-		
-		return result1 + result2;
+		return null;
 	}
 
 }

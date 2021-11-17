@@ -1,4 +1,4 @@
-package question.controller;
+package book.controller;
 
 import java.io.IOException;
 
@@ -8,17 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import book.model.service.BookService;
+import book.model.vo.Book;
+
 /**
- * Servlet implementation class InquiryServlet
+ * Servlet implementation class BookDetail
  */
-@WebServlet("/questionWriteForm.in")
-public class QuestionWriteFormServlet extends HttpServlet {
+@WebServlet("/bookDetail.bo")
+public class BookDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionWriteFormServlet() {
+    public BookDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +30,22 @@ public class QuestionWriteFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/question/questionWriteForm.jsp").forward(request, response);
+		int bId = Integer.parseInt(request.getParameter("bId"));
+		String update = request.getParameter("upd");
+		// 5시 7분
+		
+		Book b = new BookService().selectBook(bId);
+		
+		String page = null;
+		if(b != null) {
+			page = "WEB-INF/views/book/bookDetail.jsp";
+			request.setAttribute("book", b);
+		} else {
+			page = "WEB-INF/views/common/errorPage.jsp";
+			request.setAttribute("msg", "도서 상세 조회 실패");
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
