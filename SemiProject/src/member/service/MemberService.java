@@ -96,17 +96,42 @@ public class MemberService {
 		return m;
 	}
 
-	public String findPwd(String memberId) {
+	public int findPwd(String inputEmail, String memberId) {
 		Connection conn = getConnection();
-		String email = mDAO.findPwd(conn, memberId);
+		int result = mDAO.findPwd(conn, inputEmail, memberId);
 		
-		if(email != null) {
+		if(result > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
 		close(conn);
-		return email;
+		return result;
+	}
+
+	public int sendEmail(String tempPwd, String inputEmail) {
+		Connection conn = getConnection();
+		int result = mDAO.sendEmail(conn, tempPwd, inputEmail);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public int selectId(String memberId) {
+		Connection conn = getConnection();
+		int result = mDAO.selectId(conn, memberId);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
 	}
 	
 	

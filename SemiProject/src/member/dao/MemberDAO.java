@@ -207,29 +207,79 @@ public class MemberDAO {
 		return member;
 	}
 
-	public String findPwd(Connection conn, String memberId) {
+	public int findPwd(Connection conn, String inputEmail, String memberId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String email = null;
+		int result = 0;
 		
-		String query = prop.getProperty("findPwd");
-		// findPwd=SELECT EMAIL FROM MEMBER WHERE MEMBER_ID = ?
+		String query = prop.getProperty("findEmail");
+		// findEmail=SELECT COUNT(*) FROM MEMBER WHERE EMAIL = ? AND MEMBER_ID = ?
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, inputEmail);
 			pstmt.setString(1, memberId);
 			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				email = rset.getString("email");
+				result = rset.getInt(1);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		return email;
+		return result;
+	}
+
+	public int sendEmail(Connection conn, String tempPwd, String inputEmail) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("sendPwEmail");
+		// sendPwEmail=UPDATE MEMBER SET PW=? WHERE EMAIL=?
+//		String email = inputEmail.trim();
+		System.out.println(tempPwd);
+//		System.out.println(email);
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, tempPwd);
+//			pstmt.setString(2, email);
+			
+			result = pstmt.executeUpdate();
+			System.out.println(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int selectId(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("selectId");
+		// selectId=SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID = ?
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }
