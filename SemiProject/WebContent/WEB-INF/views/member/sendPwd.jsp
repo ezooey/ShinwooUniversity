@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>신우대학교 전자도서관입니다 - 비밀번호 찾기</title>
+    <title>비밀번호 찾기</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
@@ -107,8 +107,8 @@
         <section>
 		    <form action="<%= request.getContextPath() %>/sendPwd.lo" id="sendForm" method="post">
 				<table id="passTable">
-					<tr  id ="id" height="70px">
-						<th><label>ID <br><br><br></label></th>
+					<tr id ="id" height="70px">
+						<th><label>EMAIL <br><br><br></label></th>
 						<td><input type="text" id="inputEmail" name="inputEmail" placeholder="이메일 입력"
 								onfocus="this.placeholder = ''" onblur="this.placeholder = '이메일 입력'" required
 								class="single-input"> <br><br><br>
@@ -116,106 +116,34 @@
 						</td>
 					</tr>
 					<tr id ="find">
-						<th colspan="2"><button class="genric-btn info-border circle" id="sendEmail">이메일로 임시 비밀번호 발송</button></th>
+						<th colspan="2"><button type="submit" class="genric-btn info-border circle" id="sendEmail">이메일로 임시 비밀번호 발송</button></th>
 					</tr>
 				</table>
 			</form>
 		</section>
 		<script>
-			
+			$('#sendForm').on('submit', function() {
+				alert('임시 비밀번호 전송이 완료되었습니다.');
+			});
+// 			$('#sendEmail').on('click', function() {
+// 				var inputEmail = $('#inputEmail').val();
+// 				var memberId = $('#memberId').val();
+				
+// 				$.ajax({
+// 						url: 'sendPwd.lo',
+// 						data: {inputEmail:inputEmail, memberId:memberId},
+// 						success: function(data) {
+// 							console.log(data);
+// 							window.open('updateTempPwd.me', 'sendNewPwd', 'width=500, height=300');
+// 						},
+// 						error: function(data) {
+// 							console.log(data);
+// 						}
+// 				});
+// 			});
 		</script>
     </main>
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-padding">
-            <div class="container">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="single-footer-caption mb-30">
-                                <!-- logo -->
-                                <div class="footer-logo mb-35">
-                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-                                </div>
-                                <div class="footer-tittle">
-                                    <div class="footer-pera">
-                                        <p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
-                                    </div>
-                                </div>
-                                <!-- social -->
-                                <div class="footer-social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Services </h4>
-                                <ul>
-                                    <li><a href="#">- 주요 전화번호</a></li>
-                                    <li><a href="#">- 개인정보처리방침</a></li>
-                                    <li><a href="#">- 무단수집거부</a></li>
-                                    <li><a href="#">- 원격지원</a></li>
-                                    <li><a href="#">- 찾아오는길</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Contact</h4>
-                                <ul>
-                                    <li class="number"><a href="#">(02) 123-4567</a></li>
-                                    <li><a href="#">shinwoo@university.kr</a></li>
-                                    <li><a href="#">서울시 강남구 역삼로</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- footer-bottom area -->
-        <div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
-            <div class="container">
-                <div class="footer-border">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-xl-12 ">
-                            <div class="footer-copy-right text-center">
-                                <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
-                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                        href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
-    </footer>
-    <!-- Scroll Up -->
-    <div id="back-top">
-        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
-    </div>
-    
-    
-    <!-- java script -->
-
-    
-    
-    
-    
-    
+   	<%@ include file="../common/footer.jsp" %>
     <!-- JS here -->
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>

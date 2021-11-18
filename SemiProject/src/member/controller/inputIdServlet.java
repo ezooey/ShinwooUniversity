@@ -43,7 +43,6 @@ public class inputIdServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String memberId = request.getParameter("memberId");
 		int result = new MemberService().selectId(memberId);
-		System.out.println(result);
 		
 			if(result > 0) {
 				request.setAttribute("memberId", memberId);

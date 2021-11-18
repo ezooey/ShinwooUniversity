@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import question.model.service.QuestionService;
+import question.model.vo.Question;
+
 /**
  * Servlet implementation class InquiryServlet
  */

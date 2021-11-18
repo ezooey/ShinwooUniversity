@@ -37,6 +37,7 @@
                                     </li>
                                     <li><a href="services.html">도서 검색</a></li>
                                     <li><a href="<%= request.getContextPath() %>/reviewList.rv">독후감</a></li>
+                                    <li><a href="<%= request.getContextPath() %>/questionList.li">1:1 문의 관리</a></li>
                                 </ul>
                             </nav>
                         </div>

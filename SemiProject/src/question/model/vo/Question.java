@@ -9,12 +9,13 @@ public class Question {
 	private String answer;
 	private String quest_Id;
 	private String ans_Id;
-	private char ans_YN;
+	private String ans_YN;
+	private String quest_name;
 	
 	public Question() {}
 
 	public Question(int quest_No, String quest_cont, Date quest_date, String answer, String quest_Id, String ans_Id,
-			char ans_YN) {
+			String ans_YN, String quest_name) {
 		super();
 		this.quest_No = quest_No;
 		this.quest_cont = quest_cont;
@@ -23,6 +24,7 @@ public class Question {
 		this.quest_Id = quest_Id;
 		this.ans_Id = ans_Id;
 		this.ans_YN = ans_YN;
+		this.quest_name = quest_name;
 	}
 
 	public int getQuest_No() {
@@ -73,18 +75,27 @@ public class Question {
 		this.ans_Id = ans_Id;
 	}
 
-	public char getAns_YN() {
+	public String getAns_YN() {
 		return ans_YN;
 	}
 
-	public void setAns_YN(char ans_YN) {
+	public void setAns_YN(String ans_YN) {
 		this.ans_YN = ans_YN;
+	}
+	
+	public String getQuest_name() {
+		return quest_name;
+	}
+
+	public void setQuest_name(String quest_name) {
+		this.quest_name = quest_name;
 	}
 
 	@Override
 	public String toString() {
 		return "Question [quest_No=" + quest_No + ", quest_cont=" + quest_cont + ", quest_date=" + quest_date
-				+ ", answer=" + answer + ", quest_Id=" + quest_Id + ", ans_Id=" + ans_Id + ", ans_YN=" + ans_YN + "]";
+				+ ", answer=" + answer + ", quest_Id=" + quest_Id + ", ans_Id=" + ans_Id + ", ans_YN=" + ans_YN
+				+ ", quest_name=" + quest_name + "]";
 	}
 	
 }

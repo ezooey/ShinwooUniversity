@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="question.model.vo.Question, review.model.vo.PageInfo, java.util.ArrayList"%>
+<%
+	ArrayList<Question> qList = (ArrayList)request.getAttribute("qList");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+%>
 <!doctype html>
 <html class="no-js">
 
@@ -87,6 +91,12 @@
 			border: 0px;
 			background: #6785FF;
 			border-radius: 20px;
+			float: right;
+		}
+		
+		.emptyList {
+			display: flex;
+			justify-content: center;
 		}
     </style>
 </head>
@@ -118,22 +128,29 @@
             <div class="container box_1170">
                 <div class="section-top-border">
                     <div class="req">
-                    
-						<div class="inquiry" id="quest_Cont">
-							독후감은 어떻게 써야 하나요?
-							<input type="hidden" id="quest_No">
-							<br>
-							<span class="writer" id="quest_Id">남나눔</span>&nbsp;<span class="date" id="quest_Date">2021-11-02</span>
-						</div>
-						<p class="answer" id="answer">
-							독후감 게시판을 이용해 주세요.
-						</p>
+                    	<% if (qList.isEmpty()) { %>
+                    		<div class="emptyList">등록된 1:1문의가 없습니다.</div>
+                    	<% } else { %>
+                    		<% for(Question q : qList) { %>
+								<div class="inquiry" id="quest_Cont">
+									<%= q.getQuest_cont() %>
+									<input type="hidden" id="quest_No" value="<%= q.getQuest_No() %>">
+									<br>
+									<span class="writer" id="quest_Id">남나눔</span>&nbsp;<span class="date" id="quest_Date"><%= q.getQuest_date() %></span>
+								</div>
+								<p class="answer" id="answer">
+									<%= q.getAnswer() %>
+								</p>
+							<%} %>
+						<%} %>
 						<br>
 						<button id="writeQst" onclick="location.href='<%= request.getContextPath() %>/questionWriteForm.in'">문의 작성</button>
 						<script>
 							$('.inquiry').click(function(){
 								$(this).next().slideToggle();
 							});
+							
+							
 						</script>
                    	</div>
                 </div>
@@ -141,88 +158,11 @@
         </div>
         <!-- End Align Area -->
     </main>
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-padding">
-            <div class="container">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="single-footer-caption mb-30">
-                                <!-- logo -->
-                                <div class="footer-logo mb-35">
-                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-                                </div>
-                                <div class="footer-tittle">
-                                    <div class="footer-pera">
-                                        <p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
-                                    </div>
-                                </div>
-                                <!-- social -->
-                                <div class="footer-social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Services </h4>
-                                <ul>
-                                    <li><a href="#">- 주요 전화번호</a></li>
-                                    <li><a href="#">- 개인정보처리방침</a></li>
-                                    <li><a href="#">- 무단수집거부</a></li>
-                                    <li><a href="#">- 원격지원</a></li>
-                                    <li><a href="#">- 찾아오는길</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Contact</h4>
-                                <ul>
-                                    <li class="number"><a href="#">(02) 123-4567</a></li>
-                                    <li><a href="#">shinwoo@university.kr</a></li>
-                                    <li><a href="#">서울시 강남구 역삼로</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- footer-bottom area -->
-        <div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
-            <div class="container">
-                <div class="footer-border">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-xl-12 ">
-                            <div class="footer-copy-right text-center">
-                                <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
-                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                        href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
-    </footer>
+    <%@ include file="../common/footer.jsp" %>
     <!-- Scroll Up -->
-    <div id="back-top">
-        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
-    </div>
+    <div id="back-top" >
+   		<a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+	</div>
     <script>
         $(function () {
             var now = new Date();

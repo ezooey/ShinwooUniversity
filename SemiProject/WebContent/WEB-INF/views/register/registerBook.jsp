@@ -239,7 +239,7 @@
         </div>
         <!-- End Align Area -->
     </main>
-    	<%@ include file="../common/footer.jsp" %>
+    <%@ include file="../common/footer.jsp" %>
     <script>
         $(function () {
             var now = new Date();
