@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="review.model.vo.*, member.vo.*"%>
 <%
-	Member loginUser= (Member)session.getAttribute("loginUser");
+	//Member loginUser= (Member)session.getAttribute("loginUser");
 	Review r = (Review)request.getAttribute("r");
 	ReviewBook rb = (ReviewBook)request.getAttribute("rb");
 %>
@@ -179,42 +179,7 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-        <div class="header-area">
-            <div class="main-header header-sticky">
-                <!-- Logo -->
-                <div class="header-left">
-                    <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                    </div>
-                    <div class="menu-wrapper  d-flex align-items-center">
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li class="active"><a href="about.html">도서 신청</a></li>
-                                    <li><a href="services.html">도서 검색</a></li>
-                                    <li><a href="blog.html">독후감</a></li>
-                                    <li><a href="contact.html">마이페이지</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-right d-none d-lg-block">
-                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
-                </div>
-                <!-- Mobile Menu -->
-                <div class="col-12">
-                    <div class="mobile_menu d-block d-lg-none"></div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
+    <%@ include file="../common/header.jsp" %>
     <main>
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
@@ -273,6 +238,39 @@
                     <input type="hidden" name="bookId" value="<%= rb.getBookNo() %>">
                     <input type="hidden" name="reviewNo" value="<%= r.getReviewNo() %>">
                 </tr>
+                <tr>
+                	<td>추천수 : <%= r.getRecommend() %></td>
+                	<% if(loginUser != null){ %>
+                	<td><button type = "button" onclick="recommendRev(<%= r.getReviewNo() %>);">추천하기</button></td>
+                	<%} %>
+                </tr>
+                <script>
+                
+                <% 
+                String memberId = null;
+                if(loginUser!=null){
+                	memberId = loginUser.getMemberId(); 
+                }
+                %>
+                function recommendRev(reviewNo){
+        			$.ajax({
+        				url: 'checkRecommend.rv',
+        				data: {cId:<%= memberId %>, rNo:reviewNo},
+        				success:function(data){
+        					console.log(data);
+        					if(data.trim()=='1'){
+    	  						alert('게시글이 추천되었습니다.');
+    	  						location.reload();
+    	  					}else{
+    	  						alert('한번 추천한 게시물은 더이상 추천할 수 없습니다.');
+    	  					}
+        				},
+        				error:function(data){
+        					console.log(data);
+        				}
+        			});
+                }
+                </script>
             </table>
           	<div id="detailDiv">
           	<% if(loginUser != null && loginUser.getMemberId().equals(r.getMemberId())){ %>
@@ -507,7 +505,7 @@
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/all.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </body>
 
 </html>

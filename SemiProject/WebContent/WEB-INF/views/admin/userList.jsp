@@ -1,17 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.vo.Member"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, admin.model.vo.*" %>
+					 
+<%
+	ArrayList<UserList> uList = (ArrayList)request.getAttribute("uList");
 
-
+	/* PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage(); */
+%>
 <!doctype html>
 <html class="no-js">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>독후감 작성</title>
+       
+    <title>adminUserList</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+
+
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
@@ -31,13 +44,25 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/datatables.min.css"/>
+    
+	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script> -->
+	
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	
+	<script type="text/javascript">
+		jQuery(function($){ 
+			$("#foo-table").DataTable(); 
+		}); 
+	</script>
 
     <style>
         #currentMenu {
             color: white;
             padding: 20px;
-            padding-left: 2.5%;
-            font-size: 30px;
+            font-size: 40px;
             font-weight: 700;
         }
 
@@ -45,8 +70,9 @@
             margin: 20px;
         }
 
-        .reviewTitle {
-            padding-bottom: 10px;
+        .reqTitle {
+            padding-top: 10px;
+            padding-bottom: 3px;
             display: block;
         }
 
@@ -54,7 +80,6 @@
             float: right;
             padding-top: 20px;
         }
-
         .bottomBtn input {
             margin: 10px;
         }
@@ -68,44 +93,27 @@
         }
 
         .section-top-border {
-            padding-top: 30px;
-            padding-bottom: 30px;
+            padding: 40px;
         }
-
-        .borderTop {
-            border-top: 1px solid #eee;
+        
+        .searchBar{
+        	padding-top: 10%;
+        	padding-left: 60%;
         }
-
-        .filebox .upload-name {
-            display: inline-block;
-            height: 40px;
-            padding: 0 45px;
-            vertical-align: middle;
-            border: 1px solid #eee;
-            width: 86%;
-            color: #999999;
-            background-color: #ffffff00;
+        .paging1{
+        	padding-left: 47%;
         }
-
-        .filebox label {
-            display: inline-block;
-            padding: 10px 20px;
-            color: #fff;
-            vertical-align: middle;
-            background-color: #6785FF;
-            cursor: pointer;
-            height: 40px;
-            margin-left: 10px;
-        }
-
-        .filebox input[type="file"] {
-            position: absolute;
-            width: 0;
-            height: 0;
-            padding: 0;
-            overflow: hidden;
-            border: 0;
-        }
+        .updateInfo {
+		  background: white;
+		  border: none;
+		  color: blue;
+		  text-align: center;
+		  text-decoration: none;
+		 
+		  font-size: 16px;
+		
+		  cursor: pointer;
+		}
 
         .fa-image {
             position: absolute;
@@ -144,104 +152,87 @@
     <%@ include file="../common/header.jsp" %>
     <main>
         <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h2 id="currentMenu">독후감 작성</h2>
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
+                <h2 id="currentMenu">회원 목록</h2>
             </div>
         </div>
-        <!-- Hero End -->
-        <!--? Blog Area Start -->
+
+        <!--? Start Align Area -->
         <div class="whole-wrap">
             <div class="container box_1170">
-                <div class="section-top-border borderTop">
+                <div class="section-top-border">
                     <div class="row">
-                        <div class="col-lg-8 col-md-8">
-                            <div>
-                                <form class="form-contact comment_form" action="<%= request.getContextPath() %>/insertReview.rv" id="commentForm" name="commentForm"
-                                    enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <span class="reviewTitle">독후감 제목</span>
-                                                <input class="form-control" name="title" id="title" type="text"
-                                                    placeholder="독후감 제목을 입력하세요" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <span class="reviewTitle">작성자</span>
-                                                <input class="form-control" name="userId" id="userId" type="text"
-                                                    value="<%= loginUser.getMemberName() %>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <span class="reviewTitle">작성일자</span>
-                                                <input class="form-control" name="reviewDate" id="reviewDate"
-                                                    type="text" readonly="" class="single-input">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <span class="reviewTitle">독후감 내용</span>
-                                                <textarea class="form-control w-100" name="content" id="content"
-                                                    cols="30" rows="20" placeholder="글 내용을 입력하세요" required></textarea>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span class="regTitle">책 선택</span>
-                                            <div class="input-group-icon mt-10 filebox">
-                                            	<table>
-                                            	
-                                                <tr>
-                                                	<td rowspan="3"><img height="300px" id="bookImg" name="bookImg"></td>
-                                                </tr>
-                                                <tr>
-                                                	<td width="800px"><input type="text" class="upload-name" id="uploadName" name="uploadName" readonly></td>
-                                                	
-                                                </tr>
-                                                <tr>
-                                                <td><input type="text" class="upload-name" id="uploadName2" name="uploadName2" readonly></td>
-                                                
-                                                </tr>
-                                                </table>
-                                                <input type="hidden" id="uploadName3" name="uploadName3">
-                                                <button type="button" class="genric-btn success circle" id="findBook">책 찾기</button>
-                                               
-                                                <div id="imageP">
-                                                    <span>사진 미리보기</span>
-                                                    <div id="imagePreview">
-                                                        <img id="img" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="bottomBtn">
-                                        <input type="submit" class="genric-btn info circle" value="등록">
-                                        <input type="reset" class="genric-btn danger circle" value="취소">
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="col-md-8 mt-sm-30">
+                            
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Blog Area End -->
+        <table id="foo-table" class="table table-bordered">
+        <thead>
+	        <tr align="center">  
+	           	<th>아이디</th>
+			    <th>이름</th>
+			    <th>학과</th>
+			    <th>전화번호</th>
+			    <th>주소</th>
+			    <th>이메일</th>
+			    <th>변경</th>  
+	        </tr>  
+        </thead>
+        <tbody>
+	        <% for (int i = 0; i < uList.size(); i++) { %>
+	        <tr>
+	        	<td><%= uList.get(i).getMemberId() %></td>
+	        	<td><%= uList.get(i).getMemberName() %></td>
+	        	<td><%= uList.get(i).getDepartment() %></td>
+	        	<td><%= uList.get(i).getPhone() %></td>
+	        	<td><%= uList.get(i).getAddress() %></td>
+	        	<td><%= uList.get(i).getEmail() %></td>
+	        	<td><button class="updateInfo" onclick="location.href='<%= request.getContextPath() %>/updateInfoForm.ui'">변경</button></td>
+	        </tr>
+	        <% } %>
+        </tbody>
+      </table>  
+		<!-- <script>
+			function update(){
+				var updateWindow = window.open('updateInfoForm.ui', 'updateInfoForm','width=500, height=250');
+			}
+		</script> -->
+		<%-- <div class="pagingArea" align="center">
+		<!-- 맨 처음으로 -->
+			<button onclick="location.href='<%= request.getContextPath() %>/userList.ul?currentPage=1'">&lt;&lt;</button>
+			<!-- 이전 페이지로 -->
+			<button id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/userList.ul?currentPage=<%=pi.getCurrentPage()-1%>'">&lt;</button>
+			<script>
+				if(<%= pi.getCurrentPage() %> <= 1){
+					$('#beforeBtn').prop('disabled', true);
+				}
+			</script>
+			<!-- 숫자버튼 -->
+			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+			<%		if(p == pi.getCurrentPage() ){ %>
+						<button id="choosen" disabled><%= p %></button>
+			<%		} else { %>
+						<button id="numBtn" onclick="location.href='<%= request.getContextPath() %>/userList.ul?currentPage=<%= p %>'"><%= p %></button>
+			<%		} %>
+			<% } %>
+			<!-- 다음 페이지로 -->
+			<button id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/userList.ul?currentPage=<%= pi.getCurrentPage()+1 %>'">&gt;</button>
+			<script>
+				if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>){
+					$('#afterBtn').prop('disabled', true);
+				}
+			</script>
+			<!-- 맨 끝으로 -->
+			<button onclick="location.href='<%= request.getContextPath() %>/userList.ul?currentPage=<%=pi.getMaxPage() %>'">&gt;&gt;</button>
+		</div> --%>
+		
+		<!-- table end -->	
+     </div>
+ </div>
+        <!-- End Align Area -->
     </main>
-    
-    <script>
-    document.getElementById('findBook').onclick = function(){
-		window.open('findBook.rv', 'findBookForm', 'width=1550,height=1020');
-	}
-    
-    //function doornot(){
-    //	console.log(document.getElementById('uploadName3').value);
-    //}
-    
-    </script>
-    
     <footer>
         <!-- Footer Start-->
         <div class="footer-area footer-padding">
@@ -330,66 +321,12 @@
             var year = now.getFullYear();
             var month = now.getMonth() + 1;
             var date = now.getDate();
-            $('input[name=reviewDate]').val(year + '-' + month + '-' + date);
-            $('input[name=reviewDate]').css('color', 'gray');
-        });
-
-        $("#file").on('change', readInputFile);
-
-        function readInputFile(e) {
-            var fileInput = document.getElementsByClassName("ex_file");
-            var name = document.getElementById("uploadName").value;
-            var area = document.getElementById("uploadName");
-
-            var sel_files = [];
-
-            sel_files = [];
-
-            var files = e.target.files;
-            var fileArr = Array.prototype.slice.call(files);
-            var index = 0;
-
-            fileArr.forEach(function (f) {
-                if (!f.type.match("image/.*")) {
-                    alert("이미지 확장자만 업로드 가능합니다.");
-                    return;
-                };
-                if (files.length < 4) {
-                    sel_files.push(f);
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var html = `<a id=img_id_${index}><img width=33% src=${e.target.result} data-file=${f.name} /></a>`;
-                        $('#imagePreview').append(html);
-                        index++;
-                    };
-                    reader.readAsDataURL(f);
-                    $('#imagePreview').empty();
-                    $("#imageP").css("visibility", "visible");
-                    area.value = "";
-
-                    for (var i = 0; i < fileInput.length; i++) {
-                        if (fileInput[i].files.length > 0) {
-                            for (var j = 0; j < fileInput[i].files.length; j++) {
-                                if (j == 0) {
-                                    area.value += fileInput[i].files[j].name;
-                                } else {
-                                    area.value += ", " + fileInput[i].files[j].name;
-                                }
-                            }
-                        }
-                    }
-                }
-            })
-            if (files.length > 4) {
-                alert("최대 3장까지 업로드 할 수 있습니다.");
-            }
-        }
-
-        $("#commentForm").submit(function () {
-            alert("글 작성이 완료되었습니다.");
+            $('input[name=reqDate]').val(year + '-' + month + '-' + date);
+            console.log(now);
         });
     </script>
     <!-- JS here -->
+    
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
