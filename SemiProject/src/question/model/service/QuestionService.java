@@ -12,24 +12,80 @@ import review.model.vo.PageInfo;
 public class QuestionService {
 	private QuestionDAO qDAO = new QuestionDAO();
 
-	public int getListCount() {
+	public int getUserListCount(String memberId) {
 		Connection conn = getConnection();
 		
-		int listCount = qDAO.getListCount(conn);
+		int listCount = qDAO.getUserListCount(conn, memberId);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	public int getAdminListCount() {
+		Connection conn = getConnection();
+		
+		int listCount = qDAO.getAdminListCount(conn);
 		
 		close(conn);
 		
 		return listCount;
 	}
 
-	public ArrayList<Question> selectList(PageInfo pi) {
+	public ArrayList<Question> selectAdminList(PageInfo pi) {
 		Connection conn = getConnection();
 		
-		ArrayList<Question> list = qDAO.selectList(conn, pi);
+		ArrayList<Question> list = qDAO.selectAdminList(conn, pi);
 		
 		close(conn);
 		
 		return list;
 	}
+	
+	public ArrayList<Question> selectUserList(PageInfo pi, String memberId) {
+		Connection conn = getConnection();
+		
+		ArrayList<Question> list = qDAO.selectUserList(conn, pi, memberId);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public int insertQuestion(Question q) {
+		Connection conn = getConnection();
+		
+		int result = qDAO.insertQuestion(conn, q);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int updateAnswer(Question q) {
+		Connection conn = getConnection();
+		
+		int result = qDAO.updateAnswer(conn, q);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+
+	
 	
 }
