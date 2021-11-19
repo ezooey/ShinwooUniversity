@@ -1,13 +1,18 @@
 package member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import member.vo.Member;
+import reqBook.model.service.ReqBookService;
+import reqBook.model.vo.ReqBook;
 
 /**
  * Servlet implementation class MyPageServlet
@@ -28,7 +33,22 @@ public class MyPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/member/mypage.jsp").forward(request, response);
+		
+		HttpSession session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		ArrayList<ReqBook> list = new ReqBookService().selectMyList(loginUser.getMemberId());
+		
+		String page = null;
+		
+		if(list != null) {	//noticeList.jsp
+			request.setAttribute("list", list);
+			page = "WEB-INF/views/member/mypage.jsp";
+		} else {			//errorPage.jsp
+			request.setAttribute("msg", "공지사항 조회 실패");
+			page = "WEB-INF/views/common/errorPage.jsp";
+		}
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

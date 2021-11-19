@@ -131,6 +131,10 @@ public class Book {
 		this.refer = refer;
 	}
 	
+	public Date getReleaseDate() {
+		return releaseDate;
+	}
+
 	public Date getReleseDate() {
 		return releaseDate;
 	}

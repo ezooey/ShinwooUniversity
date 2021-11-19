@@ -89,6 +89,140 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="assets/img/logo/loder.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+   <%@ include file="../common/header.jsp" %>
+    <main>
+        <!--? Hero Start -->
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 150px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 150px;">
+                <h3 id="currentMenu">로그인</h3>
+            </div>
+        </div>
+        <br><br>
+        <section>
+		<center>
+		 <form action="<%= request.getContextPath() %>/login.me" method="post">
+		<table id="logintable">
+			<tr  id ="id" height="70px";>
+				<th> ID </th>
+				<td> <input type="text" name="userNo" placeholder="학번입력"
+						onfocus="this.placeholder = ''" onblur="this.placeholder = '학번입력'" required
+						class="single-input"></td>
+			</tr>
+			<tr  id ="password" >
+				<th> Password </th>
+				<td><input type="password" name="userPwd"  required class="single-input"> </td>
+			</tr>
+			<tr>
+				<td colspan="2" id="text"> 초기 비밀번호는 주민번호 앞자리 6자리 입니다.<br><br>
+				<right><div id="memberEnroll">
+				 	<a href="#" class="genric-btn link-border circle">비밀번호 찾기</a>
+					
+				</div></right>
+				<td id="findPass"><br><button class="genric-btn info-border circle" type="submit">로그인</button></td>
+			</tr>
+		</table>
+	</form></center>
+    </section>
+     
+    </main>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo mb-35">
+                                    <a href="index.html"><img src="images/shinwooLogo.PNG" alt=""></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
+                                    </div>
+                                </div>
+                                <!-- social -->
+                                <div class="footer-social">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Services </h4>
+                                <ul>
+                                    <li><a href="#">- 주요 전화번호</a></li>
+                                    <li><a href="#">- 개인정보처리방침</a></li>
+                                    <li><a href="#">- 무단수집거부</a></li>
+                                    <li><a href="#">- 원격지원</a></li>
+                                    <li><a href="#">- 찾아오는길</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Contect</h4>
+                                <ul>
+                                    <li class="number"><a href="#">(02) 123-4567</a></li>
+                                    <li><a href="#">shinwoo@universty.kr</a></li>
+                                    <li><a href="#">서울시 강남구 역삼로</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-center">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                        href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
+    </div>
+    
+    
+    <!-- java script -->
 	<!-- ? Preloader Start -->
 	<div id="preloader-active">
 		<div class="preloader d-flex align-items-center justify-content-center">
