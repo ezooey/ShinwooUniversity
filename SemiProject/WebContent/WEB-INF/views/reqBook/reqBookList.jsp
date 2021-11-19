@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, reqBook.model.vo.ReqBook"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, reqBook.vo.ReqBook"%>
 <%
-
-	ReqBook r = (ReqBook)request.getAttribute("r"); 
 	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list");
 %>
 <!doctype html>
@@ -11,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>도서 신청</title>
+    <title>도서 등록</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
@@ -181,6 +179,7 @@
         </div>
         <!-- Header End -->
     </header>
+    <main>
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
@@ -200,60 +199,138 @@
                             <div class="sparkline13-hd">
                             </div>
                             <div class="sparkline13-graph">
-                              <div class="datatable-dashv1-list custom-datatable-overrigh" style="text-align : center;">
-
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
-                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar" style="text-align : center;">
-                                        <thead>
+                              <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                    	<select>
+                                    		<option>대기중</option>
+                                    		<option>승인</option>                                     
+                                    		<option>거절</option>                        	
+                                    	</select>                                 
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" style="text-align : center;">
+                                        <thead  style="text-align : center;">
                                             <tr>
-                        
+                                                <th data-field="state" data-checkbox="true"></th>
                                                 <th data-field="id">학번</th>
-                                                <th data-field="name" data-editable="false">도서명</th>
-                                                <th data-field="email" data-editable="false">저자</th>
-                                                <th data-field="phone" data-editable="false">출판사</th>
-                                                <th data-field="task" data-editable="false">신청자 성함 </th>
-                                                <th data-field="date" data-editable="false">신청날짜</th>
+                                                <th data-field="name" data-editable="true">도서명</th>
+                                                <th data-field="email" data-editable="true">저자</th>
+                                                <th data-field="phone" data-editable="true">출판사</th>
+                                                <th data-field="task" data-editable="true">신청자 성함 </th>
+                                                <th data-field="date" data-editable="true">신청날짜</th>
                                                 <th data-field="action">진행상태</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <% if(list.isEmpty()) {%>
+                                            <tr>
+                                              <% if(list.isEmpty()) {%>
 											<tr>
 												<td colspan="5">존재하는 공지사항이 없습니다.</td>
 											</tr>
 											<%} else { 
+
 												for(int i = 0; i < list.size(); i++){%>
-													<tr>
-									
-														<td><%= list.get(i).getReqWriterId() %></td>
-				 										<td><%= list.get(i).getReqBookTitle() %></td>
-														<td><%= list.get(i).getReqBookAuthor() %></td>
-														<td><%= list.get(i).getReqBookPub() %></td>	
-														<td><%= list.get(i).getReqBookWriter() %></td>	
-														<td><%= list.get(i).getReqBookDate() %></td>
-														<td>
-														<% if(list.get(i).getStatus()== 0) {%>
-															<div><a onclick="window.open('reqBook.con?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=400');">대기중</a></div>
-														<%}else if(list.get(i).getStatus()== 1){ %>
-															<div style="color : blue;"><a onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=270');">승인</a></div>
-														<%}else{ %>
-															<div  style="color : red;"><a onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=400');">거절</a></div>
-														<%} %>
-														</td>
-													</tr>
-												<%} %>
-											<%} %>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+											<tr>
+												<td><%= list.get(i).getReqBookNo() %></td>
+												<td><%= list.get(i).getReqBookTitle() %></td>
+												<td><%= list.get(i).getReqBookDate() %></td>
+												<td><%= list.get(i).getReqBookPub() %></td>
+												<td><%= list.get(i).getReqBookAuthor() %></td>
+												<td><%= list.get(i).getReqBookContent() %></td>
+												<td><%= list.get(i).getReqBookReason() %></td>
+												<td><%= list.get(i).getStatus() %></td>
+												<td><%= list.get(i).getReqWriterId() %></td>
+								
+											</tr>
+										<%} %>
+									<%} %>
+								</table>
+							</div>
+				
+                       </div>
                     </div>
-                </div>
+                  </div>
+               </div>
             </div>
         </div>
-        
+       
+	<script type="text/javascript">
 
+	function button_event1(){
+
+	if (confirm("정말 승인하시겠습니까??") == true){    
+
+   	 document.form.submit();
+
+		}else{   //취소
+
+   		 return;
+
+		}
+
+	}
+
+
+
+</script>
+
+
+<input type="button" value="승인" class="btn btn-dark" onclick="button_event1();" style="float: right; margin-left: 10px;">	
+    
+   
+<script type="text/javascript">
+
+function button_event2(){
+
+if (confirm("정말 거절하시겠습니까??") == true){    
+
+	window.open('address','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');
+
+}else{   
+
+    return;
+
+}
+
+}
+
+
+</script>
+
+ <input type="button" value="거절" class="btn btn-dark" onclick="button_event2();" style="float: right; margin-left: 10px;">	       
+    
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     <footer>
         <!-- Footer Start-->
         <div class="footer-area footer-padding">
