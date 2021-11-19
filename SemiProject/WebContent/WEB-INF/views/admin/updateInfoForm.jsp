@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="admin.model.vo.UserList"%>
+<% 
+	UserList ul = (UserList)request.getAttribute("ul");
+%>
 <!DOCTYPE html>
 <html>
 
@@ -15,13 +18,10 @@
 
   <style>
     .input-form {
-      max-width: 680px;
+      max-width: 1600px;
       margin-top: 80px;
       padding: 32px;
       background: #fff;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
       -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
@@ -35,23 +35,45 @@
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">회원 정보 변경</h4>
         <form action="<%= request.getContextPath() %>/userInfoUpdate.ui" method="post" class="validation-form" novalidate>
-         
-		<div class="row">
-			<div class="col-md-8 mb-3">
-				<div class="row g-2">
-					<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-					  <option value="1" name ="userName">이름</option>
-					  <option value="2" name ="userDepartment">학과</option>
-					  <option value="3" name ="userEmail">이메일</option>
-					</select>
-					<input type="text" class="form-control" placeholder="해리" >
+			<div class="row">
+				<div class="col-md-8 mb-3">
+					<div class="row g-2">
+						<table class="table table-bordered">
+					       <thead>
+						        <tr align="center">  
+						           	<th>아이디</th>
+								    <th>이름</th>
+								    <th>학과</th>
+								    <th>전화번호</th>
+								    <th>주소</th>
+								    <th>이메일</th>
+								    <th>변경</th>  
+						        </tr>  
+					        </thead>
+					        <tbody>
+						        <tr>
+						        	<td><input type="text" name="id" value="<%= ul.getMemberId() %>" readonly></td>
+						        	<td><input type="text" name="name" value="<%= ul.getMemberName()%>"></td>
+						        	<td><input type="text" name="department" value="<%= ul.getDepartment() %>"></td>
+						        	<td><%= ul.getPhone() %></td>
+						        	<td width="50px"><%= ul.getAddress() %></td>
+						        	<td><input type="text" name="email" value="<%= ul.getEmail() %>"></td>
+						        	<td><button class="updateInfo" id="updateInfo" type="submit">완료</button></td>
+						        </tr>
+					        </tbody>
+					     </table> 
+					     <script>
+					     	function inputValue(){
+					     		document.getElementById('id').value =opener.document.
+					     		
+						     		
+					     		
+						     	}
+					     	}
+					     </script>
+					</div>
 				</div>
 			</div>
-		</div>
-          <div class="mb-4">
-	          <button class="btn btn-primary" type="submit">취소</button>
-	          <button class="btn btn-primary" type="submit" onclick="location.href='javascript:history.go(-1);'" id="cancleBtn">확인</button>
-          </div>
         </form>
       </div>
     </div>

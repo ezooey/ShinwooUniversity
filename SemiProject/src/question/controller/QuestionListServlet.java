@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.vo.Member;
 import question.model.service.QuestionService;
-import question.model.vo.Question;
 import review.model.vo.PageInfo;
+import question.model.vo.Question;
 
 /**
  * Servlet implementation class InquiryServlet
@@ -42,14 +41,8 @@ public class QuestionListServlet extends HttpServlet {
 		int endPage;		
 		
 		QuestionService qService = new QuestionService(); 
-		boolean isAdmin = ((Member)request.getSession().getAttribute("loginUser")).getMemberType().toUpperCase().equals("MASTER") ? true : false;
-		String memberId = ((Member)request.getSession().getAttribute("loginUser")).getMemberId();
 		
-		if(isAdmin) {
-			listCount = qService.getAdminListCount();
-		} else {
-			listCount = qService.getUserListCount(memberId);
-		}
+		listCount = qService.getListCount();
 		
 		currentPage = 1; 
 		if(request.getParameter("currentPage") != null) { 
@@ -57,7 +50,7 @@ public class QuestionListServlet extends HttpServlet {
 		}
 		
 		pageLimit = 10;
-		boardLimit = 5;
+		boardLimit = 10;
 		
 		maxPage = (int)Math.ceil((double)listCount / boardLimit); 
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
@@ -69,19 +62,12 @@ public class QuestionListServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		
-		ArrayList<Question> list = null;
-		
-		if(isAdmin) {
-			list = qService.selectAdminList(pi);
-		} else {
-			list = qService.selectUserList(pi, memberId);
-		}
+		ArrayList<Question> list = qService.selectList(pi);
 		
 		String page = null;
 		if(list != null) {
 			request.setAttribute("qList", list);
 			request.setAttribute("pi", pi);
-			request.setAttribute("isAdmin", isAdmin);
 			page = "WEB-INF/views/question/questionList.jsp";
 		} else {
 			request.setAttribute("msg", "문의 목록 조회 실패");

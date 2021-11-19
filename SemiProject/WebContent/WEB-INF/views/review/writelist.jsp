@@ -230,7 +230,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
       <th scope="col">책명</th>
       <th scope="col">작성자</th>
       <th scope="col">조회수</th>
-      <th scope="col">등록일자</th>
+      <th scopr="col">등록일자</th>
     </tr>
   </thead>
   <tbody>

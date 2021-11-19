@@ -32,22 +32,21 @@ public class UpdateInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String name = request.getParameter("userName");
-		String department = request.getParameter("userDepartment");
-		String email = request.getParameter("userEmail");
+		String uLId = request.getParameter("id");
+		String uLName = request.getParameter("name");
+		String uLDepartment = request.getParameter("department");
+		String uLEmail = request.getParameter("email");
 		
-		UserList ul = new UserList(null, name, department, null, null, email, null);
+		UserList ul = new UserList(uLId, uLName, uLDepartment, null, null, uLEmail, null);
 		
 		int result = new AdminService().updateUserInfo(ul);
-		
+		System.out.println(uLId);
 		if(result > 0) {
-			response.sendRedirect("userlist.ul");
+			response.sendRedirect("userList.ul?mi=" + uLId);
 		} else {
 			request.setAttribute("msg", "회원 정보 수정 실패");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		
 	}
 
 	/**
