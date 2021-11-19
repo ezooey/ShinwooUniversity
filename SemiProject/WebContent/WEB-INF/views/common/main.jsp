@@ -1,17 +1,320 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+
     pageEncoding="UTF-8" import="member.vo.Member,java.util.ArrayList, reqBook.vo.*"%>
  <%
  ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list");
 %>
-=======
-	pageEncoding="UTF-8" import="member.vo.Member,java.util.ArrayList"%>
 
->>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
 <!DOCTYPE html>
 <html>
 
 <head>
+
+
+	<meta charset="UTF-8">
+	<title>신우대학교 메인</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://fontawesome.com/v5.15/icons/search?style=solid"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+
+	<!-- CSS here -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/slicknav.css">
+	<link rel="stylesheet" href="assets/css/flaticon.css">
+	<link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
+	<link rel="stylesheet" href="assets/css/gijgo.css">
+	<link rel="stylesheet" href="assets/css/animate.min.css">
+	<link rel="stylesheet" href="assets/css/animated-headline.css">
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" href="assets/css/slick.css">
+	<link rel="stylesheet" href="assets/css/nice-select.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+
+
+	<link rel="stylesheet" type="text/css" href="/plugin/slick/slick.css" />
+	<link rel="stylesheet" type="text/css" href="/plugin/slick/slick-theme.css" />
+
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/plugin/slick/slick.js"></script>
+
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css" />
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
+
+	<link href="https://www.jqueryscript.net/css/jquerysctipttop.css">
+	<script src="<%= request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
+
+
+	<style>
+		#slider {
+			position: relative;
+			overflow: hidden;
+			margin: 20px auto 0 auto;
+			border-radius: 4px;
+			width: 300px;
+			height: 300px;
+		}
+		#slider ul {
+			position: relative;
+			margin: 0;
+			padding: 0;
+			height: 200px;
+			list-style: none;
+			left: 0px;
+		}
+		#slider ul li {
+			position: relative;
+			display: block;
+			float: left;
+			margin: 0;
+			padding: 0;
+			width: 300px;
+			height: 300px;
+			background: #ccc;
+			text-align: center;
+			line-height: 300px;
+		}
+		a.prev,
+		a.next {
+			position: absolute;
+			top: 40%;
+			z-index: 999;
+			display: block;
+			padding: 4% 3%;
+			width: auto;
+			height: auto;
+			background: #2a2a2a;
+			color: #fff;
+			text-decoration: none;
+			font-weight: 600;
+			font-size: 18px;
+			opacity: 0.8;
+			cursor: pointer;
+		}
+		a.prev:hover,
+		a.next:hover {
+			opacity: 1;
+			-webkit-transition: all 0.2s ease;
+		}
+		a.prev {
+			border-radius: 0 2px 2px 0;
+		}
+		a.next {
+			right: 0;
+			border-radius: 2px 0 0 2px;
+		}
+		body {
+			line-height: 1.6
+		}
+		ul.tabs {
+			margin: 0px;
+			padding: 0px;
+			list-style: none;
+		}
+		ul.tabs li {
+			background: none;
+			color: #222;
+			display: inline-block;
+			padding: 10px 15px;
+			cursor: pointer;
+		}
+		.tab-content {
+			display: none;
+			padding: 5px;
+		}
+		ul.tabs li.current {
+			background: #ededed;
+			color: #222;
+		}
+		.tab-content.current {
+			display: inherit;
+		}
+		#currentMenu {
+			color: white;
+			padding: 20px;
+			font-size: 40px;
+			font-weight: 700;
+		}
+		#login {
+			margin: 20px;
+		}
+		.reqTitle {
+			padding-top: 10px;
+			padding-bottom: 3px;
+			display: block;
+		}
+		.bottomBtn {
+			float: right;
+			padding-top: 20px;
+		}
+		.bottomBtn input {
+			margin: 10px;
+		}
+		.noneList {
+			list-style: none;
+		}
+		.fa-check-circle {
+			color: #6785FF;
+		}
+		.section-top-border {
+			padding: 40px;
+		}
+		.searchBar {
+			padding-top: 10%;
+			padding-left: 60%;
+		}
+		.paging1 {
+			padding-left: 47%;
+		}
+		body {
+			background-image: url('#');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			margin: 0;
+			padding: 0;
+		}
+		#wholewhole {
+			width: auto;
+			background-color: #2980B9;
+		}
+		#wholeslide-div {
+			width: 1130px;
+			height: 350px;
+			padding-left: 100px;
+			padding-right: 100px;
+			background-color: #2980B9;
+			margin: 0 auto;
+		}
+		#slider-div {
+			width: 1130px;
+			height: 300px;
+			background-color: #2980B9;
+			padding-top: 20px;
+			padding-right: 0px;
+		}
+		.bookimage {
+			width: 95%;
+			height: auto;
+			margin-top: 35px;
+			margin-left: 20px;
+			max-width: 90%;
+			height: auto;
+			display: block;
+			box-shadow: 0 11px 11px rgba(0, 0, 0, 0.22), 0 9px 9px rgba(0, 0, 0, 0.27);
+			transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+			border-radius: 6.5%;
+		}
+		.bookimage:hover {
+			box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+			transform: scale(1.08);
+			top: 0;
+			left: 0;
+			opacity: 0.915;
+		}
+		.book-div {
+			width: 400px;
+			height: 300px;
+			padding: 0px 40px 0px 0px;
+		}
+		.center {
+			text-align: center;
+		}
+		#searchForm {
+			display: inline-block;
+			width: 430px;
+			height: 40px;
+			border: solid #aacec2 4px;
+		}
+		#searchOption {
+			width: 20%;
+			height: 40px;
+			border: 0px;
+			padding-right: 14px;
+		}
+		#searchText {
+			width: 60%;
+			height: 40px;
+			border: 0px;
+			background: none;
+		}
+		#searchButton {
+			width: 60px;
+			height: 40px;
+			border: 0px;
+		}
+		#latestBook {
+			display: none;
+		}
+		.order {
+			cursor: pointer;
+		}
+		.left {
+			padding-left: 20%;
+		}
+		.container {
+			background: f9f9ff;
+		}
+		ul.ul1 {
+			list-style: none;
+			width: 1000px;
+			margin: 0 auto;
+		}
+		img.bookimg {
+			padding-bottom: 10px;
+			cursor: pointer;
+			display: inline-block;
+			margin: 0 auto;
+			max-width: 100%;
+			align: center;
+			width: 150px;
+			height: 230px;
+		}
+		li.booklist {
+			display: list-item;
+			float: left;
+			width: 25%;
+			padding-top: 10px;
+		}
+		.listop {
+			text-decoration-line: none;
+			color: #666;
+			font-weight: bolder;
+			overflow: hidden;
+			word-break: break-all;
+			display: block;
+			width: 170px;
+		}
+		.bookName {
+			width: 148px;
+			max-height: 30px;
+		}
+		.centerBook {
+			justify-content: center;
+			padding: 0px;
+			margin: 0 auto;
+		}
+		#newsdiv {
+			padding-top: 500px;
+		}
+		#footerdiv {
+			height: 200px;
+			background: lightgray;
+			text-align: center;
+		}
+		.back {
+			background: #f9f8ff;
+		}
+	</style>
+	<script src="slider.js"></script>
+=======
 <meta charset="UTF-8">
 <title>신우대학교 메인</title>
 <<<<<<< HEAD
@@ -708,6 +1011,7 @@ li.booklist {
 }
 </style>
 <script src="slider.js"></script>
+>>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
 </head>
 
 <body>
@@ -773,7 +1077,84 @@ li.booklist {
 					</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 >>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
+=======
+<<<<<<< HEAD
+			<script>
+				$(function () {
+					$('#slider-div').slick({
+						slide: 'div',
+						infinite: true,
+						slidesToShow: 3,
+						slidesToScroll: 1,
+						speed: 4000,
+						arrows: true,
+						dots: true,
+						autoplay: true,
+						autoplaySpeed: 5000,
+						pauseOnHover: false,
+						vertical: false,
+						prevArrow: "<button type='button' class='slick-prev'>Previous</button>",
+						nextArrow: "<button type='button' class='slick-next'>Next</button>",
+						dotsClass: "slick-dots",
+						draggable: true,
+						responsive: [
+							{
+								breakpoint: 960,
+								settings: {
+									slidesToShow: 3
+								}
+							},
+							{
+								breakpoint: 768,
+								settings: {
+									slidesToShow: 2
+								}
+							}
+						]
+					});
+				})
+			</script>
+			<br><br><br>
+
+			<form class="center" name="search" action="<%= request.getContextPath() %>/mainSearch.ms" method="post">
+				<div id="searchForm" class="center">
+					<select id="searchOption" onchange="selectBoxChange(this.value);">
+						<option value="title" selected>도서명</option>
+						<option value="author">저자</option>
+					</select>
+					<input type="search" id="searchText" name="q" value="${param.q}">
+					<button id="searchButton" type="submit" title="검색" style="background:none;" >
+						<i class="fas fa-search fa-lg" style="background:none; color:#2980b9;"></i>
+					</button>
+				</div>
+				<br><br>
+				<hr width=60%>
+			</form>
+			<br><br>
+			<script>
+			
+			</script>
+			
+
+			<form name="bookList">
+				<div id="listDiv" class="left">&nbsp;&nbsp;
+					<a onclick="bookOrder(this);" class="order"><b>인기순</b></a>&nbsp;
+					<a onclick="bookOrder(this);" class="order"><b>최신순</b></a>
+					<script>
+						function bookOrder(book) {
+							if (book.innerText == "인기순") {
+								document.getElementById("bestBook").style.display = "block";
+								document.getElementById("latestBook").style.display = "none";
+							} else if (book.innerText == "최신순") {
+								document.getElementById("bestBook").style.display = "none";
+								document.getElementById("latestBook").style.display = "block";
+							}
+						}
+					</script>
+=======
+>>>>>>> 7864433d9e1f54b424f799169054888ebe908ac7
 		</div>
 		<script>
 			$(
@@ -989,6 +1370,7 @@ li.booklist {
 									백화점 </a>
 						</span></li>
 					</ul>
+>>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
 				</div>
 
 			</div>
@@ -1482,6 +1864,78 @@ li.booklist {
 
 =======
 
+<<<<<<< HEAD
+			</section>
+			<script>
+				$(document).ready(function () {
+					$('ul.tabs li').click(function () {
+						var tab_id = $(this).attr('data-tab');
+						$('ul.tabs li').removeClass('current');
+						$('.tab-content').removeClass('current');
+						$(this).addClass('current');
+						$("#" + tab_id).addClass('current');
+					})
+				})
+			</script>
+
+			<!-- End Align Area -->
+		</main>
+		<%@ include file="../common/footer.jsp" %>
+		<div id="back-top" >
+   			<a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+		</div>
+			<script>
+				$(function () {
+					var now = new Date();
+					var year = now.getFullYear();
+					var month = now.getMonth() + 1;
+					var date = now.getDate();
+					$('input[name=reqDate]').val(year + '-' + month + '-' + date);
+					console.log(now);
+				});
+			</script>
+			<!-- JS here -->
+
+			<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+			<!-- Jquery, Popper, Bootstrap -->
+			<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+			<script src="./assets/js/popper.min.js"></script>
+			<script src="./assets/js/bootstrap.min.js"></script>
+			<!-- Jquery Mobile Menu -->
+			<script src="./assets/js/jquery.slicknav.min.js"></script>
+
+			<!-- Jquery Slick , Owl-Carousel Plugins -->
+			<script src="./assets/js/owl.carousel.min.js"></script>
+			<script src="./assets/js/slick.min.js"></script>
+			<!-- One Page, Animated-HeadLin -->
+			<script src="./assets/js/wow.min.js"></script>
+			<script src="./assets/js/animated.headline.js"></script>
+			<script src="./assets/js/jquery.magnific-popup.js"></script>
+
+			<!-- Date Picker -->
+			<script src="./assets/js/gijgo.min.js"></script>
+			<!-- Nice-select, sticky -->
+			<script src="./assets/js/jquery.nice-select.min.js"></script>
+			<script src="./assets/js/jquery.sticky.js"></script>
+
+			<!-- counter , waypoint,Hover Direction -->
+			<script src="./assets/js/jquery.counterup.min.js"></script>
+			<script src="./assets/js/waypoints.min.js"></script>
+			<script src="./assets/js/jquery.countdown.min.js"></script>
+			<script src="./assets/js/hover-direction-snake.min.js"></script>
+
+			<!-- contact js -->
+			<script src="./assets/js/contact.js"></script>
+			<script src="./assets/js/jquery.form.js"></script>
+			<script src="./assets/js/jquery.validate.min.js"></script>
+			<script src="./assets/js/mail-script.js"></script>
+			<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+
+			<!-- Jquery Plugins, main Jquery -->
+			<script src="./assets/js/plugins.js"></script>
+			<script src="./assets/js/main.js"></script>
+			<script src="./assets/js/all.min.js"></script>
+=======
 		</section>
 		<script>
 			$(document).ready(function() {
@@ -1553,6 +2007,7 @@ li.booklist {
 	<script src="./assets/js/plugins.js"></script>
 	<script src="./assets/js/main.js"></script>
 	<script src="./assets/js/all.min.js"></script>
+>>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
 
 </body>
 <script type="text/javascript">

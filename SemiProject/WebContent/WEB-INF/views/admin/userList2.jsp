@@ -1,30 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, admin.model.vo.RentalBook"%>
-    
+    pageEncoding="UTF-8" import="java.util.ArrayList, admin.model.vo.UserList" %>
+					 
 <%
-	ArrayList<RentalBook> rList =  (ArrayList)request.getAttribute("rList");
+	ArrayList<UserList> uList = (ArrayList)request.getAttribute("uList");
+	String mi = (String)request.getAttribute("mi");
 
-%>    
+%>
 <!doctype html>
 <html class="no-js">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
-    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
        
-    <title>adminRentalList</title>
+    <title>adminUserList</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-
-
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
-
-	<!-- favicon
+	
+	
+	 <!-- favicon
 		============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <!-- Google Fonts
@@ -80,6 +77,7 @@
 		============================================ -->
     <link rel="stylesheet" href="css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="css/data-table/bootstrap-editable.css">
+    
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="style.css">
@@ -89,9 +87,12 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-
-
-
+	
+	
+	
+	
+	
+	
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -109,10 +110,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/css/datatables.min.css"/>
-	
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
-	<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
-	
+    
+    
 
     <style>
         #currentMenu {
@@ -159,6 +158,36 @@
         .paging1{
         	padding-left: 47%;
         }
+        .updateInfo {
+		  background: white;
+		  border: none;
+		  color: blue;
+		  text-align: center;
+		  text-decoration: none;
+		 
+		  font-size: 16px;
+		
+		  cursor: pointer;
+		}
+
+        .fa-image {
+            position: absolute;
+            top: 50%;
+            margin-top: 12px;
+            margin-left: 1%;
+            z-index: 1;
+        }
+
+        #imagePreview {
+            margin-top: 20px;
+            border: 1px solid #eee;
+        }
+
+        #imageP {
+            margin-top: 20px;
+            visibility: hidden;
+        }
+
     </style>
 </head>
 
@@ -175,18 +204,18 @@
         </div>
     </div>
     <!-- Preloader Start -->
-
-
-    <%@ include file="../common/header.jsp" %>
+   
+       <%@ include file="../common/header.jsp" %>
+      
     <main>
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
-                <h2 id="currentMenu">대출 도서 목록</h2>
+                <h2 id="currentMenu">회원 목록</h2>
             </div>
         </div>
 
-		 <!--? Start Align Area -->
+        <!--? Start Align Area -->
         <div class="whole-wrap">
             <div class="container box_1170">
                 <div class="section-top-border">
@@ -217,29 +246,53 @@
                                         data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-												<th data-field="id">No.</th>
-												<th data-field="no" data-editable="false">도서코드</th>
-												<th data-field="bookName" data-editable="false">도서명</th>
-												<th data-field="author" data-editable="false">저자</th>
-												<th data-field="memberName" data-editable="false">대출자명</th>
-												<th data-field="retalDate" data-editable="false">대출일자</th>
-												<th data-field="returnDate" data-editable="false">반납일자</th>  
-											</tr>  
-										</thead>  
-										<tbody>  
-											<%	for(int i = 0; i <rList.size(); i++) { %>
-											<tr>
-												<td><%= rList.get(i).getBookNo() %></td>
-												<td><%= rList.get(i).getBookTitle() %></td>
-												<td><%= rList.get(i).getAuthor() %></td>
-												<td><%= rList.get(i).getMemberId() %></td>
-												<td><%= rList.get(i).getMemberName() %></td>
-												<td><%= rList.get(i).getRentalDate() %></td>
-												<td><%= rList.get(i).getReturnDate() %></td>
-											</tr>
-											<%	} %>
-										</tbody>  
-									 </table>
+                                                <th data-field="id">아이디</th>
+                                                <th data-field="name" data-editable="false">이름</th>
+                                                <th data-field="email" data-editable="false">학과</th>
+                                                <th data-field="phone" data-editable="false">전화번호</th>
+                                                <th data-field="complete" data-editable="false">주소</th>
+                                                <th data-field="task" data-editable="false">이메일</th>
+                                                <th data-field="date" data-editable="false">변경</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        	 <% for (int i = 0; i < uList.size(); i++) { %>
+                                            <tr>
+                                              <td>
+									        		<%= uList.get(i).getMemberId() %>
+									        		<input type="hidden" name="id" id="id" value="<%= uList.get(i).getMemberId()%>">
+									        	</td>
+									        	<td>
+									        		<%= uList.get(i).getMemberName() %>
+									        		<input type="hidden" name="name" id="name" value="<%= uList.get(i).getMemberName()%>">
+									        	</td>
+									        	<td>
+									        		<%= uList.get(i).getDepartment() %>
+									        		<input type="hidden" name="department" id="department" value="<%= uList.get(i).getDepartment()%>">
+									        	</td>
+									        	<td>
+									        		<%= uList.get(i).getPhone() %>
+									        		<input type="hidden" name="phone" id="phone" value="<%= uList.get(i).getPhone()%>">
+									        	</td>
+									        	<td>
+									        		<%= uList.get(i).getAddress() %>
+									        		<input type="hidden" name="address" id="address" value="<%= uList.get(i).getAddress()%>">
+									        	</td>
+									        	<td>
+									        		<%= uList.get(i).getEmail() %>
+									        		<input type="hidden" name="email" id="email" value="<%= uList.get(i).getEmail()%>">
+									        	</td>
+									        	<td>
+													<a onclick="window.open('<%= request.getContextPath() %>/updateInfoForm.ui?mi=<%= uList.get(i).getMemberId() %>', 'updateInfoForm', 'width=1600, height=500')" id="update">변경</a>
+												</td>
+                                            </tr>
+                                            <% } %>
+                                        </tbody>
+                                    </table>
+	                                <script type="text/javascript">
+											opener.document.location.reload();
+											self.close();
+									</script>
                                 </div>
                             </div>
                         </div>
@@ -248,8 +301,10 @@
             </div>
         </div>
         <!-- Static Table End -->
-	</div>
-	<!-- End Align Area -->
+        
+        
+     </div>
+        <!-- End Align Area -->
     </main>
     <footer>
         <!-- Footer Start-->
@@ -306,29 +361,11 @@
                 </div>
             </div>
         </div>
-        <!-- footer-bottom area -->
-        <div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
-            <div class="container">
-                <div class="footer-border">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-xl-12 ">
-                            <div class="footer-copy-right text-center">
-                                <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
-                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                        href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
-    </footer>
+        
+        
+        <%@ include file="../common/footer.jsp" %>
+    
+    
     <!-- Scroll Up -->
     <div id="back-top">
         <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
@@ -343,8 +380,7 @@
             console.log(now);
         });
     </script>
-
-       <!-- JS here -->
+    <!-- JS here -->
       <!-- jquery
 		============================================ -->
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
@@ -408,10 +444,8 @@
     <script src="js/plugins.js"></script>
     <!-- main JS
 		============================================ -->
-    <script src="js/main.js"></script>
-    <!-- tawk chat JS
-		============================================ -->
-    <script src="js/tawk-chat.js"></script>
+   
+		
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
