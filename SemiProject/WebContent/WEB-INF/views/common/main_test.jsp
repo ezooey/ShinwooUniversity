@@ -1,35 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.vo.Member,java.util.ArrayList, reqBook.vo.*"%>
+    pageEncoding="UTF-8" import="member.vo.Member,java.util.ArrayList"%>
  <%
- ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list");
+	Member loginUser= (Member)session.getAttribute("loginUser");
+  
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>신우대학교 메인</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script src="https://fontawesome.com/v5.15/icons/search?style=solid"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<!doctype html>
+<html class="no-js">
 
-	 <!-- CSS here -->
-	  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-	  <link rel="stylesheet" href="assets/css/slicknav.css">
-	  <link rel="stylesheet" href="assets/css/flaticon.css">
-	  <link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
-	  <link rel="stylesheet" href="assets/css/gijgo.css">
-	  <link rel="stylesheet" href="assets/css/animate.min.css">
-	  <link rel="stylesheet" href="assets/css/animated-headline.css">
-	  <link rel="stylesheet" href="assets/css/magnific-popup.css">
-	  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-	  <link rel="stylesheet" href="assets/css/themify-icons.css">
-	  <link rel="stylesheet" href="assets/css/slick.css">
-	  <link rel="stylesheet" href="assets/css/nice-select.css">
-	  <link rel="stylesheet" href="assets/css/style.css">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://fontawesome.com/v5.15/icons/search?style=solid"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
+ <!-- CSS here -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/slicknav.css">
+  <link rel="stylesheet" href="assets/css/flaticon.css">
+  <link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
+  <link rel="stylesheet" href="assets/css/gijgo.css">
+  <link rel="stylesheet" href="assets/css/animate.min.css">
+  <link rel="stylesheet" href="assets/css/animated-headline.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="assets/css/themify-icons.css">
+  <link rel="stylesheet" href="assets/css/slick.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   
   
 	<link rel="stylesheet" type="text/css" href="/plugin/slick/slick.css"/>
@@ -43,16 +43,16 @@
 	
 	<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" >
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-	
-	
-	<style>		
-	#slider {position: relative;overflow: hidden;margin: 20px auto 0 auto;border-radius: 4px;width: 300px;height: 300px;}
-	#slider ul {position: relative;margin: 0;padding: 0;height: 200px;list-style: none;left: 0px;}
-	#slider ul li {position: relative;display: block;float: left;margin: 0;padding: 0;width: 300px;height: 300px;background: #ccc;text-align: center;line-height: 300px;}
-	a.prev, a.next {position: absolute;top: 40%;z-index: 999;display: block;padding: 4% 3%;width: auto;height: auto;background: #2a2a2a;color: #fff;text-decoration: none;font-weight: 600;font-size: 18px;opacity: 0.8;cursor: pointer;}
-	a.prev:hover, a.next:hover {opacity: 1;-webkit-transition: all 0.2s ease;}
-	a.prev {border-radius: 0 2px 2px 0;}
-	a.next {right: 0;border-radius: 2px 0 0 2px;}
+	<style>
+
+
+		#slider {position: relative;overflow: hidden;margin: 20px auto 0 auto;border-radius: 4px;width: 300px;height: 300px;}
+		#slider ul {position: relative;margin: 0;padding: 0;height: 200px;list-style: none;left: 0px;}
+		#slider ul li {position: relative;display: block;float: left;margin: 0;padding: 0;width: 300px;height: 300px;background: #ccc;text-align: center;line-height: 300px;}
+		a.prev, a.next {position: absolute;top: 40%;z-index: 999;display: block;padding: 4% 3%;width: auto;height: auto;background: #2a2a2a;color: #fff;text-decoration: none;font-weight: 600;font-size: 18px;opacity: 0.8;cursor: pointer;}
+		a.prev:hover, a.next:hover {opacity: 1;-webkit-transition: all 0.2s ease;}
+		a.prev {border-radius: 0 2px 2px 0;}
+		a.next {right: 0;border-radius: 2px 0 0 2px;}
 
 	    
 		body{
@@ -74,12 +74,7 @@
 		
 		.tab-content{
 			display: none;
-			padding: 5px;
-		}
-		
-		ul.tabs li.current{
-		background: #ededed;
-		color: #222;
+			padding: 15px;
 		}
 		
 		.tab-content.current{
@@ -137,69 +132,56 @@
       	margin: 0;
     	padding: 0;}
 	
-		.wrapper{
-			display : flex;
-			justiy-content : center;
-			align-items : center;
-			min-height: 100vh;
-			
-		}
-		
-		.content {
-			font-family : system-ui,serif;
-			padding : 3rem;
-			
-		
-		}
-		
-		
-		
-		#wholewhole{width:auto; background-color: #2980B9;}
-		#wholeslide-div{width:1130px; height:350px; padding-left: 100px; padding-right: 100px;background-color: #2980B9;margin: 0 auto;}
-		#slider-div{width:1130px; height:300px; background-color:#2980B9; padding-top:20px; padding-right:0px;}
-		.bookimage{width:95%; height:auto; margin-top:35px; margin-left:20px;  max-width: 90%; height:auto; display: block;
-		 			box-shadow: 0 11px 11px rgba(0,0,0,0.22), 0 9px 9px rgba(0,0,0,0.27);
-	  				transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-	  				border-radius: 6.5%;
-	  			}
-	  	.bookimage:hover{box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); transform:scale(1.08); top: 0; left: 0; opacity: 0.915;}
-		.book-div{width:400px; height:300px; padding:0px 40px 0px 0px;}
-		
-		.center{text-align: center;}
-		#searchForm{display: inline-block; width: 430px; height: 40px; border: solid #aacec2 4px;}
-		#searchOption{width: 20%; height: 40px; border: 0px; padding-right: 14px;}
-		#searchText{width:60%; height: 40px; border: 0px; background: none;}
-		#searchButton{width: 60px; height: 40px; border: 0px;}
-		#latestBook{display: none;}
-		.order{cursor: pointer;}
-		.left{padding-left: 20%;}
-		
-		.container{background:  f9f9ff;}
-		
-	  	ul.ul1{list-style: none; width: 1000px; margin: 0 auto;}
-		img.bookimg{
-			padding-bottom: 10px; 
-			cursor: pointer; 
-			display: inline-block; 
-			margin: 0 auto; 
-			max-width: 100%;
-			align: center;
-			width: 150px; height: 230px;
-		}
-		li.booklist{display: list-item; float: left; width: 25%; padding-top: 10px;}
-		.listop{
-			text-decoration-line: none; 
-			color: #666; 
-			font-weight: bolder; 
-			overflow: hidden; 
-			word-break: break-all;
-		  	display: block;
-			width: 170px;
-		}
-		.bookName{width:148px; max-height: 30px;}
-		.centerBook{justify-content: center; padding: 0px; margin: 0 auto;}
+	
+	#wholewhole{width:auto; background-color: #2980B9;}
+	#wholeslide-div{width:1130px; height:350px; padding-left: 100px; padding-right: 100px;background-color: #2980B9;margin: 0 auto;}
+	#slider-div{width:1130px; height:300px; background-color:#2980B9; padding-top:20px; padding-right:0px;}
+	.bookimage{width:95%; height:auto; margin-top:35px; margin-left:20px;  max-width: 90%; height:auto; display: block;
+	 			box-shadow: 0 11px 11px rgba(0,0,0,0.22), 0 9px 9px rgba(0,0,0,0.27);
+  				transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  				border-radius: 6.5%;
+  			}
+  	.bookimage:hover{box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); transform:scale(1.08); top: 0; left: 0; opacity: 0.915;}
+	.book-div{width:400px; height:300px; padding:0px 40px 0px 0px;}
+	
+	.center{text-align: center;}
+	#searchForm{display: inline-block; width: 430px; height: 40px; border: solid #aacec2 4px;}
+	#searchOption{width: 20%; height: 40px; border: 0px; padding-right: 14px;}
+	#searchText{width:60%; height: 40px; border: 0px; background: none;}
+	#searchButton{width: 60px; height: 40px; border: 0px;}
+	#latestBook{display: none;}
+	.order{cursor: pointer;}
+	.left{padding-left: 20%;}
+	
+	.container{background:  f9f9ff;}
+	
+  	ul.ul1{list-style: none; width: 1000px; margin: 0 auto;}
+	img.bookimg{
+		padding-bottom: 10px; 
+		cursor: pointer; 
+		display: inline-block; 
+		margin: 0 auto; 
+		max-width: 100%;
+		align: center;
+		width: 150px; height: 230px;
+	}
+	li.booklist{display: list-item; float: left; width: 25%; padding-top: 10px;}
+	.listop{
+		text-decoration-line: none; 
+		color: #666; 
+		font-weight: bolder; 
+		overflow: hidden; 
+		word-break: break-all;
+	  	display: block;
+		width: 170px;
+	}
+	.bookName{width:148px; max-height: 30px;}
+	.centerBook{justify-content: center; padding: 0px; margin: 0 auto;}
+	
+	#newsdiv{padding-top : 500px;}
+	#footerdiv{height:200px; background:lightgray; text-align:center;}
         
-        .back{background : #f9f8ff;}
+        
         
         
 </style>
@@ -233,7 +215,7 @@
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="index.html">도서관 소개</a></li>
-                                    <li><a href='<%= request.getContextPath() %>/reqBook.li'">도서 신청 확인</a></li>
+                                    <li><a onclick="location.href='<%= request.getContextPath() %>/reqBook.li'">도서 신청 확인</a></li>
                                     <li><a href="services.html">도서 검색</a></li>
                                     <li><a href="contact.html">회원 목록</a></li>
                                     <li><a href="contact.html">대출 도서 목록</a></li>
@@ -246,15 +228,13 @@
                 </div>
                 <div class="header-right d-none d-lg-block">
                     <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
+                    <button type="button" class="genric-btn primary circle" id="login">로그아웃</button>
 				</div>
 			</div>	
 		</div>		
         <!-- Header End -->
     </header>
 	<main>
-		<div class = "wrapper">
-		 	<div clas = "content">
    		<div id="wholewhole">
    			<div id = "wholeslide-div">
         		<div id="slider-div">
@@ -271,8 +251,6 @@
        			</div>
    			</div>
    		</div>
-   	</div>
-  </div> 		
 	<script>
     $(function(){
       $('#slider-div').slick({
@@ -329,9 +307,9 @@
 	</form>
 	<br><br>
 	
-	<div class="container" >		
+	
 	<form name="bookList">
-		<div id="listDiv" class="left">&nbsp;&nbsp;
+		<div id="listDiv" class="left">
 			<a onclick="bookOrder(this);" class="order"><b>인기순</b></a>&nbsp;
 			<a onclick="bookOrder(this);" class="order"><b>최신순</b></a>
 			<script>
@@ -495,15 +473,15 @@
 					</li>
 				</ul>
 			</div>
-		</div>	
-		</form>
-	</div>
+		</div>
+	</form>
 	<br><br>
 	<hr width=60%>
 	<br><br>
 	
-	<!--  --><section class="wantToWork-area back">
-	<div class="container" >									
+		
+	<div class="container" >
+		<div class="section-top-border">										
 			<div class="row">
 				<div class="col-md-3"><br>
 					<div id="jquery-script-menu">
@@ -516,7 +494,7 @@
 						</div>
 					</div>
 					
-		<div id="slider">
+	<div id="slider">
 		 <a href="javascript:;" class="next">></a> 	
 		 <a href="javascript:; " class="prev"><</a>	
 		  <ul>
@@ -537,127 +515,45 @@
 			navigation	:	true
 		});
 		</script>
-		</div><br><br>
-			<div class="col-md-9 mt-sm-20" >
-			    <div class="container">
-				  <ul class="tabs">
-					<li class="tab-link current" data-tab="tab-2"><h2><b>독후감</b></h2></li>
-					<li class="tab-link" data-tab="tab-1"><h2><b>공지사항</b></h2></li>
-				 </ul>
-				<div id="tab-2" class="tab-content current">
-					<div class="whole-wrap">						
-						<div class="progress-table">
-									<div class="table-head">
-										<div class="serial">#</div>
-										<div class="country">도서명</div>
-										<div class="country">글제목</div>
-										<div class="country">작성자</div>
-										<div class="visit">조회수</div>	
-									</div>
-									<div>
-									<div class="table-row">
-										<div class="serial">#</div>
-										<div class="country">도서명</div>
-										<div class="country">글제목</div>
-										<div class="country">작성자</div>
-										<div class="visit">조회수</div>	
-									</div>
-									<div>
-									<div class="table-row">
-										<div class="serial">#</div>
-										<div class="country">도서명</div>
-										<div class="country">글제목</div>
-										<div class="country">작성자</div>
-										<div class="visit">조회수</div>	
-									</div>
-									<div class="table-row">
-										<div class="serial">#</div>
-										<div class="country">도서명</div>
-										<div class="country">글제목</div>
-										<div class="country">작성자</div>
-										<div class="visit">조회수</div>	
-									</div>
-									<div class="table-row">
-										<div class="serial">#</div>
-										<div class="country">도서명</div>
-										<div class="country">글제목</div>
-										<div class="country">작성자</div>
-										<div class="visit">조회수</div>	
-									</div>															
-								</div>
-				        	</div>
-					  </div>
-			      </div>
-					
-				</div>
-					<div id="tab-1" class="tab-content">
-					<div class="whole-wrap">						
-						<div class="progress-table">
-									<div class="table-head">
-										<div class="serial">#</div>
-										<div class="country">제목</div>
-										<div class="country">작성시간</div>
-									</div>
-									<div>
-									<div class="table-row">
-										<div class="serial">#</div>
-										<div class="country">도서명</div>
-										<div class="country">글제목</div>
-
-									</div>
-									<div>
-									<div class="table-row">
-										<div class="serial">#</div>
-										<div class="country">도서명</div>
-										<div class="country">글제목</div>	
-									</div>
-									<div class="table-row">
-										<div class="serial">#</div>
-										<div class="country">도서명</div>
-										<div class="country">글제목</div>
-									</div>
-									<div class="table-row">
-										<div class="serial">#</div>
-										<div class="country">도서명</div>
-										<div class="country">글제목</div>
-	
-									</div>															
-								</div>
-				        	</div>
-					 	 </div>
-			  		</div>
-				</div>
-			</div>
-		</div>	
-	</div>
-	  <div class="header-right d-none d-lg-block" style= " float: right;">
-		              <button type="button" class="genric-btn primary circle" id="login">전체보기 > </button></div>
-</div>
-
-</section>
-   <script>
-   $(document).ready(function(){
-		
-		$('ul.tabs li').click(function(){
-			var tab_id = $(this).attr('data-tab');
-
-			$('ul.tabs li').removeClass('current');
-			$('.tab-content').removeClass('current');
-
-			$(this).addClass('current');
-			$("#"+tab_id).addClass('current');
-		})
-
-	})
+	  
+  	  <ul class="menu">
+                <li><a href="javascript:phone();">휴대폰</a></li>
+                <li><a href="javascript:laptop();">노트북</a></li>
+                <li><a href="javascript:tablet()">태블릿PC</a></li>
+                <li><a href="javascript:watch()">스마트워치</a></li>
+                <li><a href="javascript:accessory()">악세서리</a></li>
+       </ul>
    
-  
+   		<div id = "product_list">
+										<div class="serial">#</div>
+										<div class="country">도서명</div>
+										<div class="country">글제목</div>
+										<div class="country">작성자</div>
+										<div class="visit">조회수</div>
+		</div>
+   
+   
+   <script>
+   	var pricelistdesc = function(url){
+
+		$.ajax({
+			type: 'get',
+			url: "../PricelistDesc",
+			data: "",
+			contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+			success: function(data) {
+				$('#product_list').html(data);
+			},
+			error: function(request, status, error) {
+				alert(error);
+			}
+		});
+	};
+   
+   
    
    </script>
-   
-   
-   
-   
-   
+  
         <!-- End Align Area -->
     </main>
     <footer>
@@ -795,7 +691,7 @@
     <script src="./assets/js/all.min.js"></script>
 
 </body>
- <script type="text/javascript">
+ <script>
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);
@@ -810,8 +706,3 @@
 
 </script>
  </html>
-
-
-
-
-
