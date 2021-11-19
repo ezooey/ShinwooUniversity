@@ -221,10 +221,6 @@
 					<div>
 						<select class="email" name="email2" id="email2" onChange="selectEmail(this)">
 							<option value="@naver.com">@naver.com</option>
-							<option value="@gmail.com">@gmail.com</option>
-							<option value="@daum.net">@daum.net</option>
-							<option value="@nate.com">@nate.com</option>
-							<option value="etc">기타</option>
 						</select>
 						
 					</div>

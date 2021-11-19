@@ -206,6 +206,7 @@ body {
 #wholewhole {
 	width: auto;
 	background-color: #2980B9;
+	text-align:center;
 }
 
 #wholeslide-div {
@@ -218,7 +219,7 @@ body {
 }
 
 #slider-div {
-	width: 1130px;
+	width: 1030px;
 	height: 300px;
 	background-color: #2980B9;
 	padding-top: 20px;
@@ -359,6 +360,7 @@ li.booklist {
 .back {
 	background: #f9f8ff;
 }
+
 </style>
 <script src="slider.js"></script>
 </head>

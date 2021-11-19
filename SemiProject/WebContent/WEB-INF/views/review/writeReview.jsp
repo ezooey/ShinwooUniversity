@@ -197,11 +197,11 @@
                                                 	<td rowspan="3"><img height="300px" id="bookImg" name="bookImg"></td>
                                                 </tr>
                                                 <tr>
-                                                	<td width="800px"><input type="text" class="upload-name" id="uploadName" name="uploadName" readonly></td>
+                                                	<td width="800px"><input type="text" class="upload-name" id="uploadName" name="uploadName" readonly required></td>
                                                 	
                                                 </tr>
                                                 <tr>
-                                                <td><input type="text" class="upload-name" id="uploadName2" name="uploadName2" readonly></td>
+                                                <td><input type="text" class="upload-name" id="uploadName2" name="uploadName2" readonly required></td>
                                                 
                                                 </tr>
                                                 </table>
@@ -218,7 +218,7 @@
                                         </div>
                                     </div>
                                     <div class="bottomBtn">
-                                        <input type="submit" class="genric-btn info circle" value="등록">
+                                        <input type="submit" class="genric-btn info circle" value="등록" onclick= "return submitAlarm();">
                                         <input type="reset" class="genric-btn danger circle" value="취소">
                                     </div>
                                 </form>
@@ -384,10 +384,30 @@
                 alert("최대 3장까지 업로드 할 수 있습니다.");
             }
         }
-
-        $("#commentForm").submit(function () {
-            alert("글 작성이 완료되었습니다.");
-        });
+	</script><script>
+        function submitAlarm(){
+        	
+        	
+			if($('#title').val() == ''){
+				alert('독후감의 제목을 입력해주세요');
+				$('#title').focus();
+				return false;
+			}else if($('#content').val() == ''){
+				alert('독후감의 내용이 입력되지 않았습니다.');
+				$('#content').val("");
+				$('#content').focus();
+				return false;
+				
+			}else if($('#uploadName').val() == ''){
+				alert('책을 선택해주세요.');
+				$('#uploadName').val("");
+				$('#uploadName').focus();
+				return false;
+			}
+			
+		} 
+	
+	</script>
     </script>
     <!-- JS here -->
 
