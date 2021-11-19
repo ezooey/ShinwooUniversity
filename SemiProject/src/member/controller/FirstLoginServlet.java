@@ -15,7 +15,7 @@ import member.vo.Member;
 /**
  * Servlet implementation class FirstLoginServlet
  */
-@WebServlet("/firstLogin.me")
+@WebServlet(name="FirstLoginServlet", urlPatterns="/firstLogin.me")
 public class FirstLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,22 +38,23 @@ public class FirstLoginServlet extends HttpServlet {
 		String number2 = request.getParameter("number2");
 		String email1 = request.getParameter("email1");
 		String email2 = request.getParameter("email2");
-		String address1 = request.getParameter("address1");
-		String address2 = request.getParameter("address2");
+		String address1 = request.getParameter("addr1");
+		String address2 = request.getParameter("addr2");
+		String phone = null;
+		String address = null;
 		
-		String subNum1 = number2.substring(0, 4);
-		String subNum2 = number2.substring(4, 8);
+		if(!number2.equals("")) {
+			String subNum1 = number2.substring(0, 4);
+			String subNum2 = number2.substring(4, 8);
+			phone = number1 + "-" + subNum1 + "-" + subNum2;
+		}
+		
+		if(!address2.equals("")) {
+			address = address1 + " " + address2;
+		}
+		
 		String email = email1.concat(email2);
 		
-		String phone = number1 + "-" + subNum1 + "-" + subNum2;
-		
-		String address = address1 + " " + address2;
-		
-		System.out.println(memberId);
-		System.out.println(password);
-		System.out.println(phone);
-		System.out.println(email);
-		System.out.println(address);
 		
 		Member m = new Member();
 		m.setMemberId(memberId);
@@ -67,7 +68,7 @@ public class FirstLoginServlet extends HttpServlet {
 		if(result>0) {
 			response.sendRedirect(request.getContextPath());
 		}else {
-			request.setAttribute("msg", "·Î±×ÀÎ ½ÇÆĞ");
+			request.setAttribute("msg", "ì—ëŸ¬");
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp");
 			view.forward(request, response);
 		}

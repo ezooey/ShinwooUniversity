@@ -16,7 +16,7 @@ import member.vo.Member;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login.me")
+@WebServlet(name="LoginServlet", urlPatterns="/login.me")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,23 +35,28 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String memberId = request.getParameter("userNo");
 		String memberPwd = request.getParameter("userPwd");
+		System.out.println(memberPwd);
 		Member loginUser = new MemberService().loginMember(memberId, memberPwd);
 		
 		if(loginUser != null) {
 			HttpSession session = request.getSession();
-			session.setMaxInactiveInterval(6000); 	//6000√  µ⁄ ººº« ¡æ∑·
+
+			session.setMaxInactiveInterval(6000); 	
 			session.setAttribute("loginUser", loginUser);
 			String status = new MemberService().isFirstLogin(memberId);
 			if(status.equals("N")) {
 				request.setAttribute("loginUser", loginUser);
+				session.setAttribute("loginUser", loginUser);
 				RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/member/firstLogin.jsp");
 				view.forward(request, response);
 			}else {
+				session.setAttribute("loginUser", loginUser);
 				response.sendRedirect(request.getContextPath());
 			}
 			
 		}else {
-			request.setAttribute("msg", "∑Œ±◊¿Œ Ω«∆–");
+			request.setAttribute("msg", "Î°úÍ∑∏Ïù∏ Ïã§Ìå®");
+			System.out.println(memberPwd);
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp");
 			view.forward(request, response);
 		}

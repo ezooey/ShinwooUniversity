@@ -1,7 +1,15 @@
 package reqBook.model.dao;
 
+<<<<<<< HEAD
 import static common.JDBCTemplate.*;
 
+=======
+import static common.JDBCTemplate.close;
+
+import static common.JDBCTemplate.*;
+
+
+>>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -52,7 +60,10 @@ public class ReqBookDAO {
 										rset.getDate("REQ_DATE"),
 										rset.getString("REQ_PUB"),
 										rset.getString("REQ_AUTHOR"),
+<<<<<<< HEAD
 										rset.getString("MEMBER_NAME"),
+=======
+>>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
 										rset.getString("REQ_COMMENT"),
 										rset.getString("REQ_REASON"),
 										rset.getInt("PERMIT_STATUS"),
@@ -69,6 +80,7 @@ public class ReqBookDAO {
 		return list;
 	}
 
+<<<<<<< HEAD
 
 	public ReqBook defineList(Connection conn, int reqNo) {
 			
@@ -223,3 +235,136 @@ public class ReqBookDAO {
 		return result;
 	}
 }
+=======
+	public ArrayList<ReqBook> selectMyList(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<ReqBook> list = null;
+		
+		String query = prop.getProperty("selectMyList");
+	
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<ReqBook>();
+			
+			while(rset.next()) {
+				ReqBook r = new ReqBook(rset.getInt("REQ_NO"),
+										rset.getString("REQ_BOOK"),
+										rset.getDate("REQ_DATE"),
+										rset.getString("REQ_PUB"),
+										rset.getString("REQ_AUTHOR"),
+										rset.getString("REQ_COMMENT"),
+										rset.getString("REQ_REASON"),
+										rset.getInt("PERMIT_STATUS"),
+										rset.getString("REQ_ID"));
+				
+				list.add(r);
+			}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return list;
+		}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public int insertRequest(Connection conn, ReqBook r) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertRequest");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, r.getReqBookTitle());
+			pstmt.setString(2, r.getReqBookPub());
+			pstmt.setString(3, r.getReqBookAuthor());
+			pstmt.setString(4, r.getReqBookComment());
+			pstmt.setString(5, r.getReqWriterId());
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+
+
+	public ReqBook getReject(Connection conn, int rno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ReqBook rb = null;
+		
+		String query = prop.getProperty("getReject");
+	
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, rno);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				rb = new ReqBook();
+				rb.setReqBookContent(rset.getString("REQ_COMMENT"));
+				rb.setReqBookReason(rset.getString("REQ_REASON"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return rb;
+	}
+}
+
+>>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
