@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, admin.model.vo.RentalBook"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, book.vo.Book"%>
     
 <%
-	ArrayList<RentalBook> rList =  (ArrayList)request.getAttribute("rList");
+	ArrayList<Book> list =  (ArrayList)request.getAttribute("list");
 
 %>    
 <!doctype html>
@@ -22,75 +22,6 @@
 
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
-
-	<!-- favicon
-		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-    <!-- Google Fonts
-		============================================ -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
-    <!-- Bootstrap CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Bootstrap CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <!-- owl.carousel CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.css">
-    <link rel="stylesheet" href="css/owl.transitions.css">
-    <!-- animate CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/animate.css">
-    <!-- normalize CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <!-- meanmenu icon CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/meanmenu.min.css">
-    <!-- main CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/main.css">
-    <!-- educate icon CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/educate-custon-icon.css">
-    <!-- morrisjs CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/morrisjs/morris.css">
-    <!-- mCustomScrollbar CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/scrollbar/jquery.mCustomScrollbar.min.css">
-    <!-- metisMenu CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/metisMenu/metisMenu.min.css">
-    <link rel="stylesheet" href="css/metisMenu/metisMenu-vertical.css">
-    <!-- calendar CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/calendar/fullcalendar.min.css">
-    <link rel="stylesheet" href="css/calendar/fullcalendar.print.min.css">
-    <!-- x-editor CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/editor/select2.css">
-    <link rel="stylesheet" href="css/editor/datetimepicker.css">
-    <link rel="stylesheet" href="css/editor/bootstrap-editable.css">
-    <link rel="stylesheet" href="css/editor/x-editor-style.css">
-    <!-- normalize CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/data-table/bootstrap-table.css">
-    <link rel="stylesheet" href="css/data-table/bootstrap-editable.css">
-    <!-- style CSS
-		============================================ -->
-    <link rel="stylesheet" href="style.css">
-    <!-- responsive CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- modernizr JS
-		============================================ -->
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-
-
 
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -113,6 +44,8 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
 	
+
+
 
     <style>
         #currentMenu {
@@ -175,9 +108,44 @@
         </div>
     </div>
     <!-- Preloader Start -->
-
-
-    <%@ include file="../common/header.jsp" %>
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <!-- Logo -->
+                <div class="header-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                    </div>
+                    <div class="menu-wrapper  d-flex align-items-center">
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="index.html">도서관 소개</a></li>
+                                    <li><a href="about.html">도서 신청 확인</a></li>
+                                    <li><a href="services.html">도서 검색</a></li>
+                                    <li><a href="contact.html">회원 목록</a></li>
+                                    <li class="active"><a href="contact.html">대출 도서 목록</a></li>
+                                    <li><a href="contact.html">도서관리</a></li>
+                                    <li><a href="blog.html">독후감</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right d-none d-lg-block">
+                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
+                    <button type="button" class="genric-btn primary circle" id="login">로그아웃</button>
+                </div>
+                <!-- Mobile Menu -->
+                <div class="col-12">
+                    <div class="mobile_menu d-block d-lg-none"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
     <main>
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
@@ -186,70 +154,56 @@
             </div>
         </div>
 
-		 <!--? Start Align Area -->
-        <div class="whole-wrap">
-            <div class="container box_1170">
-                <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-md-8 mt-sm-30">
-                            
-                        </div>
-                    </div>
-                </div>
-		 <div class="breadcome-area">
-                <div class="container-fluid">
-                </div>
-            </div>
-        </div>
-        <!-- Static Table Start -->
-        <div class="data-table-area mg-b-15">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="sparkline13-list">
-                            <div class="sparkline13-hd">
-                                
-                            </div>
-                            <div class="sparkline13-graph">
-                                <div class="datatable-dashv1-list custom-datatable-overright">
-                                    
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-pagination-switch="true" data-show-refresh="false" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
-                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar">
-                                        <thead>
-                                            <tr>
-												<th data-field="id">No.</th>
-												<th data-field="no" data-editable="false">도서코드</th>
-												<th data-field="bookName" data-editable="false">도서명</th>
-												<th data-field="author" data-editable="false">저자</th>
-												<th data-field="memberName" data-editable="false">대출자명</th>
-												<th data-field="retalDate" data-editable="false">대출일자</th>
-												<th data-field="returnDate" data-editable="false">반납일자</th>  
-											</tr>  
-										</thead>  
-										<tbody>  
-											<%	for(int i = 0; i <rList.size(); i++) { %>
-											<tr>
-												<td><%= rList.get(i).getBookNo() %></td>
-												<td><%= rList.get(i).getBookTitle() %></td>
-												<td><%= rList.get(i).getAuthor() %></td>
-												<td><%= rList.get(i).getMemberId() %></td>
-												<td><%= rList.get(i).getMemberName() %></td>
-												<td><%= rList.get(i).getRentalDate() %></td>
-												<td><%= rList.get(i).getReturnDate() %></td>
-											</tr>
-											<%	} %>
-										</tbody>  
-									 </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Static Table End -->
-	</div>
-	<!-- End Align Area -->
+		<!--? Start Align Area -->
+		<div class="whole-wrap">
+			<div class="container box_1170">
+				<div class="section-top-border">
+					<div class="row">
+						<div class="col-md-8 mt-sm-30">
+						</div>
+					</div>
+				</div>
+				<table id="foo-table" class="table table-bordered">  
+					<thead>  
+						<tr>  
+							<th>No.</th>
+							<th>도서코드</th>
+							<th>도서명</th>
+							<th>저자</th>
+							<th>대출자명</th>
+							<th>대출일자</th>
+							<th>반납일자</th>  
+						</tr>  
+					</thead>  
+					<tbody>  
+						<% if(list.isEmpty()){ %>
+							<tr>
+								<td colspan="6">대출 된 도서가 없습니다.</td>
+							</tr>
+						<% } else { %>
+						<%		for(int i = 0; i <list.size(); i++){ %>
+						<tr>
+							<td><%= list.get(i).getBookNo() %></td>
+							<td><%= list.get(i).getBookTitle() %></td>
+							<td><%= list.get(i).getAuthor() %></td>
+							<td><%= list.get(i).getMemberName() %></td>
+							<td><%= list.get(i).getRentalDate() %></td>
+							<td><%= list.get(i).getReturnDate() %></td>
+						</tr>
+						<%		} %>
+						<% } %>
+					</tbody>  
+				</table>  
+				<script type="text/javascript">
+					jQuery(function($){ 
+						$("#foo-table").DataTable(); 
+					});
+				</script>   	
+		<!-- table end -->	
+		    </div>
+		</div>
+    
+        <!-- End Align Area -->
     </main>
     <footer>
         <!-- Footer Start-->
@@ -343,75 +297,7 @@
             console.log(now);
         });
     </script>
-
-       <!-- JS here -->
-      <!-- jquery
-		============================================ -->
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <!-- bootstrap JS
-		============================================ -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- wow JS
-		============================================ -->
-    <script src="js/wow.min.js"></script>
-    <!-- price-slider JS
-		============================================ -->
-    <script src="js/jquery-price-slider.js"></script>
-    <!-- meanmenu JS
-		============================================ -->
-    <script src="js/jquery.meanmenu.js"></script>
-    <!-- owl.carousel JS
-		============================================ -->
-    <script src="js/owl.carousel.min.js"></script>
-    <!-- sticky JS
-		============================================ -->
-    <script src="js/jquery.sticky.js"></script>
-    <!-- scrollUp JS
-		============================================ -->
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <!-- mCustomScrollbar JS
-		============================================ -->
-    <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/scrollbar/mCustomScrollbar-active.js"></script>
-    <!-- metisMenu JS
-		============================================ -->
-    <script src="js/metisMenu/metisMenu.min.js"></script>
-    <script src="js/metisMenu/metisMenu-active.js"></script>
-    <!-- data table JS
-		============================================ -->
-    <script src="js/data-table/bootstrap-table.js"></script>
-    <script src="js/data-table/tableExport.js"></script>
-    <script src="js/data-table/data-table-active.js"></script>
-    <script src="js/data-table/bootstrap-table-editable.js"></script>
-    <script src="js/data-table/bootstrap-editable.js"></script>
-    <script src="js/data-table/bootstrap-table-resizable.js"></script>
-    <script src="js/data-table/colResizable-1.5.source.js"></script>
-    <script src="js/data-table/bootstrap-table-export.js"></script>
-    <!--  editable JS
-		============================================ -->
-    <script src="js/editable/jquery.mockjax.js"></script>
-    <script src="js/editable/mock-active.js"></script>
-    <script src="js/editable/select2.js"></script>
-    <script src="js/editable/moment.min.js"></script>
-    <script src="js/editable/bootstrap-datetimepicker.js"></script>
-    <script src="js/editable/bootstrap-editable.js"></script>
-    <script src="js/editable/xediable-active.js"></script>
-    <!-- Chart JS
-		============================================ -->
-    <script src="js/chart/jquery.peity.min.js"></script>
-    <script src="js/peity/peity-active.js"></script>
-    <!-- tab JS
-		============================================ -->
-    <script src="js/tab.js"></script>
-    <!-- plugins JS
-		============================================ -->
-    <script src="js/plugins.js"></script>
-    <!-- main JS
-		============================================ -->
-    <script src="js/main.js"></script>
-    <!-- tawk chat JS
-		============================================ -->
-    <script src="js/tawk-chat.js"></script>
+    <!-- JS here -->
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->

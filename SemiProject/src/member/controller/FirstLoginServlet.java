@@ -38,8 +38,8 @@ public class FirstLoginServlet extends HttpServlet {
 		String number2 = request.getParameter("number2");
 		String email1 = request.getParameter("email1");
 		String email2 = request.getParameter("email2");
-		String address1 = request.getParameter("addr1");
-		String address2 = request.getParameter("addr2");
+		String address1 = request.getParameter("address1");
+		String address2 = request.getParameter("address2");
 		String phone = null;
 		String address = null;
 		
