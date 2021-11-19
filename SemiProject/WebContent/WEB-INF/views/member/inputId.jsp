@@ -1,10 +1,12 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html class="no-js">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>도서 등록</title>
+    <title>신우대학교 전자도서관입니다 - 비밀번호 찾기</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
@@ -32,7 +34,8 @@
         #currentMenu {
             color: white;
             padding: 20px;
-            font-size: 40px;
+            padding-left: 2.5%;
+            font-size: 30px;
             font-weight: 700;
         }
 
@@ -63,8 +66,19 @@
         }
 
         .section-top-border {
-            padding: 40px;
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
+	
+	
+		#passTable{
+			border:none;
+			margin : 200px 550px;
+			color: #D2E2E9;
+			font-family: 'Gowun Dodum', sans-serif;
+			margin:auto;
+			
+		}
     </style>
 </head>
 
@@ -81,128 +95,37 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-        <div class="header-area">
-            <div class="main-header header-sticky">
-                <!-- Logo -->
-                <div class="header-left">
-                    <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                    </div>
-                    <div class="menu-wrapper  d-flex align-items-center">
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li class="active"><a href="about.html">도서 신청</a></li>
-                                    <li><a href="services.html">도서 검색</a></li>
-                                    <li><a href="blog.html">독후감</a></li>
-                                    <li><a href="contact.html">마이페이지</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-right d-none d-lg-block">
-                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
-                </div>
-                <!-- Mobile Menu -->
-                <div class="col-12">
-                    <div class="mobile_menu d-block d-lg-none"></div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
+    <%@ include file="../common/header.jsp" %>
     <main>
         <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
-                <h2 id="currentMenu">도서 신청</h2>
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
+                <h3 id="currentMenu">로그인</h3>
             </div>
         </div>
-
-        <!--? Start Align Area -->
-        <div class="whole-wrap">
-            <div class="container box_1170">
-                <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-md-8 mt-sm-30">
-                            <h3 class="mb-20">도서 신청 시 유의 사항</h3>
-                            <div>
-                                <ul class="noneList">
-                                    <li><i class="fas fa-check-circle"></i> 희망 도서 신청 권수</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1인당 월 1권, 1년에 10권으로 제한</li>
-                                    <li><i class="fas fa-check-circle"></i> 희망 도서 진행 절차</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;신청한 도서가 절차를 거쳐 신청이 승인되는 경우 신청자에게 대출 우선권 부여</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8">
-                            <h3 class="mb-30">신청 도서 정보 입력</h3>
-                            <form action="#">
-                                <div>
-                                    <span class="reqTitle">도서명</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fa fa-book" aria-hidden="true"></i></div>
-                                        <input type="text" name="bookTitle" placeholder="도서명을 입력하세요" required
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '도서명을 입력하세요'"
-                                            class="single-input">
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="reqTitle">저자</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fas fa-pencil-alt"></i></div>
-                                        <input type="text" name="author" placeholder="저자를 입력하세요" required
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '저자를 입력하세요'"
-                                            class="single-input">
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="reqTitle">출판사</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fas fa-bookmark"></i></div>
-                                        <input type="text" name="publisher" placeholder="출판사를 입력하세요" required
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '출판사를 입력하세요'"
-                                            class="single-input">
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="reqTitle">신청일자</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fas fa-calendar-day"></i></div>
-                                        <input type="text" name="reqDate" readonly="" required class="single-input">
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="reqTitle">신청의견</span>
-                                    <div class="mt-10">
-                                        <textarea class="single-textarea" placeholder="신청 이유를 입력하세요"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '신청 이유를 입력하세요'"
-                                            required></textarea>
-                                    </div>
-                                </div>
-                                <div class="bottomBtn">
-                                    <input type="submit" class="genric-btn info circle" value="신청">
-                                    <input type="reset" class="genric-btn danger circle" value="취소">
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Align Area -->
+        <br><br>
+        <section>
+        	<form action="<%= request.getContextPath() %>/inputId.lo" id="inputIdForm" method="post">
+			    <div>
+					<table id="passTable">
+						<tr  id ="id" height="70px">
+							<th><label>ID <br><br><br></label></th>
+							<td> 
+							<input type="text" id="memberId" name="memberId" placeholder="학번입력" class="single-input" required>
+							<br><br>
+							</td>
+						</tr>
+						<tr id ="find">
+							<th colspan="2">
+							<button class="genric-btn info-border circle" id="nextBtn">
+							다음
+							</button>
+							</th>
+						</tr>
+					</table>
+				</div>
+			</form>
+		</section>
     </main>
     <footer>
         <!-- Footer Start-->
@@ -247,10 +170,10 @@
                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Contect</h4>
+                                <h4>Contact</h4>
                                 <ul>
                                     <li class="number"><a href="#">(02) 123-4567</a></li>
-                                    <li><a href="#">shinwoo@universty.kr</a></li>
+                                    <li><a href="#">shinwoo@university.kr</a></li>
                                     <li><a href="#">서울시 강남구 역삼로</a></li>
                                 </ul>
                             </div>
@@ -286,16 +209,15 @@
     <div id="back-top">
         <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
     </div>
-    <script>
-        $(function () {
-            var now = new Date();
-            var year = now.getFullYear();
-            var month = now.getMonth() + 1;
-            var date = now.getDate();
-            $('input[name=reqDate]').val(year + '-' + month + '-' + date);
-            console.log(now);
-        });
-    </script>
+    
+    
+    <!-- java script -->
+
+    
+    
+    
+    
+    
     <!-- JS here -->
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>

@@ -1,25 +1,27 @@
-package register.controller;
+package book.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.vo.Member;
+import book.model.service.BookService;
+import book.model.vo.Book;
 
 /**
- * Servlet implementation class RegisterBookFormServlet
+ * Servlet implementation class BookDetail
  */
-@WebServlet("/insertForm.bo")
-public class RegisterBookFormServlet extends HttpServlet {
+@WebServlet("/bookDetail.bo")
+public class BookDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterBookFormServlet() {
+    public BookDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,15 +30,21 @@ public class RegisterBookFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Member loginUser = (Member)(request.getSession().getAttribute("loginUser"));
+		int bId = Integer.parseInt(request.getParameter("bId"));
+		String update = request.getParameter("upd");
+		// 5시 7분
+		
+		Book b = new BookService().selectBook(bId);
 		
 		String page = null;
-		if(loginUser != null && loginUser.getMemberType().equals("MASTER")) {
-			page = "WEB-INF/views/register/registerBook.jsp";
+		if(b != null) {
+			page = "WEB-INF/views/book/bookDetail.jsp";
+			request.setAttribute("book", b);
 		} else {
-			request.setAttribute("msg", "관리자만 볼 수 있는 메뉴입니다.");
 			page = "WEB-INF/views/common/errorPage.jsp";
+			request.setAttribute("msg", "도서 상세 조회 실패");
 		}
+		
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 
@@ -44,6 +52,7 @@ public class RegisterBookFormServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -6,9 +6,16 @@ import static common.JDBCTemplate.*;
 import reqBook.model.dao.ReqBookDAO;
 import reqBook.model.vo.ReqBook;
 
+
+
+import reqBook.model.dao.ReqBookDAO;
+import reqBook.model.vo.ReqBook;
+
+import static common.JDBCTemplate.*;
 public class ReqBookService {
 	
 	private ReqBookDAO rkDAO = new ReqBookDAO();
+	private ReqBookDAO nDAO = new ReqBookDAO();
 	
 	public ArrayList<ReqBook> selectList() {
 		Connection conn = getConnection();
@@ -18,7 +25,6 @@ public class ReqBookService {
 		close(conn);
 		
 		return list;
-
 }
 
 	public ArrayList<ReqBook> selectMyList(String memberId) {
@@ -38,4 +44,30 @@ public class ReqBookService {
 		
 		return rb;
 	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	public int insertRequest(ReqBook r) {
+		Connection conn = getConnection();
+		
+		int result = nDAO.insertRequest(conn, r);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 }
+

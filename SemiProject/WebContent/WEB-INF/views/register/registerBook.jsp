@@ -209,20 +209,26 @@
                                         <div class="icon"><i class="far fa-image"></i></div>
                                         <input class="upload-name" value="표지 이미지를 업로드하세요" readonly placeholder="표지 이미지를 업로드하세요">
                                         <label for="file">파일 찾기</label>
-                                        <input type="file" id="file" name="bookImage" accept=".gif, .jpg, .png">
-
+                                        <input type="file" id="file" name="bookImage" accept=".gif, .jpg, .png" required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="regTitle">줄거리</span>
+                                    <div class="mt-10">
+                                        <textarea class="single-textarea" name="bookInfo" placeholder="줄거리"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '줄거리를 입력하세요'"></textarea>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="regTitle">참고사항</span>
                                     <div class="mt-10">
-                                        <textarea class="single-textarea" placeholder="참고사항을 입력하세요"
+                                        <textarea class="single-textarea" name="refer" placeholder="참고사항을 입력하세요"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '참고사항을 입력하세요'"></textarea>
                                     </div>
                                 </div>
                                 <div class="bottomBtn">
-                                    <input type="submit" class="genric-btn info circle" value="등록">
-                                    <input type="reset" class="genric-btn danger circle" value="취소">
+                                    <input type="submit" class="genric-btn info circle" id="regOk" value="등록">
+                                    <input type="reset" class="genric-btn danger circle" id="regCancle" value="취소">
                                 </div>
                             </form>
                         </div>
@@ -233,11 +239,7 @@
         </div>
         <!-- End Align Area -->
     </main>
-    	<%@ include file="../common/footer.jsp" %>
-    <!-- Scroll Up -->
-    <div id="back-top">
-        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
-    </div>
+    <%@ include file="../common/footer.jsp" %>
     <script>
         $(function () {
             var now = new Date();
@@ -261,6 +263,8 @@
         document.getElementById('searchBook').onclick = function() {
         	window.open('searchregbook.bo', 'searchRegBook', 'width=500, height=300');
 		}
+        
+        
     </script>
     <!-- JS here -->
 

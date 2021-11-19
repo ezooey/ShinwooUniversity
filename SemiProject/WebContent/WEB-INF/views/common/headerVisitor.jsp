@@ -14,7 +14,7 @@
                 <!-- Logo -->
                 <div class="header-left">
                     <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                        <a href="index.jsp"><img src="assets/img/logo/logo.png" alt=""></a>
                     </div>
                     <div class="menu-wrapper  d-flex align-items-center">
                         <!-- Main-menu -->
