@@ -73,7 +73,7 @@
 		#enrollTable{
 
 	
-		width:500px; height:600px;
+		width:600px; height:800px;
 		margin:auto;
 	
 		}
@@ -109,6 +109,22 @@
 		#Btns {
 			text-align: center;
 		}
+		
+		#spanAuth{
+			display:none;
+		}
+		#emailAuth{
+			display:none;
+		}
+		#confirmAuth{
+			display:none;
+		}
+		#authentic{
+			display:none;
+		}
+		#authEmail{
+			display:none;
+		}
     </style>
 </head>
 
@@ -125,43 +141,7 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-        <div class="header-area">
-            <div class="main-header header-sticky">
-                <!-- Logo -->
-                <div class="header-left">
-                    <div class="logo">
-                        <a href="index.html"><img src="images/shinwooLogo.PNG" alt=""></a>
-                    </div>
-                    <div class="menu-wrapper  d-flex align-items-center">
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li><a href="about.html">도서 신청</a></li>
-                                    <li><a href="services.html">도서 검색</a></li>
-                                    <li><a href="blog.html">독후감</a></li>
-                                    <li class="active"><a href="contact.html">마이페이지</a></li>
-                                    
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-right d-none d-lg-block">
-                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
-                </div>
-                <!-- Mobile Menu -->
-                <div class="col-12">
-                    <div class="mobile_menu d-block d-lg-none"></div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
+    
     <main>
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 150px;">
@@ -175,7 +155,7 @@
 		<form id="firstLoginForm" action='<%= request.getContextPath() %>/firstLogin.me' method='post'>
     	<table id ="enrollTable">
     		<tr>
-    			<td class="category">학번</td>
+    			<td width="300px" class="category">학번</td>
     			<td colspan="2">
     				<div id="studentNo"><%= m.getMemberId() %></div>
 	    			<input type="hidden" name="memberId" value="<%= m.getMemberId() %>">
@@ -187,11 +167,11 @@
     		</tr>
     		<tr>
     			<td class="category">학과</td>
-    			<td colspan="2"><div id="major"> <%= m.getDepartment() %></div></td>
+    			<td colspan="2" width = "200px"><div id="major"> <%= m.getDepartment() %></div></td>
     		</tr>
     		<tr>
     			<td class="category">비밀번호<span class="red">*</span></td>
-    			<td colspan="3">
+    			<td colspan="2">
     				<div class="mt-10">
 					<input type="password" name="password" id ="password"
 					onfocus="this.placeholder = ''"  required
@@ -202,10 +182,10 @@
     		</tr>
     		<tr>
     			<td class="category">비밀번호 확인<span class="red">*</span></td>
-    			<td colspan="3">
+    			<td colspan="2">
     			<div class="mt-10">
 					<input type="password" name="passConfirm" id ="passConfirm"
-					 onblur="confirm();" required
+					 onblur="confirm1();" required
 					class="single-input" >
 				</div><div class="confirm" id="notice2"></div></td>
     		</tr>
@@ -231,25 +211,144 @@
 				</td>
     		</tr>
     		<tr>
-    			<td class="category">이메일 <span class="red">*</span></td>
+    			<td class="category" width="300px">이메일 <span class="red">*</span></td>
     			<td colspan="2">
     				<div>
-						<input type="text" name="email1"  required class="single-input">
+						<input type="text" name="email1" id="email1" required class="single-input">
 					</div>
 				</td>
 				<td>
 					<div>
-						<select class="email" name="email2" onChange="selectEmail(this)">
+						<select class="email" name="email2" id="email2" onChange="selectEmail(this)">
 							<option value="@naver.com">@naver.com</option>
 							<option value="@gmail.com">@gmail.com</option>
 							<option value="@daum.net">@daum.net</option>
 							<option value="@nate.com">@nate.com</option>
 							<option value="etc">기타</option>
 						</select>
+						
 					</div>
 				</td>
+				<td width="80px"><div id="isjungbok"><input type="button" id="checkEmail" value="중복확인"></td></div>
+				
+				
 			</tr>
 			<tr>
+				<td class="category" id="authEmail">인증하기 <span class="red">*</span></td>
+				
+				
+				<td colspan="2">
+    				<div>
+						<input type="text" name="emailAuth" id="emailAuth" required class="single-input">
+					</div>
+				</td>
+				<td id="authEmail3">
+				<input type="button" id="confirmAuth" value="확인" onclick="confirmAuthNum();">
+				</td>
+				<td id="authEmail1" class="category"><input type="button" id="spanAuth" onclick="authFunc();" value="인증하기"></td>
+				<!-- <div id="pwDiv"><input type="password" name="userPwd" id="userPwd" placeholder="비밀번호 입력"><input  type="button" id="goModify" value="확인""></div> -->
+			</tr>
+			<script>
+			
+			var finalAuth;
+			
+			function authFunc(){
+				$('#email1').attr('readonly',true);
+				var email = document.getElementById("email1").value + document.getElementById("email2").value;
+				$.ajax({
+	  				url:'emailAuth.me',
+	  				data:{userEmail : email},
+	  				success:function(data){
+	  					console.log(data);
+	  					finalAuth = data;
+	  					console.log(finalAuth);
+	  					alert('인증번호가 발송되었습니다.');
+	  				},
+	  				error:function(data){
+	  					console.log(data);
+	  				}
+	  			});
+				
+			}
+			</script>
+			
+			 <script>
+					  		$('#checkEmail').click(function(){
+					  			var email = document.getElementById("email1").value + document.getElementById("email2").value;
+
+	  							var button_joinus = document.getElementById('checkEmail');
+					  			$.ajax({
+					  				url:'checkEmail.me',
+					  				data:{userEmail : email},
+					  				success:function(data){
+					  					console.log(data);
+					  					if(data.trim()=='1'){
+					  						alert('사용 불가능한 이메일입니다.');
+					  					}else{
+					  						var bool = confirm('사용가능한 이메일입니다\n인증번호를 발송하시겠습니까?');
+					  						if(bool){
+						  						$("#spanAuth").trigger("click");
+						  							document.getElementById("spanAuth").style.display = 'none';
+						  							document.getElementById("emailAuth").style.display = 'block';
+						  							document.getElementById("confirmAuth").style.display = 'block';
+						  							document.getElementById("authEmail").style.display = 'block';
+						  							
+						  							$('#checkEmail').hide();
+					  						}
+					  					}
+					  				},
+					  				error:function(data){
+					  					console.log(data);
+					  				}
+					  			});
+					  		});
+					  			
+					  		
+  				</script>
+			<script>
+			var emailCheckYN = 'N';
+				function confirmAuthNum(){
+					var emailAuth = document.getElementById("emailAuth").value;
+					
+					if((emailAuth+"").trim() == (finalAuth+"").trim()){
+						alert('인증되었습니다.');
+						document.getElementById("emailAuth").value = '인증완료';
+						emailCheckYN = 'Y';
+						$('#emailAuth').attr('readonly',true);
+					} else{
+						alert('인증번호가 틀렸습니다.\n다시입력해주세요.');
+					}
+				}
+			
+			</script>
+			<tr>
+				<td class="category">우편번호</td>
+				<td colspan="2"><input class="single-input" type="text" name="zip"/></td>
+				<td><button type="button"  onclick="openZipSearch()">검색</button></td>
+			</tr>
+			<tr>
+				<td class="category">주소</td>
+				<td colspan="3"><input class="single-input"  type="text" name="addr1"  readonly /></td>
+			</tr>
+			<tr>
+				<td class="category">상세</td>
+				<td colspan="4"><input class="single-input" type="text" name="addr2"/></td>
+			</tr>
+			
+			 <script>
+				function openZipSearch() {
+					new daum.Postcode({
+						oncomplete: function(data) {
+							$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+							$('[name=addr1]').val(data.address);
+							$('[name=addr2]').val(data.buildingName);
+						}
+					}).open();
+				}
+				</script>
+			
+			<!-- <tr>
+			
 				<td class="category">주소</td>
 				<td>
 					<div>
@@ -274,12 +373,14 @@
 						</select>
 					</div>
 				</td>
+				
 				<td colspan="2">
 					<div class="mt-10">
 						<input type="text" name="address2" class="single-input" placeholder="도로명 주소 입력" onfocus="this.placeholder = ''" onblur="this.placeholder = '도로명 주소 입력'">
 					</div>
-				</td>
-			</tr>
+				</td></tr>-->
+				
+			
 			<tr>
 				<td colspan="6">
 				<br><br>
@@ -394,9 +495,9 @@
   		} 
   	}
  
-	function confirm(){
-		var pass = document.getElementByName('password');
-		var pass2 = document.getElementByName('passConfirm');
+	function confirm1(){
+		var pass = document.getElementsByName('password');
+		var pass2 = document.getElementsByName('passConfirm');
 		var notice = document.getElementById('notice2');
 
 		
@@ -456,6 +557,12 @@
 				return false;
 				
 			}
+			if(emailCheckYN == 'N'){
+				alert('이메일 인증이 진행되지 않았습니다.\n이메일인증을 진행해주세요.');
+				$('#emailAuth').val("");
+				$('#emailAuth').focus();
+				return false;
+			}
 		} 
 	
 	</script>
@@ -509,7 +616,7 @@
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/all.min.js"></script>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 
 </html>

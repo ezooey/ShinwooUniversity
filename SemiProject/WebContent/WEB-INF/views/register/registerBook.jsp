@@ -149,7 +149,7 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
                             <h3 class="mb-30">등록 도서 정보 입력</h3>
-                            <form action="<%= request.getContextPath() %>/register.bo" id="regBook" name="regBook" method="post" encType="multipart/form-data" onsubmit="return insertImg();">
+                            <form action="<%= request.getContextPath() %>/register.bo" id="regBook" name="regBook" method="post" encType="multipart/form-data">
                                 <div>
                                     <span class="regTitle">도서명</span>
                                     <div class="input-group-icon mt-10 bookname">
@@ -197,45 +197,32 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="regTitle">출간일자</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fas fa-calendar-day"></i></div>
-                                        <input type="date" name="releaseDate" class="single-input" required>
-                                    </div>
-                                </div>
-                                <div>
                                     <span class="regTitle">등록일자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-calendar-day"></i></div>
-                                        <input type="date" name="regDate" readonly class="single-input">
+                                        <input type="text" name="regDate" readonly class="single-input">
                                     </div>
                                 </div>
                                 <div>
                                     <span class="regTitle">표지 이미지</span>
                                     <div class="input-group-icon mt-10 filebox">
                                         <div class="icon"><i class="far fa-image"></i></div>
-                                        <input class="upload-name" id="uploadName" value="표지 이미지를 업로드하세요" readonly placeholder="표지 이미지를 업로드하세요">
+                                        <input class="upload-name" value="표지 이미지를 업로드하세요" readonly placeholder="표지 이미지를 업로드하세요">
                                         <label for="file">파일 찾기</label>
-                                        <input type="file" id="file" name="bookImage" accept=".gif, .jpg, .png" required>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="regTitle">줄거리</span>
-                                    <div class="mt-10">
-                                        <textarea class="single-textarea" name="bookInfo" placeholder="줄거리"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '줄거리를 입력하세요'"></textarea>
+                                        <input type="file" id="file" name="bookImage" accept=".gif, .jpg, .png">
+
                                     </div>
                                 </div>
                                 <div>
                                     <span class="regTitle">참고사항</span>
                                     <div class="mt-10">
-                                        <textarea class="single-textarea" name="refer" placeholder="참고사항을 입력하세요"
+                                        <textarea class="single-textarea" placeholder="참고사항을 입력하세요"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '참고사항을 입력하세요'"></textarea>
                                     </div>
                                 </div>
                                 <div class="bottomBtn">
-                                    <input type="submit" class="genric-btn info circle" id="regOk" value="등록">
-                                    <input type="reset" class="genric-btn danger circle" id="regCancle" value="취소">
+                                    <input type="submit" class="genric-btn info circle" value="등록">
+                                    <input type="reset" class="genric-btn danger circle" value="취소">
                                 </div>
                             </form>
                         </div>
@@ -246,7 +233,11 @@
         </div>
         <!-- End Align Area -->
     </main>
-    <%@ include file="../common/footer.jsp" %>
+    	<%@ include file="../common/footer.jsp" %>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
+    </div>
     <script>
         $(function () {
             var now = new Date();
@@ -270,17 +261,6 @@
         document.getElementById('searchBook').onclick = function() {
         	window.open('searchregbook.bo', 'searchRegBook', 'width=500, height=300');
 		}
-        
-        $("#regOk").click(function() {
-        	if($("#uploadName").val() == '표지 이미지를 업로드하세요'){
-        		alert('도서 이미지를 추가해 주세요');
-        		
-        		var offset = $("#uploadName").offset() - 50;
-                $('html, body').animate({scrollTop : offset.top}, 400);
-
-			} 
-		});
-        
     </script>
     <!-- JS here -->
 

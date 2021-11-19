@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%	boolean isSearched = false; %>
 <html lang="ko">
 
 <head>
@@ -39,12 +38,6 @@
 		margin-left: 20px;
 		margin-bottom: 10px;
 	}
-	
-	#submitBtn{
-		display:flex; 
-		justify-content: center; 
-		margin-top: 20px
-	}
 	</style>
 </head>
 
@@ -59,8 +52,9 @@
 				</div>
 				<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="button" id="search">도서 검색</button>
 			</aside>
-			<div id="searchList"></div>
 			
+			<div id="searchList"></div>
+
 			<nav class="blog-pagination justify-content-center d-flex">
 				<ul class="pagination">
 					<li class="page-item">
@@ -71,12 +65,10 @@
 					</li>
 				</ul>
 			</nav>
-			<div id="bookInfoInput"></div>
-			<div id="submitBtn"></div>
-<!-- 			<div style="text-align: center; margin-top: 20px"> -->
-<!-- 				<button type="button" class="genric-btn success circle selectBtn" id="selectOne">선택</button> -->
-<!-- 				<button type="button" class="genric-btn danger circle selectBtn" onclick="window.close()">취소</button> -->
-<!-- 			</div> -->
+			<div style="text-align: center; margin-top: 20px">
+				<button type="button" class="genric-btn success circle selectBtn" id="selectOne">선택</button>
+				<button type="button" class="genric-btn danger circle selectBtn" onclick="window.close()">취소</button>
+			</div>
 		</div>
 	</div>
 
@@ -97,7 +89,7 @@
 	            if(pageNum != 1){
 	            	$("#prevList").attr('disabled', false);
 	            }
-	        });
+	        })
 
 	        $("#prevList").click(function () {
 	            pageNum--;
@@ -105,7 +97,7 @@
 		    	if(pageNum == 1) {
 		    		$("#prevList").attr('disabled', true);
 		    	}
-	        });
+	        })
 	
 	       
 	    });
@@ -125,88 +117,29 @@
                     }
 
                 }).done(function (msg) {
-                	$("#submitBtn").html('');
                     for (var i = 0; i < 10; i++) {
-                    	var format = new Date(msg.documents[i].datetime);
-                    	var redate = date_to_str(format);
-                    	
-                    	var title = msg.documents[i].title;
-                    	var authors = msg.documents[i].authors;
-                    	var publisher = msg.documents[i].publisher;
-                    	var thumbnail = msg.documents[i].thumbnail;
-                    	var contents = msg.documents[i].contents;
-                    	
-                    	
+                        $("#searchList").append("<input type='radio' name='selectBook' value='"+ i +"' style='width:20px;height:20px;'>");
+                        $("#searchList").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
                         $("#searchList").append(
-                        		"<input type='radio' name='selectBook' style='width:20px;height:20px;' value='"
-                        			+ title + "@@" + authors + "@@" + publisher + "@@" + redate + "@@" + contents + "'>"
-                        );
-                        
-                        $("#searchList").append("<img src='" + thumbnail + "'/><br>");
-                        $("#searchList").append(
-                            "<h2><a href='" + msg.documents[i].url + "'>" + title + "</a><" +
+                            "<h2><a href='" + msg.documents[i].url + "'>" + msg.documents[i].title + "</a><" +
                             "/h2>"
                         );
-                        $("#searchList").append("<strong>저자:</strong> " + authors + "<br>");
+                        $("#searchList").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");
                         $("#searchList").append(
-                            "<strong>출판사:</strong> " + publisher + "<br>"
+                            "<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>"
                         );
                         $("#searchList").append(
-                            "<strong>출판일:</strong> " + redate + "<br>"
-                        );
-                        $("#searchList").append(
-                            "<strong>책 소개:</strong> " + contents + "...<br>"
+                            "<strong>책 소개:</strong> " + msg.documents[i].contents + "...<br>"
                         );
                         $("#searchList").append("<hr>");
-                        
                     }
-                    
-//                     $("#submitBtn").append("<nav class='blog-pagination justify-content-center d-flex'>");
-//                     $("#submitBtn").append("<ul class='pagination'>");
-//                     $("#submitBtn").append("<li class='page-item'>");
-//                     $("#submitBtn").append("<button type='button' class='page-link' aria-label='Previous' id='prevList'><i class='ti-angle-left'></i></button>");
-//                     $("#submitBtn").append("</li>");
-//                     $("#submitBtn").append("<li class='page-item'>");
-//                     $("#submitBtn").append("<button type='button' class='page-link' aria-label='Next' id='nextList'><i class='ti-angle-right'></i></button>");
-//                     $("#submitBtn").append("</li></ul></nav>");
-                    $("#submitBtn").append("<div>");
-                    $("#submitBtn").append("<button type='button' class='genric-btn success circle selectBtn' id='selectOne' onclick='sendVal();'>선택</button>");
-                    $("#submitBtn").append("<button type='button' class='genric-btn danger circle selectBtn' onclick='window.close()'>취소</button>");
-                    $("#submitBtn").append("</div>");
-                    
-                    
                 });
 		}
 	    
-	    function sendVal(){
-	    	var obj_length = document.getElementsByName("selectBook").length;
-			  var bookValue;
-		        for (var i=0; i<obj_length; i++) {
-		            if (document.getElementsByName("selectBook")[i].checked == true) {
-		               	bookNo = document.getElementsByName("selectBook")[i].value;
-		               	var bookArr = bookNo.split('@@');
-		               	
-		              	opener.document.regBook.bookTitle.value = bookArr[0];
-		              	opener.document.regBook.author.value = bookArr[1];
-		              	opener.document.regBook.publisher.value = bookArr[2];
-		              	opener.document.regBook.releaseDate.value = bookArr[3];
-		              	opener.document.regBook.bookInfo.value = bookArr[4];
-		              	
-		               	window.close();
-		            }
-		        }
+	    document.getElementById('selectOne').onclick = function(){
+			opener.document.regBook.bookTitle.value = msg.documents[1].title;
+	    	self.close(); 
 		}
-	    
-	    function date_to_str(format){
-	    	var year = format.getFullYear();
-	        var month = format.getMonth() + 1;
-	        if(month<10) month = '0' + month;
-	        var date = format.getDate();
-	        if(date<10) date = '0' + date;
-
-	        return year + "-" + month + "-" + date;
-	    }
-
 	</script>
 	<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
 	<!-- Jquery, Popper, Bootstrap -->

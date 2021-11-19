@@ -296,6 +296,8 @@
   $('#bar6').barfiller();
 
 
+
+
 // Modal Activation
     $('.search-switch').on('click', function () {
       $('.search-model-box').fadeIn(400);

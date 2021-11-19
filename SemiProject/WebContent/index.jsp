@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신우대학교 메인</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="WEB-INF/views/common/main.jsp" %>

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import admin.model.dao.AdminDAO;
+import admin.model.vo.PageInfo;
 import admin.model.vo.UserList;
 
 public class AdminService {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.model.service.AdminService;
+import admin.model.vo.PageInfo;
 import admin.model.vo.UserList;
 
 /**

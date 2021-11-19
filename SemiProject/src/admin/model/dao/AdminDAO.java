@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import admin.model.vo.PageInfo;
 import admin.model.vo.UserList;
 
 public class AdminDAO {

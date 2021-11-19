@@ -371,8 +371,8 @@
 		</div>
 	</div>
 	
-	<!-- Preloader Start -->
 	<%@ include file="../common/header.jsp" %>
+	
 		<main>
 			<div id="wholewhole">
 				<div id="wholeslide-div">
@@ -826,9 +826,10 @@
 			<!-- End Align Area -->
 		</main>
 		<%@ include file="../common/footer.jsp" %>
-		<div id="back-top" >
-   			<a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
-		</div>
+			<!-- Scroll Up -->
+			<div id="back-top">
+				<a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
+			</div>
 			<script>
 				$(function () {
 					var now = new Date();

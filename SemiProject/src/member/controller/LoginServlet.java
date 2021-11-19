@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String memberId = request.getParameter("userNo");
 		String memberPwd = request.getParameter("userPwd");
-		//System.out.println(memberPwd);
+		System.out.println(memberPwd);
 		Member loginUser = new MemberService().loginMember(memberId, memberPwd);
 		
 		if(loginUser != null) {
@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
 			}
 		}else {
 			request.setAttribute("msg", "로그인 실패");
+			System.out.println(memberPwd);
 			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp");
 			view.forward(request, response);
 		}

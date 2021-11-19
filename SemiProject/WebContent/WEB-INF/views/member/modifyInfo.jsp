@@ -2,66 +2,11 @@
 <% 
 	Member m = (Member)request.getAttribute("m"); 
 	String phone = m.getPhone();
-	String number1 = null;
-	String number2 = null;
-	String[] selectedNum = new String[5];
-	if(phone != null){
-		number1 = phone.substring(0, 3);
-		number2 = phone.substring(3);
-		
-		switch(number1){
-		case "010": selectedNum[0] = "selected"; break;
-		case "011": selectedNum[1] = "selected"; break;
-		case "016": selectedNum[2] = "selected"; break;
-		case "018": selectedNum[3] = "selected"; break;
-		case "019": selectedNum[4] = "selected"; break;
-		}
-	}
-	
+	String number1 = phone.substring(0, 3);
+	String number2 = phone.substring(3);
 	String address = m.getAddress();
-	String address1 = null;
-	String address2 = null;
-	String[] selectedAddress = new String[16];
-	
-	if(address != null){
-		address1 = address.split(" ")[0];
-		address2 = address.substring(address.indexOf(address1) + address1.length() + 1);
-		
-		switch(address1){
-		case "강원도": selectedNum[0] = "selected"; break;
-		case "경기도": selectedNum[1] = "selected"; break;
-		case "경상남도": selectedNum[2] = "selected"; break;
-		case "경상북도": selectedNum[3] = "selected"; break;
-		case "광주광역시": selectedNum[4] = "selected"; break;
-		case "대구광역시": selectedNum[5] = "selected"; break;
-		case "대전광역시": selectedNum[6] = "selected"; break;
-		case "부산광역시": selectedNum[7] = "selected"; break;
-		case "서울특별시": selectedNum[8] = "selected"; break;
-		case "울산광역시": selectedNum[9] = "selected"; break;
-		case "인천광역시": selectedNum[10] = "selected"; break;
-		case "전라남도": selectedNum[11] = "selected"; break;
-		case "전라북도": selectedNum[12] = "selected"; break;
-		case "제주특별자치도": selectedNum[13] = "selected"; break;
-		case "충청남도": selectedNum[14] = "selected"; break;
-		case "충청북도": selectedNum[15] = "selected"; break;
-		}
-	}
-	
-	String email = m.getEmail();
-	String email1 = email.split("@")[0];
-	String email2 = email.split("@")[1];
-	
-	
-	
-	String[] selectedEmail = new String[5];
-	switch(email2){
-	case "naver.com": selectedEmail[0] = "selected"; break;
-	case "gmail.com": selectedEmail[1] = "selected"; break;
-	case "daum.net": selectedEmail[2] = "selected"; break;
-	case "nate.com": selectedEmail[3] = "selected"; break;
-	default: selectedEmail[4] = "selected"; break;
-	}
-	
+	String address1 = address.split(" ")[0];
+	String address2 = address.substring(address.indexOf(address1) + address1.length() + 1);
 %>
 <!DOCTYPE html>
 <html>
@@ -71,7 +16,7 @@
 	<title>내 정보 수정</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
 	<link rel="manifest" href="site.webmanifest">
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 	
@@ -208,7 +153,6 @@
 					<td colspan="3">
 						<div class="mt-10">
 							<input type="password" name="password" onfocus="this.placeholder = ''" class="single-input">
-							<input type="hidden" name="passwordInput">
 						</div>
 						<span id="notice1">비밀번호를 변경하지 않으려면 빈칸으로 두세요.</span>
 
@@ -227,13 +171,12 @@
 					<td width="1%">
 						<div class="mt-10">
 							<div class="phone" id="number1">
-								<select name="number1" id="pppp">
-									<option>국번 선택</option>
-									<option value="010" <%= selectedNum[0] %>>010</option>
-									<option value="011" <%= selectedNum[1] %>>011</option>
-									<option value="016" <%= selectedNum[2] %>>016</option>
-									<option value="018" <%= selectedNum[3] %>>018</option>
-									<option value="019" <%= selectedNum[4] %>>019</option>
+								<select name="number1">
+									<option value="010">010</option>
+									<option value="011">011</option>
+									<option value="016">016</option>
+									<option value="018">018</option>
+									<option value="019">019</option>
 								</select>
 							</div>
 						</div>
@@ -241,7 +184,7 @@
 					<td colspan="2">
 						<div class="mt-10">
 							<input type="text" name="number2" class="single-input" placeholder="- 제외" onfocus="this.placeholder = ''" onblur="this.placeholder = '- 제외'"
-								   value="<%= number2 == null ? "" : number2 %>">
+								   value="<%= number2 %>">
 						</div>
 					</td>
 				</tr>
@@ -249,17 +192,17 @@
 					<td class="category">이메일</td>
 					<td colspan="2">
 						<div>
-							<input type="text" name="email1" required class="single-input" value="<%= email1 %>">
+							<input type="text" name="email1" required class="single-input">
 						</div>
 					</td>
 					<td>
 						<div>
 							<select class="email" name="email2" onChange="selectEmail(this)">
-								<option value="naver.com" <%= selectedEmail[0] %>>@naver.com</option>
-								<option value="gmail.com" <%= selectedEmail[1] %>>@gmail.com</option>
-								<option value="daum.net" <%= selectedEmail[2] %>>@daum.net</option>
-								<option value="nate.com" <%= selectedEmail[3] %>>@nate.com</option>
-								<option value="etc" <%= selectedEmail[4] %>>기타</option>
+								<option value="@naver.com">@naver.com</option>
+								<option value="@gmail.com">@gmail.com</option>
+								<option value="@daum.net">@daum.net</option>
+								<option value="@nate.com">@nate.com</option>
+								<option value="etc">기타</option>
 							</select>
 						</div>
 					</td>
@@ -270,29 +213,29 @@
 						<div class="mt-10">
 							<select class="address" name="address1">
 								<option>시/도</option>
-								<option value="강원도" <%= selectedAddress[0] %>>강원도</option>
-								<option value="경기도" <%= selectedAddress[1] %>>경기도</option>
-								<option value="경상남도" <%= selectedAddress[2] %>>경상남도</option>
-								<option value="경상북도" <%= selectedAddress[3] %>>경상북도</option>
-								<option value="광주광역시" <%= selectedAddress[4] %>>광주광역시</option>
-								<option value="대구광역시" <%= selectedAddress[5] %>>대구광역시</option>
-								<option value="대전광역시" <%= selectedAddress[6] %>>대전광역시</option>
-								<option value="부산광역시" <%= selectedAddress[7] %>>부산광역시</option>
-								<option value="서울특별시" <%= selectedAddress[8] %>>서울특별시</option>
-								<option value="울산광역시" <%= selectedAddress[9] %>>울산광역시</option>
-								<option value="인천광역시" <%= selectedAddress[10] %>>인천광역시</option>
-								<option value="전라남도" <%= selectedAddress[11] %>>전라남도</option>
-								<option value="전라북도" <%= selectedAddress[12] %>>전라북도</option>
-								<option value="제주특별자치도" <%= selectedAddress[13] %>>제주특별자치도</option>
-								<option value="충청남도" <%= selectedAddress[14] %>>충청남도</option>
-								<option value="충청북도" <%= selectedAddress[15] %>>충청북도</option>
+								<option value="강원도">강원도</option>
+								<option value="경기도">경기도</option>
+								<option value="경상남도">경상남도</option>
+								<option value="경상북도">경상북도</option>
+								<option value="광주광역시">광주광역시</option>
+								<option value="대구광역시">대구광역시</option>
+								<option value="대전광역시">대전광역시</option>
+								<option value="부산광역시">부산광역시</option>
+								<option value="서울특별시">서울특별시</option>
+								<option value="울산광역시">울산광역시</option>
+								<option value="인천광역시">인천광역시</option>
+								<option value="전라남도">전라남도</option>
+								<option value="전라북도">전라북도</option>
+								<option value="제주특별자치도">제주특별자치도</option>
+								<option value="충청남도">충청남도</option>
+								<option value="충청북도">충청북도</option>
 							</select>
 						</div>
 					</td>
 					<td colspan="2">
 						<div class="mt-10">
 							<input type="text" name="address2" class="single-input" placeholder="도로명 주소 입력" onfocus="this.placeholder = ''" 
-								   onblur="this.placeholder = '도로명 주소 입력'" value="<%= address2 == null ? "" : address2 %>">
+								   onblur="this.placeholder = '도로명 주소 입력'" value="<%= address2 %>">
 						</div>
 					</td>
 				</tr>
@@ -313,10 +256,102 @@
 		</form>
 
 	</main>
-	<%@ include file="../common/footer.jsp" %>
-	<div id="back-top" >
-   		<a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+	<footer>
+		<!-- Footer Start-->
+		<div class="footer-area footer-padding">
+			<div class="container">
+				<div class="row d-flex justify-content-between">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+						<div class="single-footer-caption mb-50">
+							<div class="single-footer-caption mb-30">
+								<!-- logo -->
+								<div class="footer-logo mb-35">
+									<a href="index.html">
+										<img src="assets/img/logo/logo2_footer.png" alt="">
+									</a>
+								</div>
+								<div class="footer-tittle">
+									<div class="footer-pera">
+										<p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
+									</div>
+								</div>
+								<!-- social -->
+								<div class="footer-social">
+									<a href="#">
+										<i class="fab fa-twitter"></i>
+									</a>
+									<a href="https://bit.ly/sai4ull">
+										<i class="fab fa-facebook-f"></i>
+									</a>
+									<a href="#">
+										<i class="fab fa-pinterest-p"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+						<div class="single-footer-caption mb-50">
+							<div class="footer-tittle">
+								<h4>Services</h4>
+								<ul>
+									<li><a href="#">- 주요 전화번호</a></li>
+									<li><a href="#">- 개인정보처리방침</a></li>
+									<li><a href="#">- 무단수집거부</a></li>
+									<li><a href="#">- 원격지원</a></li>
+									<li><a href="#">- 찾아오는길</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+						<div class="single-footer-caption mb-50">
+							<div class="footer-tittle">
+								<h4>Contect</h4>
+								<ul>
+									<li class="number"><a href="#">(02) 123-4567</a></li>
+									<li><a href="#">shinwoo@universty.kr</a></li>
+									<li><a href="#">서울시 강남구 역삼로</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- footer-bottom area -->
+		<div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
+			<div class="container">
+				<div class="footer-border">
+					<div class="row d-flex align-items-center">
+						<div class="col-xl-12 ">
+							<div class="footer-copy-right text-center">
+								<p>
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									Copyright &copy;
+									<script>
+										document
+												.write(new Date().getFullYear());
+									</script>
+									All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by
+									<a href="https://colorlib.com" target="_blank">Colorlib</a>
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer End-->
+	</footer>
+	<!-- Scroll Up -->
+	<div id="back-top">
+		<a title="1:1 문의" href="#">
+			<i class="fas fa-question"></i>
+		</a>
 	</div>
+
 
 	<!-- java script -->
 	<script>
@@ -335,14 +370,8 @@
 		function send(){
 			var pwd1 = document.getElementsByName('password');
 			var pwd2 = document.getElementsByName('passConfirm'); 
-			var pwInput = document.getElementsByName('passwordInput');
 			
 			if(pwd1[0].value == pwd2[0].value){
-				if(pwd1[0].value == ""){
-					pwInput[0].value = 0;
-				} else{
-					pwInput[0].value = 1;
-				}
 				return true;
 			} else{
 				alert('비밀번호가 같지 않습니다.');
@@ -351,6 +380,10 @@
 			}
 		}
 		
+		$(function() {
+			$('select[name="number1"]').find('option:contains("<%= number1 %>")').attr("selected",true);
+			$('select[name="address1"]').find('option:contains("<%= address1 %>")').attr("selected",true);
+		});
 	</script>
 
 	<!-- JS here -->

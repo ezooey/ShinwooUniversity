@@ -2,8 +2,7 @@ package register.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.util.Enumeration;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +14,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import book.model.service.BookService;
-import book.model.vo.Book;
 import common.MyFileRenamePolicy;
-import photo.model.vo.Photo;
 
 /**
  * Servlet implementation class RegisterBookFormServlet
@@ -55,52 +51,55 @@ public class RegisterBookServlet extends HttpServlet {
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy()); 
 
-			Enumeration<String> files = multiRequest.getFileNames(); 
-			String name = files.nextElement();
-
-			String saveFiles = multiRequest.getFilesystemName(name);
-			String originFiles = multiRequest.getOriginalFileName(name); 
+			ArrayList<String> saveFiles = new ArrayList<String>(); 
+			ArrayList<String> originFiles = new ArrayList<String>(); 
 			
-			String title = multiRequest.getParameter("bookTitle");
-			String author = multiRequest.getParameter("author");
-			String publisher = multiRequest.getParameter("publisher");
-			int category = Integer.parseInt(multiRequest.getParameter("category"));
-			String bookInfo = multiRequest.getParameter("bookInfo");
-			String refer = multiRequest.getParameter("refer");
-			Date releaseDate = Date.valueOf(multiRequest.getParameter("releaseDate"));
-			
-			int n1 = (int)(Math.random() * (999 - 100 + 1)) + 100;
-			int n2 = (int)(Math.random() * (9999 - 1000 + 1)) + 1000;
-			char eng = 0;
-			if((int)(Math.random()*10) % 2 == 0) {
-				eng = (char)((int)(Math.random()*26)+97); 
-			} else {
-				eng =(char)((int)(Math.random()*26)+65);
-			}
-			
-			String bookNo = category + "." + n1 + eng + n2;
-			
-			
-			Book b = new Book(bookNo, title, category, author, publisher, null, 0, null, bookInfo, refer, releaseDate);
-			
-			Photo p = new Photo();
-			p.setBookNo(bookNo);
-			p.setFilePath(savePath);
-			p.setOriginName(originFiles);
-			p.setChangeName(saveFiles);
-			
-			
-			int result = new BookService().insertThumbnail(b, p);
-			
-			if(result >= 2) {
-				response.sendRedirect("insertForm.bo");
-			} else {
-				request.setAttribute("msg", "도서 등록 실패");
-				request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
-				
-				File fail = new File(savePath + saveFiles);
-				fail.delete();
-			}
+//			Enumeration<String> files = multiRequest.getFileNames(); 
+//			while(files.hasMoreElements()) { 
+//				String name = files.nextElement();
+//				
+//				if(multiRequest.getFilesystemName(name) != null) {
+//					saveFiles.add(multiRequest.getFilesystemName(name));
+//					originFiles.add(multiRequest.getOriginalFileName(name)); 
+//				}
+//			}
+//			
+//			String title = multiRequest.getParameter("bookTitle");
+//			String author = multiRequest.getParameter("author");
+//			String publisher = multiRequest.getParameter("publisher");
+//			int category = Integer.parseInt(multiRequest.getParameter("category"));
+//			
+//			Book b = new Board(0, 2, "10", title, content, writer, null, 0, null, null, null);
+//			
+//			ArrayList<Attachment> fileList = new ArrayList<Attachment>();
+//			for(int i = originFiles.size() - 1; i >= 0; i--) {
+//				Attachment a = new Attachment();
+//				a.setFilePath(savePath);
+//				a.setOriginName(originFiles.get(i));
+//				a.setChangeName(saveFiles.get(i));
+//				
+//				if(i == originFiles.size() - 1) {
+//					a.setFileLevel(0);
+//				} else {
+//					a.setFileLevel(1);
+//				}
+//				
+//				fileList.add(a);
+//			}
+//			
+//			int result = new BoardService().insertThumbnail(b, fileList);
+//			
+//			if(result >= 1 + fileList.size()) {
+//				response.sendRedirect("list.th");
+//			} else {
+//				request.setAttribute("msg", "사진 게시판 등록 실패");
+//				request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
+//				
+//				for(int i = 0; i < saveFiles.size(); i++) {
+//					File fail = new File(savePath + saveFiles.get(i));
+//					fail.delete();
+//				}
+//			}
 		}
 		
 		

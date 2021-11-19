@@ -1,6 +1,7 @@
 package reqBook.model.dao;
 
-import static common.JDBCTemplate.*;
+
+import static common.JDBCTemplate.close;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -51,7 +52,7 @@ public class ReqBookDAO {
 										rset.getString("REQ_BOOK"),
 										rset.getDate("REQ_DATE"),
 										rset.getString("REQ_PUB"),
-										rset.getString("REQ_AUTHOR"),
+										rset.getString("REQ_ATUTHOR"),
 										rset.getString("REQ_COMMENT"),
 										rset.getString("REQ_REASON"),
 										rset.getInt("PERMIT_STATUS"),
@@ -68,67 +69,69 @@ public class ReqBookDAO {
 		return list;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public int insertRequest(Connection conn, ReqBook r) {
+	public ArrayList<ReqBook> selectMyList(Connection conn, String memberId) {
 		PreparedStatement pstmt = null;
-		int result = 0;
+		ResultSet rset = null;
+		ArrayList<ReqBook> list = null;
 		
-		String query = prop.getProperty("insertRequest");
-		
+		String query = prop.getProperty("selectMyList");
+	
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, r.getReqBookTitle());
-			pstmt.setString(2, r.getReqBookPub());
-			pstmt.setString(3, r.getReqBookAuthor());
-			pstmt.setString(4, r.getReqBookComment());
-			pstmt.setString(5, r.getReqWriterId());
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
 			
-			result = pstmt.executeUpdate();
+			list = new ArrayList<ReqBook>();
+			
+			while(rset.next()) {
+				ReqBook r = new ReqBook(rset.getInt("REQ_NO"),
+										rset.getString("REQ_BOOK"),
+										rset.getDate("REQ_DATE"),
+										rset.getString("REQ_PUB"),
+										rset.getString("REQ_AUTHOR"),
+										rset.getString("REQ_COMMENT"),
+										rset.getString("REQ_REASON"),
+										rset.getInt("PERMIT_STATUS"),
+										rset.getString("REQ_ID"));
+				
+				list.add(r);
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
 		}
+		return list;
+	}
+
+	public ReqBook getReject(Connection conn, int rno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ReqBook rb = null;
 		
-		return result;
+		String query = prop.getProperty("getReject");
+	
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, rno);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				rb = new ReqBook();
+				rb.setReqBookContent(rset.getString("REQ_COMMENT"));
+				rb.setReqBookReason(rset.getString("REQ_REASON"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return rb;
 	}
 }
+
