@@ -14,7 +14,7 @@ import question.model.vo.Question;
 /**
  * Servlet implementation class InquiryServlet
  */
-@WebServlet("/questionWrite.in")
+@WebServlet("/questionWrite.form.in")
 public class QuestionWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
