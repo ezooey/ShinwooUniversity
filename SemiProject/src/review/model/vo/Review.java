@@ -12,9 +12,25 @@ public class Review {
 	private String reviewWriter;
 	private String memberId;
 	private String status;			
+	private int recommend;
 	
 	public Review() {}
 	
+	public Review(int reviewNo, String bookName, String reviewTitle, String reviewContent, Date reviewDate, int views,
+			String reviewWriter, String memberId, String status, int recommend) {
+		super();
+		this.reviewNo = reviewNo;
+		this.bookName = bookName;
+		this.reviewTitle = reviewTitle;
+		this.reviewContent = reviewContent;
+		this.reviewDate = reviewDate;
+		this.views = views;
+		this.reviewWriter = reviewWriter;
+		this.memberId = memberId;
+		this.status = status;
+		this.recommend = recommend;
+	}
+
 	public Review(int reviewNo, String bookName, String reviewTitle, String reviewContent, Date reviewDate, int views,
 			String reviewWriter, String memberId, String status) {
 		super();
@@ -98,12 +114,23 @@ public class Review {
 		this.memberId = memberId;
 	}
 
+	
+	public int getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", bookName=" + bookName + ", reviewTitle=" + reviewTitle
 				+ ", reviewContent=" + reviewContent + ", reviewDate=" + reviewDate + ", views=" + views
-				+ ", reviewWriter=" + reviewWriter + ", memberId=" + memberId + ", status=" + status + "]";
+				+ ", reviewWriter=" + reviewWriter + ", memberId=" + memberId + ", status=" + status + ", recommend="
+				+ recommend + "]";
 	}
+
 	
 	
 }

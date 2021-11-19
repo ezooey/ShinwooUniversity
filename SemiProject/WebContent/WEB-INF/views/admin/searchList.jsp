@@ -130,44 +130,7 @@
 		</div>
 	</div>
 	<!-- Preloader Start -->
-	<header>
-	<!-- Header Start -->
-		<div class="header-area">
-			<div class="main-header header-sticky">
-				<!-- Logo -->
-				<div class="header-left">
-					<div class="logo">
-						<a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-					</div>
-					<div class="menu-wrapper  d-flex align-items-center">
-					<!-- Main-menu -->
-						<div class="main-menu d-none d-lg-block">
-							<nav> 
-								<ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li><a href="about.html">도서 신청 확인</a></li>
-                                    <li class="active"><a href="services.html">도서 검색</a></li>
-                                    <li><a href="contact.html">회원 목록</a></li>
-                                    <li><a href="contact.html">대출 도서 목록</a></li>
-                                    <li><a href="contact.html">도서관리</a></li>
-                                    <li><a href="blog.html">독후감</a></li>
-                                </ul>
-							</nav>
-						</div>
-					</div>
-				</div> 
-				<div class="header-right d-none d-lg-block">
-				<a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-					<button type="button" class="genric-btn primary circle" id="login">로그인</button>
-				</div>
-				<!-- Mobile Menu -->
-				<div class="col-12">
-					<div class="mobile_menu d-block d-lg-none"></div>
-				</div>
-			</div>
-		</div>
-	<!-- Header End -->
-	</header>
+	<%@ include file="../common/header.jsp" %>
 	<main>
 		<!--? Hero Start -->
 		<div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
