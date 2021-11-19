@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, review.model.vo.*, member.vo.*"%>
 <% 	ArrayList<Review> list = (ArrayList)request.getAttribute("list");
-Member loginUser= (Member)session.getAttribute("loginUser");
+//Member loginUser= (Member)session.getAttribute("loginUser");
 PageInfo pi = (PageInfo)request.getAttribute("pi");
 %>
 
@@ -183,42 +183,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
 		</ul>
 	</nav>-->
 	
-   <header>
-        <!-- Header Start -->
-        <div class="header-area">
-            <div class="main-header header-sticky">
-                <!-- Logo -->
-                <div class="header-left">
-                    <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                    </div>
-                    <div class="menu-wrapper  d-flex align-items-center">
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li><a href="about.html">도서 신청</a></li>
-                                    <li><a href="services.html">도서 검색</a></li>
-                                    <li><a href="blog.html">독후감</a></li>
-                                    <li><a href="contact.html">마이페이지</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-right d-none d-lg-block">
-                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
-                </div>
-                <!-- Mobile Menu -->
-                <div class="col-12">
-                    <div class="mobile_menu d-block d-lg-none"></div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
+   <%@ include file="../common/header.jsp" %>
 <div class="firstdiv">독후감</div>
 <p><br>
    <p><br>
@@ -231,20 +196,23 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
       <th scope="col">작성자</th>
       <th scope="col">조회수</th>
       <th scope="col">등록일자</th>
+      <% if(loginUser != null && loginUser.getMemberId().equals("admin")){ %>
+		<th scope="col">삭제</th>
+	<%} %>
     </tr>
   </thead>
   <tbody>
     
                                             <% if(list.isEmpty()){ %>
 											<tr>
-												<td colspan="5">존재하는 공지사항이 없습니다.</td>
+												<th colspan="5">존재하는 공지사항이 없습니다.</th>
 											</tr>
 											<% } else{%>
 													
 											<%		String bookName = null;
 													for(int i = 0; i < list.size(); i++){ %>
-											<tr><% 		if(list.get(i).getBookName().length()>10){
-														bookName = list.get(i).getBookName().substring(0, 10);
+											<tr><% 		if(list.get(i).getBookName().length()>12){
+														bookName = list.get(i).getBookName().substring(0, 12);
 														}else{
 														bookName = list.get(i).getBookName();
 														}%>
@@ -254,6 +222,33 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
 												<td><%= list.get(i).getReviewWriter() %></td>
 												<td><%= list.get(i).getViews() %></td>
 												<td><%= list.get(i).getReviewDate() %></td>
+												<% if(loginUser != null && loginUser.getMemberId().equals("admin")){ %>
+												<th><button type="button" onclick="deleteReview(<%= list.get(i).getReviewNo() %>);">삭제</button></th>
+												<script>
+													function deleteReview(reviewNo){
+												    	var bool = confirm( "정말로 삭제하시겠습니까?");
+												    	if(bool == true){
+													    	$.ajax({
+												  				url:'deleteReviewAdmin.rv',
+												  				data:{rNo : reviewNo},
+												  				success:function(data){
+												  					console.log(data);
+												  					if(data.trim()=='1'){
+												  						alert('성공적으로 삭제되었습니다.');
+												  						location.reload();
+												  					}else{
+												  						alert('삭제실패!');
+												  					}
+												  				},
+												  				error:function(data){
+												  					console.log(data);
+												  					
+												  				}
+												  			});
+												    	}
+												   	}
+												</script>
+												<%} %>
 											</tr>
 											<%		} %>
 											<% } %>
@@ -437,5 +432,6 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </body>
 </html>

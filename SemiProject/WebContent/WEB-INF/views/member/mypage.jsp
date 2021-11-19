@@ -1,22 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.vo.Member"%>
- <%
-	Member loginUser= (Member)session.getAttribute("loginUser");
+    pageEncoding="UTF-8" import="member.vo.Member" import="member.vo.Member,java.util.ArrayList,review.model.vo.*,reqBook.model.vo.*"%>
+  <%
+	//Member loginUser= (Member)session.getAttribute("loginUser");
+ 	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list"); 
 %>
 <!doctype html>
-<html>
+<html class="no-js">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <meta name="description" content="">
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+ <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.css">
+    <link rel="stylesheet" href="css/owl.transitions.css">
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- meanmenu icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- educate icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/educate-custon-icon.css">
+    <!-- morrisjs CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/morrisjs/morris.css">
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- metisMenu CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" href="css/metisMenu/metisMenu-vertical.css">
+
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/data-table/bootstrap-table.css">
+    <link rel="stylesheet" href="css/data-table/bootstrap-editable.css">
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href="style.css">
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- modernizr JS
+		============================================ -->
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -34,7 +103,7 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
-	
+
     <title>마이페이지</title>
     <style>
     
@@ -74,30 +143,7 @@
         .section-top-border {
             padding: 40px;
         }
-       /*
-    header {
-	height : 70px; 
-	background : #aacec2; padding : 30px;
-	font-size : 15px; font-weight : bold;
-	padding-top: 10px; padding-bottom: 0px; z-index:1;
-	}
-	
-	header a {text-decoration : none; color : #404040;z-index:1; font-size:45px;}
-	
-	nav.bar li{display: inline-block; font-size: 20px; text-align : center;  padding-right: 100px;
-	font-weight: bold; z-index:1;}
-	
-  	nav.bar{
-  		height : 80px; background : #aacec2;  position:absolute;
-  		position: sticky;
-  		padding-top: 5px; padding-bottom: 0px; 
-  		text-align : center; top: -20px;z-index:1;
-  		padding-right: 0px;}
-	
-	.header-item a {text-align : center; text-decoration : none; color : #404040;
-	
-	display : block; padding : 10px 0px 0px 40px; line-height: 45px; text-align : center;}
-	*/
+       
     	.firstdiv{background:#6785FF; height:200px; font-size:40px; text-align:left; padding-left:20px; padding-top:60px;font-weight : bold; color:white;
     	}
     	
@@ -114,9 +160,7 @@
     	}
     	
     
-    .card img{
-    	width:145px;
-    }
+   
     
     .imgdiv{
     	text-align:center; border-radius: 2em;
@@ -138,12 +182,20 @@
     }
     #ddaydiv{background: rgba(255, 0, 0, 0.5);}
     #dday{color:red;}
+     .card img{
+    	width:145px;
+    }
+    
+    .card{
+    	width:160px;
+    }
+    
     .card-title{font-size:20px;}
     .card-body{text-align:center;}
     .card-body button{margin-top:10px;}
     div.card{border-radius: 2em; margin-top:10px; opacity: 0.8; margin-left:20px; margin-right:20px;}
     div.card:hover{box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); transform:scale(1.08); top: 0; left: 0; opacity: 1;}
-    
+    div.card1:hover{box-shadow:0 0px 0px rgba(0,0,0,0), 0 0px 0px rgba(0,0,0,0); transform:scale(1); top:0; left:0; opacity:6;}
         #my_modal {
         display: none;
         width: 300px;
@@ -159,51 +211,39 @@
         right: 10px;
     }
     
+    
+    
+    
     #pwDiv{
     	width:200px;
     	display:none;
     	
     }
+    .row{
+    	width:1100px;
+    	display: inline-block;
+    }
+    
+    .container-fluid{
+    	 width: 100%;
+ text-align: center;
+    }
+    
     </style>
   </head>
   <body>
-  
-   <header>
-        <!-- Header Start -->
-        <div class="header-area">
-            <div class="main-header header-sticky">
-                <!-- Logo -->
-                <div class="header-left">
-                    <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                    </div>
-                    <div class="menu-wrapper  d-flex align-items-center">
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li><a href="about.html">도서 신청</a></li>
-                                    <li><a href="services.html">도서 검색</a></li>
-                                    <li><a href="<%= request.getContextPath() %>/reviewList.rv">독후감</a></li>
-                                    <li class="active"><a href="contact.html">마이페이지</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-right d-none d-lg-block">
-                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
-                </div>
-                <!-- Mobile Menu -->
-                <div class="col-12">
-                    <div class="mobile_menu d-block d-lg-none"></div>
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="assets/img/logo/loder.png" alt="">
                 </div>
             </div>
         </div>
-        <!-- Header End -->
-    </header>
+    </div>
+  
+  <%@ include file="../common/header.jsp" %>
   <!-- <header><a href ="http://www.naver.com">   신우대학교</a>
 		<input type ="submit" value = "로그인" style=" float:right; width : 80px; height : 40px;
 		 background-color : #5D5E60; color : white; font-weight : bold; border-radius: 5px;" >
@@ -219,7 +259,7 @@
 	</nav>-->
   <div class="firstdiv">마이페이지</div>
   
-  <div class="borrowed">대출한 도서목록 <button type="button" class="genric-btn info circle">더 보기</button></div>
+  <div class="borrowed">대출한 도서목록 <button type="button" onclick="location.href='<%= request.getContextPath() %>/borrowList.br'" class="genric-btn info circle">더 보기</button></div>
   <p><p><br>
    <div class="jumbotron" id="personalInf">
    
@@ -267,38 +307,144 @@
       <p class="card-text" align='center'>D-4<br>
       <button type="button"  class="genric-btn info circle" onclick="confirm('체리(cherry)을(를) 반납하시겠습니까?')">반납하기</button></p>
     </div>
-   
   </div>
-  <div class="card">
-     <div class="imgdiv"><img src="https://image.yes24.com/goods/96394649/L" class="card-img-top" alt="..."></div>
-    <div class="card-body">
-      <h5 class="card-title">아귀도</h5>
-      <p class="card-text" align='center'>D-5<br>
-      <button type="button" class="genric-btn info circle" onclick="confirm('아귀도을(를) 반납하시겠습니까?')">반납하기</button></p>
-    </div>
-   
-  </div>
-  <div class="card">
-     <div class="imgdiv"><img src="https://image.yes24.com/goods/75449287/L" class="card-img-top" alt="..."></div>
-    <div class="card-body">
-      <h5 class="card-title">심심할 때 우주 한 조각</h5>
-      <p class="card-text" align='center'>D-6<br>
-      <button type="button"  class="genric-btn info circle" onclick="confirm('심심할 때 우주 한 조각을(를) 반납하시겠습니까?')">반납하기</button></p>
-    </div>
-    
-  </div>
+  <div class="card card1">
+   </div>
+   <div class="card card1">
+   </div>
+  
 </div>
 
    
    
    </div>
    <p><br>
-   <div class="borrowed">신청한 도서목록</div></div>
+    <div class="borrowed">신청한 도서목록</div></div>
    <p><br>
    
    
-    
-   <!-- 
+          <div style="width :300px; height : 200pxpx; background : bule;"></div>
+        <div class="data-table-area mg-b-15" >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                            </div>
+                            <div class="sparkline13-graph">
+                              <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                    	                             
+                                    </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="false" data-show-columns="false" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
+                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar" style="text-align : center;">
+                                        <thead  style="text-align : center;">
+                                            <tr>
+                                                <th data-field="id">신청번호</th>
+                                                <th data-field="name" data-editable="false">신청도서명</th>
+                                                <th data-field="email" data-editable="false">저자</th>
+                                                <th data-field="phone" data-editable="false">신청일</th>
+                                                <th data-field="task" data-editable="false">승인상태</th>
+
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                        <% if(list.isEmpty()){ %>
+											<tr>
+												<td colspan="5">아직 신청한 도서가 없습니다.</td>
+											</tr>
+										<%} else{ %>
+										<%		for(int i = 0; i < list.size(); i++){ %>
+                                            <tr>
+                                                <td><%= list.get(i).getReqBookNo() %></td>
+                                                <td><%= list.get(i).getReqBookTitle() %></td>
+                                                <td><%= list.get(i).getReqBookAuthor() %></td>
+                                                <td><%= list.get(i).getReqBookDate() %></td>
+                                                <% String status = null; %>
+                                                <% if(list.get(i).getStatus() == 0){ 
+                                                	status = "대기";%>
+                                                	<td><%=status%></td>
+                                            <%    }else if(list.get(i).getStatus() == 1){
+                                                		status = "승인";%>
+                                                		<td><%=status%></td>
+                                                 <%}else{ 
+                                                		status = "미승인";%>
+                                                		<td><a onclick="window.open('rejectDetail.rb?rno=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=500, height=270');"><u><%= status %></u></a></td>
+                                            	<%	}%>
+                                                
+                                           
+                                                
+                                            </tr>
+                                            <%		} %>
+                                           <%} %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+     <div id="my_modal">
+    	<br>
+    	<p><b>거절 사유</b><br> : 이미 소장하고 있는 책임.</p>
+    	<br>
+    <a class="modal_close_btn">닫기</a>
+	</div>
+    <script>
+    function modal(id) {
+        var zIndex = 9999;
+        var modal = $('#' + id);
+
+        // 모달 div 뒤에 희끄무레한 레이어
+        var bg = $('<div>')
+            .css({
+                position: 'fixed',
+                zIndex: zIndex,
+                left: '0px',
+                top: '0px',
+                width: '100%',
+                height: '100%',
+                overflow: 'auto',
+                // 레이어 색갈은 여기서 바꾸면 됨
+                backgroundColor: 'rgba(0,0,0,0.4)'
+            })
+            .appendTo('body');
+
+        modal
+            .css({
+                position: 'fixed',
+                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+                // 시꺼먼 레이어 보다 한칸 위에 보이기
+                zIndex: zIndex + 1,
+
+                // div center 정렬
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                msTransform: 'translate(-50%, -50%)',
+                webkitTransform: 'translate(-50%, -50%)'
+            })
+            .show()
+            // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+            .find('.modal_close_btn')
+            .on('click', function() {
+                bg.remove();
+                modal.hide();
+            });
+    }
+
+    $('#popup_open_btn').on('click', function() {
+        // 모달창 띄우기
+        modal('my_modal');
+    });
+    </script>
+   
+    <!-- 
     <div class="jumbotron" id="personalInf">
     
     <table class="table table-hover">
@@ -575,7 +721,62 @@
             console.log(now);
         });
     </script>
-    <!-- JS here -->
+   
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- wow JS
+		
+		============================================ -->
+    <script src="js/jquery-price-slider.js"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="js/jquery.meanmenu.js"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- sticky JS
+		============================================ -->
+    <script src="js/jquery.sticky.js"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+ 
+    <!-- data table JS
+		============================================ -->
+    <script src="js/data-table/bootstrap-table.js"></script>
+    <script src="js/data-table/tableExport.js"></script>
+    <script src="js/data-table/data-table-active.js"></script>
+    <script src="js/data-table/bootstrap-table-editable.js"></script>
+    <script src="js/data-table/bootstrap-editable.js"></script>
+    <script src="js/data-table/bootstrap-table-resizable.js"></script>
+    <script src="js/data-table/colResizable-1.5.source.js"></script>
+    <script src="js/data-table/bootstrap-table-export.js"></script>
+    <!--  editable JS
+		============================================ -->
+    <script src="js/editable/jquery.mockjax.js"></script>
+    <script src="js/editable/mock-active.js"></script>
+    <script src="js/editable/select2.js"></script>
+    <script src="js/editable/moment.min.js"></script>
+    <script src="js/editable/bootstrap-datetimepicker.js"></script>
+    <script src="js/editable/bootstrap-editable.js"></script>
+    <script src="js/editable/xediable-active.js"></script>
+
+    <!-- data table JS
+		============================================ -->
+    <script src="js/data-table/bootstrap-table.js"></script>
+    <script src="js/data-table/tableExport.js"></script>
+    <script src="js/data-table/data-table-active.js"></script>
+    <script src="js/data-table/bootstrap-table-editable.js"></script>
+    <script src="js/data-table/bootstrap-editable.js"></script>
+    <script src="js/data-table/bootstrap-table-resizable.js"></script>
+    <script src="js/data-table/colResizable-1.5.source.js"></script>
+    <script src="js/data-table/bootstrap-table-export.js"></script>
+  
+   
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
@@ -616,12 +817,5 @@
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/all.min.js"></script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
 </html>

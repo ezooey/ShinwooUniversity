@@ -1,6 +1,5 @@
 package review.model.service;
 import static common.JDBCTemplate.*;
-import static common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -97,5 +96,33 @@ public class ReviewService {
 		close(conn);
 		return result;
 	}
+
+	public int getRecommendCount(String cId, int rNo) {
+		Connection conn = getConnection();
+		
+		int recommCount = rDAO.getRecommendCount(conn, cId, rNo);
+		
+		close(conn);
+		return recommCount;
+	}
+
+	public int addRecomm(int rNo) {
+		Connection conn = getConnection();
+		
+		int result = rDAO.addRecomm(conn, rNo);
+		
+		close(conn);
+		return result;
+	}
+
+	public int deleteReviewAdmin(int rNo) {
+		Connection conn = getConnection();
+		
+		int result = rDAO.deleteReviewAdmin(conn, rNo);
+		
+		close(conn);
+		return result;
+	}
+
 
 }
