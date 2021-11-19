@@ -55,7 +55,6 @@
 			width: 300px;
 			height: 300px;
 		}
-
 		#slider ul {
 			position: relative;
 			margin: 0;
@@ -64,7 +63,6 @@
 			list-style: none;
 			left: 0px;
 		}
-
 		#slider ul li {
 			position: relative;
 			display: block;
@@ -77,7 +75,6 @@
 			text-align: center;
 			line-height: 300px;
 		}
-
 		a.prev,
 		a.next {
 			position: absolute;
@@ -95,32 +92,26 @@
 			opacity: 0.8;
 			cursor: pointer;
 		}
-
 		a.prev:hover,
 		a.next:hover {
 			opacity: 1;
 			-webkit-transition: all 0.2s ease;
 		}
-
 		a.prev {
 			border-radius: 0 2px 2px 0;
 		}
-
 		a.next {
 			right: 0;
 			border-radius: 2px 0 0 2px;
 		}
-
 		body {
 			line-height: 1.6
 		}
-
 		ul.tabs {
 			margin: 0px;
 			padding: 0px;
 			list-style: none;
 		}
-
 		ul.tabs li {
 			background: none;
 			color: #222;
@@ -128,68 +119,54 @@
 			padding: 10px 15px;
 			cursor: pointer;
 		}
-
 		.tab-content {
 			display: none;
 			padding: 5px;
 		}
-
 		ul.tabs li.current {
 			background: #ededed;
 			color: #222;
 		}
-
 		.tab-content.current {
 			display: inherit;
 		}
-
 		#currentMenu {
 			color: white;
 			padding: 20px;
 			font-size: 40px;
 			font-weight: 700;
 		}
-
 		#login {
 			margin: 20px;
 		}
-
 		.reqTitle {
 			padding-top: 10px;
 			padding-bottom: 3px;
 			display: block;
 		}
-
 		.bottomBtn {
 			float: right;
 			padding-top: 20px;
 		}
-
 		.bottomBtn input {
 			margin: 10px;
 		}
-
 		.noneList {
 			list-style: none;
 		}
-
 		.fa-check-circle {
 			color: #6785FF;
 		}
-
 		.section-top-border {
 			padding: 40px;
 		}
-
 		.searchBar {
 			padding-top: 10%;
 			padding-left: 60%;
 		}
-
 		.paging1 {
 			padding-left: 47%;
 		}
-
 		body {
 			background-image: url('#');
 			background-repeat: no-repeat;
@@ -198,13 +175,10 @@
 			margin: 0;
 			padding: 0;
 		}
-
-
 		#wholewhole {
 			width: auto;
 			background-color: #2980B9;
 		}
-
 		#wholeslide-div {
 			width: 1130px;
 			height: 350px;
@@ -213,7 +187,6 @@
 			background-color: #2980B9;
 			margin: 0 auto;
 		}
-
 		#slider-div {
 			width: 1130px;
 			height: 300px;
@@ -221,7 +194,6 @@
 			padding-top: 20px;
 			padding-right: 0px;
 		}
-
 		.bookimage {
 			width: 95%;
 			height: auto;
@@ -234,7 +206,6 @@
 			transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 			border-radius: 6.5%;
 		}
-
 		.bookimage:hover {
 			box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 			transform: scale(1.08);
@@ -242,66 +213,54 @@
 			left: 0;
 			opacity: 0.915;
 		}
-
 		.book-div {
 			width: 400px;
 			height: 300px;
 			padding: 0px 40px 0px 0px;
 		}
-
 		.center {
 			text-align: center;
 		}
-
 		#searchForm {
 			display: inline-block;
 			width: 430px;
 			height: 40px;
 			border: solid #aacec2 4px;
 		}
-
 		#searchOption {
 			width: 20%;
 			height: 40px;
 			border: 0px;
 			padding-right: 14px;
 		}
-
 		#searchText {
 			width: 60%;
 			height: 40px;
 			border: 0px;
 			background: none;
 		}
-
 		#searchButton {
 			width: 60px;
 			height: 40px;
 			border: 0px;
 		}
-
 		#latestBook {
 			display: none;
 		}
-
 		.order {
 			cursor: pointer;
 		}
-
 		.left {
 			padding-left: 20%;
 		}
-
 		.container {
 			background: f9f9ff;
 		}
-
 		ul.ul1 {
 			list-style: none;
 			width: 1000px;
 			margin: 0 auto;
 		}
-
 		img.bookimg {
 			padding-bottom: 10px;
 			cursor: pointer;
@@ -312,14 +271,12 @@
 			width: 150px;
 			height: 230px;
 		}
-
 		li.booklist {
 			display: list-item;
 			float: left;
 			width: 25%;
 			padding-top: 10px;
 		}
-
 		.listop {
 			text-decoration-line: none;
 			color: #666;
@@ -329,28 +286,23 @@
 			display: block;
 			width: 170px;
 		}
-
 		.bookName {
 			width: 148px;
 			max-height: 30px;
 		}
-
 		.centerBook {
 			justify-content: center;
 			padding: 0px;
 			margin: 0 auto;
 		}
-
 		#newsdiv {
 			padding-top: 500px;
 		}
-
 		#footerdiv {
 			height: 200px;
 			background: lightgray;
 			text-align: center;
 		}
-
 		.back {
 			background: #f9f8ff;
 		}
@@ -418,7 +370,6 @@
 						nextArrow: "<button type='button' class='slick-next'>Next</button>",
 						dotsClass: "slick-dots",
 						draggable: true,
-
 						responsive: [
 							{
 								breakpoint: 960,
@@ -435,18 +386,17 @@
 						]
 					});
 				})
-
 			</script>
 			<br><br><br>
 
-			<form class="center" name="search">
+			<form class="center" name="search" action="<%= request.getContextPath() %>/mainSearch.ms" method="post">
 				<div id="searchForm" class="center">
-					<select id="searchOption">
+					<select id="searchOption" onchange="selectBoxChange(this.value);">
 						<option value="title" selected>도서명</option>
 						<option value="author">저자</option>
 					</select>
-					<input type="search" id="searchText">
-					<button id="searchButton" type="submit" title="검색" style="background:none;">
+					<input type="search" id="searchText" name="q" value="${param.q}">
+					<button id="searchButton" type="submit" title="검색" style="background:none;" >
 						<i class="fas fa-search fa-lg" style="background:none; color:#2980b9;"></i>
 					</button>
 				</div>
@@ -454,7 +404,10 @@
 				<hr width=60%>
 			</form>
 			<br><br>
-
+			<script>
+			
+			</script>
+			
 
 			<form name="bookList">
 				<div id="listDiv" class="left">&nbsp;&nbsp;
@@ -469,7 +422,6 @@
 								document.getElementById("bestBook").style.display = "none";
 								document.getElementById("latestBook").style.display = "block";
 							}
-
 						}
 					</script>
 				</div>
@@ -811,7 +763,6 @@
 			</section>
 			<script>
 				$(document).ready(function () {
-
 					$('ul.tabs li').click(function () {
 						var tab_id = $(this).attr('data-tab');
 						$('ul.tabs li').removeClass('current');
@@ -820,7 +771,6 @@
 						$("#" + tab_id).addClass('current');
 					})
 				})
-
 			</script>
 
 			<!-- End Align Area -->
