@@ -150,12 +150,13 @@
 							</tr>
 							<tr>
 								<td colspan="2">
-									<textarea rows="15" cols="60" name="qstContent" style="resize:none;"></textarea>
+									<textarea rows="15" cols="60" name="qstContent" style="resize:none;" placeholder="문의 내용을 입력하세요"
+										       onfocus="this.placeholder = ''" onblur="this.placeholder = '문의 내용을 입력하세요'"></textarea>
 								</td>
 							</tr>
 						</table>
 						<br>
-						<button id="sendQst">문의 등록</button>
+						<button type="submit" id="sendQst">문의 등록</button>
 					</form>
                    	</div>
                 </div>

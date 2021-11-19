@@ -8,7 +8,7 @@ import member.vo.Member;
 
 public class MemberService {
 	private MemberDAO mDAO = new MemberDAO();
-
+	
 	public Member loginMember(String memberId, String memberPwd) {
 		Connection conn = getConnection();
 		
@@ -144,6 +144,16 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public int checkEmail(String userEmail) {
+		Connection conn = getConnection();
+		
+		int result = mDAO.checkEmail(conn, userEmail);
+		
+		close(conn);
+		return result;
+	}
+	
 
 	public int updateTempPwd(FindPwdInfo fpi) {
 		Connection conn = getConnection();
