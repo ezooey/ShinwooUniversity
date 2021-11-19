@@ -1,22 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD:SemiProject/WebContent/WEB-INF/views/reqBook/ReqBookList.jsp
-    pageEncoding="UTF-8" import="java.util.ArrayList, reqBook.vo.ReqBook"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, reqBook.model.vo.ReqBook"%>
 <%
-	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list");
-=======
-    pageEncoding="UTF-8" import="java.util.ArrayList, admin.model.vo.*" %>
-					 
-<%
-	ArrayList<UserList> uList = (ArrayList)request.getAttribute("uList");
 
-	/* PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage(); */
->>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f:SemiProject/WebContent/WEB-INF/views/admin/userList.jsp
+	ReqBook r = (ReqBook)request.getAttribute("r"); 
+	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list");
 %>
 <!doctype html>
 <html class="no-js">
@@ -24,13 +11,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-       
-    <title>adminUserList</title>
+    <title>도서 신청</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-
-
+    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
@@ -107,19 +91,6 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/datatables.min.css"/>
-    
-	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
-	<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script> -->
-	
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-	
-	<script type="text/javascript">
-		jQuery(function($){ 
-			$("#foo-table").DataTable(); 
-		}); 
-	</script>
 
     <style>
         #currentMenu {
@@ -158,44 +129,6 @@
         .section-top-border {
             padding: 40px;
         }
-        
-        .searchBar{
-        	padding-top: 10%;
-        	padding-left: 60%;
-        }
-        .paging1{
-        	padding-left: 47%;
-        }
-        .updateInfo {
-		  background: white;
-		  border: none;
-		  color: blue;
-		  text-align: center;
-		  text-decoration: none;
-		 
-		  font-size: 16px;
-		
-		  cursor: pointer;
-		}
-
-        .fa-image {
-            position: absolute;
-            top: 50%;
-            margin-top: 12px;
-            margin-left: 1%;
-            z-index: 1;
-        }
-
-        #imagePreview {
-            margin-top: 20px;
-            border: 1px solid #eee;
-        }
-
-        #imageP {
-            margin-top: 20px;
-            visibility: hidden;
-        }
-
     </style>
 </head>
 
@@ -212,10 +145,43 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <%@ include file="../common/header.jsp" %>
-    <main>
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <!-- Logo -->
+                <div class="header-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                    </div>
+                    <div class="menu-wrapper  d-flex align-items-center">
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="index.html">도서관 소개</a></li>
+                                    <li class="active"><a href="about.html">도서 신청</a></li>
+                                    <li><a href="services.html">도서 검색</a></li>
+                                    <li><a href="blog.html">독후감</a></li>
+                                    <li><a href="contact.html">마이페이지</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right d-none d-lg-block">
+                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
+                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
+                </div>
+                <!-- Mobile Menu -->
+                <div class="col-12">
+                    <div class="mobile_menu d-block d-lg-none"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
         <!--? Hero Start -->
-<<<<<<< HEAD:SemiProject/WebContent/WEB-INF/views/reqBook/ReqBookList.jsp
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
                 <h2 id="currentMenu">도서 신청</h2>
@@ -234,221 +200,60 @@
                             <div class="sparkline13-hd">
                             </div>
                             <div class="sparkline13-graph">
-                              <div class="datatable-dashv1-list custom-datatable-overright">
-                                    <div id="toolbar">
-                                    	<select>
-                                    		<option>대기중</option>
-                                    		<option>승인</option>                                     
-                                    		<option>거절</option>                        	
-                                    	</select>                                 
-                                    </div>
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" style="text-align : center;">
-                                        <thead  style="text-align : center;">
+                              <div class="datatable-dashv1-list custom-datatable-overrigh" style="text-align : center;">
+
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
+                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar" style="text-align : center;">
+                                        <thead>
                                             <tr>
-                                                <th data-field="state" data-checkbox="true"></th>
+                        
                                                 <th data-field="id">학번</th>
-                                                <th data-field="name" data-editable="true">도서명</th>
-                                                <th data-field="email" data-editable="true">저자</th>
-                                                <th data-field="phone" data-editable="true">출판사</th>
-                                                <th data-field="task" data-editable="true">신청자 성함 </th>
-                                                <th data-field="date" data-editable="true">신청날짜</th>
+                                                <th data-field="name" data-editable="false">도서명</th>
+                                                <th data-field="email" data-editable="false">저자</th>
+                                                <th data-field="phone" data-editable="false">출판사</th>
+                                                <th data-field="task" data-editable="false">신청자 성함 </th>
+                                                <th data-field="date" data-editable="false">신청날짜</th>
                                                 <th data-field="action">진행상태</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                              <% if(list.isEmpty()) {%>
+                                           <% if(list.isEmpty()) {%>
 											<tr>
 												<td colspan="5">존재하는 공지사항이 없습니다.</td>
 											</tr>
 											<%} else { 
-
 												for(int i = 0; i < list.size(); i++){%>
-											<tr>
-												<td><%= list.get(i).getReqBookNo() %></td>
-												<td><%= list.get(i).getReqBookTitle() %></td>
-												<td><%= list.get(i).getReqBookDate() %></td>
-												<td><%= list.get(i).getReqBookPub() %></td>
-												<td><%= list.get(i).getReqBookAuthor() %></td>
-												<td><%= list.get(i).getReqBookContent() %></td>
-												<td><%= list.get(i).getReqBookReason() %></td>
-												<td><%= list.get(i).getStatus() %></td>
-												<td><%= list.get(i).getReqWriterId() %></td>
-								
-											</tr>
-										<%} %>
-									<%} %>
-								</table>
-							</div>
-				
-                       </div>
-                    </div>
-                  </div>
-               </div>
-            </div>
-        </div>
-       
-	<script type="text/javascript">
-
-	function button_event1(){
-
-	if (confirm("정말 승인하시겠습니까??") == true){    
-
-   	 document.form.submit();
-
-		}else{   //취소
-
-   		 return;
-
-		}
-
-	}
-
-
-
-</script>
-
-
-<input type="button" value="승인" class="btn btn-dark" onclick="button_event1();" style="float: right; margin-left: 10px;">	
-    
-   
-<script type="text/javascript">
-
-function button_event2(){
-
-if (confirm("정말 거절하시겠습니까??") == true){    
-
-	window.open('address','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');
-
-}else{   
-
-    return;
-
-}
-
-}
-
-
-</script>
-
- <input type="button" value="거절" class="btn btn-dark" onclick="button_event2();" style="float: right; margin-left: 10px;">	       
-    
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-=======
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
-                <h2 id="currentMenu">회원 목록</h2>
-            </div>
-        </div>
-
-        <!--? Start Align Area -->
-        <div class="whole-wrap">
-            <div class="container box_1170">
-                <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-md-8 mt-sm-30">
-                            
+													<tr>
+									
+														<td><%= list.get(i).getReqWriterId() %></td>
+				 										<td><%= list.get(i).getReqBookTitle() %></td>
+														<td><%= list.get(i).getReqBookAuthor() %></td>
+														<td><%= list.get(i).getReqBookPub() %></td>	
+														<td><%= list.get(i).getReqBookWriter() %></td>	
+														<td><%= list.get(i).getReqBookDate() %></td>
+														<td>
+														<% if(list.get(i).getStatus()== 0) {%>
+															<div><a onclick="window.open('reqBook.con?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=400');">대기중</a></div>
+														<%}else if(list.get(i).getStatus()== 1){ %>
+															<div style="color : blue;"><a onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=270');">승인</a></div>
+														<%}else{ %>
+															<div  style="color : red;"><a onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=400');">거절</a></div>
+														<%} %>
+														</td>
+													</tr>
+												<%} %>
+											<%} %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-        <table id="foo-table" class="table table-bordered">
-        <thead>
-	        <tr align="center">  
-	           	<th>아이디</th>
-			    <th>이름</th>
-			    <th>학과</th>
-			    <th>전화번호</th>
-			    <th>주소</th>
-			    <th>이메일</th>
-			    <th>변경</th>  
-	        </tr>  
-        </thead>
-        <tbody>
-	        <% for (int i = 0; i < uList.size(); i++) { %>
-	        <tr>
-	        	<td><%= uList.get(i).getMemberId() %></td>
-	        	<td><%= uList.get(i).getMemberName() %></td>
-	        	<td><%= uList.get(i).getDepartment() %></td>
-	        	<td><%= uList.get(i).getPhone() %></td>
-	        	<td><%= uList.get(i).getAddress() %></td>
-	        	<td><%= uList.get(i).getEmail() %></td>
-	        	<td><button class="updateInfo" onclick="location.href='<%= request.getContextPath() %>/updateInfoForm.ui'">변경</button></td>
-	        </tr>
-	        <% } %>
-        </tbody>
-      </table>  
-		<!-- <script>
-			function update(){
-				var updateWindow = window.open('updateInfoForm.ui', 'updateInfoForm','width=500, height=250');
-			}
-		</script> -->
-		<%-- <div class="pagingArea" align="center">
-		<!-- 맨 처음으로 -->
-			<button onclick="location.href='<%= request.getContextPath() %>/userList.ul?currentPage=1'">&lt;&lt;</button>
-			<!-- 이전 페이지로 -->
-			<button id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/userList.ul?currentPage=<%=pi.getCurrentPage()-1%>'">&lt;</button>
-			<script>
-				if(<%= pi.getCurrentPage() %> <= 1){
-					$('#beforeBtn').prop('disabled', true);
-				}
-			</script>
-			<!-- 숫자버튼 -->
-			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
-			<%		if(p == pi.getCurrentPage() ){ %>
-						<button id="choosen" disabled><%= p %></button>
-			<%		} else { %>
-						<button id="numBtn" onclick="location.href='<%= request.getContextPath() %>/userList.ul?currentPage=<%= p %>'"><%= p %></button>
-			<%		} %>
-			<% } %>
-			<!-- 다음 페이지로 -->
-			<button id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/userList.ul?currentPage=<%= pi.getCurrentPage()+1 %>'">&gt;</button>
-			<script>
-				if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>){
-					$('#afterBtn').prop('disabled', true);
-				}
-			</script>
-			<!-- 맨 끝으로 -->
-			<button onclick="location.href='<%= request.getContextPath() %>/userList.ul?currentPage=<%=pi.getMaxPage() %>'">&gt;&gt;</button>
-		</div> --%>
-		
-		<!-- table end -->	
-     </div>
- </div>
-        <!-- End Align Area -->
-    </main>
->>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f:SemiProject/WebContent/WEB-INF/views/admin/userList.jsp
+            </div>
+        </div>
+        
+
     <footer>
         <!-- Footer Start-->
         <div class="footer-area footer-padding">
@@ -543,7 +348,6 @@ if (confirm("정말 거절하시겠습니까??") == true){
     </script>
     <!-- JS here -->
     
-<<<<<<< HEAD:SemiProject/WebContent/WEB-INF/views/reqBook/ReqBookList.jsp
     
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <!-- bootstrap JS
@@ -587,8 +391,6 @@ if (confirm("정말 거절하시겠습니까??") == true){
     <script src="js/editable/bootstrap-datetimepicker.js"></script>
     <script src="js/editable/bootstrap-editable.js"></script>
     <script src="js/editable/xediable-active.js"></script>
-=======
->>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f:SemiProject/WebContent/WEB-INF/views/admin/userList.jsp
 
     <!-- data table JS
 		============================================ -->
