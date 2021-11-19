@@ -197,7 +197,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
       <th scope="col">조회수</th>
       <th scope="col">등록일자</th>
       <% if(loginUser != null && loginUser.getMemberId().equals("admin")){ %>
-		<th scopr="col">삭제</th>
+		<th scope="col">삭제</th>
 	<%} %>
     </tr>
   </thead>

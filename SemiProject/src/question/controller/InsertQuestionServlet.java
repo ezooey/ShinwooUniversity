@@ -1,4 +1,4 @@
-package admin.controller;
+package question.controller;
 
 import java.io.IOException;
 
@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.model.service.AdminService;
-import admin.model.vo.UserList;
+import member.vo.Member;
+import question.model.service.QuestionService;
+import question.model.vo.Question;
 
 /**
- * Servlet implementation class UpdateInfoServlet
+ * Servlet implementation class QuestionWriteServlet
  */
-@WebServlet("/userInfoUpdate.ui")
-public class UpdateInfoServlet extends HttpServlet {
+@WebServlet("/questionWrite.in")
+public class InsertQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateInfoServlet() {
+    public InsertQuestionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,22 +31,20 @@ public class UpdateInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		String quest_cont = request.getParameter("qstContent");
+		String quest_Id = ((Member)request.getSession().getAttribute("loginUser")).getMemberId();
 		
-		String uLId = request.getParameter("id");
-		String uLName = request.getParameter("name");
-		String uLDepartment = request.getParameter("department");
-		String uLEmail = request.getParameter("email");
+		Question q = new Question();
+		q.setQuest_cont(quest_cont);
+		q.setQuest_Id(quest_Id);
 		
-		UserList ul = new UserList(uLId, uLName, uLDepartment, null, null, uLEmail, null);
+		int result = new QuestionService().insertQuestion(q);
 		
-		int result = new AdminService().updateUserInfo(ul);
-		System.out.println(uLId);
 		if(result > 0) {
-			response.sendRedirect("userList.ul?mi=" + uLId);
+			response.sendRedirect("questionList.li");
 		} else {
-			request.setAttribute("msg", "회원 정보 수정 실패");
-			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
+			request.setAttribute("msg", "1:1 문의 작성 실패");
+			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp");
 		}
 	}
 
@@ -53,7 +52,6 @@ public class UpdateInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

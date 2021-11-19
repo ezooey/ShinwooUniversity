@@ -1,4 +1,4 @@
-package question.controller;
+package search.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,22 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.vo.Member;
-import question.model.service.QuestionService;
-import question.model.vo.Question;
+import book.model.vo.Book;
 import review.model.vo.PageInfo;
+import search.model.service.SearchService;
 
 /**
- * Servlet implementation class InquiryServlet
+ * Servlet implementation class SearchListServlet
  */
-@WebServlet("/questionList.li")
-public class QuestionListServlet extends HttpServlet {
+@WebServlet("/searchBook.sr")
+public class SearchListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionListServlet() {
+    public SearchListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,34 +32,28 @@ public class QuestionListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int listCount;		
 		int currentPage;	
-		int pageLimit;		
+		int pageLimit;	 
 		int boardLimit;		
 		int maxPage;		
 		int startPage;		
-		int endPage;		
+		int endPage;
 		
-		QuestionService qService = new QuestionService(); 
-		boolean isAdmin = ((Member)request.getSession().getAttribute("loginUser")).getMemberType().toUpperCase().equals("MASTER") ? true : false;
-		String memberId = ((Member)request.getSession().getAttribute("loginUser")).getMemberId();
+		SearchService sService = new SearchService();
+		listCount = sService.getListCount();
 		
-		if(isAdmin) {
-			listCount = qService.getAdminListCount();
-		} else {
-			listCount = qService.getUserListCount(memberId);
-		}
-		
-		currentPage = 1; 
+		currentPage = 1;
 		if(request.getParameter("currentPage") != null) { 
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
 		pageLimit = 10;
-		boardLimit = 5;
+		boardLimit = 10;
 		
 		maxPage = (int)Math.ceil((double)listCount / boardLimit); 
-		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+		startPage = (currentPage - 1) / pageLimit * pageLimit + 1; 
 		endPage = startPage + pageLimit - 1;
 		if(maxPage < endPage) {
 			endPage = maxPage;
@@ -68,24 +61,14 @@ public class QuestionListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		
-		ArrayList<Question> list = null;
-		
-		if(isAdmin) {
-			list = qService.selectAdminList(pi);
-		} else {
-			list = qService.selectUserList(pi, memberId);
-		}
-		
+		ArrayList<Book> bList = new SearchService().selectSearchBookList(pi);
 		String page = null;
-		if(list != null) {
-			request.setAttribute("qList", list);
-			request.setAttribute("pi", pi);
-			request.setAttribute("isAdmin", isAdmin);
-			page = "WEB-INF/views/question/questionList.jsp";
+		if(bList != null) {
+			request.setAttribute("bList", bList);
+			page = "WEB-INF/views/search/searchList.jsp";
 		} else {
-			request.setAttribute("msg", "문의 목록 조회 실패");
-			page = "WEB-INF/views/common/errorPage.jsp";
+			request.setAttribute("msg", "도서 검색으로 이동 실패");
+			page = "WEB_INF/views/common/errorPage.jsp";			
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);

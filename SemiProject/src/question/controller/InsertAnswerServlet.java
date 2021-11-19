@@ -1,4 +1,4 @@
-package admin.controller;
+package question.controller;
 
 import java.io.IOException;
 
@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.model.service.AdminService;
-import admin.model.vo.UserList;
+import member.vo.Member;
+import question.model.service.QuestionService;
+import question.model.vo.Question;
 
 /**
- * Servlet implementation class UpdateInfoServlet
+ * Servlet implementation class InsertAnswerServlet
  */
-@WebServlet("/userInfoUpdate.ui")
-public class UpdateInfoServlet extends HttpServlet {
+@WebServlet("/answerQuestion.li")
+public class InsertAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateInfoServlet() {
+    public InsertAnswerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,21 +31,22 @@ public class UpdateInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		int questNo = Integer.parseInt(request.getParameter("questNo"));
+		String answerContent = request.getParameter("answerContent");
+		String answerId = ((Member)request.getSession().getAttribute("loginUser")).getMemberId();
 		
-		String uLId = request.getParameter("id");
-		String uLName = request.getParameter("name");
-		String uLDepartment = request.getParameter("department");
-		String uLEmail = request.getParameter("email");
 		
-		UserList ul = new UserList(uLId, uLName, uLDepartment, null, null, uLEmail, null);
+		Question q = new Question();
+		q.setQuest_No(questNo);
+		q.setAnswer(answerContent);
+		q.setAns_Id(answerId);
 		
-		int result = new AdminService().updateUserInfo(ul);
-		System.out.println(uLId);
+		int result = new QuestionService().updateAnswer(q);
+		
 		if(result > 0) {
-			response.sendRedirect("userList.ul?mi=" + uLId);
+			response.sendRedirect("questionList.li");
 		} else {
-			request.setAttribute("msg", "회원 정보 수정 실패");
+			request.setAttribute("msg", "문의 목록 조회 실패");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
 	}

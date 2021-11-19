@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="book.model.vo.BookDetail"%>
+<% 
+	BookDetail b = (BookDetail)request.getAttribute("bookDetail");
+%>
 <!doctype html>
 <html class="no-js">
 
@@ -85,8 +88,12 @@
 	        background: rgba(102, 102, 102, 0.7); 
 	        z-index: 999;
         }
-        #bookName{padding-left: 330px; text-decoration: none;}
-        #title{color: black;}
+        #bookName{
+        	padding-left: 330px; 
+        	text-decoration: none; 
+        	margin-bottom: 30px;
+        }
+        #title{color: black; margin-bottom: 0px;}
         .simpleInfo{
         	font-size: 13px; 
         	color: #666;
@@ -96,7 +103,7 @@
         	text-align: center;
         	display: inline-block;
         	width: 40px;
-        	border-radius: 10%;
+        	border-radius: 5px;
         	font-size: 8px; 
         	background: lightgray; 
         	color: black;
@@ -110,13 +117,13 @@
         	padding-top: 10px;
         	padding-bottom: 10px;
         	margin-top: 25px;
-        	border-radius: 7%;
-        	border: 0px;
-        	background: #2980b9;
+        	border-radius: 5px;
+        	background: #6785FF;
         	color: white;
         	font-size: 15px;
 			font-weight: bold;
 			cursor: pointer;
+			border: 1px solid dimgray;
         }
         #count{
         	display: inline-block;
@@ -126,14 +133,19 @@
         	padding-bottom: 10px;
         	padding-left: 10px;
         	padding-right: 10px;
-        	border-radius: 7%;
+        	border-radius: 5px;
+        	border: 1px solid gray;
         	font-size: 15px;
          	font-weight: bold;
          	background: lightgray;
         	color: dimgray;
         	cursor: default;
         }
-        #tabBar{position: relative; display: inline-block; text-align: center; margin: 0 auto;}
+        #tabBar{
+        	position: relative; 
+        	display: inline-block; 
+        	text-align: center; 
+        	margin: 0 auto;}
         #barLi{list-style: none; display: inline-block; margin: 0 auto;}
         #tab1{float: left;}
         #bookIntro{
@@ -142,11 +154,11 @@
         	padding-top: 7px;
         	padding-bottom: 7px;
         	float: left;
-        	background: #aacec2;
+        	background: #6785ff;
         	color: white;
         	font-weight: bold;
-        	border: 1px solid dimgray;
-        	border-radius: 5%;
+        	
+        	border-radius: 5px;
         	cursor: default;
         }
         #contents{
@@ -155,17 +167,21 @@
         }
         #bookIntro{border: 2px solid lightgray;}
         #introduce{
+        	margin-top: 30px;
         	margin-left: 150px;
         	margin-right: 150px;
+        	display: flex;
+  			justify-content: center;
         	padding-bottom: 25px;
         	text-align: left;
         	color: dimgray;
+        	border: 0px;
         }
         #separate{
-        	margin: 150px;
-        	width: 950px;
-        	margin-top: 0px; 
-        	margin-bottom: 25px;
+        	text-align: center;
+        	margin: 0px auto;
+        	width: 1000px;
+        	color: #6785ff;
         }
         hr{border-bottom: #888;}
     </style>
@@ -184,7 +200,7 @@
         </div>
     </div>
     <!-- Preloader Start -->
-   <%@ include file="../common/header.jsp" %>
+    <%@ include file="../common/header.jsp" %>
     <main>
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
@@ -197,78 +213,90 @@
         <div class="whole-wrap">
             <div class="container box_1170">
                 <div class="section-top-border">
-                    <div class="row">
-                        <div id="homeNav">
-			    			<a id="btn_home" href="./main/main.html" role="button">홈</a> > 
-			    			<a id="btn_category" href="" role="button" name="category">소설/희곡</a> > <a>상세보기</a>
-			    		</div>
-			    	</div>
+                	<form action="<%= request.getContextPath() %>/rentalBook.bo">
+	                    <div class="row">
+	                        <div id="homeNav">
+				    			<a id="btn_home" href="../common/main.html" role="button">홈</a> &gt; 
+				    			<a id="btn_category" href="" role="button" name="category"><%= b.getCategoryName() %></a> &gt; <a>상세보기</a>
+				    		</div>
+				    	</div>
 					   	<hr>
-					<div class="row">
-					   	<div id="detail_simple" class="bookInfo">
-					   		<a id="bookImg"><img src="http://image.yes24.com/goods/77223021/M"></a>
-					   		<a id="ebookTag">전자책</a>
-					   	</div>
-					   	<div id="bookName">
-					   		<a id="title" name="bookTitle"><b>지구에서 한아뿐</b></a>
-					   		<br>
-					   		<hr style="margin-top: 10px; margin-bottom: 20px; width: 250px;">
-					   		<span class="simpleInfo"><b>글쓴이 &nbsp;&nbsp; </b></span><span class="simpleInfo" name="author">정세랑</span>
-					   		<br>
-					   		<span class="simpleInfo"><b>출판사 &nbsp;&nbsp; </b></span><span class="simpleInfo" name="publisher">난다</span>
-					   		<br>
-					   		<span class="simpleInfo"><b>출간일 &nbsp;&nbsp; </b></span><span class="simpleInfo" name="release">2019.07.31</span>
-					   		<br>
-					   		<span class="simpleInfo"><b>제공형태(크기): &nbsp;&nbsp;</b></span><span id="epub" name="epub">ePUB</span><span class="simpleInfo"> 16M</span>
-					   		<br>
-					   		<form onclick="borrow(returnDay);" id="borrow">대출하기</form>
-					   		<div id="count">대출   &nbsp;&nbsp; <span id="currentNum">0</span> / 2</div>
-					   		<script>
-					   			function rtDay(date) {
-					   				var today = new Date();
-					  				var twoWeeks = new Date(today.setDate(today.getDate() + 14));
-									
-					  				var year = twoWeeks.getFullYear();
-					  				var month = (1 + twoWeeks.getMonth());
-					  				var day = twoWeeks.getDate();
-					  				return year + '-' + month + '-' + day;
-					   			}
-									var returnDay = rtDay(new Date());
-					  				console.log(returnDay);
-						  		function borrow(returnDay){
-					   				alert('도서가 대출되었습니다.\n' + returnDay + ' 까지 이용하실 수 있습니다.');
-							  		var cur = document.getElementById('currentNum').innerHTML;
-							  		var borrow = document.getElementById('borrow');
-							  		if(cur < 2){
-							  			cur = Number(cur) + 1;
-							  			document.getElementById('currentNum').innerHTML = cur;
-							  			borrow.innerText = '대출중';
-							  			borrow.onclick = null;
-							  		}
-						  		}
-					   		</script>
-					   	</div>
-					   		<br><br>
-					   	<div id="tabBar" class="bookInfo">
-					 		<span id="bookIntro">책 소개</span><br>
-					   	</div>
-					   	<hr id="separate">
-					   	<fieldset>
-							<div id="introduce" name="bookProfile">
-								사랑을 위해 2만 광년을 날아온 외계인!<br><br>
-							
-								자신의 사랑이 우주에서 단 하나뿐임을 바라는 연인들을 위한 이야기 『지구에서 한아뿐』. SF, 로맨스, 호러, 스릴러 등 장르의 경계를 넘나드는 작가 정세랑의 소설이다. 
-								친환경 디자이너 한아와 그녀의 외계인 남자친구 경민의 알콩달콩하면서도 범우주적인 사랑 이야기를 그리고 있다.<br><br>
-							
-								지구 환경을 지키기 위해 저탄소 생활을 하는 디자이너 한아. 그녀에게는 경민이라는 남자친구가 있다. 경민은 자신이 하고 싶은 대로 살면서 늘 한아를 기다리게 하는 자유로운 영혼이다. 
-								캐나다로 별똥별을 보기 위해 여행을 떠난 경민에게 연락이 없던 어느 날, 한아는 캐나다에 소형 운석이 떨어지면서 큰 폭발이 있었다는 뉴스를 본다. 
-								경민을 걱정하는 한아 앞에 며칠 뒤 아무렇지도 않은 듯 경민이 나타나지만, 평소와 달리 지나치게 다정해진 그를 보고 한아의 의심은 커져만 가는데….
-							</div>
-					   	</fieldset>
-                    </div>
+						<div class="row">
+						   	<div id="detail_simple" class="bookInfo">
+						   		<a id="bookImg"><img src="<%= request.getContextPath() %>/<%= b.getChangeName() %>"></a>
+						   		<a id="ebookTag">전자책</a>
+						   	</div>
+						   	<div id="bookName">
+						   		<h4 id="title" name="bookTitle"><b><%= b.getBookTitle() %></b></h4>
+						   		<input type="hidden" name="bNo" value="<%= b.getBookNo() %>">
+						   		<br>
+						   		<hr style="margin-top: 0px; margin-bottom: 10px; width: 250px;">
+						   		<span class="simpleInfo"><b>글쓴이 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="author"><%= b.getAuthor() %></span>
+						   		<br>
+						   		<span class="simpleInfo"><b>출판사 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="publisher"><%= b.getPublisher() %></span>
+						   		<br>
+						   		<span class="simpleInfo"><b>출간일 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="release"><%= b.getReleaseDate() %></span>
+						   		<br>
+						   		<span class="simpleInfo"><b>제공형태: &nbsp;&nbsp;</b></span><span id="epub">ePUB</span>
+						   		<br>
+						   		<button onclick="borrow(returnDay);" id="borrow">대출하기</button>
+						   		<% if(loginUser != null){%>
+						   			<input type="hidden" name="rId" value="<%= loginUser.getMemberId() %>">
+						   		<% } %>
+						   		<div id="count">대출   &nbsp;&nbsp; <span id="currentNum"><%= request.getAttribute("currBorrow") %></span> / <%= request.getAttribute("max") %></div>
+						   	</div>
+						   		<br><br>
+						   	<div id="tabBar" class="bookInfo">
+						 		<span id="bookIntro">책 소개</span><br>
+						   	</div>
+						   	<fieldset>
+							   	<hr id="separate">
+								<div id="introduce" name="bookProfile">
+									<%= b.getBookInfo() %>
+								</div>
+								<br>
+								<div id="refer" name="refer">
+									<% if(loginUser != null && loginUser.getMemberType().equals("MASTER")){ %>
+										<%= b.getRefer() %>
+									<% } %>
+								</div>
+						   	</fieldset>
+	                    </div>
+	            	</form>
                 </div>
             </div>
         </div>
+   		<script>
+   			function rtDay(date) {
+   				var today = new Date();
+  				var twoWeeks = new Date(today.setDate(today.getDate() + 14));
+				
+  				var year = twoWeeks.getFullYear();
+  				var month = (1 + twoWeeks.getMonth());
+  				var day = twoWeeks.getDate();
+  				return year + '-' + month + '-' + day;
+   			}
+			var returnDay = rtDay(new Date());
+	  		var cur = <%= request.getAttribute("currBorrow") %>
+	  		var borrow = document.getElementById('borrow');
+  				
+  			if(<%= request.getAttribute("check") %> < 1) {
+		  		function borrow(returnDay){
+		   				alert('도서가 대출되었습니다.\n' + returnDay + ' 까지 이용하실 수 있습니다.');
+				  		if(cur < 2){
+				  			cur = Number(cur) + 1;
+				  			document.getElementById('currentNum').innerHTML = cur;
+				  			borrow.innerText = '대출중';
+				  			borrow.onclick = null;
+				  		}
+		  			}
+		  	} else {
+		  		borrow.innerText = '대출중';
+		  		borrow.onclick = null;
+		  	}
+	  		
+	  		
+   		</script>
         <!-- End Align Area -->
     </main>
     <footer>

@@ -3,6 +3,7 @@
 <%
 	ArrayList<Question> qList = (ArrayList)request.getAttribute("qList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	boolean isAdmin = (Boolean)request.getAttribute("isAdmin");
 %>
 <!doctype html>
 <html class="no-js">
@@ -94,9 +95,67 @@
 			float: right;
 		}
 		
+		#writeAns{
+			height: 35px;
+			width: 90px;
+			border: 0px;
+			background: #6785FF;
+			border-radius: 20px;
+			float: right;
+		}
+		
+		#insertAns{
+			height: 35px;
+			width: 90px;
+			border: 0px;
+			background: #6785FF;
+			border-radius: 20px;
+			float: right;
+		}
+		
 		.emptyList {
 			display: flex;
 			justify-content: center;
+		}
+		
+		button:hover{cursor: pointer;}
+		#numBtn{background: white; border: 1px solid #eee; color: gray;}
+		#choosen{background: #bfccff; border: 1px solid #eee; color: black;}
+		.pagingArea button{background: white; color: black;}
+		.listBtn{background: #eee; border: 1px solid #eee; color: gray;}
+		.fa-angle-double-left, .fa-angle-double-right, .fa-angle-left, .fa-angle-right{color: gray;}
+		
+		button:disabled{background: #eee; cursor: none;}
+		
+		.ansTextarea {
+			width: 100%;
+			border: none;
+			resize: none;
+		}
+		
+		#inserBtnArea{
+			display: none;
+		}
+		
+		.inserBtnArea::after{
+			content:'';
+   			display:block;
+   			clear:both;
+		}
+
+		.writeBtnArea::after{
+			content:'';
+   			display:block;
+   			clear:both;
+		}
+		
+		.writeBtnArea, .inserBtnArea{
+			margin-top: 10px;
+		}
+		
+		#ansYN {
+			color: red;
+			font-weight: bolder;
 		}
     </style>
 </head>
@@ -132,24 +191,120 @@
                     		<div class="emptyList">등록된 1:1문의가 없습니다.</div>
                     	<% } else { %>
                     		<% for(Question q : qList) { %>
+                    		<% 		String answer = q.getAnswer() == null ? "아직 답변이 등록되지 않았습니다." : q.getAnswer(); %>
 								<div class="inquiry" id="quest_Cont">
+									<% if(q.getAns_YN().equals("Y")) { %>
+										<span id="ansYN">[답변 완료]</span>
+									<%} %>
 									<%= q.getQuest_cont() %>
 									<input type="hidden" id="quest_No" value="<%= q.getQuest_No() %>">
 									<br>
-									<span class="writer" id="quest_Id">남나눔</span>&nbsp;<span class="date" id="quest_Date"><%= q.getQuest_date() %></span>
+									<span class="writer" id="quest_Id"><%= q.getQuest_name() %></span>&nbsp;<span class="date" id="quest_Date"><%= q.getQuest_date() %></span>
 								</div>
-								<p class="answer" id="answer">
-									<%= q.getAnswer() %>
-								</p>
+								<div class="answer" id="answer">
+									<% if(isAdmin) { %>
+										<form action="<%= request.getContextPath() %>/answerQuestion.li" method="post" onsubmit="return send();">
+											<input type="hidden" name="questNo" value="<%= q.getQuest_No() %>">
+											<div>
+												<textarea class="ansTextarea" name="answerContent" readonly><%= answer %></textarea>
+												<input type="hidden" id="noUpdateText" value="<%= answer %>">	
+											</div>
+											<% if(q.getAns_YN().equals("N")) { %>
+												<div class="writeBtnArea"><button id="writeAns" class="writeAns">답변 작성</button></div>
+												<div id="inserBtnArea" class="inserBtnArea"><button id="insertAns" class="insertAns" type="submit">답변 등록</button></div>
+											<%} %>
+										</form>
+									<%} else { %>
+										<div><%= answer %></div>
+									<%} %>
+								</div>
 							<%} %>
 						<%} %>
 						<br>
-						<button id="writeQst" onclick="location.href='<%= request.getContextPath() %>/questionWriteForm.in'">문의 작성</button>
+						<% if(!isAdmin){ %>
+							<button id="writeQst" onclick="location.href='<%= request.getContextPath() %>/questionWriteForm.in'">문의 작성</button>
+						<%} %>
+						<br clear="all">
+						<div class="pagingArea page-item" align="center">
+							<button class="listBtn" id="startBtn" onclick="location.href='<%= request.getContextPath() %>/questionList.li?currentPage=1'"><i class="fas fa-angle-double-left"></i></button>
+							<button class="listBtn" id="beforeBtn" onclick="location.href='<%= request.getContextPath() %>/questionList.li?currentPage=<%= pi.getCurrentPage() - 1 %>'"><i class="fas fa-angle-left"></i></button>
+							<script>
+								if(<%= pi.getCurrentPage() %> <= 1) {
+									$('#beforeBtn').prop('disabled', true);
+								}
+								if(<%= pi.getCurrentPage() %> <= 1) {
+									$('#startBtn').prop('disabled', true);
+								}
+							</script>
+							
+							<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+							<%		if(p == pi.getCurrentPage()){ %>
+										<button class="listBtn" id="choosen" disabled><%= p %></button>
+							<%		} else{ %>
+										<button class="listBtn" id="numBtn" onclick="location.href='<%= request.getContextPath() %>/questionList.li?currentPage=<%= p %>'"><%= p %></button>
+							<% 		} %>
+							<%	} %>
+							
+							<button class="listBtn" id="afterBtn" onclick="location.href='<%= request.getContextPath() %>/questionList.li?currentPage=<%= pi.getCurrentPage() + 1 %>'"><i class="fas fa-angle-right"></i></button>
+							<button class="listBtn" id="endBtn" onclick="location.href='<%= request.getContextPath() %>/questionList.li?currentPage=<%= pi.getMaxPage() %>'"><i class="fas fa-angle-double-right"></i></button>
+							<script>
+								if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>) {
+									$('#afterBtn').prop('disabled', true);
+								}
+								if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>) {
+									$('#endBtn').prop('disabled', true);
+								}
+							</script>
+						</div>
 						<script>
+							count = 0;
+							
 							$('.inquiry').click(function(){
 								$(this).next().slideToggle();
+								var ansArea = $(this).next().children().children().eq(1).children();
+								var writeBtn = $(this).next().children().children().eq(2).children();
+								var insertBtn = $(this).next().children().children().eq(3);
+								ansArea.val(ansArea.next().val());
+								ansArea.css({'border':'none'});
+								writeBtn.css({'display': 'block'});
+								ansArea.attr('readonly', 'true');
+								
+								if(count % 2 == 1){
+									insertBtn.css({'display': 'none'});
+								} else{
+									writeBtn.css({'display': 'block'});
+								}
+								
+								count++;
+								
 							});
 							
+							flag = false;
+							
+							$('.writeAns').click(function() {
+								var answer = $(this).parent().prev().children().eq(0);
+								var insertArea = $(this).parent().next();
+								answer.removeAttr('readonly');
+								answer.val('');
+								answer.attr('placeholder', '답변을 입력하세요.');
+								answer.css({'border':'1px solid #eee'});
+								answer.focus();
+								$(this).css({'display': 'none'});
+								insertArea.css({'display': 'block'});
+								flag = false;
+							});
+							
+							$('.insertAns').click(function() {
+								flag = true;
+							});
+							
+							function send() {
+								if(flag){
+									return true;
+								} else{
+									return false;
+								}
+							}
 							
 						</script>
                    	</div>

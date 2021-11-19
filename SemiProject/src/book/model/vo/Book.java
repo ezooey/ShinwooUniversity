@@ -13,13 +13,13 @@ public class Book {
 	private String ownYN;
 	private String bookInfo;
 	private String refer;
-	private Date releseDate;
+	private Date releaseDate;
 	private String categoryName;
 	
 	public Book() {}
 
 	public Book(String bookNo, String bookTitle, int category, String author, String publisher, Date regDate,
-			int rentTotal, String ownYN, String bookInfo, String refer) {
+			int rentTotal, String ownYN, String bookInfo, String refer, Date releaseDate) {
 		super();
 		this.bookNo = bookNo;
 		this.bookTitle = bookTitle;
@@ -31,10 +31,11 @@ public class Book {
 		this.ownYN = ownYN;
 		this.bookInfo = bookInfo;
 		this.refer = refer;
+		this.releaseDate = releaseDate;
 	}
 	
 	public Book(String bookNo, String bookTitle, int category, String author, String publisher, Date regDate,
-			int rentTotal, String ownYN, String bookInfo, String refer, Date releseDate, String categoryName) {
+			int rentTotal, String ownYN, String bookInfo, String refer, Date releaseDate, String categoryName) {
 		super();
 		this.bookNo = bookNo;
 		this.bookTitle = bookTitle;
@@ -46,7 +47,7 @@ public class Book {
 		this.ownYN = ownYN;
 		this.bookInfo = bookInfo;
 		this.refer = refer;
-		this.releseDate = releseDate;
+		this.releaseDate = releaseDate;
 		this.categoryName = categoryName;
 	}
 
@@ -130,12 +131,16 @@ public class Book {
 		this.refer = refer;
 	}
 	
-	public Date getReleseDate() {
-		return releseDate;
+	public Date getReleaseDate() {
+		return releaseDate;
 	}
 
-	public void setReleseDate(Date releseDate) {
-		this.releseDate = releseDate;
+	public Date getReleseDate() {
+		return releaseDate;
+	}
+
+	public void setReleseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 
 	public String getCategoryName() {
@@ -150,7 +155,7 @@ public class Book {
 	public String toString() {
 		return "Book [bookNo=" + bookNo + ", bookTitle=" + bookTitle + ", category=" + category + ", author=" + author
 				+ ", publisher=" + publisher + ", regDate=" + regDate + ", rentTotal=" + rentTotal + ", ownYN=" + ownYN
-				+ ", bookInfo=" + bookInfo + ", refer=" + refer + ", releseDate=" + releseDate + ", categoryName="
+				+ ", bookInfo=" + bookInfo + ", refer=" + refer + ", releseDate=" + releaseDate + ", categoryName="
 				+ categoryName + "]";
 	}
 	
