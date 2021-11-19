@@ -32,27 +32,30 @@ public class ReviewListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int listCount;		
-		int currentPage;	
-		int pageLimit;		
-		int boardLimit;		
-		int maxPage;		
-		int startPage;		
-		int endPage;		
+		int listCount;		// �� �Խñ� ����
+		int currentPage;	// ���� ������
+		int pageLimit;		// �� ���������� ���� ������ ��
+		int boardLimit;		// �� ���������� ���� �Խñ� ��
+		int maxPage;		// ���� ������ ������
+		int startPage;		// ����¡�� �� ������ �� ���� ������
+		int endPage;		// ����¡�� �� ������ �� ������ ������
 		
 		listCount = new ReviewService().getListCount();
 		
 		currentPage = 1;
+		//������ �ٷ� �������� 1�̱� ������ ó���� 1�� ����
 		if(request.getParameter("currentPage") != null) {
-		
+			// currentPage�� ���� �ƴϴ� -> �Ķ���ͷ� currentPage�� ���Դ� (��û�޾Ҵ�) -> ����¡ó������ ��ư��(1,2,3,,,) ������.
 			
-		
+			//currentPage�� ���̴� - > //����¡ ó���� ������ ����(�� �ǿ� ó�� �������� currentPage�� ���� �ǰ� ��.)
+			// �̷� ��� 1�� �ϱ�� �Ұ���.
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
 		pageLimit = 10;
 		boardLimit = 10;
 		
+		//����¡ó�� 4�ܰ� : �� ������ �˸��� ����
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);
 		
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;

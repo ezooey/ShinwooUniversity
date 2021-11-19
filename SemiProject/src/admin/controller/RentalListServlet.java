@@ -1,21 +1,16 @@
 package admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.model.service.AdminService;
-import admin.model.vo.RentalBook;
-
 /**
  * Servlet implementation class RentalList
  */
-@WebServlet("/rentalList.rt")
+@WebServlet("/rentalList.do")
 public class RentalListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,16 +26,7 @@ public class RentalListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<RentalBook> bList = new AdminService().selectRentalBookList();
-		String page = null;
-		if(bList != null) { 
-			request.setAttribute("uList", bList);
-			page = "WEB-INF/views/admin/rentalList.jsp";
-		} else { 
- 			request.setAttribute("msg", "회원 조회 실패");
- 			page = "WEB_INF/views/common/errorPage.jsp";
-		}
-		request.getRequestDispatcher(page).forward(request, response);
+	
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

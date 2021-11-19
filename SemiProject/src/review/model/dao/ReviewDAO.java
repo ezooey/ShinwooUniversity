@@ -143,8 +143,7 @@ public class ReviewDAO {
 							  rset.getInt("views"),
 							  rset.getString("member_name"),
 							  rset.getString("member_id"),
-							  rset.getString("status"),
-							  rset.getInt("recommend"));
+							  rset.getString("status"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -170,6 +169,7 @@ public class ReviewDAO {
 			pstmt.setString(2, r.getReviewContent());
 			pstmt.setString(3, r.getReviewWriter());
 			pstmt.setString(4, r.getBookName());
+			
 			
 			result = pstmt.executeUpdate();
 			
@@ -221,76 +221,6 @@ public class ReviewDAO {
 		}finally {
 			close(pstmt);
 		}
-		return result;
-	}
-
-	public int getRecommendCount(Connection conn, String cId, int rNo) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		int listCount = -1;
-		
-		String query = prop.getProperty("getRecommCount");
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, rNo);
-			pstmt.setString(2, cId);
-			
-			rset = pstmt.executeQuery();
-			if(rset.next()) {
-				listCount = rset.getInt(1);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		
-		return listCount;
-	}
-
-	public int addRecomm(Connection conn, int rNo) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = prop.getProperty("addRecomm");
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, rNo);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-
-	public int deleteReviewAdmin(Connection conn, int rNo) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		
-		String query = prop.getProperty("deleteReviewAdmin");
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, rNo);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
 		return result;
 	}
 }

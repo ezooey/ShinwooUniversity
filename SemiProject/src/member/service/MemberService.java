@@ -8,7 +8,7 @@ import member.vo.Member;
 
 public class MemberService {
 	private MemberDAO mDAO = new MemberDAO();
-	
+
 	public Member loginMember(String memberId, String memberPwd) {
 		Connection conn = getConnection();
 		
@@ -97,31 +97,31 @@ public class MemberService {
 		return m;
 	}
 
-	public int findPwd(String inputEmail, String memberId) {
-		Connection conn = getConnection();
-		int result = mDAO.findPwd(conn, inputEmail, memberId);
-		
-		if(result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-	
-	public int sendEmail(String tempPwd, String inputEmail) {
-		Connection conn = getConnection();
-		int result = mDAO.sendEmail(conn, tempPwd, inputEmail);
-		
-		if(result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
+//	public int findPwd(String inputEmail, String memberId) {
+//		Connection conn = getConnection();
+//		int result = mDAO.findPwd(conn, inputEmail, memberId);
+//		
+//		if(result > 0) {
+//			commit(conn);
+//		} else {
+//			rollback(conn);
+//		}
+//		close(conn);
+//		return result;
+//	}
+
+//	public int sendEmail(String tempPwd, String inputEmail) {
+//		Connection conn = getConnection();
+//		int result = mDAO.sendEmail(conn, tempPwd, inputEmail);
+//		
+//		if(result > 0) {
+//			commit(conn);
+//		} else {
+//			rollback(conn);
+//		}
+//		close(conn);
+//		return result;
+//	}
 
 	public int selectId(String memberId) {
 		Connection conn = getConnection();
@@ -145,16 +145,6 @@ public class MemberService {
 		return result;
 	}
 
-	public int checkEmail(String userEmail) {
-		Connection conn = getConnection();
-		
-		int result = mDAO.checkEmail(conn, userEmail);
-		
-		close(conn);
-		return result;
-	}
-	
-
 	public int updateTempPwd(FindPwdInfo fpi) {
 		Connection conn = getConnection();
 
@@ -169,11 +159,6 @@ public class MemberService {
 		close(conn);
 		
 		return result;
-	}
-
-	public String findPwd(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 

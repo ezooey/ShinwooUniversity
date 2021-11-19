@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="member.vo.Member"%>
-
+ <%
+	Member loginUser= (Member)session.getAttribute("loginUser");
+%>
 
 <!doctype html>
 <html class="no-js">
@@ -141,7 +143,39 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <%@ include file="../common/header.jsp" %>
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <!-- Logo -->
+                <div class="header-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                    </div>
+                    <div class="menu-wrapper  d-flex align-items-center">
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="index.html">도서관 소개</a></li>
+                                    <li><a href="about.html">도서 신청 확인</a></li>
+                                    <li><a href="services.html">회원 목록</a></li>
+                                    <li><a href="blog.html">도서 대출 목록</a></li>
+                                    <li><a href="contact.html">도서 관리</a></li>
+                                    <li class="active"><a href="contact.html">독후감</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right d-none d-lg-block">
+                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
+                    <button type="button" class="genric-btn primary circle" id="login">로그아웃</button>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
     <main>
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
@@ -197,11 +231,11 @@
                                                 	<td rowspan="3"><img height="300px" id="bookImg" name="bookImg"></td>
                                                 </tr>
                                                 <tr>
-                                                	<td width="800px"><input type="text" class="upload-name" id="uploadName" name="uploadName" readonly required></td>
+                                                	<td width="800px"><input type="text" class="upload-name" id="uploadName" name="uploadName" readonly></td>
                                                 	
                                                 </tr>
                                                 <tr>
-                                                <td><input type="text" class="upload-name" id="uploadName2" name="uploadName2" readonly required></td>
+                                                <td><input type="text" class="upload-name" id="uploadName2" name="uploadName2" readonly></td>
                                                 
                                                 </tr>
                                                 </table>
@@ -218,7 +252,7 @@
                                         </div>
                                     </div>
                                     <div class="bottomBtn">
-                                        <input type="submit" class="genric-btn info circle" value="등록" onclick= "return submitAlarm();">
+                                        <input type="submit" class="genric-btn info circle" value="등록">
                                         <input type="reset" class="genric-btn danger circle" value="취소">
                                     </div>
                                 </form>
@@ -384,30 +418,10 @@
                 alert("최대 3장까지 업로드 할 수 있습니다.");
             }
         }
-	</script><script>
-        function submitAlarm(){
-        	
-        	
-			if($('#title').val() == ''){
-				alert('독후감의 제목을 입력해주세요');
-				$('#title').focus();
-				return false;
-			}else if($('#content').val() == ''){
-				alert('독후감의 내용이 입력되지 않았습니다.');
-				$('#content').val("");
-				$('#content').focus();
-				return false;
-				
-			}else if($('#uploadName').val() == ''){
-				alert('책을 선택해주세요.');
-				$('#uploadName').val("");
-				$('#uploadName').focus();
-				return false;
-			}
-			
-		} 
-	
-	</script>
+
+        $("#commentForm").submit(function () {
+            alert("글 작성이 완료되었습니다.");
+        });
     </script>
     <!-- JS here -->
 
