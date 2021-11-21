@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>등록 도서 검색</title>
+	<title>신청 도서 검색</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="manifest" href="site.webmanifest">
@@ -126,7 +126,15 @@
 
                 }).done(function (msg) {
                 	$("#submitBtn").html('');
-                    for (var i = 0; i < 10; i++) {
+                	var count = msg.meta.pageable_count;
+                	var lengthBook = 0;
+                	if(count < 10){
+                		lengthBook = count;
+                	} else {
+                		lengthBook = 10;
+                	}
+                	
+                    for (var i = 0; i < lengthBook; i++) {
                     	var format = new Date(msg.documents[i].datetime);
                     	var redate = date_to_str(format);
                     	
@@ -138,8 +146,19 @@
                     	
                     	
                         $("#searchList").append(
-                        		"<input type='radio' name='selectBook' style='width:20px;height:20px;' value='"
-                        			+ title + "@@" + authors + "@@" + publisher + "@@" + redate + "@@" + contents + "'>"
+                        		"<input type='radio' name='selectBook' style='width:20px;height:20px;'>"
+                        );
+                        $("#searchList").append(
+                        		"<input type='hidden' name='searchTitle' value='" + title + "'>"
+                        );
+                        $("#searchList").append(
+                        		"<input type='hidden' name='searchAuthors' value='" + authors + "'>"
+                        );
+                        $("#searchList").append(
+                        		"<input type='hidden' name='searchPub' value='" + publisher + "'>"
+                        );
+                        $("#searchList").append(
+                        		"<input type='hidden' name='searchDate' value='" + redate + "'>"
                         );
                         
                         $("#searchList").append("<img src='" + thumbnail + "'/><br>");
@@ -179,23 +198,19 @@
 		}
 	    
 	    function sendVal(){
-	    	var obj_length = document.getElementsByName("selectBook").length;
-			  var bookValue;
-		        for (var i=0; i<obj_length; i++) {
-		            if (document.getElementsByName("selectBook")[i].checked == true) {
-		               	bookNo = document.getElementsByName("selectBook")[i].value;
-		               	var bookArr = bookNo.split('@@');
-		               	
-		              	opener.document.regBook.bookTitle.value = bookArr[0];
-		              	opener.document.regBook.author.value = bookArr[1];
-		              	opener.document.regBook.publisher.value = bookArr[2];
-		              	opener.document.regBook.releaseDate.value = bookArr[3];
-		              	opener.document.regBook.bookInfo.value = bookArr[4];
-		              	
-		               	window.close();
-		            }
-		        }
+	    	var inputs = $("#bookInfoInput").children()
+           	opener.document.reqBook.bookTitle.value = inputs.eq(0).val();
+           	opener.document.reqBook.author.value = inputs.eq(1).val();
+           	opener.document.reqBook.publisher.value = inputs.eq(2).val();
+           	opener.document.reqBook.releaseDate.value = inputs.eq(3).val();
+           	
+           	window.close();
 		}
+	    
+	    $(document).on("click", "[name='selectBook']", function() {
+	    	$("#bookInfoInput").html('');
+	    	$("#bookInfoInput").append($(this).nextUntil("img"))
+		});
 	    
 	    function date_to_str(format){
 	    	var year = format.getFullYear();

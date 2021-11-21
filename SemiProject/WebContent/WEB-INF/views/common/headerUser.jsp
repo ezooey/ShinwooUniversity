@@ -9,6 +9,7 @@
 	.questionIcon {
 		font-size: 80%;
 		margin-top: 20%;
+		color: #6785FF;
 	}
 	
 	.header-btn1{

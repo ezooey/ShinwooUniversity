@@ -27,24 +27,24 @@
 		address1 = address.split(" ")[0];
 		address2 = address.substring(address.indexOf(address1) + address1.length() + 1);
 		
-		switch(address1){
-		case "강원도": selectedNum[0] = "selected"; break;
-		case "경기도": selectedNum[1] = "selected"; break;
-		case "경상남도": selectedNum[2] = "selected"; break;
-		case "경상북도": selectedNum[3] = "selected"; break;
-		case "광주광역시": selectedNum[4] = "selected"; break;
-		case "대구광역시": selectedNum[5] = "selected"; break;
-		case "대전광역시": selectedNum[6] = "selected"; break;
-		case "부산광역시": selectedNum[7] = "selected"; break;
-		case "서울특별시": selectedNum[8] = "selected"; break;
-		case "울산광역시": selectedNum[9] = "selected"; break;
-		case "인천광역시": selectedNum[10] = "selected"; break;
-		case "전라남도": selectedNum[11] = "selected"; break;
-		case "전라북도": selectedNum[12] = "selected"; break;
-		case "제주특별자치도": selectedNum[13] = "selected"; break;
-		case "충청남도": selectedNum[14] = "selected"; break;
-		case "충청북도": selectedNum[15] = "selected"; break;
-		}
+// 		switch(address1){
+// 		case "강원도": selectedNum[0] = "selected"; break;
+// 		case "경기도": selectedNum[1] = "selected"; break;
+// 		case "경상남도": selectedNum[2] = "selected"; break;
+// 		case "경상북도": selectedNum[3] = "selected"; break;
+// 		case "광주광역시": selectedNum[4] = "selected"; break;
+// 		case "대구광역시": selectedNum[5] = "selected"; break;
+// 		case "대전광역시": selectedNum[6] = "selected"; break;
+// 		case "부산광역시": selectedNum[7] = "selected"; break;
+// 		case "서울특별시": selectedNum[8] = "selected"; break;
+// 		case "울산광역시": selectedNum[9] = "selected"; break;
+// 		case "인천광역시": selectedNum[10] = "selected"; break;
+// 		case "전라남도": selectedNum[11] = "selected"; break;
+// 		case "전라북도": selectedNum[12] = "selected"; break;
+// 		case "제주특별자치도": selectedNum[13] = "selected"; break;
+// 		case "충청남도": selectedNum[14] = "selected"; break;
+// 		case "충청북도": selectedNum[15] = "selected"; break;
+// 		}
 	}
 	
 	String email = m.getEmail();
@@ -207,7 +207,7 @@
 					<td class="category">비밀번호</td>
 					<td colspan="3">
 						<div class="mt-10">
-							<input type="password" name="password" onfocus="this.placeholder = ''" class="single-input">
+							<input type="password" name="password" id="pwdCheck" onfocus="this.placeholder = ''" class="single-input">
 							<input type="hidden" name="passwordInput">
 						</div>
 						<span id="notice1">비밀번호를 변경하지 않으려면 빈칸으로 두세요.</span>
@@ -266,36 +266,62 @@
 				</tr>
 				<tr>
 					<td class="category">주소</td>
-					<td>
-						<div class="mt-10">
-							<select class="address" name="address1">
-								<option>시/도</option>
-								<option value="강원도" <%= selectedAddress[0] %>>강원도</option>
-								<option value="경기도" <%= selectedAddress[1] %>>경기도</option>
-								<option value="경상남도" <%= selectedAddress[2] %>>경상남도</option>
-								<option value="경상북도" <%= selectedAddress[3] %>>경상북도</option>
-								<option value="광주광역시" <%= selectedAddress[4] %>>광주광역시</option>
-								<option value="대구광역시" <%= selectedAddress[5] %>>대구광역시</option>
-								<option value="대전광역시" <%= selectedAddress[6] %>>대전광역시</option>
-								<option value="부산광역시" <%= selectedAddress[7] %>>부산광역시</option>
-								<option value="서울특별시" <%= selectedAddress[8] %>>서울특별시</option>
-								<option value="울산광역시" <%= selectedAddress[9] %>>울산광역시</option>
-								<option value="인천광역시" <%= selectedAddress[10] %>>인천광역시</option>
-								<option value="전라남도" <%= selectedAddress[11] %>>전라남도</option>
-								<option value="전라북도" <%= selectedAddress[12] %>>전라북도</option>
-								<option value="제주특별자치도" <%= selectedAddress[13] %>>제주특별자치도</option>
-								<option value="충청남도" <%= selectedAddress[14] %>>충청남도</option>
-								<option value="충청북도" <%= selectedAddress[15] %>>충청북도</option>
-							</select>
-						</div>
+					<td colspan="3">
+						<input class="single-input" type="text" name="address1" readonly value="<%= address1 %>"/>
 					</td>
-					<td colspan="2">
-						<div class="mt-10">
-							<input type="text" name="address2" class="single-input" placeholder="도로명 주소 입력" onfocus="this.placeholder = ''" 
-								   onblur="this.placeholder = '도로명 주소 입력'" value="<%= address2 == null ? "" : address2 %>">
-						</div>
+					<td width="100px" style="padding-left: 10px;">
+						<button type="button" class="genric-btn info-border" onclick="openZipSearch()">검색</button>
 					</td>
 				</tr>
+				<tr>
+					<td class="category">상세 주소</td>
+					<td colspan="3">
+						<input class="single-input" type="text" name="address2" value="<%= address2 %>"/>
+					</td>
+				</tr>
+
+				<script>
+					function openZipSearch() {
+						new daum.Postcode({
+							oncomplete: function(data) {
+								$('[name=address1]').val(data.address);
+								$('[name=address2]').val(data.buildingName);
+							}
+						}).open();
+					}
+				</script>
+<!-- 				<tr> -->
+<!-- 					<td class="category">주소</td> -->
+<!-- 					<td> -->
+<!-- 						<div class="mt-10"> -->
+<!-- 							<select class="address" name="address1"> -->
+<!-- 								<option>시/도</option> -->
+<%-- 								<option value="강원도" <%= selectedAddress[0] %>>강원도</option> --%>
+<%-- 								<option value="경기도" <%= selectedAddress[1] %>>경기도</option> --%>
+<%-- 								<option value="경상남도" <%= selectedAddress[2] %>>경상남도</option> --%>
+<%-- 								<option value="경상북도" <%= selectedAddress[3] %>>경상북도</option> --%>
+<%-- 								<option value="광주광역시" <%= selectedAddress[4] %>>광주광역시</option> --%>
+<%-- 								<option value="대구광역시" <%= selectedAddress[5] %>>대구광역시</option> --%>
+<%-- 								<option value="대전광역시" <%= selectedAddress[6] %>>대전광역시</option> --%>
+<%-- 								<option value="부산광역시" <%= selectedAddress[7] %>>부산광역시</option> --%>
+<%-- 								<option value="서울특별시" <%= selectedAddress[8] %>>서울특별시</option> --%>
+<%-- 								<option value="울산광역시" <%= selectedAddress[9] %>>울산광역시</option> --%>
+<%-- 								<option value="인천광역시" <%= selectedAddress[10] %>>인천광역시</option> --%>
+<%-- 								<option value="전라남도" <%= selectedAddress[11] %>>전라남도</option> --%>
+<%-- 								<option value="전라북도" <%= selectedAddress[12] %>>전라북도</option> --%>
+<%-- 								<option value="제주특별자치도" <%= selectedAddress[13] %>>제주특별자치도</option> --%>
+<%-- 								<option value="충청남도" <%= selectedAddress[14] %>>충청남도</option> --%>
+<%-- 								<option value="충청북도" <%= selectedAddress[15] %>>충청북도</option> --%>
+<!-- 							</select> -->
+<!-- 						</div> -->
+<!-- 					</td> -->
+<!-- 					<td colspan="2"> -->
+<!-- 						<div class="mt-10"> -->
+<!-- 							<input type="text" name="address2" class="single-input" placeholder="도로명 주소 입력" onfocus="this.placeholder = ''"  -->
+<%-- 								   onblur="this.placeholder = '도로명 주소 입력'" value="<%= address2 == null ? "" : address2 %>"> --%>
+<!-- 						</div> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
 				<tr>
 					<td colspan="6">
 						<div class="mt-10">
@@ -349,8 +375,27 @@
 				pwd2.focus();
 				return false;
 			}
+			
+			 var pw = $("#pwdCheck").val();
+			 var num = pw.search(/[0-9]/g);
+			 var eng = pw.search(/[a-z]/ig);
+			 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+			 if(pw.length < 8 || pw.length > 20){
+
+			  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+			  return false;
+			 }else if(pw.search(/\s/) != -1){
+			  alert("비밀번호는 공백 없이 입력해주세요.");
+			  return false;
+			 }else if(num < 0 || eng < 0 || spe < 0 ){
+			  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+			  return false;
+			 }else {
+			   console.log("통과"); 
+			    return true;
+			 }
 		}
-		
 	</script>
 
 	<!-- JS here -->
@@ -394,6 +439,8 @@
 	<script src="<%=request.getContextPath()%>/assets/js/plugins.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/main.js"></script>
 	<script src="<%=request.getContextPath()%>/assets/js/all.min.js"></script>
+	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </body>
 </html>
