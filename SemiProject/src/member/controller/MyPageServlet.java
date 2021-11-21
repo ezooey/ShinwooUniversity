@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bookRental.model.service.BookRentalService;
+import bookRental.model.vo.BookRental;
 import member.vo.Member;
 import reqBook.model.service.ReqBookService;
 import reqBook.model.vo.ReqBook;
@@ -39,10 +41,13 @@ public class MyPageServlet extends HttpServlet {
 		
 		ArrayList<ReqBook> list = new ReqBookService().selectMyList(loginUser.getMemberId());
 		
+		ArrayList<BookRental> rentalList = new BookRentalService().selectMyRental(loginUser.getMemberId());
+		
 		String page = null;
 		
 		if(list != null) {	//noticeList.jsp
 			request.setAttribute("list", list);
+			request.setAttribute("rentalList", rentalList);
 			page = "WEB-INF/views/member/mypage.jsp";
 		} else {			//errorPage.jsp
 			request.setAttribute("msg", "공지사항 조회 실패");

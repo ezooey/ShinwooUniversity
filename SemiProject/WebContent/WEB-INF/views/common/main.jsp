@@ -472,184 +472,221 @@
 
 						}
 					</script>
-				</div>
-				<br>
-				<div id="bestLatest">
-					<div id="bestBook" class="centerBook">
-						<ul class="ul1">
-							<li class="booklist">
-								<a class="listop" href="http://www.yes24.com/Product/Goods/91065309">
-									<img class="bookimg" src="http://image.yes24.com/goods/91065309/M"
-										alt="달러구트 꿈 백화점"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/91065309">
-										달러구트 꿈 백화점
-									</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/93888691">
-									<img class="bookimg" src="http://image.yes24.com/goods/93888691/M"
-										alt="2030 축의 전환"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/93888691">2030 축의
-										전환</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/67362730">
-									<img class="bookimg" src="http://image.yes24.com/goods/67362730/M"
-										alt="해커스 토익 기출 보카"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/67362730">해커스 토익
-										기출 보카</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/16384156">
-									<img class="bookimg" src="http://image.yes24.com/goods/16384156/M"
-										alt="이토록 공부가 재미있어지는 순간"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
-										재미있어지는 순간</a>
-								</span>
-								<br>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/91065309">
-									<img class="bookimg" src="http://image.yes24.com/goods/91065309/M"
-										alt="달러구트 꿈 백화점"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/91065309">
-										달러구트 꿈 백화점
-									</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/93888691">
-									<img class="bookimg" src="http://image.yes24.com/goods/93888691/M"
-										alt="2030 축의 전환"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/93888691">2030 축의
-										전환</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/67362730">
-									<img class="bookimg" src="http://image.yes24.com/goods/67362730/M"
-										alt="해커스 토익 기출 보카"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/67362730">해커스 토익
-										기출 보카</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/16384156">
-									<img class="bookimg" src="http://image.yes24.com/goods/16384156/M"
-										alt="이토록 공부가 재미있어지는 순간"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
-										재미있어지는 순간</a>
-								</span>
-							</li>
-						</ul>
-					</div>
-					<div id="latestBook" class="centerBook">
-						<ul class="ul1">
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/16384156">
-									<img class="bookimg" src="http://image.yes24.com/goods/16384156/M"
-										alt="이토록 공부가 재미있어지는 순간"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
-										재미있어지는 순간</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/67362730">
-									<img class="bookimg" src="http://image.yes24.com/goods/67362730/M"
-										alt="해커스 토익 기출 보카"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/67362730">해커스 토익
-										기출 보카</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/93888691">
-									<img class="bookimg" src="http://image.yes24.com/goods/93888691/M"
-										alt="2030 축의 전환"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/93888691">2030 축의
-										전환</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/16384156">
-									<img class="bookimg" src="http://image.yes24.com/goods/16384156/M"
-										alt="이토록 공부가 재미있어지는 순간"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
-										재미있어지는 순간</a>
-								</span>
-								<br>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/91065309">
-									<img class="bookimg" src="http://image.yes24.com/goods/91065309/M"
-										alt="달러구트 꿈 백화점"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/91065309">
-										달러구트 꿈 백화점
-									</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/67362730">
-									<img class="bookimg" src="http://image.yes24.com/goods/67362730/M"
-										alt="해커스 토익 기출 보카"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/67362730">해커스 토익
-										기출 보카</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/93888691">
-									<img class="bookimg" src="http://image.yes24.com/goods/93888691/M"
-										alt="2030 축의 전환"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/93888691">2030 축의
-										전환</a>
-								</span>
-							</li>
-							<li class="booklist">
-								<a href="http://www.yes24.com/Product/Goods/91065309">
-									<img class="bookimg" src="http://image.yes24.com/goods/91065309/M"
-										alt="달러구트 꿈 백화점"><br>
-								</a>
-								<span class="bookName">
-									<a class="listop" href="http://www.yes24.com/Product/Goods/91065309">
-										달러구트 꿈 백화점
-									</a>
-								</span>
-							</li>
-						</ul>
-					</div>
+		</div>
+		<script>
+			$(
+					function() {
+						$('#slider-div')
+								.slick(
+										{
+											slide : 'div',
+											infinite : true,
+											slidesToShow : 3,
+											slidesToScroll : 1,
+											speed : 4000,
+											arrows : true,
+											dots : true,
+											autoplay : true,
+											autoplaySpeed : 5000,
+											pauseOnHover : false,
+											vertical : false,
+											prevArrow : "<button type='button' class='slick-prev'>Previous</button>",
+											nextArrow : "<button type='button' class='slick-next'>Next</button>",
+											dotsClass : "slick-dots",
+											draggable : true,
 
+											responsive : [ {
+												breakpoint : 960,
+												settings : {
+													slidesToShow : 3
+												}
+											}, {
+												breakpoint : 768,
+												settings : {
+													slidesToShow : 2
+												}
+											} ]
+										});
+					})
+		</script>
+		<br>
+		<br>
+		<br>
+
+		<form class="center" name="search">
+			<div id="searchForm" class="center">
+				<select id="searchOption">
+					<option value="title" selected>도서명</option>
+					<option value="author">저자</option>
+				</select> <input type="search" id="searchText">
+				<button id="searchButton" type="submit" title="검색"
+					style="background: none;">
+					<i class="fas fa-search fa-lg"
+						style="background: none; color: #2980b9;"></i>
+				</button>
+			</div>
+			<br>
+			<br>
+			<hr width=60%>
+		</form>
+		<br>
+		<br>
+
+
+		<form name="bookList">
+			<div id="listDiv" class="left">
+				&nbsp;&nbsp; <a onclick="bookOrder(this);" class="order"><b>인기순</b></a>&nbsp;
+				<a onclick="bookOrder(this);" class="order"><b>최신순</b></a>
+				<script>
+					function bookOrder(book) {
+						if (book.innerText == "인기순") {
+							document.getElementById("bestBook").style.display = "block";
+							document.getElementById("latestBook").style.display = "none";
+						} else if (book.innerText == "최신순") {
+							document.getElementById("bestBook").style.display = "none";
+							document.getElementById("latestBook").style.display = "block";
+						}
+
+					}
+				</script>
+			</div>
+			<br>
+			<div id="bestLatest">
+				<div id="bestBook" class="centerBook">
+					<ul class="ul1">
+						<li class="booklist"><a class="listop"
+							href="http://www.yes24.com/Product/Goods/91065309"> <img
+								class="bookimg" src="http://image.yes24.com/goods/91065309/M"
+								alt="달러구트 꿈 백화점"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/91065309"> 달러구트 꿈
+									백화점 </a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/93888691"> <img
+								class="bookimg" src="http://image.yes24.com/goods/93888691/M"
+								alt="2030 축의 전환"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/93888691">2030 축의
+									전환</a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/67362730"> <img
+								class="bookimg" src="http://image.yes24.com/goods/67362730/M"
+								alt="해커스 토익 기출 보카"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/67362730">해커스 토익 기출
+									보카</a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/16384156"> <img
+								class="bookimg" src="http://image.yes24.com/goods/16384156/M"
+								alt="이토록 공부가 재미있어지는 순간"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
+									재미있어지는 순간</a>
+						</span> <br></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/91065309"> <img
+								class="bookimg" src="http://image.yes24.com/goods/91065309/M"
+								alt="달러구트 꿈 백화점"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/91065309"> 달러구트 꿈
+									백화점 </a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/93888691"> <img
+								class="bookimg" src="http://image.yes24.com/goods/93888691/M"
+								alt="2030 축의 전환"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/93888691">2030 축의
+									전환</a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/67362730"> <img
+								class="bookimg" src="http://image.yes24.com/goods/67362730/M"
+								alt="해커스 토익 기출 보카"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/67362730">해커스 토익 기출
+									보카</a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/16384156"> <img
+								class="bookimg" src="http://image.yes24.com/goods/16384156/M"
+								alt="이토록 공부가 재미있어지는 순간"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
+									재미있어지는 순간</a>
+						</span></li>
+					</ul>
+				</div>
+				<div id="latestBook" class="centerBook">
+					<ul class="ul1">
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/16384156"> <img
+								class="bookimg" src="http://image.yes24.com/goods/16384156/M"
+								alt="이토록 공부가 재미있어지는 순간"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
+									재미있어지는 순간</a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/67362730"> <img
+								class="bookimg" src="http://image.yes24.com/goods/67362730/M"
+								alt="해커스 토익 기출 보카"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/67362730">해커스 토익 기출
+									보카</a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/93888691"> <img
+								class="bookimg" src="http://image.yes24.com/goods/93888691/M"
+								alt="2030 축의 전환"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/93888691">2030 축의
+									전환</a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/16384156"> <img
+								class="bookimg" src="http://image.yes24.com/goods/16384156/M"
+								alt="이토록 공부가 재미있어지는 순간"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
+									재미있어지는 순간</a>
+						</span> <br></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/91065309"> <img
+								class="bookimg" src="http://image.yes24.com/goods/91065309/M"
+								alt="달러구트 꿈 백화점"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/91065309"> 달러구트 꿈
+									백화점 </a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/67362730"> <img
+								class="bookimg" src="http://image.yes24.com/goods/67362730/M"
+								alt="해커스 토익 기출 보카"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/67362730">해커스 토익 기출
+									보카</a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/93888691"> <img
+								class="bookimg" src="http://image.yes24.com/goods/93888691/M"
+								alt="2030 축의 전환"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/93888691">2030 축의
+									전환</a>
+						</span></li>
+						<li class="booklist"><a
+							href="http://www.yes24.com/Product/Goods/91065309"> <img
+								class="bookimg" src="http://image.yes24.com/goods/91065309/M"
+								alt="달러구트 꿈 백화점"><br>
+						</a> <span class="bookName"> <a class="listop"
+								href="http://www.yes24.com/Product/Goods/91065309"> 달러구트 꿈
+									백화점 </a>
+						</span></li>
+					</ul>
 				</div>
 			</form>
 			<br><br>
@@ -807,7 +844,6 @@
 						<button type="button" class="genric-btn primary circle" id="login">전체보기 > </button>
 					</div>
 				</div>
-
 			</section>
 			<script>
 				$(document).ready(function () {
@@ -880,7 +916,6 @@
 			<script src="./assets/js/plugins.js"></script>
 			<script src="./assets/js/main.js"></script>
 			<script src="./assets/js/all.min.js"></script>
-
 </body>
 <script type="text/javascript">
 	var _gaq = _gaq || [];
