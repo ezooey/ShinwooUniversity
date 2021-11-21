@@ -1,4 +1,4 @@
-package member.controller;
+package question.controller;
 
 import java.io.IOException;
 
@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.service.MemberService;
 import member.vo.Member;
+import question.model.service.QuestionService;
+import question.model.vo.Question;
 
 /**
- * Servlet implementation class ModifyInfoServlet
+ * Servlet implementation class InsertAnswerServlet
  */
-@WebServlet("/modifyInfoForm.do")
-public class ModifyInfoFormServlet extends HttpServlet {
+@WebServlet("/answerQuestion.li")
+public class InsertAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModifyInfoFormServlet() {
+    public InsertAnswerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,28 +31,31 @@ public class ModifyInfoFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		int questNo = Integer.parseInt(request.getParameter("questNo"));
+		String answerContent = request.getParameter("answerContent");
+		String answerId = ((Member)request.getSession().getAttribute("loginUser")).getMemberId();
 		
-		String memberId = request.getParameter("studentNo");
 		
-		Member m = new MemberService().selectMember(memberId);
-
-		String page = null;
-		if(m != null) {
-			request.setAttribute("m", m);
-			page = "WEB-INF/views/member/modifyInfo.jsp";
-			
+		Question q = new Question();
+		q.setQuest_No(questNo);
+		q.setAnswer(answerContent);
+		q.setAns_Id(answerId);
+		
+		int result = new QuestionService().updateAnswer(q);
+		
+		if(result > 0) {
+			response.sendRedirect("questionList.li");
 		} else {
-			request.setAttribute("msg", "회원 정보 로딩 실패");
-			page = "WEB-INF/views/common/errorPage.jsp";
+			request.setAttribute("msg", "문의 목록 조회 실패");
+			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

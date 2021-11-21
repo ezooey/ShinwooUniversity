@@ -220,8 +220,9 @@
 														bookName = list.get(i).getBookTitle();
 														}%>
 											
-												<td style="vertical-align:middle"><input type="radio" name="book" value="<%= list.get(i).getBookTitle() %>,<%= list.get(i).getAuthor()%>,<%= list.get(i).getImageFile() %>,<%= list.get(i).getBookNo() %>"></td>
-												<td><img height="150px" id="titleImg" name="titleImg" src="<%= request.getContextPath() %>/<%= list.get(i).getImageFile() %>"></td>
+												<td style="vertical-align:middle"><input type="radio" name="book" value="<%= list.get(i).getBookTitle() %>,<%= list.get(i).getAuthor()%>,<%= request.getContextPath() %>/image/<%= list.get(i).getImageFile() %>,<%= list.get(i).getBookNo() %>"></td>
+												<td><img height="150px" id="titleImg" name="titleImg" src="<%= request.getContextPath() %>/image/<%= list.get(i).getImageFile() %>"></td>
+										
 												<td><%= bookName %></td>
 												<td><%= list.get(i).getCateName() %></td>
 												<td><%= list.get(i).getAuthor() %></td>

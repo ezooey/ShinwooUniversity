@@ -158,7 +158,7 @@
                         <div class="col-lg-8 col-md-8">
                             <div>
                                 <form class="form-contact comment_form" action="<%= request.getContextPath() %>/insertReview.rv" id="commentForm" name="commentForm"
-                                    enctype="multipart/form-data">
+                                   method="post">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">

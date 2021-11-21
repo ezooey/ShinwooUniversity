@@ -199,7 +199,7 @@
                                             	<table>
                                             	
                                                 <tr>
-                                                	<td rowspan="3"><img height="300px" id="bookImg" name="bookImg" src="<%= request.getContextPath() %>/<%= rb.getImageFile() %>"></td>
+                                                	<td rowspan="3"><img height="300px" id="bookImg" name="bookImg" src="<%= request.getContextPath() %>/image/<%= rb.getImageFile() %>"></td>
                                                 </tr>
                                                 <tr>
                                                 	<td width="800px"><input type="text" class="upload-name" id="uploadName" name="uploadName" value="<%= rb.getBookTitle() %>" readonly></td>

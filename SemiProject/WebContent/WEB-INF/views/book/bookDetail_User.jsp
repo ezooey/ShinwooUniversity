@@ -1,13 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="book.model.vo.BookDetail"%>
+<% 
+	BookDetail b = (BookDetail)request.getAttribute("bookDetail");
+%>
 <!doctype html>
 <html class="no-js">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>도서 등록</title>
+    <title>도서 상세</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
@@ -32,7 +37,8 @@
         #currentMenu {
             color: white;
             padding: 20px;
-            font-size: 40px;
+            padding-left: 2.5%;
+            font-size: 30px;
             font-weight: 700;
         }
 
@@ -41,7 +47,7 @@
         }
 
         .reqTitle {
-            padding-top: 10px;
+            padding-top: 5px;
             padding-bottom: 3px;
             display: block;
         }
@@ -63,8 +69,121 @@
         }
 
         .section-top-border {
-            padding: 40px;
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
+        
+        #homeNav{padding-left: 150px; padding-top: 15px;}
+        #homeNav>a{color: #666;}
+        .bookInfo{padding-left: 150px; padding-top: 25px; position: relative;}
+        #detail_simple{position: relative;}
+        #detail_simple>a{position: absolute;}
+        #ebookTag{
+        	cursor: default;
+        	font-size: 13px;
+	        text-align: center; 
+	        width: 75px; 
+	        height: 23px; 
+	        color: white; 
+	        background: rgba(102, 102, 102, 0.7); 
+	        z-index: 999;
+        }
+        #bookName{
+        	padding-left: 330px; 
+        	text-decoration: none; 
+        	margin-bottom: 30px;
+        }
+        #title{color: black; margin-bottom: 0px;}
+        .simpleInfo{
+        	font-size: 13px; 
+        	color: #666;
+        	cursor: default;
+        }
+        #epub{
+        	text-align: center;
+        	display: inline-block;
+        	width: 40px;
+        	border-radius: 5px;
+        	font-size: 8px; 
+        	background: lightgray; 
+        	color: black;
+        	cursor: default;
+        }
+        #borrow{
+        	text-align: center;
+        	display: inline-block;
+        	width: 120px;
+        	height: 42px;
+        	padding-top: 10px;
+        	padding-bottom: 10px;
+        	margin-top: 25px;
+        	border-radius: 5px;
+        	background: #6785FF;
+        	color: white;
+        	font-size: 15px;
+			font-weight: bold;
+			cursor: pointer;
+			border: 1px solid dimgray;
+        }
+        #count{
+        	display: inline-block;
+        	text-align: center;
+        	margin-left: 15px;
+        	padding-top: 10px;
+        	padding-bottom: 10px;
+        	padding-left: 10px;
+        	padding-right: 10px;
+        	border-radius: 5px;
+        	border: 1px solid gray;
+        	font-size: 15px;
+         	font-weight: bold;
+         	background: lightgray;
+        	color: dimgray;
+        	cursor: default;
+        }
+        #tabBar{
+        	position: relative; 
+        	display: inline-block; 
+        	text-align: center; 
+        	margin: 0 auto;}
+        #barLi{list-style: none; display: inline-block; margin: 0 auto;}
+        #tab1{float: left;}
+        #bookIntro{
+        	display: inline-block; 
+        	width: 100px;
+        	padding-top: 7px;
+        	padding-bottom: 7px;
+        	float: left;
+        	background: #6785ff;
+        	color: white;
+        	font-weight: bold;
+        	
+        	border-radius: 5px;
+        	cursor: default;
+        }
+        #contents{
+        	background: #f8f8f8;
+        	color: dimgray;
+        }
+        #bookIntro{border: 2px solid lightgray;}
+        #introduce{
+        	margin-top: 30px;
+        	margin-left: 150px;
+        	margin-right: 150px;
+        	display: flex;
+  			justify-content: center;
+        	padding-bottom: 25px;
+        	text-align: left;
+        	color: dimgray;
+        	border: 0px;
+        }
+        #separate{
+        	text-align: center;
+        	margin: 0px auto;
+        	width: 1000px;
+        	color: #6785ff;
+        }
+        hr{border-bottom: #888;}
     </style>
 </head>
 
@@ -81,47 +200,12 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-        <div class="header-area">
-            <div class="main-header header-sticky">
-                <!-- Logo -->
-                <div class="header-left">
-                    <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                    </div>
-                    <div class="menu-wrapper  d-flex align-items-center">
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li class="active"><a href="about.html">도서 신청</a></li>
-                                    <li><a href="services.html">도서 검색</a></li>
-                                    <li><a href="blog.html">독후감</a></li>
-                                    <li><a href="contact.html">마이페이지</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-right d-none d-lg-block">
-                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
-                </div>
-                <!-- Mobile Menu -->
-                <div class="col-12">
-                    <div class="mobile_menu d-block d-lg-none"></div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
+    <%@ include file="../common/header.jsp" %>
     <main>
         <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
-                <h2 id="currentMenu">도서 신청</h2>
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
+                <h2 id="currentMenu">상세 보기</h2>
             </div>
         </div>
 
@@ -129,79 +213,90 @@
         <div class="whole-wrap">
             <div class="container box_1170">
                 <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-md-8 mt-sm-30">
-                            <h3 class="mb-20">도서 신청 시 유의 사항</h3>
-                            <div>
-                                <ul class="noneList">
-                                    <li><i class="fas fa-check-circle"></i> 희망 도서 신청 권수</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1인당 월 1권, 1년에 10권으로 제한</li>
-                                    <li><i class="fas fa-check-circle"></i> 희망 도서 진행 절차</li>
-                                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;신청한 도서가 절차를 거쳐 신청이 승인되는 경우 신청자에게 대출 우선권 부여</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8">
-                            <h3 class="mb-30">신청 도서 정보 입력</h3>
-                            <form action="#">
-                                <div>
-                                    <span class="reqTitle">도서명</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fa fa-book" aria-hidden="true"></i></div>
-                                        <input type="text" name="bookTitle" placeholder="도서명을 입력하세요" required
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '도서명을 입력하세요'"
-                                            class="single-input">
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="reqTitle">저자</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fas fa-pencil-alt"></i></div>
-                                        <input type="text" name="author" placeholder="저자를 입력하세요" required
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '저자를 입력하세요'"
-                                            class="single-input">
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="reqTitle">출판사</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fas fa-bookmark"></i></div>
-                                        <input type="text" name="publisher" placeholder="출판사를 입력하세요" required
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '출판사를 입력하세요'"
-                                            class="single-input">
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="reqTitle">신청일자</span>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fas fa-calendar-day"></i></div>
-                                        <input type="text" name="reqDate" readonly="" required class="single-input">
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="reqTitle">신청의견</span>
-                                    <div class="mt-10">
-                                        <textarea class="single-textarea" placeholder="신청 이유를 입력하세요"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = '신청 이유를 입력하세요'"
-                                            required></textarea>
-                                    </div>
-                                </div>
-                                <div class="bottomBtn">
-                                    <input type="submit" class="genric-btn info circle" value="신청">
-                                    <input type="reset" class="genric-btn danger circle" value="취소">
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
+                	<form action="<%= request.getContextPath() %>/rentalBook.bo">
+	                    <div class="row">
+	                        <div id="homeNav">
+				    			<a id="btn_home" href="../common/main.html" role="button">홈</a> &gt; 
+				    			<a id="btn_category" href="" role="button" name="category"><%= b.getCategoryName() %></a> &gt; <a>상세보기</a>
+				    		</div>
+				    	</div>
+					   	<hr>
+						<div class="row">
+						   	<div id="detail_simple" class="bookInfo">
+						   		<a id="bookImg"><img src="<%= request.getContextPath() %>/<%= b.getChangeName() %>"></a>
+						   		<a id="ebookTag">전자책</a>
+						   	</div>
+						   	<div id="bookName">
+						   		<h4 id="title" name="bookTitle"><b><%= b.getBookTitle() %></b></h4>
+						   		<input type="hidden" name="bNo" value="<%= b.getBookNo() %>">
+						   		<br>
+						   		<hr style="margin-top: 0px; margin-bottom: 10px; width: 250px;">
+						   		<span class="simpleInfo"><b>글쓴이 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="author"><%= b.getAuthor() %></span>
+						   		<br>
+						   		<span class="simpleInfo"><b>출판사 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="publisher"><%= b.getPublisher() %></span>
+						   		<br>
+						   		<span class="simpleInfo"><b>출간일 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="release"><%= b.getReleaseDate() %></span>
+						   		<br>
+						   		<span class="simpleInfo"><b>제공형태: &nbsp;&nbsp;</b></span><span id="epub">ePUB</span>
+						   		<br>
+						   		<button onclick="borrow(returnDay);" id="borrow">대출하기</button>
+						   		<% if(loginUser != null){%>
+						   			<input type="hidden" name="rId" value="<%= loginUser.getMemberId() %>">
+						   		<% } %>
+						   		<div id="count">대출   &nbsp;&nbsp; <span id="currentNum"><%= request.getAttribute("currBorrow") %></span> / <%= request.getAttribute("max") %></div>
+						   	</div>
+						   		<br><br>
+						   	<div id="tabBar" class="bookInfo">
+						 		<span id="bookIntro">책 소개</span><br>
+						   	</div>
+						   	<fieldset>
+							   	<hr id="separate">
+								<div id="introduce" name="bookProfile">
+									<%= b.getBookInfo() %>
+								</div>
+								<br>
+								<div id="refer" name="refer">
+									<% if(loginUser != null && loginUser.getMemberType().equals("MASTER")){ %>
+										<%= b.getRefer() %>
+									<% } %>
+								</div>
+						   	</fieldset>
+	                    </div>
+	            	</form>
                 </div>
             </div>
         </div>
+   		<script>
+   			function rtDay(date) {
+   				var today = new Date();
+  				var twoWeeks = new Date(today.setDate(today.getDate() + 14));
+				
+  				var year = twoWeeks.getFullYear();
+  				var month = (1 + twoWeeks.getMonth());
+  				var day = twoWeeks.getDate();
+  				return year + '-' + month + '-' + day;
+   			}
+			var returnDay = rtDay(new Date());
+	  		var cur = <%= request.getAttribute("currBorrow") %>
+	  		var borrow = document.getElementById('borrow');
+  				
+  			if(<%= request.getAttribute("check") %> < 1) {
+		  		function borrow(returnDay){
+		   				alert('도서가 대출되었습니다.\n' + returnDay + ' 까지 이용하실 수 있습니다.');
+				  		if(cur < 2){
+				  			cur = Number(cur) + 1;
+				  			document.getElementById('currentNum').innerHTML = cur;
+				  			borrow.innerText = '대출중';
+				  			borrow.onclick = null;
+				  		}
+		  			}
+		  	} else {
+		  		borrow.innerText = '대출중';
+		  		borrow.onclick = null;
+		  	}
+	  		
+	  		
+   		</script>
         <!-- End Align Area -->
     </main>
     <footer>
@@ -247,10 +342,10 @@
                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Contect</h4>
+                                <h4>Contact</h4>
                                 <ul>
                                     <li class="number"><a href="#">(02) 123-4567</a></li>
-                                    <li><a href="#">shinwoo@universty.kr</a></li>
+                                    <li><a href="#">shinwoo@university.kr</a></li>
                                     <li><a href="#">서울시 강남구 역삼로</a></li>
                                 </ul>
                             </div>

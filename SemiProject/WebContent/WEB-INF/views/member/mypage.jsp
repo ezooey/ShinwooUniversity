@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.vo.Member" import="member.vo.Member,java.util.ArrayList,review.model.vo.*,reqBook.model.vo.*"%>
+    pageEncoding="UTF-8" import="member.vo.Member" import="member.vo.Member,java.util.ArrayList,review.model.vo.*,reqBook.model.vo.*, bookRental.model.vo.*"%>
   <%
 	//Member loginUser= (Member)session.getAttribute("loginUser");
  	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list"); 
+ 	ArrayList<BookRental> rentalList = (ArrayList)request.getAttribute("rentalList");
+ 	System.out.println(rentalList.size());
 %>
 <!doctype html>
 <html class="no-js">
@@ -229,6 +231,10 @@
  text-align: center;
     }
     
+    .displayDiv{
+    	font-size:10;
+    }
+    
     </style>
   </head>
   <body>
@@ -263,60 +269,75 @@
   <p><p><br>
    <div class="jumbotron" id="personalInf">
    
-   
-<div class="card-deck">
-  <div class="card">
-     <div class="imgdiv"><img src="https://image.yes24.com/goods/102185287/L" class="card-img-top" alt="..." id="book1"></div>
-    <div class="card-body">
-      <h5 class="card-title" id="dday">아기곰의 재테크 불변의 법칙</h5>
-      <p class="card-text" id="dday" align='center'>D-1<br>
-      <button type="button"  class="genric-btn danger circle" onclick="confirm('아기곰의 재테크 불변의 법칙을(를) 반납하시겠습니까?')">반납하기</button>
-      </p>
-    </div>
-  </div>
-  <div class="card">
-     <div class="imgdiv"><img src="https://image.yes24.com/goods/102266039/L" class="card-img-top" alt="..."></div>
-    <div class="card-body">
-      <h5 class="card-title">이토록 쉬운 경제학</h5>
-      <p class="card-text" align='center'>D-2<br>
-      <button type="button" class="genric-btn info circle" onclick="confirm('이토록 쉬운 경제학을(를) 반납하시겠습니까?')">반납하기</button></p>
-    </div>
-    
-  </div>
-  <div class="card">
-  
-     <div class="imgdiv"><img src="https://image.yes24.com/goods/7467677/L" class="card-img-top" alt="..."></div>
-    
-    <div class="card-body">
-    
-      <h5 class="card-title">오만과 몽상</h5>
-     <p class="card-text" align='center'>D-3<br>
-      <button type="button"  class="genric-btn info circle" onclick="confirm('오만과 몽상을(를) 반납하시겠습니까?')">반납하기</button></p>
-    </div>
-   
+    <% if(rentalList.isEmpty()){ %>
+		<div class="card-deck">
+			<div class="card card1"></div>
+		   	<div class="card card1"></div>
+		    <div class="card card1"></div>
+		</div>
+		<p></p>
+		<div class="card-deck">
+			<div class="card card1"></div>
+		   	<div class="card card1"></div>
+		    <div class="card card1"></div>
+		</div>
+	<%}else{ %>
+	<div class="card-deck">
+	<% 		for(int i = 0; i < rentalList.size(); i++){ %>
+				<% if(i == 3){ %>
+		    	</div>
+		    	<p></p>
+		    	<div class="card-deck">
+		   		 <% } %>
+		   		 	<% String bookT = rentalList.get(i).getBookTitle(); %>
+		   		 	<% if(bookT.length()>25){ %>
+		   		 		<% bookT = bookT.substring(0, 25); } %>
+					  <div class="card">
+					     <div class="imgdiv"><img src="<%= request.getContextPath() %>/image/<%= rentalList.get(i).getImg() %>" class="card-img-top" alt="..." ></div>
+					    <div class="card-body">
+					      <h5 class="card-title" <% if(rentalList.get(i).getDateCal() == 1){ %>id="dday"<%} %>><%= bookT %></h5>
+					      <p class="card-text" <% if(rentalList.get(i).getDateCal() == 1){ %>id="dday"<%} %> align='center'>D-<%= rentalList.get(i).getDateCal() %><br>
+					      <button type="button"  class="genric-btn <%if(rentalList.get(i).getDateCal() == 1){ %> danger <%} else{ %> primary<%} %> circle" onclick="returnBtn(<%= rentalList.get(i).getRentalCode() %>, '<%= rentalList.get(i).getBookTitle() %>')">반납하기</button>
+					      </p>
+					    </div>
+					  </div>
+					  	
+		    		
+  			<%} %>
+  				<% for(int i = 0; i < 6-rentalList.size(); i++){ %>
+  					<% if(i == 3 - rentalList.size()){ %>
+  						</div>
+		    	<p></p>
+		    	<div class="card-deck">
+  					<%} %>
+  					<div class="card card1"></div>
+  				<% } %>
    </div>
-</div>
-
-   <p></p>
-   
-<div class="card-deck">
-  <div class="card">
-    <div class="imgdiv"><img src="https://image.yes24.com/goods/92275154/L" class="card-img-top" alt="..."></div>
-    <div class="card-body">
-      <h5 class="card-title">제리(cherry)</h5>
-      <p class="card-text" align='center'>D-4<br>
-      <button type="button"  class="genric-btn info circle" onclick="confirm('체리(cherry)을(를) 반납하시겠습니까?')">반납하기</button></p>
-    </div>
-  </div>
-  <div class="card card1">
-   </div>
-   <div class="card card1">
-   </div>
-  
-</div>
-
-   
-   
+<%} %>
+     	    <script>
+	   	function returnBtn(rCode, bookName){
+	    	var bool = confirm(bookName + "을(를)\n반납하시겠습니까?");
+	    	if(bool == true){
+		    	$.ajax({
+	  				url:'returnBook.br',
+	  				data:{rentCode : rCode},
+	  				success:function(data){
+	  					console.log(data);
+	  					if(data.trim()=='1'){
+	  						alert('반납되었습니다.');
+	  						location.reload();
+	  					}else{
+	  						alert('반납실패!');
+	  					}
+	  				},
+	  				error:function(data){
+	  					console.log(data);
+	  					
+	  				}
+	  			});
+	    	}
+	   	}
+    </script>
    </div>
    <p><br>
     <div class="borrowed">신청한 도서목록</div></div>
@@ -364,10 +385,10 @@
                                                 <% String status = null; %>
                                                 <% if(list.get(i).getStatus() == 0){ 
                                                 	status = "대기";%>
-                                                	<td><%=status%></td>
+                                                	<td><a onclick="openInfo('<%= list.get(i).getReqBookPub() %>', '<%= list.get(i).getReqBookContent() %>');"><u><%= status %></u></a></td>
                                             <%    }else if(list.get(i).getStatus() == 1){
                                                 		status = "승인";%>
-                                                		<td><%=status%></td>
+                                                		<td><a onclick="openInfo('<%= list.get(i).getReqBookPub() %>', '<%= list.get(i).getReqBookContent() %>');"><u><%= status %></u></a></td>
                                                  <%}else{ 
                                                 		status = "미승인";%>
                                                 		<td><a onclick="window.open('rejectDetail.rb?rno=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=500, height=270');"><u><%= status %></u></a></td>
@@ -380,6 +401,11 @@
                                            <%} %>
                                         </tbody>
                                     </table>
+                                    <script>
+                                    	function openInfo(pub, comment){
+                                    		alert('출판사 : ' + pub + '\n신청이유 : ' + comment);
+                                    	}
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -579,10 +605,10 @@
     <div class="borrowed">개인정보 수정</div>
         <p><br>
     <div class="jumbotron" id="personalInf">
-  <h1 class="display-4">안녕하세요 <%= loginUser.getMemberName() %>님!</h1><p></p>
-  <p class="lead">개인정보수정은 비밀번호 입력 후 변경 가능합니다.</p>  <div id="pwDiv"><input type="password" name="userPwd" id="userPwd" placeholder="비밀번호 입력"><input  type="button" id="goModify" value="확인""></div>
+  <h2 class="display-2">안녕하세요 <%= loginUser.getMemberName().substring(0, 1) + "**" %>님!</h2><p></p>
+  <p class="lead" style="font-size:15px">개인정보수정은 비밀번호 입력 후 변경 가능합니다.</p>  <div id="pwDiv"><input type="password" name="userPwd" id="userPwd" placeholder="비밀번호 입력"><input  type="button" id="goModify" value="확인""></div>
   <hr class="my-4"><br>
-   <p class="personal">학번 : <%= loginUser.getMemberId() %></p><br>
+   <p class="personal">학번 : <%= loginUser.getMemberId().substring(0, 4) + "*****" %></p><br>
    <%
    String phone = null;
    if(loginUser.getPhone() == null){
@@ -591,8 +617,8 @@
 	    phone = loginUser.getPhone();
    }
    %>
-    <p class="personal">휴대전화 : <%= phone %></p><br>
-    <p class="personal">이메일 : <%= loginUser.getEmail() %></p> <br><br>
+    <p class="personal">휴대전화 : <%= phone.substring(0,3) + "-" + phone.substring(4,5) + "***"+ "-" + phone.substring(7,8) + "***" %></p><br>
+    <p class="personal">이메일 : <%= loginUser.getEmail().substring(0,4) + "***" + "@naver.com" %></p> <br><br>
   <a class="btn btn-primary btn-lg" role="button" href="javascript:confirmPw();">개인정보변경</a>
  
     
@@ -816,6 +842,6 @@
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/all.min.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   </body>
 </html>
