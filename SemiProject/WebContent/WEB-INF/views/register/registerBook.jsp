@@ -117,6 +117,10 @@
         	margin-top: 3px;
         	float: right;
         }
+        
+        .divArea {
+			margin-bottom: 15px;
+		}
     </style>
 </head>
 
@@ -149,7 +153,7 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
                             <h3 class="mb-30">등록 도서 정보 입력</h3>
-                            <form action="<%= request.getContextPath() %>/register.bo" id="regBook" name="regBook" method="post" encType="multipart/form-data">
+                            <form action="<%= request.getContextPath() %>/register.bo" id="regBook" name="regBook" method="post" encType="multipart/form-data" onsubmit="return insertImg();">
                                 <div>
                                     <span class="regTitle">도서명</span>
                                     <div class="input-group-icon mt-10 bookname">
@@ -161,7 +165,7 @@
                                     </div>
                                 </div>
                                 <br clear="right">
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">저자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-pencil-alt"></i></div>
@@ -170,7 +174,7 @@
                                             class="single-input">
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">출판사</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-bookmark"></i></div>
@@ -179,7 +183,7 @@
                                             class="single-input">
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">카테고리</span>
                                     <div class="default-select" id="default-select">
                                         <select name = "category">
@@ -196,30 +200,37 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
+                                    <span class="regTitle">출간일</span>
+                                    <div class="input-group-icon mt-10">
+                                        <div class="icon"><i class="fas fa-calendar-day"></i></div>
+                                        <input type="date" name="releaseDate" class="single-input" required>
+                                    </div>
+                                </div>
+                                <div class="divArea">
                                     <span class="regTitle">등록일자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-calendar-day"></i></div>
-                                        <input type="text" name="regDate" readonly class="single-input">
+                                        <input type="date" name="regDate" readonly class="single-input">
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">표지 이미지</span>
                                     <div class="input-group-icon mt-10 filebox">
                                         <div class="icon"><i class="far fa-image"></i></div>
-                                        <input class="upload-name" value="표지 이미지를 업로드하세요" readonly placeholder="표지 이미지를 업로드하세요">
+                                        <input class="upload-name" id="uploadName" value="표지 이미지를 업로드하세요" readonly placeholder="표지 이미지를 업로드하세요">
                                         <label for="file">파일 찾기</label>
                                         <input type="file" id="file" name="bookImage" accept=".gif, .jpg, .png" required>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">줄거리</span>
                                     <div class="mt-10">
                                         <textarea class="single-textarea" name="bookInfo" placeholder="줄거리"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '줄거리를 입력하세요'"></textarea>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">참고사항</span>
                                     <div class="mt-10">
                                         <textarea class="single-textarea" name="refer" placeholder="참고사항을 입력하세요"
@@ -264,6 +275,15 @@
         	window.open('searchregbook.bo', 'searchRegBook', 'width=500, height=300');
 		}
         
+        $("#regOk").click(function() {
+        	if($("#uploadName").val() == '표지 이미지를 업로드하세요'){
+        		alert('도서 이미지를 추가해 주세요');
+        		
+        		var offset = $("#uploadName").offset() - 50;
+                $('html, body').animate({scrollTop : offset.top}, 400);
+
+			} 
+		});
         
     </script>
     <!-- JS here -->

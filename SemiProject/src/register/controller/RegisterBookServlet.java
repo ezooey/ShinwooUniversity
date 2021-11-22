@@ -2,7 +2,7 @@ package register.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Date;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
-import com.sun.xml.internal.ws.api.message.Attachment;
 
 import book.model.service.BookService;
 import book.model.vo.Book;
@@ -68,6 +67,7 @@ public class RegisterBookServlet extends HttpServlet {
 			int category = Integer.parseInt(multiRequest.getParameter("category"));
 			String bookInfo = multiRequest.getParameter("bookInfo");
 			String refer = multiRequest.getParameter("refer");
+			Date releaseDate = Date.valueOf(multiRequest.getParameter("releaseDate"));
 			
 			int n1 = (int)(Math.random() * (999 - 100 + 1)) + 100;
 			int n2 = (int)(Math.random() * (9999 - 1000 + 1)) + 1000;
@@ -81,7 +81,7 @@ public class RegisterBookServlet extends HttpServlet {
 			String bookNo = category + "." + n1 + eng + n2;
 			
 			
-			Book b = new Book(bookNo, title, category, author, publisher, null, 0, null, bookInfo, refer);
+			Book b = new Book(bookNo, title, category, author, publisher, null, 0, null, bookInfo, refer, releaseDate);
 			
 			Photo p = new Photo();
 			p.setBookNo(bookNo);

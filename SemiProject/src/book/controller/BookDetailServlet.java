@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import book.model.service.BookService;
-import book.model.vo.Book;
+import book.model.service.BookDetailService;
+import book.model.vo.BookDetail;
+import member.vo.Member;
 
 /**
  * Servlet implementation class BookDetail
@@ -30,16 +31,32 @@ public class BookDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bId = Integer.parseInt(request.getParameter("bId"));
-		String update = request.getParameter("upd");
-		// 5시 7분
-		
-		Book b = new BookService().selectBook(bId);
+		String bNo = request.getParameter("bNo");
+		System.out.println(bNo);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		String rId = null;
+		if(loginUser != null) {
+			rId = loginUser.getMemberId();
+		}
+		BookDetail bd = new BookDetailService().selectBook(bNo);
+		int currBorrow = new BookDetailService().currBorrow(bNo);
+		int maxBorrow = 2;
+		int returnCheck = new BookDetailService().returnCheck(rId, bNo);
+		// 1이면 대출중, 0이면 대출x
 		
 		String page = null;
-		if(b != null) {
-			page = "WEB-INF/views/book/bookDetail.jsp";
-			request.setAttribute("book", b);
+		if(bd != null && rId != null) {
+			page = "WEB-INF/views/book/bookDetail_User.jsp";
+			request.setAttribute("bookDetail", bd);
+			request.setAttribute("currBorrow", currBorrow);
+			request.setAttribute("max", maxBorrow);
+			request.setAttribute("check", returnCheck);
+		} else if(bd != null && rId == null) {
+			page = "WEB-INF/views/book/bookDetail_Visitor.jsp";
+			request.setAttribute("bookDetail", bd);
+			request.setAttribute("currBorrow", currBorrow);
+			request.setAttribute("max", maxBorrow);
+			request.setAttribute("check", returnCheck);
 		} else {
 			page = "WEB-INF/views/common/errorPage.jsp";
 			request.setAttribute("msg", "도서 상세 조회 실패");
@@ -57,3 +74,4 @@ public class BookDetailServlet extends HttpServlet {
 	}
 
 }
+     

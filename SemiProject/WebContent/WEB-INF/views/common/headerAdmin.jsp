@@ -24,7 +24,7 @@
                                     <li><a href="index.html">도서관 소개</a></li>
                                     <li><a href="about.html">회원 관리</a>
                                     	<ul class="submenu">
-											<li><a href="<%= request.getContextPath() %>/userList.ul">회원 목록 조회</a></li>
+											<li><a href="userList.ul">회원 목록 조회</a></li>
 											<li><a href="blog_details.html">도서 신청 확인</a></li>
 										</ul>
                                     </li>

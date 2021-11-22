@@ -69,7 +69,12 @@
             padding-top: 30px;
             padding-bottom: 30px;
         }
-	
+        
+        #passTable th{
+	       color: #6785FF;
+	       text-align: left;
+	       padding-right: 10px;
+        }
 	
 		#passTable{
 			border:none;
@@ -77,8 +82,20 @@
 			color: #D2E2E9;
 			font-family: 'Gowun Dodum', sans-serif;
 			margin:auto;
-			
 		}
+
+		
+		#text{
+	         color: #6785FF;
+	         text-align:right;
+	         font-size:3px;
+	         font-weight:bold;
+	         padding-bottom: 20px;
+     	 }
+     	 
+     	 #find{
+     	 	text-align: right;
+     	 }
     </style>
 </head>
 
@@ -100,23 +117,27 @@
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h3 id="currentMenu">로그인</h3>
+                <h3 id="currentMenu">비밀번호 찾기</h3>
             </div>
         </div>
         <br><br>
         <section>
 		    <form action="<%= request.getContextPath() %>/sendPwd.lo" id="sendForm" method="post">
 				<table id="passTable">
-					<tr id ="id" height="70px">
-						<th><label>EMAIL <br><br><br></label></th>
+					<tr id ="id">
+						<th>EMAIL</th>
 						<td><input type="text" id="inputEmail" name="inputEmail" placeholder="이메일 입력"
 								onfocus="this.placeholder = ''" onblur="this.placeholder = '이메일 입력'" required
-								class="single-input"> <br><br><br>
+								class="single-input">
 							<input type="hidden" id="memberId" name="memberId" value="<%= request.getAttribute("memberId") %>">
 						</td>
 					</tr>
-					<tr id ="find">
-						<th colspan="2"><button type="submit" class="genric-btn info-border circle" id="sendEmail">이메일로 임시 비밀번호 발송</button></th>
+					<tr>
+						<td></td>
+						<td colspan="2" id="text">이메일 입력 후 전송 버튼 클릭 시 임시 비밀번호가 이메일로 전송됩니다.</td>
+					</tr>
+					<tr>
+						<td id ="find" colspan="2"><button type="submit" class="genric-btn info-border circle" id="sendEmail">전송</button></td>
 					</tr>
 				</table>
 			</form>
