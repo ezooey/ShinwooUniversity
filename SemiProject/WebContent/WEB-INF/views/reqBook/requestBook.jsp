@@ -72,7 +72,15 @@
         .borderTop {
             border-top: 1px solid #eee;
         }
-
+        
+        .booksearch {
+        	margin-top: 3px;
+        	float: right;
+        }
+		
+		.divArea {
+			margin-bottom: 15px;
+		}
     </style>
 </head>
 
@@ -128,9 +136,11 @@
                                         <input type="text" name="bookTitle" placeholder="도서명을 입력하세요" required
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '도서명을 입력하세요'"
                                             class="single-input">
+                                        <div class="booksearch"><input type="button" class="genric-btn info circle booksearch" id="searchBook" value="도서 검색"></div>
                                     </div>
                                 </div>
-                                <div>
+                                <br clear="right">
+                                <div class="divArea">
                                     <span class="reqTitle">저자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-pencil-alt"></i></div>
@@ -139,7 +149,7 @@
                                             class="single-input">
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="reqTitle">출판사</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-bookmark"></i></div>
@@ -148,14 +158,21 @@
                                             class="single-input">
                                     </div>
                                 </div>
-                                <div>
-                                    <span class="reqTitle">신청일자</span>
+                                <div class="divArea">
+                                    <span class="reqTitle">출간일</span>
+                                    <div class="input-group-icon mt-10">
+                                        <div class="icon"><i class="fas fa-calendar-day"></i></div>
+                                        <input type="date" name="releaseDate" class="single-input" required>
+                                    </div>
+                                </div>
+                                <div class="divArea">
+                                    <span class="reqTitle">신청 일자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-calendar-day"></i></div>
                                         <input type="text" name="reqDate" readonly class="single-input">
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="reqTitle">신청의견</span>
                                     <div class="mt-10">
                                         <textarea class="single-textarea" placeholder="신청 이유를 입력하세요" name="reqComment"
@@ -190,6 +207,10 @@
         $("#reqBook").submit(function(){
             alert("도서 신청이 완료되었습니다.");
         });
+        
+        document.getElementById('searchBook').onclick = function() {
+        	window.open('searchreqbook.bo', 'searchReqBook', 'width=500, height=300');
+		}
     </script>
     <!-- JS here -->
 

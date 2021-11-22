@@ -78,6 +78,26 @@ public class BookRentalService {
 		return result;
 	}
 
+	public ArrayList<BookRental> selectMyRental(String memberId) {
+		Connection conn = getConnection();
+		
+		ArrayList<BookRental> list = brDAO.selectMyRental(conn, memberId);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<BookRental> selectReturnInfo() {
+		Connection conn = getConnection();
+		
+		ArrayList<BookRental> list = brDAO.selectReturnInfo(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+
 
 	
 }

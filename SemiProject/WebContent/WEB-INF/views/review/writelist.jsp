@@ -216,8 +216,16 @@ PageInfo pi = (PageInfo)request.getAttribute("pi");
 														}else{
 														bookName = list.get(i).getBookName();
 														}%>
+														<%
+															String title = null;
+															if(list.get(i).getReviewTitle().length() > 30){
+																title = list.get(i).getReviewTitle().substring(0, 30);
+															}else{
+																title = list.get(i).getReviewTitle();
+															}
+														%>
 												<td class="invId"><%= list.get(i).getReviewNo() %>
-												<td><%= list.get(i).getReviewTitle()%></td>
+												<td><%= title %></td>
 												<td><%= bookName %></td>
 												<td><%= list.get(i).getReviewWriter() %></td>
 												<td><%= list.get(i).getViews() %></td>

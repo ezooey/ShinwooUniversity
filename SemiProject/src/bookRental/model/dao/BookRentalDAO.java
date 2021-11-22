@@ -15,6 +15,7 @@ import bookRental.model.vo.BookRental;
 import member.dao.MemberDAO;
 import reqBook.model.vo.ReqBook;
 import review.model.vo.PageInfo;
+import review.model.vo.ReviewBook;
 public class BookRentalDAO {
 	private Properties prop = null;
 
@@ -162,6 +163,75 @@ public class BookRentalDAO {
 
 		return result;
 
+	}
+
+	public ArrayList<BookRental> selectMyRental(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<BookRental> list = null;
+		
+		String query = prop.getProperty("selectMyRental");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<BookRental>();
+			while(rset.next()) {
+				BookRental br = new BookRental();
+				br.setRentalCode(rset.getInt("rental_code"));
+				br.setDateCal(rset.getInt("date_cal"));
+				br.setBookNo(rset.getString("book_no"));
+				br.setBookTitle(rset.getString("book_title"));
+				br.setImg(rset.getString("change_name"));
+				
+				
+				list.add(br);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+
+	public ArrayList<BookRental> selectReturnInfo(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<BookRental> list = null;
+		
+		String query = prop.getProperty("selectReturnInfo");
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<BookRental>();
+			while(rset.next()) {
+				BookRental br = new BookRental();
+				br.setBookTitle(rset.getString("book_title"));
+				br.setMemberId(rset.getString("rental_id"));
+				
+				
+				
+				list.add(br);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;
 	}
 	
 	

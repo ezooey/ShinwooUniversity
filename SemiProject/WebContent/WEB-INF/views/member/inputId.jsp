@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>신우대학교 전자도서관입니다 - 비밀번호 찾기</title>
+    <title>비밀번호 찾기</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
@@ -41,6 +41,12 @@
 
         #login {
             margin: 20px;
+        }
+        
+        #passTable th{
+	       color: #6785FF;
+	       text-align: left;
+	       padding-right: 10px;
         }
 
         .reqTitle {
@@ -79,6 +85,10 @@
 			margin:auto;
 			
 		}
+		
+		#findP{
+			text-align: right;
+		}
     </style>
 </head>
 
@@ -100,7 +110,7 @@
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h3 id="currentMenu">로그인</h3>
+                <h3 id="currentMenu">비밀번호 찾기</h3>
             </div>
         </div>
         <br><br>
@@ -109,18 +119,15 @@
 			    <div>
 					<table id="passTable">
 						<tr  id ="id" height="70px">
-							<th><label>ID <br><br><br></label></th>
+							<th>ID</th>
 							<td> 
-							<input type="text" id="memberId" name="memberId" placeholder="학번입력" class="single-input" required>
-							<br><br>
+							<input type="text" id="memberId" name="memberId" placeholder="학번 입력" class="single-input" onfocus="this.placeholder = ''" onblur="this.placeholder = '학번 입력'" required>
 							</td>
 						</tr>
 						<tr id ="find">
-							<th colspan="2">
-							<button class="genric-btn info-border circle" id="nextBtn">
-							다음
-							</button>
-							</th>
+							<td id ="findP" colspan="2">
+								<button class="genric-btn info-border circle" id="nextBtn">다음</button>
+							</td>
 						</tr>
 					</table>
 				</div>

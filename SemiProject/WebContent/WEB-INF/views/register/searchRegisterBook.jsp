@@ -54,7 +54,7 @@
 			<aside class="single_sidebar_widget search_widget">
 				<div class="form-group">
 					<div class="input-group mb-3">
-						<input type="text" id="query" class="form-control" placeholder='검색할 도서를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+						<input type="text" id="query" class="form-control" placeholder='검색할 도서를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '검색할 도서를 입력하세요'">
 					</div>
 				</div>
 				<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="button" id="search">도서 검색</button>

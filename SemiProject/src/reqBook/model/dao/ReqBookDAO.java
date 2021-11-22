@@ -95,7 +95,6 @@ public class ReqBookDAO {
 										rset.getString("REQ_REASON"),
 										rset.getInt("PERMIT_STATUS"),
 										rset.getString("REQ_ID"));
-				
 				list.add(r);
 			}		
 			} catch (SQLException e) {
