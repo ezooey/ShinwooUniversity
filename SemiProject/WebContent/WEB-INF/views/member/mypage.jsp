@@ -4,7 +4,6 @@
 	//Member loginUser= (Member)session.getAttribute("loginUser");
  	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list"); 
  	ArrayList<BookRental> rentalList = (ArrayList)request.getAttribute("rentalList");
- 	System.out.println(rentalList.size());
 %>
 <!doctype html>
 <html class="no-js">
@@ -146,9 +145,9 @@
             padding: 40px;
         }
        
-    	.firstdiv{background:#6785FF; height:200px; font-size:40px; text-align:left; padding-left:20px; padding-top:60px;font-weight : bold; color:white;
+    	.firstdiv{background:#6785FF; height:100px; font-size:30px; text-align:left; padding-left: 2.5%; padding-top:20px;font-weight: 700; color:white;
     	}
-    	
+
     #personalInf{
     	margin-left:18%; margin-right:18%; border-radius: 2em;
     }
@@ -271,15 +270,8 @@
    
     <% if(rentalList.isEmpty()){ %>
 		<div class="card-deck">
-			<div class="card card1"></div>
-		   	<div class="card card1"></div>
-		    <div class="card card1"></div>
-		</div>
-		<p></p>
-		<div class="card-deck">
-			<div class="card card1"></div>
-		   	<div class="card card1"></div>
-		    <div class="card card1"></div>
+			<div style="margin-left:50px; margin-top:10px;"><p class="personal">아직 대출한 도서가 없습니다.</p></div>
+
 		</div>
 	<%}else{ %>
 	<div class="card-deck">
@@ -617,7 +609,7 @@
 	    phone = loginUser.getPhone();
    }
    %>
-    <p class="personal">휴대전화 : <%= phone.substring(0,3) + "-" + phone.substring(4,5) + "***"+ "-" + phone.substring(7,8) + "***" %></p><br>
+    <p class="personal">휴대전화 : <% if(loginUser.getPhone() != null){%><%= phone.substring(0,3) + "-" + phone.substring(4,5) + "***"+ "-" + phone.substring(7,8) + "***" %><%}else{%><%= phone %><%} %></p><br>
     <p class="personal">이메일 : <%= loginUser.getEmail().substring(0,4) + "***" + "@naver.com" %></p> <br><br>
   <a class="btn btn-primary btn-lg" role="button" href="javascript:confirmPw();">개인정보변경</a>
  

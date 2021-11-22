@@ -15,6 +15,7 @@ import bookRental.model.vo.BookRental;
 import member.dao.MemberDAO;
 import reqBook.model.vo.ReqBook;
 import review.model.vo.PageInfo;
+import review.model.vo.ReviewBook;
 public class BookRentalDAO {
 	private Properties prop = null;
 
@@ -199,6 +200,38 @@ public class BookRentalDAO {
 		
 		return list;
 		
+	}
+
+	public ArrayList<BookRental> selectReturnInfo(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<BookRental> list = null;
+		
+		String query = prop.getProperty("selectReturnInfo");
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<BookRental>();
+			while(rset.next()) {
+				BookRental br = new BookRental();
+				br.setBookTitle(rset.getString("book_title"));
+				br.setMemberId(rset.getString("rental_id"));
+				
+				
+				
+				list.add(br);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;
 	}
 	
 	
