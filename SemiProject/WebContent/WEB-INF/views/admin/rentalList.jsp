@@ -3,7 +3,7 @@
     
 <%
 	ArrayList<RentalBook> rList =  (ArrayList)request.getAttribute("rList");
-
+	System.out.println(rList);
 %>    
 <!doctype html>
 <html class="no-js">
@@ -225,7 +225,12 @@
 											</tr>  
 										</thead>  
 										<tbody>  
-											<%	for(int i = 0; i <rList.size(); i++) { %>
+											<% if(rList.isEmpty()==true){ %>
+											<tr>
+												<td colspan="7">대출 된 도서가 없습니다.</td>
+											</tr>		
+											<% } else { %>
+											<%		for (int i = 0; i < rList.size(); i++) { %>
 											<tr>
 												<td><%= rList.get(i).getBookNo() %></td>
 												<td><%= rList.get(i).getBookTitle() %></td>
@@ -235,6 +240,7 @@
 												<td><%= rList.get(i).getRentalDate() %></td>
 												<td><%= rList.get(i).getReturnDate() %></td>
 											</tr>
+											<%		} %>
 											<%	} %>
 										</tbody>  
 									 </table>

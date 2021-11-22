@@ -31,10 +31,12 @@ public class RentalListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<RentalBook> bList = new AdminService().selectRentalBookList();
+	
+		ArrayList<RentalBook> rList = new AdminService().selectRentalBookList();
+		
 		String page = null;
-		if(bList != null) { 
-			request.setAttribute("uList", bList);
+		if(rList != null) { 
+			request.setAttribute("rList", rList);
 			page = "WEB-INF/views/admin/rentalList.jsp";
 		} else { 
  			request.setAttribute("msg", "회원 조회 실패");

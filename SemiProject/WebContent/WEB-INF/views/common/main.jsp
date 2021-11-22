@@ -310,7 +310,6 @@
 		}
 	</style>
 	<script src="slider.js"></script>
-=======
 <meta charset="UTF-8">
 <title>신우대학교 메인</title>
 <script
@@ -667,7 +666,6 @@ li.booklist {
 }
 </style>
 <script src="slider.js"></script>
->>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
 </head>
 
 <body>
@@ -733,7 +731,7 @@ li.booklist {
 					</div>
 				</div>
 			</div>
-<<<<<<< HEAD
+		</div>
 			<script>
 				$(function () {
 					$('#slider-div').slick({
@@ -771,20 +769,31 @@ li.booklist {
 			</script>
 			<br><br><br>
 
-			<form class="center" name="search" action="<%= request.getContextPath() %>/mainSearch.ms" method="post">
 				<div id="searchForm" class="center">
-					<select id="searchOption" onchange="selectBoxChange(this.value);">
-						<option value="title" selected>도서명</option>
-						<option value="author">저자</option>
+					<select id="selectOption" >
+						<option id="book_title" value="book_title" >도서명</option>
+						<option id="author" value="author">저자</option>
 					</select>
-					<input type="search" id="searchText" name="q" value="${param.q}">
-					<button id="searchButton" type="submit" title="검색" style="background:none;" >
+					<input type="search" id="keyword" name="q" value="">
+					<button id="searchButton" type="button" title="검색" style="background:none;" onclick="search();">
 						<i class="fas fa-search fa-lg" style="background:none; color:#2980b9;"></i>
 					</button>
 				</div>
+				<script>
+					function search(){
+						
+						var selectOption = document.getElementById("selectOption").value;
+						var keyword = document.getElementById("keyword").value;
+						location.href="<%= request.getContextPath()%>/searchBook.sr?category=" + selectOption + "&&kword=" + keyword;
+						
+						
+					}
+				
+				</script>
+				
 				<br><br>
-				<hr width=60%>
-			</form>
+				<hr width=60%> 
+		
 			<br><br>
 			<script>
 			
@@ -806,7 +815,6 @@ li.booklist {
 							}
 						}
 					</script>
-=======
 		</div>
 		<script>
 			$(
@@ -848,22 +856,9 @@ li.booklist {
 		<br>
 		<br>
 
-		<form class="center" name="search">
-			<div id="searchForm" class="center">
-				<select id="searchOption">
-					<option value="title" selected>도서명</option>
-					<option value="author">저자</option>
-				</select> <input type="search" id="searchText">
-				<button id="searchButton" type="submit" title="검색"
-					style="background: none;">
-					<i class="fas fa-search fa-lg"
-						style="background: none; color: #2980b9;"></i>
-				</button>
-			</div>
 			<br>
 			<br>
 			<hr width=60%>
-		</form>
 		<br>
 		<br>
 
@@ -1022,7 +1017,6 @@ li.booklist {
 									백화점 </a>
 						</span></li>
 					</ul>
->>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
 				</div>
 
 			</div>
@@ -1194,7 +1188,6 @@ li.booklist {
 				</div>
 			</div>
 
-<<<<<<< HEAD
 			</section>
 			<script>
 				$(document).ready(function () {
@@ -1265,7 +1258,6 @@ li.booklist {
 			<script src="./assets/js/plugins.js"></script>
 			<script src="./assets/js/main.js"></script>
 			<script src="./assets/js/all.min.js"></script>
-=======
 		</section>
 		<script>
 			$(document).ready(function() {
@@ -1337,7 +1329,6 @@ li.booklist {
 	<script src="./assets/js/plugins.js"></script>
 	<script src="./assets/js/main.js"></script>
 	<script src="./assets/js/all.min.js"></script>
->>>>>>> ad7d00f2c6f4e3643c20c6a451564c43fb4d504f
 
 </body>
 <script type="text/javascript">

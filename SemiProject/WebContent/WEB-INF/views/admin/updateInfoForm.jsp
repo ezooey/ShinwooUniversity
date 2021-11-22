@@ -62,15 +62,6 @@
 						        </tr>
 					        </tbody>
 					     </table> 
-					     <script>
-					     	function inputValue(){
-					     		document.getElementById('id').value =opener.document.
-					     		
-						     		
-					     		
-						     	}
-					     	}
-					     </script>
 					</div>
 				</div>
 			</div>
