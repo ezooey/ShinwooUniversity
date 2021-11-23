@@ -90,7 +90,7 @@
 		.red{
 			color:red;
 		}
-		input:read-only{background-color:#dedede}
+		input:read-only{background-color:#EAEAEA}
 		.confirm{
 			text-align:center;
 			font-size:3px;
@@ -171,7 +171,7 @@
     		</tr>
     		<tr>
     			<td class="category">비밀번호<span class="red">*</span></td>
-    			<td colspan="2">
+    			<td colspan="3">
     				<div class="mt-10">
 					<input type="password" name="password" id ="password"
 					onfocus="this.placeholder = ''"  required
@@ -182,7 +182,7 @@
     		</tr>
     		<tr>
     			<td class="category">비밀번호 확인<span class="red">*</span></td>
-    			<td colspan="2">
+    			<td colspan="3">
     			<div class="mt-10">
 					<input type="password" name="passConfirm" id ="passConfirm"
 					 onblur="confirm1();" required
@@ -229,9 +229,7 @@
 						
 					</div>
 				</td>
-				<td width="80px"><div id="isjungbok"><input type="button" id="checkEmail" value="중복확인"></td></div>
-				
-				
+				<td width="80px"><div id="isjungbok"><input type="button" class="genric-btn info-border" id="checkEmail" value="중복확인"></div></td>
 			</tr>
 			<tr>
 				<td class="category" id="authEmail">인증하기 <span class="red">*</span></td>
@@ -243,7 +241,7 @@
 					</div>
 				</td>
 				<td id="authEmail3">
-				<input type="button" id="confirmAuth" value="확인" onclick="confirmAuthNum();">
+				<input type="button" id="confirmAuth" class="genric-btn info-border" value="확인" onclick="confirmAuthNum();">
 				</td>
 				<td id="authEmail1" class="category"><input type="button" id="spanAuth" onclick="authFunc();" value="인증하기"></td>
 				<!-- <div id="pwDiv"><input type="password" name="userPwd" id="userPwd" placeholder="비밀번호 입력"><input  type="button" id="goModify" value="확인""></div> -->
@@ -322,16 +320,14 @@
 			
 			</script>
 			<tr>
-				<td class="category">우편번호</td>
-				<td colspan="2"><input class="single-input" type="text" name="zip"/></td>
-				<td><button type="button"  onclick="openZipSearch()">검색</button></td>
-			</tr>
-			<tr>
 				<td class="category">주소</td>
 				<td colspan="3"><input class="single-input"  type="text" name="addr1"  readonly /></td>
+				<td width="100px" style="padding-left: 10px;">
+					<button type="button" class="genric-btn info-border" onclick="openZipSearch()">검색</button>
+				</td>
 			</tr>
 			<tr>
-				<td class="category">상세</td>
+				<td class="category">상세 주소</td>
 				<td colspan="4"><input class="single-input" type="text" name="addr2"/></td>
 			</tr>
 			
@@ -396,88 +392,11 @@
 
      
     </main>
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-padding">
-            <div class="container">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="single-footer-caption mb-30">
-                                <!-- logo -->
-                                <div class="footer-logo mb-35">
-                                    <a href="index.html"><img src="images/shinwooLogo.PNG" alt=""></a>
-                                </div>
-                                <div class="footer-tittle">
-                                    <div class="footer-pera">
-                                        <p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
-                                    </div>
-                                </div>
-                                <!-- social -->
-                                <div class="footer-social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Services </h4>
-                                <ul>
-                                    <li><a href="#">- 주요 전화번호</a></li>
-                                    <li><a href="#">- 개인정보처리방침</a></li>
-                                    <li><a href="#">- 무단수집거부</a></li>
-                                    <li><a href="#">- 원격지원</a></li>
-                                    <li><a href="#">- 찾아오는길</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Contect</h4>
-                                <ul>
-                                    <li class="number"><a href="#">(02) 123-4567</a></li>
-                                    <li><a href="#">shinwoo@universty.kr</a></li>
-                                    <li><a href="#">서울시 강남구 역삼로</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- footer-bottom area -->
-        <div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
-            <div class="container">
-                <div class="footer-border">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-xl-12 ">
-                            <div class="footer-copy-right text-center">
-                                <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
-                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                        href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
-    </footer>
+    <%@ include file="../common/footer.jsp" %>
     <!-- Scroll Up -->
-    <div id="back-top">
-        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
-    </div>
+	<div id="back-top" >
+   		<a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+	</div>
     
     
     <!-- java script -->
@@ -538,11 +457,26 @@
 		});
 		 */
 		function submitAlarm(){
-			if($('#password').val() == ''){
-				alert('비밀번호를 입력해주세요');
-				$('#password').focus();
-				return false;
-			}
+			 var pw = $("#password").val();
+			 var num = pw.search(/[0-9]/g);
+			 var eng = pw.search(/[a-z]/ig);
+			 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+			 if(pw.length < 8 || pw.length > 20){
+
+			  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+			  return false;
+			 }else if(pw.search(/\s/) != -1){
+			  alert("비밀번호는 공백 없이 입력해주세요.");
+			  return false;
+			 }else if(num < 0 || eng < 0 || spe < 0 ){
+			  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+			  return false;
+			 }else {
+				console.log("통과"); 
+			    return true;
+			 }
+
 			if($('#password').val() != $('#passConfirm').val()){
 				alert('비밀번호가 일치하지 않습니다.');
 				$('#password').val("");
@@ -566,14 +500,6 @@
 		} 
 	
 	</script>
-
-  	
-  	
-  	
-    
-    
-    
-    
     
     <!-- JS here -->
 

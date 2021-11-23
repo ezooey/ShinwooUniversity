@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import book.model.service.BookDetailService;
 import book.model.vo.BookDetail;
+import member.vo.Member;
 
 /**
  * Servlet implementation class BookDetail
@@ -31,12 +32,17 @@ public class BookDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String bNo = request.getParameter("bNo");
-		String rId = request.getParameter("rId");
+		System.out.println(bNo);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		String rId = null;
+		if(loginUser != null) {
+			rId = loginUser.getMemberId();
+		}
 		BookDetail bd = new BookDetailService().selectBook(bNo);
-		System.out.println(bd);
 		int currBorrow = new BookDetailService().currBorrow(bNo);
 		int maxBorrow = 2;
 		int returnCheck = new BookDetailService().returnCheck(rId, bNo);
+		// 1이면 대출중, 0이면 대출x
 		
 		String page = null;
 		if(bd != null && rId != null) {
@@ -46,12 +52,12 @@ public class BookDetailServlet extends HttpServlet {
 			request.setAttribute("max", maxBorrow);
 			request.setAttribute("check", returnCheck);
 		} else if(bd != null && rId == null) {
-			page = "WEB_INF/views/book/bookDetail_Visitor.jsp";
+			page = "WEB-INF/views/book/bookDetail_Visitor.jsp";
 			request.setAttribute("bookDetail", bd);
 			request.setAttribute("currBorrow", currBorrow);
 			request.setAttribute("max", maxBorrow);
 			request.setAttribute("check", returnCheck);
-		} else if(bd == null) {
+		} else {
 			page = "WEB-INF/views/common/errorPage.jsp";
 			request.setAttribute("msg", "도서 상세 조회 실패");
 		}

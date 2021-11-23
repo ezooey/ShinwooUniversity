@@ -45,6 +45,22 @@
 		justify-content: center; 
 		margin-top: 20px
 	}
+	
+	#searchList{
+		margin: 20px;
+	}
+	tr td{
+		padding-bottom: 5px;
+		vertical-align : top;
+	}
+	
+	#pagingBtn {
+		display: none;
+	}
+	
+	#query{
+		border: solid 1px #eee;
+	}
 	</style>
 </head>
 
@@ -54,29 +70,30 @@
 			<aside class="single_sidebar_widget search_widget">
 				<div class="form-group">
 					<div class="input-group mb-3">
-						<input type="text" id="query" class="form-control" placeholder='검색할 도서를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+						<input type="text" id="query" class="form-control" placeholder='검색할 도서를 입력하세요.' onfocus="this.placeholder = ''" onblur="this.placeholder = '검색할 도서를 입력하세요.'">
 					</div>
 				</div>
 				<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="button" id="search">도서 검색</button>
 			</aside>
-			<div id="searchList"></div>
-			
-			<nav class="blog-pagination justify-content-center d-flex">
-				<ul class="pagination">
-					<li class="page-item">
-						<button type="button" class="page-link" aria-label="Previous" id="prevList"><i class="ti-angle-left"></i></button>
-					</li>
-					<li class="page-item">
-						<button type="button" class="page-link" aria-label="Next" id="nextList"><i class="ti-angle-right"></i></button>
-					</li>
-				</ul>
-			</nav>
+<!-- 			<div id="searchList"></div> -->
+			<div>
+				<table id="searchList"></table>
+			</div>
+
 			<div id="bookInfoInput"></div>
+			<div id="pagingBtn">
+				<nav class="blog-pagination justify-content-center d-flex">
+					<ul class="pagination">
+						<li class="page-item">
+							<button type="button" class="page-link" aria-label="Previous" id="prevList"><i class="ti-angle-left"></i></button>
+						</li>
+						<li class="page-item">
+							<button type="button" class="page-link" aria-label="Next" id="nextList"><i class="ti-angle-right"></i></button>
+						</li>
+					</ul>
+				</nav>
+			</div>
 			<div id="submitBtn"></div>
-<!-- 			<div style="text-align: center; margin-top: 20px"> -->
-<!-- 				<button type="button" class="genric-btn success circle selectBtn" id="selectOne">선택</button> -->
-<!-- 				<button type="button" class="genric-btn danger circle selectBtn" onclick="window.close()">취소</button> -->
-<!-- 			</div> -->
 		</div>
 	</div>
 
@@ -89,6 +106,7 @@
 	
 	        $("#search").click(function () {
 	        	ajaxList();
+	        	$('#pagingBtn').css('display', 'block');
 	        });
 	        
 	        $("#nextList").click(function () {
@@ -126,38 +144,79 @@
 
                 }).done(function (msg) {
                 	$("#submitBtn").html('');
-                    for (var i = 0; i < 10; i++) {
-                    	var format = new Date(msg.documents[i].datetime);
-                    	var redate = date_to_str(format);
+                	
+                	var count = msg.meta.pageable_count;
+                	var lengthBook = 0;
+                	if(count < 10){
+                		lengthBook = count;
+                	} else {
+                		lengthBook = 10;
+                	}
+                	
+                    for (var i = 0; i < lengthBook; i++) {
+                    	var info = msg.documents[i];
+                    	if(info !== null && info !== undefined){
+	                    	var format = new Date(msg.documents[i].datetime);
+	                    	var redate = date_to_str(format);
+	                    	
+	                    	var title = msg.documents[i].title;
+	                    	var authors = msg.documents[i].authors;
+	                    	var publisher = msg.documents[i].publisher;
+	                    	var thumbnail = msg.documents[i].thumbnail;
+	                    	var contents = msg.documents[i].contents;
+	                    	contents = (contents == '' ? '책 소개가 없습니다.' : contents + '...'); 
+	                    	
+	                    	var tableAppend = '';
+	                    	
+	                    	tableAppend += "<tr>";
+	                    	tableAppend += "<th width='60'><input type='radio' name='selectBook' style='width:20px;height:20px;' value='" + title + "@@" + authors + "@@" + publisher + "@@" + redate + "@@" + contents + "'></th>";
+	                    	tableAppend += "<td><img src='" + thumbnail + "'/></td>";
+	                    	tableAppend += "</tr>";
+	                    	tableAppend += "<tr>";
+	                    	tableAppend += "<td colspan='2'><h2 style='font-weight: bold;'><a style='color:#6785FF;' href='" + msg.documents[i].url + "'>" + title + "</a></h2></td>";
+	                    	tableAppend += "</tr>";
+	                    	tableAppend += "<tr>";
+	                    	tableAppend += "<td><strong>저자</strong></td>";
+	                    	tableAppend += "<td>" + authors + "</td>";
+	                    	tableAppend += "</tr>";
+	                    	tableAppend += "<tr>";
+	                    	tableAppend += "<td><strong>출판사</strong></td>";
+	                    	tableAppend += "<td>" + publisher + "</td>";
+	                    	tableAppend += "</tr>";
+	                    	tableAppend += "<tr>";
+	                    	tableAppend += "<td><strong>출판일</strong></td>";
+	                    	tableAppend += "<td>" + redate + "</td>";
+	                    	tableAppend += "</tr>";
+	                    	tableAppend += "<tr>";
+	                    	tableAppend += "<td><strong>책 소개</strong></td>";
+	                    	tableAppend += "<td>" + contents + "</td>";
+	                    	tableAppend += "</tr>";
+	                    	tableAppend += "<tr><td colspan='2'><hr style='border: solid 1px #b6b6b6;'></td></tr>";
+	                    	
+	                    	$("#searchList").append(tableAppend);
+                    	}
                     	
-                    	var title = msg.documents[i].title;
-                    	var authors = msg.documents[i].authors;
-                    	var publisher = msg.documents[i].publisher;
-                    	var thumbnail = msg.documents[i].thumbnail;
-                    	var contents = msg.documents[i].contents;
-                    	
-                    	
-                        $("#searchList").append(
-                        		"<input type='radio' name='selectBook' style='width:20px;height:20px;' value='"
-                        			+ title + "@@" + authors + "@@" + publisher + "@@" + redate + "@@" + contents + "'>"
-                        );
+//                         $("#searchList").append(
+//                         		"<input type='radio' name='selectBook' style='width:20px;height:20px;' value='"
+//                         			+ title + "@@" + authors + "@@" + publisher + "@@" + redate + "@@" + contents + "'>"
+//                         );
                         
-                        $("#searchList").append("<img src='" + thumbnail + "'/><br>");
-                        $("#searchList").append(
-                            "<h2><a href='" + msg.documents[i].url + "'>" + title + "</a><" +
-                            "/h2>"
-                        );
-                        $("#searchList").append("<strong>저자:</strong> " + authors + "<br>");
-                        $("#searchList").append(
-                            "<strong>출판사:</strong> " + publisher + "<br>"
-                        );
-                        $("#searchList").append(
-                            "<strong>출판일:</strong> " + redate + "<br>"
-                        );
-                        $("#searchList").append(
-                            "<strong>책 소개:</strong> " + contents + "...<br>"
-                        );
-                        $("#searchList").append("<hr>");
+//                         $("#searchList").append("<img src='" + thumbnail + "'/><br>");
+//                         $("#searchList").append(
+//                             "<h2><a href='" + msg.documents[i].url + "'>" + title + "</a><" +
+//                             "/h2>"
+//                         );
+//                         $("#searchList").append("<strong>저자:</strong> " + authors + "<br>");
+//                         $("#searchList").append(
+//                             "<strong>출판사:</strong> " + publisher + "<br>"
+//                         );
+//                         $("#searchList").append(
+//                             "<strong>출판일:</strong> " + redate + "<br>"
+//                         );
+//                         $("#searchList").append(
+//                             "<strong>책 소개:</strong> " + contents + "...<br>"
+//                         );
+//                         $("#searchList").append("<hr>");
                         
                     }
                     
@@ -206,6 +265,11 @@
 
 	        return year + "-" + month + "-" + date;
 	    }
+	    
+	    $(document).on("click", "[name='selectBook']", function() {
+	    	var offset = $('#selectOne').offset();
+	    	$('html').animate({scrollTop : offset.top}, 500);
+		});
 
 	</script>
 	<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>

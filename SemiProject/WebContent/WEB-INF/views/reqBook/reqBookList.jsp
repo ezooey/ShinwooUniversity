@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.vo.Member,java.util.ArrayList,review.model.vo.*"%>
- <%
-	//Member loginUser= (Member)session.getAttribute("loginUser");
- 	ArrayList<ReviewBook> list = (ArrayList)request.getAttribute("list"); 
+    pageEncoding="UTF-8" import="java.util.ArrayList, reqBook.model.vo.ReqBook"%>
+<%
+
+	ReqBook r = (ReqBook)request.getAttribute("r"); 
+	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list");
 %>
 <!doctype html>
 <html class="no-js">
@@ -10,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>독후감 </title>
+    <title>도서 신청</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
@@ -74,20 +75,6 @@
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -142,18 +129,6 @@
         .section-top-border {
             padding: 40px;
         }
-        
-        
-        tbody, tr, td{
-        	color:white;
-        	background:#A4A7B3;
-        }
-		#chooseBook{
-			margin-top:20px;
-			margin-right:30px;
-			margin-bottom:30px;
-		}
-		
     </style>
 </head>
 
@@ -170,14 +145,49 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    
-    <main>
-       
-		<div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h2 id="currentMenu">책 검색</h2>
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <!-- Logo -->
+                <div class="header-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                    </div>
+                    <div class="menu-wrapper  d-flex align-items-center">
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="index.html">도서관 소개</a></li>
+                                    <li class="active"><a href="about.html">도서 신청</a></li>
+                                    <li><a href="services.html">도서 검색</a></li>
+                                    <li><a href="blog.html">독후감</a></li>
+                                    <li><a href="contact.html">마이페이지</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right d-none d-lg-block">
+                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
+                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
+                </div>
+                <!-- Mobile Menu -->
+                <div class="col-12">
+                    <div class="mobile_menu d-block d-lg-none"></div>
+                </div>
             </div>
         </div>
+        <!-- Header End -->
+    </header>
+        <!--? Hero Start -->
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
+                <h2 id="currentMenu">도서 신청</h2>
+            </div>
+        </div>
+
         
         <!-- Static Table Start -->
        
@@ -190,46 +200,49 @@
                             <div class="sparkline13-hd">
                             </div>
                             <div class="sparkline13-graph">
-                              <div class="datatable-dashv1-list custom-datatable-overright">
-                                    
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
-                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar" style="text-align : center;">
-                                        <thead  style="text-align : center;">
-                                            <tr>
-                                                <th data-field="state" data-select="false"></th>
-                                                <th data-field="photo" data-editable="false">책 사진</th>
-                                                <th data-field="name" data-editable="false">책명</th>
-                                                <th data-field="email" data-editable="false">카테고리</th>
-                                                <th data-field="phone" data-editable="false">저자</th>
-                                                <th data-field="task" data-editable="false">출판사 </th>
+                              <div class="datatable-dashv1-list custom-datatable-overrigh" style="text-align : center;">
 
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
+                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar" style="text-align : center;">
+                                        <thead>
+                                            <tr>
+                        
+                                                <th data-field="id">학번</th>
+                                                <th data-field="name" data-editable="false">도서명</th>
+                                                <th data-field="email" data-editable="false">저자</th>
+                                                <th data-field="phone" data-editable="false">출판사</th>
+                                                <th data-field="task" data-editable="false">신청자 성함 </th>
+                                                <th data-field="date" data-editable="false">신청날짜</th>
+                                                <th data-field="action">진행상태</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                             <% if(list.isEmpty()){ %>
+                                           <% if(list.isEmpty()) {%>
 											<tr>
-												<td colspan="5">존재하는 책이 없습니다.</td>
+												<td colspan="5">존재하는 공지사항이 없습니다.</td>
 											</tr>
-											<% } else{%>
-													
-											<%		String bookName = null;
-													for(int i = 0; i < list.size(); i++){ %>
-											<tr><% 		if(list.get(i).getBookTitle().length()>20){
-														bookName = list.get(i).getBookTitle().substring(0, 20);
-														}else{
-														bookName = list.get(i).getBookTitle();
-														}%>
-											
-												<td style="vertical-align:middle"><input type="radio" name="book" value="<%= list.get(i).getBookTitle() %>,<%= list.get(i).getAuthor()%>,<%= list.get(i).getImageFile() %>,<%= list.get(i).getBookNo() %>"></td>
-												<td><img height="150px" id="titleImg" name="titleImg" src="<%= request.getContextPath() %>/<%= list.get(i).getImageFile() %>"></td>
-												<td><%= bookName %></td>
-												<td><%= list.get(i).getCateName() %></td>
-												<td><%= list.get(i).getAuthor() %></td>
-												<td><%= list.get(i).getPublisher() %></td>
-											</tr>
-											<%		} %>
-											<% } %>
-                                           
+											<%} else { 
+												for(int i = 0; i < list.size(); i++){%>
+													<tr>
+									
+														<td><%= list.get(i).getReqWriterId() %></td>
+				 										<td><%= list.get(i).getReqBookTitle() %></td>
+														<td><%= list.get(i).getReqBookAuthor() %></td>
+														<td><%= list.get(i).getReqBookPub() %></td>	
+														<td><%= list.get(i).getReqBookWriter() %></td>	
+														<td><%= list.get(i).getReqBookDate() %></td>
+														<td>
+														<% if(list.get(i).getStatus()== 0) {%>
+															<div><a onclick="window.open('reqBook.con?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=400');">대기중</a></div>
+														<%}else if(list.get(i).getStatus()== 1){ %>
+															<div style="color : blue;"><a onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=270');">승인</a></div>
+														<%}else{ %>
+															<div  style="color : red;"><a onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=400');">거절</a></div>
+														<%} %>
+														</td>
+													</tr>
+												<%} %>
+											<%} %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -239,38 +252,90 @@
                 </div>
             </div>
         </div>
-       
-  	
-
- <div class="floating"><input type="button" id="chooseBook" value="선택하기" class="btn btn-dark" onclick="confirm();" style="float: right; margin-left: 10px;"></div>       
-    
-
-<script>
-	function confirm(){
-		 var obj_length = document.getElementsByName("book").length;
-		  var bookValue;
-	        for (var i=0; i<obj_length; i++) {
-	            if (document.getElementsByName("book")[i].checked == true) {
-	               	bookNo = document.getElementsByName("book")[i].value;
-	               	var bookArr = bookNo.split(',');
-	               	
-	              	opener.document.commentForm.uploadName.value=bookArr[0];
-	              	opener.document.commentForm.uploadName2.value=bookArr[1];
-	              	opener.document.commentForm.bookImg.src=bookArr[2];
-	              	opener.document.commentForm.uploadName3.value=bookArr[3];
-	              	
-	               	window.close();
-	            }
-	        }
-	        
-	}
-	
-
-</script>        
         
 
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo mb-35">
+                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
+                                    </div>
+                                </div>
+                                <!-- social -->
+                                <div class="footer-social">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Services </h4>
+                                <ul>
+                                    <li><a href="#">- 주요 전화번호</a></li>
+                                    <li><a href="#">- 개인정보처리방침</a></li>
+                                    <li><a href="#">- 무단수집거부</a></li>
+                                    <li><a href="#">- 원격지원</a></li>
+                                    <li><a href="#">- 찾아오는길</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Contect</h4>
+                                <ul>
+                                    <li class="number"><a href="#">(02) 123-4567</a></li>
+                                    <li><a href="#">shinwoo@universty.kr</a></li>
+                                    <li><a href="#">서울시 강남구 역삼로</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-center">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                        href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
     <!-- Scroll Up -->
-   
+    <div id="back-top">
+        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
+    </div>
     <script>
         $(function () {
             var now = new Date();

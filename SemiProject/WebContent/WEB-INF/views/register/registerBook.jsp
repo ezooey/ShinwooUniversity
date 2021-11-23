@@ -117,6 +117,10 @@
         	margin-top: 3px;
         	float: right;
         }
+        
+        .divArea {
+			margin-bottom: 15px;
+		}
     </style>
 </head>
 
@@ -161,7 +165,7 @@
                                     </div>
                                 </div>
                                 <br clear="right">
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">저자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-pencil-alt"></i></div>
@@ -170,7 +174,7 @@
                                             class="single-input">
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">출판사</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-bookmark"></i></div>
@@ -179,7 +183,7 @@
                                             class="single-input">
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">카테고리</span>
                                     <div class="default-select" id="default-select">
                                         <select name = "category">
@@ -196,21 +200,21 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div>
-                                    <span class="regTitle">출간일자</span>
+                                <div class="divArea">
+                                    <span class="regTitle">출간일</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-calendar-day"></i></div>
                                         <input type="date" name="releaseDate" class="single-input" required>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">등록일자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-calendar-day"></i></div>
                                         <input type="date" name="regDate" readonly class="single-input">
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">표지 이미지</span>
                                     <div class="input-group-icon mt-10 filebox">
                                         <div class="icon"><i class="far fa-image"></i></div>
@@ -219,14 +223,14 @@
                                         <input type="file" id="file" name="bookImage" accept=".gif, .jpg, .png" required>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">줄거리</span>
                                     <div class="mt-10">
                                         <textarea class="single-textarea" name="bookInfo" placeholder="줄거리"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '줄거리를 입력하세요'"></textarea>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="divArea">
                                     <span class="regTitle">참고사항</span>
                                     <div class="mt-10">
                                         <textarea class="single-textarea" name="refer" placeholder="참고사항을 입력하세요"

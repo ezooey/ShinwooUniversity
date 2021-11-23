@@ -4,6 +4,8 @@
 	//Member loginUser= (Member)session.getAttribute("loginUser");
 	Review r = (Review)request.getAttribute("r");
 	ReviewBook rb = (ReviewBook)request.getAttribute("rb");
+	
+	
 %>
 <!doctype html>
 <html class="no-js">
@@ -161,7 +163,7 @@
         
         #detailDiv{
         	margin-top:80px;
-        	margin-right:120px;
+        	margin-right:240px;
         }
     </style>
 </head>
@@ -193,7 +195,7 @@
         <div align="center" id="bookInfoDiv"  class="jumbotron">
        <table width="1000px" height="300px" margin="100px" text-align="center">
        <tr align="center">
-       		<td rowspan="3"><img id="titleImg" src="<%= request.getContextPath() %>/<%= rb.getImageFile() %>"></td>
+       		<td width="230px" rowspan="3"><img id="titleImg" src="<%= request.getContextPath() %>/image/<%= rb.getImageFile() %>"></td>
        		<input type="hidden" name="bookImg" value="<%= rb.getImageFile() %>">
        		<th width="150px">책 제목</th>
        		<td><%= rb.getBookTitle() %></td>
@@ -233,7 +235,7 @@
                 </tr>
                 <tr>
                     <td><b>내용</b></td>
-                    <td><%= r.getReviewContent() %></td>
+                    <td><textarea  cols="100" rows="24"  readonly style="resize: none;"><%= r.getReviewContent() %></textarea></td>
                     <input type="hidden" name="reviewContent" value="<%= r.getReviewContent() %>">
                     <input type="hidden" name="bookId" value="<%= rb.getBookNo() %>">
                     <input type="hidden" name="reviewNo" value="<%= r.getReviewNo() %>">
@@ -272,13 +274,17 @@
                 }
                 </script>
             </table>
-          	<div id="detailDiv">
-          	<% if(loginUser != null && loginUser.getMemberId().equals(r.getMemberId())){ %>
-            <input class="btn" type="submit" value="수정" style=" float: right; margin-left: 10px;">
-            <input class="btn" type="button" value="글 삭제" onclick="deleteBoard();" style="float: right; margin-left: 10px;">
-            <% } %>
-            <input class="btn" type="button" value="목록으로" onclick="location.href='<%= request.getContextPath() %>/reviewList.rv'" style="float: right; margin-left: 10px;">
-        	</div>
+            <div class="mt-10">
+               <div id="Btns">
+               	<div id="detailDiv">
+          			<% if(loginUser != null && loginUser.getMemberId().equals(r.getMemberId())){ %>
+            			<input class="genric-btn info circle" type="submit" value="수정" style=" float: right; margin-left: 10px;">
+            			<input class="genric-btn info circle"  type="button" value="글 삭제" onclick="deleteBoard();" style="float: right; margin-left: 10px;">
+            		<% } %>
+            			<input class="genric-btn info circle"  type="button" value="목록으로" onclick="location.href='<%= request.getContextPath() %>/reviewList.rv'" style="float: right; margin-left: 10px;">
+            			</div>
+        	 	</div>
+            </div>
     </div>
         </form>
         <script>

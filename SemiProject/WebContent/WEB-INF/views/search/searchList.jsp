@@ -1,8 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, book.model.vo.Book"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, book.model.vo.Book, review.model.vo.PageInfo"%>
     
 <%
 	ArrayList<Book> bList = (ArrayList<Book>)request.getAttribute("bList");
+	Book b = (Book)request.getAttribute("b");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int categoryNo = 0;
+	categoryNo = (int)request.getAttribute("categoryNo");
+	String category = (String)request.getAttribute("category");
+	String kword = (String)request.getAttribute("kword");
+	int listCountTotal = (int)request.getAttribute("listCount");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 
 <!doctype html>
@@ -86,15 +99,6 @@
 		.container{
 			padding-top: 50px;
 		}
-       	
-       	.tables{
-       		padding-left: 50px;
-       		padding-top: 200px;	
-       	}
-       	 
-       	.tableResults{
-    		padding-left: 50px;
-       	}
 		       
         .result{
         	width: 800px;
@@ -102,7 +106,7 @@
         }
         
          .category{
-         width:28%;
+         width:20%;
          float: right;
          position: absolute; top:350px; right:0px;
          min-height:1px;
@@ -120,14 +124,16 @@
          	color: black;
          }
          .image{
-         	width: 200px;
-         	height: 300px;
-         
+         	
+         	width: 230px;
+         	height: 500px;
+         	
          }
          
-         .totalBook{
+         .totalBook{zz
+         	margin-top: 100px;
          	width: 800px;
-         	height: 300px;
+         	height: 400px;
          	
          }
          textarea {
@@ -136,9 +142,18 @@
 		    border: none;
 		    resize: none;
 		  }
-		  
 		  .list-display{
 		  	display: inline-block;
+		  }
+		  .whole{
+		  	width: 1500px;
+		  	height: 400px;
+		  }
+		  img{
+			  margin-bottom: 100px;
+		  }
+		  aside{
+		  	margin-top: 100px;
 		  }
   </style>
 </head>
@@ -164,29 +179,215 @@
 				<h2 id="currentMenu">도서 검색</h2>
 			</div>
 		</div>
-
-	
-	 
+		<div class="container">
+			<div class="searchResults">
+				<h3 class="mb-20">검색 결과</h3>
+				<ul class="noneList">
+				<% if(kword != null){ %>
+					<li><i class="fas fa-check-circle"></i> '<%= kword %>' 검색 결과</li>
+				<% } %>
+					<li><i class="fas fa-check-circle"></i> 총 <%= listCountTotal %>개의 검색 결과가 있습니다.</li>
+				</ul>
+				<hr>
+			</div>
+			<div>
+			<form action="deleteBook.db" id="deleteBook" name="deleteBook" method="post">
+	     	<% 	for (int i = 0; i < bList.size(); i++) { %>
 	 		<div >	
-	     	 <% for (int i = 0; i < bList.size(); i++) { %>
-				<div class="list-display">
-					<div><input type="checkbox"></div>
-		     	 		<div class="list-display image"><h2>책 사진 자리</h2></div>
-	     	 			<div class="list-display totalBook">
-		     	 			<ul>
-		     	 				<li><%= bList.get(i).getBookTitle() %></li>
-		     	 				<li><%= bList.get(i).getAuthor() %> | <%= bList.get(i).getPublisher() %> | <%= bList.get(i).getReleaseDate() %></li>
-		     	 				<li><textarea readonly><%= bList.get(i).getBookInfo() %></textarea></li>
-		     	 				<li>[대출 : <%= bList.get(i).getRentTotal() %> / 10]</li>
-		     	 			</ul>
-				     	 			
+			 <div class="list-display whole">
+	     	 		<div class="list-display image"><h2><img height="300px" width="200px" id="titleImg" name="titleImg" src="<%= request.getContextPath() %>/image/<%= bList.get(i).getChangeName() %>"></h2></div>
+     	 			<div class="list-display totalBook">
+	     	 			<ul>
+	     	 			<% System.out.println(request.getContextPath()); %>
+	     	 			<% System.out.println(bList.get(i).getChangeName()); %>
+	     	 				
+	     	 				<li><br><%= bList.get(i).getBookTitle() %><br></li>
+	     	 				<li><%= bList.get(i).getBookNo() %></li>
+	     	 				<li><%= bList.get(i).getAuthor() %> | <%= bList.get(i).getPublisher() %> | <%= bList.get(i).getReleaseDate() %></li>
+	     	 				<li><textarea readonly><%= bList.get(i).getBookInfo() %></textarea></li>
+	     	 				<li>[대출 : <%= bList.get(i).getRentTotal() %> / 2]</li>
+	     	 				<li>
+	     	 			</ul>
 					</div>
 			     </div> 
-	         <% } %>
-             </div>               
-        
+				</div>
+	         <% 	} %>
+			</form>
+             </div>
+		 </div>
+				
+				
+
+		 
+		<aside>
+		<div class="category">
+			<div class="blog_right_sidebar">
+				<aside class="single_sidebar_widget search_widget">
+							<div class="form-group">
+								<div class="input-group mb-3">
+								<input type="text" class="form-control" name="q" placeholder='도서명을 입력하세요.' id="combine"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = '도서명을 입력하세요.'">
+									<div class="input-group-append">
+									
+									</div>
+								</div>
+							</div>
+						<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+						type="button" onclick="combineSearch();">검색</button>
+				<script>
+					function combineSearch(){
+						var keyword = document.getElementById("combine").value;
+						location.href='<%= request.getContextPath()%>/searchBook.sr?category=book_title&&kword=' +  keyword;
+					}
+				</script>
+				
+				</aside>
+				<aside class="single_sidebar_widget post_category_widget">
+					<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
+					<ul class="list cat-list">
+						<li>
+							<a href="<%= request.getContextPath() %>/searchBook.sr" class="d-flex"><p>전체000</p></a>
+						</li>
+						<li>
+							<a onclick="category(100);" class="d-flex"><p>소설/시 100</p></a>
+						</li>
+						<li>
+							<a onclick="category(200);" class="d-flex"><p>경제/경영200</p></a>
+						</li>
+						<li>
+							<a onclick="category(300);" class="d-flex"><p>자기계발 300</p></a>
+						</li>
+						<li>
+							<a onclick="category(400);" class="d-flex"><p>인문/사회400</p></a>
+						</li>
+						<li>
+							<a onclick="category(500);" class="d-flex"><p>역사/종교/예술 500 </p></a>
+						</li>
+						<li>
+							<a onclick="category(600);" class="d-flex"><p>과학/IT 600</p></a>
+						</li>
+						<li>
+							<a onclick="category(700);" class="d-flex"><p>취미/여행 700</p></a>
+						</li>
+						<li>
+							<a onclick="category(800);" class="d-flex"><p>어린이800</p></a>
+						</li>
+						<li>
+							<a onclick="category(900);" class="d-flex"><p>언어 900</p></a>
+						</li>
+					</ul>
+				</aside>
+				<script>
+				function category(num){
+					
+					location.href="<%= request.getContextPath()%>/searchBook.sr?categoryNo=" + num;
+					
+				}
+				</script>
+				
+			</div>
+		</div>
+		<!-- sidebar end -->
 		
-			
+		</aside>
+		
+		
+		<% if(categoryNo == 0){ %>
+				<%if(category != null){ %>
+					<div class="pagingArea" align="center">
+		        <!-- 맨처음으로 -->
+		        <button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=1&&category=<%= category %>&&kword=<%= kword %>'">&lt;&lt;</button>
+		        <!-- 이전 페이지 -->
+		        <button id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()-1 %>&&category=<%= category %>&&kword=<%= kword %>'">&lt;</button>
+		        <script>
+		        	if(<%= pi.getCurrentPage()%> <=1 ){
+		        		$('#beforeBtn').prop('disabled', true);
+		        	}
+		        </script>
+				<!-- 숫자버튼 -->
+				<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
+				<%		if(p == pi.getCurrentPage()) { %>
+							<button id="choosen" disabled><%= p %></button>
+				<% 		} else {%>
+							<button id="numBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= p %>&&kword=<%= kword %>&&category=<%= category%>'"><%= p %></button>
+				<%		} %>
+				<%	}	 %>
+				<!-- 다음페이지로 -->
+				<button id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()+1 %>&&kword=<%= kword %>&&category=<%= category%>'">&gt;</button>
+				<script>
+					if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>){
+						$('#afterBtn').prop('disabled', true);
+					}
+				</script>
+				<!-- 맨 끝으로 -->
+				<button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=<%=pi.getMaxPage() %>&&kword=<%= kword %>&&category=<%= category%>'">&gt;&gt;</button>
+		       </div>
+			<%}else{ %>
+        <div class="pagingArea" align="center">
+        <!-- 맨처음으로 -->
+        <button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=1'">&lt;&lt;</button>
+        <!-- 이전 페이지 -->
+        <button id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()-1 %>'">&lt;</button>
+        <script>
+        	if(<%= pi.getCurrentPage()%> <=1 ){
+        		$('#beforeBtn').prop('disabled', true);
+        	}
+        </script>
+		<!-- 숫자버튼 -->
+		<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
+		<%		if(p == pi.getCurrentPage()) { %>
+					<button id="choosen" disabled><%= p %></button>
+		<% 		} else {%>
+					<button id="numBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= p %>'"><%= p %></button>
+		<%		} %>
+		<%	}	 %>
+		<!-- 다음페이지로 -->
+		<button id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()+1 %>'">&gt;</button>
+		<script>
+			if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>){
+				$('#afterBtn').prop('disabled', true);
+			}
+		</script>
+		<!-- 맨 끝으로 -->
+		<button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=<%=pi.getMaxPage() %>'">&gt;&gt;</button>
+       </div>
+       
+       		<% } %>
+     
+       
+		<% } if(categoryNo != 0){ %>
+        <div class="pagingArea" align="center">
+        <!-- 맨처음으로 -->
+        <button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=1&&categoryNo=<%= categoryNo %>'">&lt;&lt;</button>
+        <!-- 이전 페이지 -->
+        <button id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()-1 %>&&categoryNo=<%= categoryNo %>'">&lt;</button>
+        <script>
+        	if(<%= pi.getCurrentPage()%> <=1 ){
+        		$('#beforeBtn').prop('disabled', true);
+        	}
+        </script>
+		<!-- 숫자버튼 -->
+		<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
+		<%		if(p == pi.getCurrentPage()) { %>
+					<button id="choosen" disabled><%= p %></button>
+		<% 		} else {%>
+					<button id="numBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= p %>&&categoryNo=<%= categoryNo %>'"><%= p %></button>
+		<%		} %>
+		<%	}	 %>
+		<!-- 다음페이지로 -->
+		<button id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()+1 %>&&categoryNo=<%= categoryNo %>'">&gt;</button>
+		<script>
+			if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>){
+				$('#afterBtn').prop('disabled', true);
+			}
+		</script>
+		<!-- 맨 끝으로 -->
+		<button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=<%=pi.getMaxPage() %>&&categoryNo=<%= categoryNo %>'">&gt;&gt;</button>
+       </div>
+       
+       <%} %>
+       
+                      
 	</main>
 	<!-- Blog Area End -->
 	

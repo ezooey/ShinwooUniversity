@@ -2,6 +2,9 @@ package reqBook.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+
+import book.model.vo.Book;
+
 import static common.JDBCTemplate.*;
 import reqBook.model.dao.ReqBookDAO;
 import reqBook.model.vo.ReqBook;
@@ -69,5 +72,60 @@ public class ReqBookService {
 		
 		return result;
 	}
+
+	public int checkBookExist(Book b) {
+		Connection conn = getConnection();
+		
+		int result = nDAO.checkBookExist(conn, b);
+		
+		close(conn);
+		
+		return result;
+	}
 }
 
+	public ReqBook confirmList(int reqNo) {
+			
+			Connection conn = getConnection();
+			
+			ReqBook r = rDAO.confirmList(conn, reqNo);
+			
+			close(conn);
+			
+			return r;
+		
+		}
+
+
+		public ReqBook sendReqinfo(int reqNo) {
+			
+			Connection conn = getConnection();
+			
+			ReqBook r = rDAO.sendReqinfo(conn, reqNo);
+			
+			close(conn);
+			
+			return r;
+		}
+
+		public ReqBook reqBookDetail(int reqNo) {
+			
+			Connection conn = getConnection();
+			
+			ReqBook r = rDAO.reqBookDetail(conn, reqNo);
+			
+			close(conn);
+			
+			return r;
+	
+		}
+
+		public ReqBook defineList(int reqNo, String reason) {
+			Connection conn = getConnection();
+			
+			ReqBook r = rDAO.defineList(conn, reqNo);
+			
+			close(conn);
+			
+			return r;
+		}

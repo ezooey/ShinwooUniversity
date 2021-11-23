@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>도서 상세</title>
+    <title>도서 상세(Visitor)</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -184,6 +184,9 @@
         	color: #6785ff;
         }
         hr{border-bottom: #888;}
+        #imgFile{
+        	height: 218px;
+        }
     </style>
 </head>
 
@@ -213,55 +216,59 @@
         <div class="whole-wrap">
             <div class="container box_1170">
                 <div class="section-top-border">
-                	<form>
-	                    <div class="row">
-	                        <div id="homeNav">
-				    			<a id="btn_home" href="../common/main.html" role="button">홈</a> &gt; 
-				    			<a id="btn_category" href="" role="button" name="category"><%= b.getCategoryName() %></a> &gt; <a>상세보기</a>
-				    		</div>
-				    	</div>
-					   	<hr>
-						<div class="row">
-						   	<div id="detail_simple" class="bookInfo">
-						   		<a id="bookImg"><img src="<%= request.getContextPath() %>/<%= b.getChangeName() %>"></a>
-						   		<a id="ebookTag">전자책</a>
-						   	</div>
-						   	<div id="bookName">
-						   		<h4 id="title" name="bookTitle"><b><%= b.getBookTitle() %></b></h4>
-						   		<input type="hidden" name="bNo" value="<%= b.getBookNo() %>">
-						   		<br>
-						   		<hr style="margin-top: 0px; margin-bottom: 10px; width: 250px;">
-						   		<span class="simpleInfo"><b>글쓴이 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="author"><%= b.getAuthor() %></span>
-						   		<br>
-						   		<span class="simpleInfo"><b>출판사 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="publisher"><%= b.getPublisher() %></span>
-						   		<br>
-						   		<span class="simpleInfo"><b>출간일 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="release"><%= b.getReleaseDate() %></span>
-						   		<br>
-						   		<span class="simpleInfo"><b>제공형태: &nbsp;&nbsp;</b></span><span id="epub">ePUB</span>
-						   		<br>
-						   		<button onclick="borrow();" id="borrow">대출하기</button>
-						   		<div id="count">대출   &nbsp;&nbsp; <span id="currentNum"><%= request.getAttribute("currBorrow") %></span> / <%= request.getAttribute("max") %></div>
-						   	</div>
-						   		<br><br>
-						   	<div id="tabBar" class="bookInfo">
-						 		<span id="bookIntro">책 소개</span><br>
-						   	</div>
-						   	<fieldset>
-							   	<hr id="separate">
-								<div id="introduce" name="bookProfile">
+                    <div class="row">
+                        <div id="homeNav">
+			    			<a id="btn_home" href="../common/main.html" role="button">홈</a> &gt; 
+			    			<a id="btn_category" href="" role="button" name="category"><%= b.getCategoryName() %></a> &gt; <a>상세보기</a>
+			    		</div>
+			    	</div>
+				   	<hr>
+					<div class="row">
+					   	<div id="detail_simple" class="bookInfo">
+					   		<a id="bookImg"><img id="imgFile" src="<%= request.getContextPath() %>/image/<%= b.getChangeName() %>"></a>
+					   		<a id="ebookTag">전자책</a>
+					   	</div>
+					   	<div id="bookName">
+					   		<h4 id="title" name="bookTitle"><b><%= b.getBookTitle() %></b></h4>
+					   		<input type="hidden" id="bookNo" name="bNo" value="<%= b.getBookNo() %>">
+					   		<br>
+					   		<hr style="margin-top: 0px; margin-bottom: 10px; width: 250px;">
+					   		<span class="simpleInfo"><b>글쓴이 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="author"><%= b.getAuthor() %></span>
+					   		<br>
+					   		<span class="simpleInfo"><b>출판사 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="publisher"><%= b.getPublisher() %></span>
+					   		<br>
+					   		<span class="simpleInfo"><b>출간일 &nbsp;&nbsp; </b></span><span class="simpleInfo" id="release"><%= b.getReleaseDate() %></span>
+					   		<br>
+					   		<span class="simpleInfo"><b>제공형태: &nbsp;&nbsp;</b></span><span id="epub">ePUB</span>
+					   		<br>
+					   		<button id="borrow">대출하기</button>
+				   			<input type="hidden" name="rId" value="">
+					   		<div id="count">대출   &nbsp;&nbsp; <span id="currentNum"><%= request.getAttribute("currBorrow") %></span> / <%= request.getAttribute("max") %></div>
+					   	</div>
+					   		<br><br>
+					   	<div id="tabBar" class="bookInfo">
+					 		<span id="bookIntro">책 소개</span><br>
+					   	</div>
+					   	<fieldset>
+						   	<hr id="separate">
+							<div id="introduce" name="bookProfile">
+								<% if(b.getBookInfo() != null) { %>
 									<%= b.getBookInfo() %>
-								</div>
-								<br>
-						   	</fieldset>
-	                    </div>
-	            	</form>
+								<% } else { %>
+									해당 도서 정보가 없습니다.
+								<% } %>
+							</div>
+							<br>
+					   	</fieldset>
+                    </div>
                 </div>
             </div>
         </div>
    		<script>
-   			function borrow(){
+   			$('#borrow').click(function(){
    				alert('로그인 후 이용해주세요.');
-   			}
+   				location.href='<%= request.getContextPath() %>/loginForm.me';
+   			});
    		</script>
         <!-- End Align Area -->
     </main>

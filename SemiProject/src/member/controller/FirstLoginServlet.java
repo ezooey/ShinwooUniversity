@@ -44,13 +44,11 @@ public class FirstLoginServlet extends HttpServlet {
 		String address = null;
 		
 		if(!number2.equals("")) {
-			String subNum1 = number2.substring(0, 4);
-			String subNum2 = number2.substring(4, 8);
-			phone = number1 + "-" + subNum1 + "-" + subNum2;
+			phone = number1 + number2;
 		}
 		
 		if(!address2.equals("")) {
-			address = address1 + " " + address2;
+			address = address1 + "&&" + address2;
 		}
 		
 		String email = email1.concat(email2);

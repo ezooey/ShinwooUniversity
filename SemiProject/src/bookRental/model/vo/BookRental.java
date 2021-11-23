@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class BookRental {
 	private int rentalCode;
+	private int dateCal;
 	private Date rentalDate;
 	private Date returnDate;
 	private String returnYN;
@@ -11,7 +12,25 @@ public class BookRental {
 	private String bookNo;
 	private String bookTitle;
 	private String author;
+	private String img;
 	
+	
+	
+	public BookRental(int rentalCode, int dateCal, Date rentalDate, Date returnDate, String returnYN, String memberId,
+			String bookNo, String bookTitle, String author, String img) {
+		super();
+		this.rentalCode = rentalCode;
+		this.dateCal = dateCal;
+		this.rentalDate = rentalDate;
+		this.returnDate = returnDate;
+		this.returnYN = returnYN;
+		this.memberId = memberId;
+		this.bookNo = bookNo;
+		this.bookTitle = bookTitle;
+		this.author = author;
+		this.img = img;
+	}
+
 	public BookRental(int rentalCode, Date rentalDate, Date returnDate, String returnYN, String memberId, String bookNo,
 			String bookTitle, String author) {
 		super();
@@ -102,11 +121,30 @@ public class BookRental {
 		this.bookNo = bookNo;
 	}
 
+	
+	
+	
+	public int getDateCal() {
+		return dateCal;
+	}
+
+	public void setDateCal(int dateCal) {
+		this.dateCal = dateCal;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	@Override
 	public String toString() {
-		return "BookRental [rentalCode=" + rentalCode + ", rentalDate=" + rentalDate + ", returnDate=" + returnDate
-				+ ", returnYN=" + returnYN + ", memberId=" + memberId + ", bookNo=" + bookNo + ", bookTitle="
-				+ bookTitle + ", author=" + author + "]";
+		return "BookRental [rentalCode=" + rentalCode + ", dateCal=" + dateCal + ", rentalDate=" + rentalDate
+				+ ", returnDate=" + returnDate + ", returnYN=" + returnYN + ", memberId=" + memberId + ", bookNo="
+				+ bookNo + ", bookTitle=" + bookTitle + ", author=" + author + ", img=" + img + "]";
 	}
 	
 	
