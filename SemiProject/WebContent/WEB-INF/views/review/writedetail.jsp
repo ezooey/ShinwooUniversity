@@ -196,6 +196,8 @@
        <table width="1000px" height="300px" margin="100px" text-align="center">
        <tr align="center">
        		<td width="230px" rowspan="3"><img id="titleImg" src="<%= request.getContextPath() %>/image/<%= rb.getImageFile() %>"></td>
+       		<% System.out.println(request.getContextPath()); %>
+       		<% System.out.println(rb.getImageFile()); %>
        		<input type="hidden" name="bookImg" value="<%= rb.getImageFile() %>">
        		<th width="150px">책 제목</th>
        		<td><%= rb.getBookTitle() %></td>
