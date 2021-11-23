@@ -61,6 +61,7 @@ public class AlarmService {
 	
 	
 }
+<<<<<<< HEAD
 
 public int insertAlarm1(String writer, String bookName) {
 	Connection conn = getConnection();
@@ -98,3 +99,5 @@ public int insertAlarm2(String writer, String bookName) {
 	
 }
 }
+=======
+>>>>>>> 478a1316a187cbf7853ec4102102b8ff952a927c

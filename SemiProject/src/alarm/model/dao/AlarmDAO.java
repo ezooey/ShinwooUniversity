@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿package alarm.model.dao;
+=======
+package alarm.model.dao;
+>>>>>>> 478a1316a187cbf7853ec4102102b8ff952a927c
 
 import static common.JDBCTemplate.*;
 
@@ -107,6 +111,7 @@ public class AlarmDAO {
 		return result;
 	}
 }
+<<<<<<< HEAD
 
 public int insertAlarm1(Connection conn, String writer, String bookName) {
 	PreparedStatement pstmt = null;
@@ -154,3 +159,5 @@ public int insertAlarm2(Connection conn, String writer, String bookName) {
 }
 
 }
+=======
+>>>>>>> 478a1316a187cbf7853ec4102102b8ff952a927c
