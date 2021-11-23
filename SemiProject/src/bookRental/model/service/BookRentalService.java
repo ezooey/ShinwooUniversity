@@ -88,6 +88,16 @@ public class BookRentalService {
 		return list;
 	}
 
+	public ArrayList<BookRental> selectReturnInfo() {
+		Connection conn = getConnection();
+		
+		ArrayList<BookRental> list = brDAO.selectReturnInfo(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+
 
 	
 }

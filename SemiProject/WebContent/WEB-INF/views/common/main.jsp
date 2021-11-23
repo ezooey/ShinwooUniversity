@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	import="member.vo.Member,java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="member.vo.Member,java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html>
@@ -55,7 +55,6 @@
 			width: 300px;
 			height: 300px;
 		}
-
 		#slider ul {
 			position: relative;
 			margin: 0;
@@ -64,7 +63,6 @@
 			list-style: none;
 			left: 0px;
 		}
-
 		#slider ul li {
 			position: relative;
 			display: block;
@@ -77,7 +75,6 @@
 			text-align: center;
 			line-height: 300px;
 		}
-
 		a.prev,
 		a.next {
 			position: absolute;
@@ -95,32 +92,26 @@
 			opacity: 0.8;
 			cursor: pointer;
 		}
-
 		a.prev:hover,
 		a.next:hover {
 			opacity: 1;
 			-webkit-transition: all 0.2s ease;
 		}
-
 		a.prev {
 			border-radius: 0 2px 2px 0;
 		}
-
 		a.next {
 			right: 0;
 			border-radius: 2px 0 0 2px;
 		}
-
 		body {
 			line-height: 1.6
 		}
-
 		ul.tabs {
 			margin: 0px;
 			padding: 0px;
 			list-style: none;
 		}
-
 		ul.tabs li {
 			background: none;
 			color: #222;
@@ -128,68 +119,54 @@
 			padding: 10px 15px;
 			cursor: pointer;
 		}
-
 		.tab-content {
 			display: none;
 			padding: 5px;
 		}
-
 		ul.tabs li.current {
 			background: #ededed;
 			color: #222;
 		}
-
 		.tab-content.current {
 			display: inherit;
 		}
-
 		#currentMenu {
 			color: white;
 			padding: 20px;
 			font-size: 40px;
 			font-weight: 700;
 		}
-
 		#login {
 			margin: 20px;
 		}
-
 		.reqTitle {
 			padding-top: 10px;
 			padding-bottom: 3px;
 			display: block;
 		}
-
 		.bottomBtn {
 			float: right;
 			padding-top: 20px;
 		}
-
 		.bottomBtn input {
 			margin: 10px;
 		}
-
 		.noneList {
 			list-style: none;
 		}
-
 		.fa-check-circle {
 			color: #6785FF;
 		}
-
 		.section-top-border {
 			padding: 40px;
 		}
-
 		.searchBar {
 			padding-top: 10%;
 			padding-left: 60%;
 		}
-
 		.paging1 {
 			padding-left: 47%;
 		}
-
 		body {
 			background-image: url('#');
 			background-repeat: no-repeat;
@@ -198,13 +175,10 @@
 			margin: 0;
 			padding: 0;
 		}
-
-
 		#wholewhole {
 			width: auto;
 			background-color: #2980B9;
 		}
-
 		#wholeslide-div {
 			width: 1130px;
 			height: 350px;
@@ -213,7 +187,6 @@
 			background-color: #2980B9;
 			margin: 0 auto;
 		}
-
 		#slider-div {
 			width: 1130px;
 			height: 300px;
@@ -221,7 +194,6 @@
 			padding-top: 20px;
 			padding-right: 0px;
 		}
-
 		.bookimage {
 			width: 95%;
 			height: auto;
@@ -234,7 +206,6 @@
 			transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 			border-radius: 6.5%;
 		}
-
 		.bookimage:hover {
 			box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 			transform: scale(1.08);
@@ -242,66 +213,54 @@
 			left: 0;
 			opacity: 0.915;
 		}
-
 		.book-div {
 			width: 400px;
 			height: 300px;
 			padding: 0px 40px 0px 0px;
 		}
-
 		.center {
 			text-align: center;
 		}
-
 		#searchForm {
 			display: inline-block;
 			width: 430px;
 			height: 40px;
 			border: solid #aacec2 4px;
 		}
-
 		#searchOption {
 			width: 20%;
 			height: 40px;
 			border: 0px;
 			padding-right: 14px;
 		}
-
 		#searchText {
 			width: 60%;
 			height: 40px;
 			border: 0px;
 			background: none;
 		}
-
 		#searchButton {
 			width: 60px;
 			height: 40px;
 			border: 0px;
 		}
-
 		#latestBook {
 			display: none;
 		}
-
 		.order {
 			cursor: pointer;
 		}
-
 		.left {
 			padding-left: 20%;
 		}
-
 		.container {
 			background: f9f9ff;
 		}
-
 		ul.ul1 {
 			list-style: none;
 			width: 1000px;
 			margin: 0 auto;
 		}
-
 		img.bookimg {
 			padding-bottom: 10px;
 			cursor: pointer;
@@ -312,14 +271,10 @@
 			width: 150px;
 			height: 230px;
 		}
-
 		li.booklist {
-			display: list-item;
-			float: left;
-			width: 25%;
-			padding-top: 10px;
+			padding-left: 35px;
+			padding-right: 35px;
 		}
-
 		.listop {
 			text-decoration-line: none;
 			color: #666;
@@ -329,30 +284,46 @@
 			display: block;
 			width: 170px;
 		}
-
 		.bookName {
 			width: 148px;
 			max-height: 30px;
 		}
-
 		.centerBook {
+			display: flex;
 			justify-content: center;
-			padding: 0px;
-			margin: 0 auto;
 		}
-
 		#newsdiv {
 			padding-top: 500px;
 		}
-
 		#footerdiv {
 			height: 200px;
 			background: lightgray;
 			text-align: center;
 		}
-
 		.back {
 			background: #f9f8ff;
+		}
+		
+		.title{
+			color: black;
+			cursor: pointer;
+			overflow: hidden;
+			word-break: break-all;
+			display: block;
+			width: 149px;
+			text-align: center;
+		}
+		
+		#popularLi, #popularLi2{
+ 			display: flex;
+			justify-content: center;
+		}
+		#recentLi, #recentLi2{
+			display: none;
+			justify-content: center;
+		}
+		.orderBtn{
+			cursor: pointer;
 		}
 	</style>
 	<script src="slider.js"></script>
@@ -439,20 +410,27 @@
 			</script>
 			<br><br><br>
 
-			<form class="center" name="search">
-				<div id="searchForm" class="center">
-					<select id="searchOption">
-						<option value="title" selected>도서명</option>
-						<option value="author">저자</option>
+			<div id="searchForm" class="center">
+					<select id="selectOption" >
+						<option id="book_title" value="book_title" >도서명</option>
+						<option id="author" value="author">저자</option>
 					</select>
-					<input type="search" id="searchText">
-					<button id="searchButton" type="submit" title="검색" style="background:none;">
+					<input type="search" id="keyword" name="q" value="">
+					<button id="searchButton" type="button" title="검색" style="background:none;" onclick="search();">
 						<i class="fas fa-search fa-lg" style="background:none; color:#2980b9;"></i>
 					</button>
 				</div>
-				<br><br>
-				<hr width=60%>
-			</form>
+				<script>
+					function search(){
+						
+						var selectOption = document.getElementById("selectOption").value;
+						var keyword = document.getElementById("keyword").value;
+						location.href="<%= request.getContextPath()%>/searchBook.sr?category=" + selectOption + "&&kword=" + keyword;
+						
+						
+					}
+				
+				</script>
 			<br><br>
 
 
@@ -508,27 +486,145 @@
 											} ]
 										});
 					})
-		</script>
-		<br>
-		<br>
-		<br>
+</script>
+			<br><br><br>
 
-		<form class="center" name="search">
-			<div id="searchForm" class="center">
-				<select id="searchOption">
-					<option value="title" selected>도서명</option>
-					<option value="author">저자</option>
-				</select> <input type="search" id="searchText">
-				<button id="searchButton" type="submit" title="검색"
-					style="background: none;">
-					<i class="fas fa-search fa-lg"
-						style="background: none; color: #2980b9;"></i>
-				</button>
-			</div>
+			<form class="center" name="search">
+				<div id="searchForm" class="center">
+					<select id="searchOption">
+						<option value="title" selected>도서명</option>
+						<option value="author">저자</option>
+					</select>
+					<input type="search" id="searchText">
+					<button id="searchButton" type="submit" title="검색" style="background:none;">
+						<i class="fas fa-search fa-lg" style="background:none; color:#2980b9;"></i>
+					</button>
+				</div>
+				<br><br>
+			</form>
+			<br><br>
+
+			<section class="wantToWork-area back">
+			<div class="container">
+<!-- 			<form name="bookList"> -->
+				<div id="listDiv" class="left">&nbsp;&nbsp;
+					<a id="popOrder" class="orderBtn" style="padding-right: 5px;"><b>인기순</b></a>
+					<a id="recOrder" class="orderBtn"><b>최신순</b></a>
+				</div>
+				<br>
+				<script>
+					$('#popOrder').click(function(){
+						$('#popularLi').css('display', 'flex');
+						$('#popularLi2').css('display', 'flex');
+						$('#recentLi').css('display', 'none');
+						$('#recentLi2').css('display', 'none');
+					});
+					$('#recOrder').click(function(){
+						$('#popularLi').css('display', 'none');
+						$('#popularLi2').css('display', 'none');
+						$('#popularList2').css('padding-top', '0px');
+						$('#recentLi').css('display', 'flex');
+						$('#recentLi2').css('display', 'flex');
+					});
+						
+				</script>
+				<script>
+					$(function(){
+						$.ajax({
+							url: "popularList.bo",
+							success: function(data) {
+								console.log(data);
+								for(var i = 0; i < 4; i++){
+									console.log(data);
+									var li1 = "<ul class='ul'>";
+									li1 += "<li class='booklist'>";
+									li1 += "<a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=" + data[i].bookNo + "'>";
+									li1 += "<img class='bookimg' src='<%= request.getContextPath() %>/image/" + data[i].changeName + "'>";
+									li1 += "</a><br>";
+									li1 += "<span>";
+									li1 += "<a class='title' href='<%= request.getContextPath() %>/bookDetail.bo?bNo=" + data[i].bookNo + "'>" + data[i].bookTitle + "</a>";
+									li1 += "</span></li>";
+									$('#popularLi').append(li1);
+								}
+								for(var i = 4; i < data.length; i++){
+									console.log(data);
+									
+									var li2 = "<li class='booklist'>";
+									li2 += "<a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=" + data[i].bookNo + "'>";
+									li2 += "<img class='bookimg' src='<%= request.getContextPath() %>/image/" + data[i].changeName + "'>";
+									li2 += "</a><br>";
+									li2 += "<span>";
+									li2 += "<a class='title' href='<%= request.getContextPath() %>/bookDetail.bo?bNo=" + data[i].bookNo + "'>" + data[i].bookTitle + "</a>";
+									li2 += "</span></li>";
+									
+									$('#popularLi2').append(li2);
+								}
+							},
+							error: function(data) {
+								console.log(data);
+								alert(data);
+							}
+						});
+					});
+				</script>
+				<script>
+					$(function(){
+						$.ajax({
+							url: "recentList.bo",
+							success: function(data) {
+								console.log(data);
+								for(var i = 0; i < 4; i++){
+									console.log(data);
+									var li1 = "<ul class='ul'>";
+									li1 += "<li class='booklist'>";
+									li1 += "<a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=" + data[i].bookNo + "'>";
+									li1 += "<img class='bookimg' src='<%= request.getContextPath() %>/image/" + data[i].changeName + "'>";
+									li1 += "</a><br>";
+									li1 += "<span>";
+									li1 += "<a class='title' href='<%= request.getContextPath() %>/bookDetail.bo?bNo=" + data[i].bookNo + "'>" + data[i].bookTitle + "</a>";
+									li1 += "</span></li>";
+									$('#recentLi').append(li1);
+								}
+								for(var i = 4; i < data.length; i++){
+									console.log(data);
+									
+									var li2 = "<li class='booklist'>";
+									li2 += "<a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=" + data[i].bookNo + "'>";
+									li2 += "<img class='bookimg' src='<%= request.getContextPath() %>/image/" + data[i].changeName + "'>";
+									li2 += "</a><br>";
+									li2 += "<span>";
+									li2 += "<a class='title' href='<%= request.getContextPath() %>/bookDetail.bo?bNo=" + data[i].bookNo + "'>" + data[i].bookTitle + "</a>";
+									li2 += "</span></li>";
+									
+									$('#recentLi2').append(li2);
+								}
+							},
+							error: function(data) {
+								console.log(data);
+								alert(data);
+							}
+						});
+					});
+				</script>
+				<div id="popularList">
+					<ul class='ul' id="popularLi">
+					</ul>
+				</div>
+				<div style="padding-top: 20px;" id="popularList2">
+					<ul class='ul' id="popularLi2">
+					</ul>
+				</div>
+				<div id="recenctList">
+					<ul class='ul' id="recentLi">
+					</ul>
+				</div>
+				<div style="padding-top: 20px;" id="recenctList2">
+					<ul class='ul' id="recentLi2">
+					</ul>
+				</div>
 			<br>
 			<br>
 			<hr width=60%>
-		</form>
 		<br>
 		<br>
 
@@ -537,163 +633,14 @@
 			<div id="listDiv" class="left">
 				&nbsp;&nbsp; <a onclick="bookOrder(this);" class="order"><b>인기순</b></a>&nbsp;
 				<a onclick="bookOrder(this);" class="order"><b>최신순</b></a>
-				<script>
-					function bookOrder(book) {
-						if (book.innerText == "인기순") {
-							document.getElementById("bestBook").style.display = "block";
-							document.getElementById("latestBook").style.display = "none";
-						} else if (book.innerText == "최신순") {
-							document.getElementById("bestBook").style.display = "none";
-							document.getElementById("latestBook").style.display = "block";
-						}
-
-					}
-				</script>
 			</div>
 			<br>
-			<div id="bestLatest">
-				<div id="bestBook" class="centerBook">
-					<ul class="ul1">
-						<li class="booklist"><a class="listop"
-							href="http://www.yes24.com/Product/Goods/91065309"> <img
-								class="bookimg" src="http://image.yes24.com/goods/91065309/M"
-								alt="달러구트 꿈 백화점"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/91065309"> 달러구트 꿈
-									백화점 </a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/93888691"> <img
-								class="bookimg" src="http://image.yes24.com/goods/93888691/M"
-								alt="2030 축의 전환"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/93888691">2030 축의
-									전환</a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/67362730"> <img
-								class="bookimg" src="http://image.yes24.com/goods/67362730/M"
-								alt="해커스 토익 기출 보카"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/67362730">해커스 토익 기출
-									보카</a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/16384156"> <img
-								class="bookimg" src="http://image.yes24.com/goods/16384156/M"
-								alt="이토록 공부가 재미있어지는 순간"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
-									재미있어지는 순간</a>
-						</span> <br></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/91065309"> <img
-								class="bookimg" src="http://image.yes24.com/goods/91065309/M"
-								alt="달러구트 꿈 백화점"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/91065309"> 달러구트 꿈
-									백화점 </a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/93888691"> <img
-								class="bookimg" src="http://image.yes24.com/goods/93888691/M"
-								alt="2030 축의 전환"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/93888691">2030 축의
-									전환</a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/67362730"> <img
-								class="bookimg" src="http://image.yes24.com/goods/67362730/M"
-								alt="해커스 토익 기출 보카"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/67362730">해커스 토익 기출
-									보카</a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/16384156"> <img
-								class="bookimg" src="http://image.yes24.com/goods/16384156/M"
-								alt="이토록 공부가 재미있어지는 순간"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
-									재미있어지는 순간</a>
-						</span></li>
-					</ul>
+		
 				</div>
-				<div id="latestBook" class="centerBook">
-					<ul class="ul1">
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/16384156"> <img
-								class="bookimg" src="http://image.yes24.com/goods/16384156/M"
-								alt="이토록 공부가 재미있어지는 순간"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
-									재미있어지는 순간</a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/67362730"> <img
-								class="bookimg" src="http://image.yes24.com/goods/67362730/M"
-								alt="해커스 토익 기출 보카"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/67362730">해커스 토익 기출
-									보카</a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/93888691"> <img
-								class="bookimg" src="http://image.yes24.com/goods/93888691/M"
-								alt="2030 축의 전환"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/93888691">2030 축의
-									전환</a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/16384156"> <img
-								class="bookimg" src="http://image.yes24.com/goods/16384156/M"
-								alt="이토록 공부가 재미있어지는 순간"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/16384156">이토록 공부가
-									재미있어지는 순간</a>
-						</span> <br></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/91065309"> <img
-								class="bookimg" src="http://image.yes24.com/goods/91065309/M"
-								alt="달러구트 꿈 백화점"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/91065309"> 달러구트 꿈
-									백화점 </a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/67362730"> <img
-								class="bookimg" src="http://image.yes24.com/goods/67362730/M"
-								alt="해커스 토익 기출 보카"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/67362730">해커스 토익 기출
-									보카</a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/93888691"> <img
-								class="bookimg" src="http://image.yes24.com/goods/93888691/M"
-								alt="2030 축의 전환"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/93888691">2030 축의
-									전환</a>
-						</span></li>
-						<li class="booklist"><a
-							href="http://www.yes24.com/Product/Goods/91065309"> <img
-								class="bookimg" src="http://image.yes24.com/goods/91065309/M"
-								alt="달러구트 꿈 백화점"><br>
-						</a> <span class="bookName"> <a class="listop"
-								href="http://www.yes24.com/Product/Goods/91065309"> 달러구트 꿈
-									백화점 </a>
-						</span></li>
-					</ul>
-				</div>
+				<br><br>
 			</form>
 			<br><br>
-			<hr width=60%>
-			<br><br>
 
-			<!--  -->
 			<section class="wantToWork-area back">
 				<div class="container">
 					<div class="row">

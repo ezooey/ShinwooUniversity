@@ -15,11 +15,13 @@ public class Book {
 	private String refer;
 	private Date releaseDate;
 	private String categoryName;
+	private String changeName;
 	
 	public Book() {}
 
 	public Book(String bookNo, String bookTitle, int category, String author, String publisher, Date regDate,
-			int rentTotal, String ownYN, String bookInfo, String refer, Date releaseDate) {
+			int rentTotal, String ownYN, String bookInfo, String refer, Date releaseDate, String categoryName,
+			String changeName) {
 		super();
 		this.bookNo = bookNo;
 		this.bookTitle = bookTitle;
@@ -32,6 +34,23 @@ public class Book {
 		this.bookInfo = bookInfo;
 		this.refer = refer;
 		this.releaseDate = releaseDate;
+		this.categoryName = categoryName;
+		this.changeName = changeName;
+	}
+
+	public Book(String bookNo, String bookTitle, int category, String author, String publisher, Date regDate,
+			int rentTotal, String ownYN, String bookInfo, String refer) {
+		super();
+		this.bookNo = bookNo;
+		this.bookTitle = bookTitle;
+		this.category = category;
+		this.author = author;
+		this.publisher = publisher;
+		this.regDate = regDate;
+		this.rentTotal = rentTotal;
+		this.ownYN = ownYN;
+		this.bookInfo = bookInfo;
+		this.refer = refer;
 	}
 	
 	public Book(String bookNo, String bookTitle, int category, String author, String publisher, Date regDate,
@@ -61,6 +80,14 @@ public class Book {
 
 	public String getBookTitle() {
 		return bookTitle;
+	}
+
+	public String getChangeName() {
+		return changeName;
+	}
+
+	public void setChangeName(String changeName) {
+		this.changeName = changeName;
 	}
 
 	public void setBookTitle(String bookTitle) {
@@ -135,11 +162,7 @@ public class Book {
 		return releaseDate;
 	}
 
-	public Date getReleseDate() {
-		return releaseDate;
-	}
-
-	public void setReleseDate(Date releaseDate) {
+	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 
@@ -155,8 +178,8 @@ public class Book {
 	public String toString() {
 		return "Book [bookNo=" + bookNo + ", bookTitle=" + bookTitle + ", category=" + category + ", author=" + author
 				+ ", publisher=" + publisher + ", regDate=" + regDate + ", rentTotal=" + rentTotal + ", ownYN=" + ownYN
-				+ ", bookInfo=" + bookInfo + ", refer=" + refer + ", releseDate=" + releaseDate + ", categoryName="
-				+ categoryName + "]";
+				+ ", bookInfo=" + bookInfo + ", refer=" + refer + ", releaseDate=" + releaseDate + ", categoryName="
+				+ categoryName + ", changeName=" + changeName + "]";
 	}
 	
 }

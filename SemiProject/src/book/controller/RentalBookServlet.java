@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import book.model.service.BookDetailService;
+import member.vo.Member;
 
 /**
  * Servlet implementation class RentalBookServlet
@@ -30,11 +31,18 @@ public class RentalBookServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String bNo = request.getParameter("bNo");
-		String rId = request.getParameter("rId");
+		System.out.println(bNo);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		String rId = null;
+		if(loginUser != null) {
+			rId = loginUser.getMemberId();
+		}
+		System.out.println(rId);
 		int result = new BookDetailService().RentalBook(rId, bNo);
+		System.out.println(result);
 		
 		if(result > 0) {
-			response.sendRedirect("detail.bo?bNo=" + bNo);
+			response.sendRedirect("bookDetail.bo?bNo=" + bNo);
 		} else {
 			request.setAttribute("msg", "도서 대출 실패");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);

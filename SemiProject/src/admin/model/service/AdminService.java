@@ -50,6 +50,7 @@ public class AdminService {
 
 	public ArrayList<RentalBook> selectRentalBookList() {
 		Connection conn = getConnection();
+		
 		ArrayList<RentalBook> list = aDAO.selectRentalBookList(conn);
 		
 		close(conn);
