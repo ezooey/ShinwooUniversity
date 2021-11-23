@@ -17,14 +17,14 @@ import book.model.vo.Book;
 import reqBook.model.vo.ReqBook;
 
 public class ReqBookDAO {
-	
+
 	private Properties prop = null;
-	
+
 	public ReqBookDAO() {
 		prop = new Properties();
-		
+
 		String fileName = ReqBookDAO.class.getResource("/sql/reqBook/reqBook-query.properties").getPath();
-		
+
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (FileNotFoundException e) {
@@ -38,27 +38,21 @@ public class ReqBookDAO {
 		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<ReqBook> list = null;
-		
+
 		String query = prop.getProperty("selectList");
-	
+
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
-			
+
 			list = new ArrayList<ReqBook>();
-			
-			while(rset.next()) {
-				ReqBook r = new ReqBook(rset.getInt("REQ_NO"),
-										rset.getString("REQ_BOOK"),
-										rset.getDate("REQ_DATE"),
-										rset.getString("REQ_PUB"),
-										rset.getString("REQ_AUTHOR"),
-										rset.getString("MEMBER_NAME"),
-										rset.getString("REQ_COMMENT"),
-										rset.getString("REQ_REASON"),
-										rset.getInt("PERMIT_STATUS"),
-										rset.getString("REQ_ID"));
-				
+
+			while (rset.next()) {
+				ReqBook r = new ReqBook(rset.getInt("REQ_NO"), rset.getString("REQ_BOOK"), rset.getDate("REQ_DATE"),
+						rset.getString("REQ_PUB"), rset.getString("REQ_AUTHOR"), rset.getString("MEMBER_NAME"),
+						rset.getString("REQ_COMMENT"), rset.getString("REQ_REASON"), rset.getInt("PERMIT_STATUS"),
+						rset.getString("REQ_ID"));
+
 				list.add(r);
 			}
 		} catch (SQLException e) {
@@ -70,30 +64,23 @@ public class ReqBookDAO {
 		return list;
 	}
 
-
 	public ReqBook defineList(Connection conn, int reqNo) {
-			
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ReqBook r = null;
-		
+
 		String query = prop.getProperty("defineList");
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, reqNo);
 			rset = pstmt.executeQuery();
 
-			if(rset.next()) {
-				r = new ReqBook(rset.getInt("REQ_NO"),
-						rset.getString("REQ_BOOK"),
-						rset.getDate("REQ_DATE"),
-						rset.getString("REQ_PUB"),
-						rset.getString("REQ_AUTHOR"),
-						rset.getString("MEMBER_NAME"),
-						rset.getString("REQ_COMMENT"),
-						rset.getString("REQ_REASON"),
-						rset.getInt("PERMIT_STATUS"),
+			if (rset.next()) {
+				r = new ReqBook(rset.getInt("REQ_NO"), rset.getString("REQ_BOOK"), rset.getDate("REQ_DATE"),
+						rset.getString("REQ_PUB"), rset.getString("REQ_AUTHOR"), rset.getString("MEMBER_NAME"),
+						rset.getString("REQ_COMMENT"), rset.getString("REQ_REASON"), rset.getInt("PERMIT_STATUS"),
 						rset.getString("REQ_ID"));
 			}
 		} catch (SQLException e) {
@@ -104,29 +91,23 @@ public class ReqBookDAO {
 		}
 		return r;
 	}
-	
+
 	public ReqBook sendReqinfo(Connection conn, int reqNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ReqBook r = null;
-		
+
 		String query = prop.getProperty("sendReqinfo");
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, reqNo);
 			rset = pstmt.executeQuery();
 
-			if(rset.next()) {
-				r = new ReqBook(rset.getInt("REQ_NO"),
-						rset.getString("REQ_BOOK"),
-						rset.getDate("REQ_DATE"),
-						rset.getString("REQ_PUB"),
-						rset.getString("REQ_AUTHOR"),
-						rset.getString("MEMBER_NAME"),
-						rset.getString("REQ_COMMENT"),
-						rset.getString("REQ_REASON"),
-						rset.getInt("PERMIT_STATUS"),
+			if (rset.next()) {
+				r = new ReqBook(rset.getInt("REQ_NO"), rset.getString("REQ_BOOK"), rset.getDate("REQ_DATE"),
+						rset.getString("REQ_PUB"), rset.getString("REQ_AUTHOR"), rset.getString("MEMBER_NAME"),
+						rset.getString("REQ_COMMENT"), rset.getString("REQ_REASON"), rset.getInt("PERMIT_STATUS"),
 						rset.getString("REQ_ID"));
 			}
 		} catch (SQLException e) {
@@ -136,30 +117,24 @@ public class ReqBookDAO {
 			close(pstmt);
 		}
 		return r;
-		}
+	}
 
 	public ReqBook confirmList(Connection conn, int reqNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ReqBook r = null;
-		
+
 		String query = prop.getProperty("confirmList");
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, reqNo);
 			rset = pstmt.executeQuery();
 
-			if(rset.next()) {
-				r = new ReqBook(rset.getInt("REQ_NO"),
-						rset.getString("REQ_BOOK"),
-						rset.getDate("REQ_DATE"),
-						rset.getString("REQ_PUB"),
-						rset.getString("REQ_AUTHOR"),
-						rset.getString("MEMBER_NAME"),
-						rset.getString("REQ_COMMENT"),
-						rset.getString("REQ_REASON"),
-						rset.getInt("PERMIT_STATUS"),
+			if (rset.next()) {
+				r = new ReqBook(rset.getInt("REQ_NO"), rset.getString("REQ_BOOK"), rset.getDate("REQ_DATE"),
+						rset.getString("REQ_PUB"), rset.getString("REQ_AUTHOR"), rset.getString("MEMBER_NAME"),
+						rset.getString("REQ_COMMENT"), rset.getString("REQ_REASON"), rset.getInt("PERMIT_STATUS"),
 						rset.getString("REQ_ID"));
 			}
 		} catch (SQLException e) {
@@ -175,24 +150,18 @@ public class ReqBookDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ReqBook r = null;
-		
+
 		String query = prop.getProperty("reqBookDetail");
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, reqNo);
 			rset = pstmt.executeQuery();
 
-			if(rset.next()) {
-				r = new ReqBook(rset.getInt("REQ_NO"),
-						rset.getString("REQ_BOOK"),
-						rset.getDate("REQ_DATE"),
-						rset.getString("REQ_PUB"),
-						rset.getString("REQ_AUTHOR"),
-						rset.getString("MEMBER_NAME"),
-						rset.getString("REQ_COMMENT"),
-						rset.getString("REQ_REASON"),
-						rset.getInt("PERMIT_STATUS"),
+			if (rset.next()) {
+				r = new ReqBook(rset.getInt("REQ_NO"), rset.getString("REQ_BOOK"), rset.getDate("REQ_DATE"),
+						rset.getString("REQ_PUB"), rset.getString("REQ_AUTHOR"), rset.getString("MEMBER_NAME"),
+						rset.getString("REQ_COMMENT"), rset.getString("REQ_REASON"), rset.getInt("PERMIT_STATUS"),
 						rset.getString("REQ_ID"));
 			}
 		} catch (SQLException e) {
@@ -202,225 +171,176 @@ public class ReqBookDAO {
 			close(pstmt);
 		}
 		return r;
-		}
+	}
 
 	public int insertReason(Connection conn, int reqNo, String reason) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = prop.getProperty("insertReason");
 		try {
-			pstmt = conn.prepareStatement(query);		
+			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reason);
 			pstmt.setInt(2, reqNo);
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
 	public int insertAlarm1(Connection conn, String writer, String bookName) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String reason = "½ÅÃ»ÇÏ½Å µµ¼­" + bookName + "ÀÌ °ÅÀýµÇ¾ú½À´Ï´Ù.";
-		
+		String reason = "ï¿½ï¿½Ã»ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½" + bookName + "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
+
 		String query = "INSERT INTO ALARM VALUES(SEQ_ALARM.NEXTVAL,2,?,?,'N')";
-		try {			
+		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1,reason);
+			pstmt.setString(1, reason);
 			pstmt.setString(2, writer);
-			
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
-
 	public int insertAlarm2(Connection conn, String writer, String bookName) {
-	PreparedStatement pstmt = null;
-	int result = 0;
-	String reason = "½ÅÃ»ÇÏ½Å Ã¥" + bookName + "ÀÌ ½ÂÀÎµÇ¾ú½À´Ï´Ù.";
-	
-	String query = "INSERT INTO ALARM VALUES(SEQ_ALARM.NEXTVAL,2,'" + reason + "',?,'N')";
-	try {
-		pstmt = conn.prepareStatement(query);		
-		pstmt.setString(1, writer);
-		
-		
-		result = pstmt.executeUpdate();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} finally {
-		close(pstmt);
-	}
-	
-	return result;
- }
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String reason = "ï¿½ï¿½Ã»ï¿½Ï½ï¿½ Ã¥" + bookName + "ï¿½ï¿½ ï¿½ï¿½ï¿½ÎµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 
-		public ArrayList<ReqBook> selectList(Connection conn) {
-			Statement stmt = null;
-			ResultSet rset = null;
-			ArrayList<ReqBook> list = null;
-			
-			String query = prop.getProperty("selectList");
-		
-			try {
-				stmt = conn.createStatement();
-				rset = stmt.executeQuery(query);
-				
-				list = new ArrayList<ReqBook>();
-				
-				while(rset.next()) {
-					ReqBook r = new ReqBook(rset.getInt("REQ_NO"),
-											rset.getString("REQ_BOOK"),
-											rset.getDate("REQ_DATE"),
-											rset.getString("REQ_PUB"),
-											rset.getString("REQ_AUTHOR"),
-											rset.getString("REQ_COMMENT"),
-											rset.getString("REQ_REASON"),
-											rset.getInt("PERMIT_STATUS"),
-											rset.getString("REQ_ID"));
-					
-					list.add(r);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(stmt);
-			}
-			return list;
+		String query = "INSERT INTO ALARM VALUES(SEQ_ALARM.NEXTVAL,2,'" + reason + "',?,'N')";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, writer);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 
-		public ArrayList<ReqBook> selectMyList(Connection conn, String memberId) {
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			ArrayList<ReqBook> list = null;
-			
-			String query = prop.getProperty("selectMyList");
-		
-			try {
-				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, memberId);
-				rset = pstmt.executeQuery();
-				
-				list = new ArrayList<ReqBook>();
-				
-				while(rset.next()) {
-					ReqBook r = new ReqBook(rset.getInt("REQ_NO"),
-											rset.getString("REQ_BOOK"),
-											rset.getDate("REQ_DATE"),
-											rset.getString("REQ_PUB"),
-											rset.getString("REQ_AUTHOR"),
-											rset.getString("REQ_COMMENT"),
-											rset.getString("REQ_REASON"),
-											rset.getInt("PERMIT_STATUS"),
-											rset.getString("REQ_ID"));
-					list.add(r);
-				}		
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} finally {
-					close(rset);
-					close(pstmt);
-				}
-				return list;
-			}
-
-		
-		public int insertRequest(Connection conn, ReqBook r) {
-			PreparedStatement pstmt = null;
-			int result = 0;
-			
-			String query = prop.getProperty("insertRequest");
-			
-			try {
-				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, r.getReqBookTitle());
-				pstmt.setString(2, r.getReqBookPub());
-				pstmt.setString(3, r.getReqBookAuthor());
-				pstmt.setString(4, r.getReqBookComment());
-				pstmt.setString(5, r.getReqWriterId());
-				
-				result = pstmt.executeUpdate();
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
-			return result;
-		}
-
-
-
-
-		public ReqBook getReject(Connection conn, int rno) {
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			ReqBook rb = null;
-			
-			String query = prop.getProperty("getReject");
-		
-			try {
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, rno);
-				rset = pstmt.executeQuery();
-
-				if(rset.next()) {
-					rb = new ReqBook();
-					rb.setReqBookContent(rset.getString("REQ_COMMENT"));
-					rb.setReqBookReason(rset.getString("REQ_REASON"));
-					
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(pstmt);
-			}
-			return rb;
-		}
-
-		public int checkBookExist(Connection conn, Book b) {
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			int result = 0;
-			
-			String query = prop.getProperty("checkBookExist");
-			
-			try {
-				pstmt = conn.prepareStatement(query);
-				
-				pstmt.setString(1, b.getBookTitle());
-				pstmt.setString(2, b.getAuthor());
-				pstmt.setString(3, b.getPublisher());
-				
-				rset = pstmt.executeQuery();
-				
-				if(rset.next()) {
-					result = rset.getInt(1);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(pstmt);
-			}
-			
-			return result;
-		}
+		return result;
 	}
 
+	public ArrayList<ReqBook> selectMyList(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<ReqBook> list = null;
+
+		String query = prop.getProperty("selectMyList");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<ReqBook>();
+
+			while (rset.next()) {
+				ReqBook r = new ReqBook(rset.getInt("REQ_NO"), rset.getString("REQ_BOOK"), rset.getDate("REQ_DATE"),
+						rset.getString("REQ_PUB"), rset.getString("REQ_AUTHOR"), rset.getString("REQ_COMMENT"),
+						rset.getString("REQ_REASON"), rset.getInt("PERMIT_STATUS"), rset.getString("REQ_ID"));
+				list.add(r);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int insertRequest(Connection conn, ReqBook r) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("insertRequest");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, r.getReqBookTitle());
+			pstmt.setString(2, r.getReqBookPub());
+			pstmt.setString(3, r.getReqBookAuthor());
+			pstmt.setString(4, r.getReqBookComment());
+			pstmt.setString(5, r.getReqWriterId());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public ReqBook getReject(Connection conn, int rno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ReqBook rb = null;
+
+		String query = prop.getProperty("getReject");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, rno);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				rb = new ReqBook();
+				rb.setReqBookContent(rset.getString("REQ_COMMENT"));
+				rb.setReqBookReason(rset.getString("REQ_REASON"));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return rb;
+	}
+
+	public int checkBookExist(Connection conn, Book b) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+
+		String query = prop.getProperty("checkBookExist");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, b.getBookTitle());
+			pstmt.setString(2, b.getAuthor());
+			pstmt.setString(3, b.getPublisher());
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return result;
+	}
+}

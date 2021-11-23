@@ -21,11 +21,10 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li><a href="about.html">회원 관리</a>
+                                    <li><a href="<%= request.getContextPath() %>/Library.Info">도서관 소개</a></li>
+                                    <li><a>회원 관리</a>
                                     	<ul class="submenu">
 											<li><a href="userList.ul">회원 목록 조회</a></li>
-											<li><a href="blog_details.html">도서 신청 확인</a></li>
 										</ul>
                                     </li>
                                     <li><a>도서 관리</a>
@@ -33,7 +32,7 @@
 											<li><a href="<%= request.getContextPath() %>/insertForm.bo">도서 등록</a></li>
 		                                    <li><a href="<%= request.getContextPath() %>/ownBookList.li">전체 도서 목록 조회</a></li>
 		                                    <li><a href="<%= request.getContextPath() %>/rentalList.rt">대출 도서 목록 조회</a></li>
-											<li><a href="blog_details.html">신청 도서 목록 조회</a></li>
+											<li><a href="<%= request.getContextPath() %>//reqBook.li">신청 도서 목록 조회</a></li>
 										</ul>
                                     </li>
                                     <li><a href="searchBook.sr">도서 검색</a></li>

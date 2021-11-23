@@ -1,155 +1,97 @@
-package alarm.model.dao;
+package alarm.model.service;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Properties;
 
+import alarm.model.dao.AlarmDAO;
 import alarm.model.vo.Alarm;
 import bookRental.model.vo.BookRental;
-import member.dao.MemberDAO;
 import review.model.vo.ReviewBook;
 
+public class AlarmService {
+   
+   private AlarmDAO aDAO = new AlarmDAO();
 
-public class AlarmDAO {
-	private Properties prop = null;
+   public ArrayList<Alarm> selectAlarm(String mId) {
+      Connection conn = getConnection();
+      
+      ArrayList<Alarm> alist = aDAO.selectAlarm(conn, mId);
+      
+      close(conn);
+      
+      return alist;
+   }
 
-	public AlarmDAO() {
-		prop = new Properties();
+   public int confirmAlarm(int alarmNo) {
+      Connection conn = getConnection();
+      
+      int result = aDAO.confirmAlarm(conn, alarmNo);
+      
+      if(result > 0) {
+         commit(conn);
+      }else {
+         rollback(conn);
+      }
+      
+      close(conn);
+      
+      return result;
+   }
 
-		String fileName = AlarmDAO.class.getResource("/sql/alarm/alarm-query.properties").getPath();
-
-		try {
-			prop.load(new FileReader(fileName));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public ArrayList<Alarm> selectAlarm(Connection conn, String mId) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		ArrayList<Alarm> aList = null;
-		
-		String query = prop.getProperty("alarmList");
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, mId);
-			
-			aList = new ArrayList<Alarm>();
-			rset = pstmt.executeQuery();
-			while(rset.next()) {
-				Alarm a = new Alarm(rset.getInt("alarm_no"),
-									rset.getInt("alarm_pt"),
-									rset.getString("alarm_cont"),
-									rset.getString("member_id"),
-									rset.getString("status"));
-				aList.add(a);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return aList;
-	}
-
-	public int confirmAlarm(Connection conn, int alarmNo) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-
-		String query = prop.getProperty("confirmAlarm");
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, alarmNo);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
-
-	public int returnAlarm(Connection conn, ArrayList<BookRental> list) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-
-		String query = prop.getProperty("returnAlarm");
-
-		try {
-			for(int i = 0; i<list.size(); i++) {
-				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, "대출하신 " + list.get(i).getBookTitle() + "이 자동으로 반납되었습니다.");
-				pstmt.setString(2, list.get(i).getMemberId());
-				result += pstmt.executeUpdate();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
-	
-	public int insertAlarm1(Connection conn, String writer, String bookName) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String reason = "신청하신 도서" + bookName + "이 거절되었습니다.";
-		
-		String query = prop.getProperty("rejectBookAlarm");
-		
-		try {			
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1,reason);
-			pstmt.setString(2, writer);
-			
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
-	public int insertAlarm2(Connection conn, String writer, String bookName) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String reason = "신청하신 책" + bookName + "이 승인되었습니다.";
-		
-		String query = prop.getProperty("rejectBookAlarm");
-		try {
-			pstmt = conn.prepareStatement(query);		
-			pstmt.setString(1, reason);
-			pstmt.setString(2, writer);
-			
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
+   public int returnAlarm(ArrayList<BookRental> list) {
+      Connection conn = getConnection();
+      
+      int result = aDAO.returnAlarm(conn, list);
+      
+      if(result == list.size()) {
+         commit(conn);
+      }else {
+         rollback(conn);
+      }
+      
+      close(conn);
+      
+      return result;
+   }
+   
+   public int insertAlarm1(String writer, String bookName) {
+      Connection conn = getConnection();
+      
+      int result = aDAO.insertAlarm1(conn, writer, bookName);
+      
+      
+      
+      if(result > 0) {
+         commit(conn);
+      } else {
+         rollback(conn);
+      }
+      
+      close(conn);
+      
+      return result;
+   }
+   public int insertAlarm2(String writer, String bookName) {
+      Connection conn = getConnection();
+      
+      int result = aDAO.insertAlarm2(conn, writer, bookName);
+      
+      
+      
+      if(result > 0) {
+         commit(conn);
+      } else {
+         rollback(conn);
+      }
+      
+      close(conn);
+      
+      return result;
+      
+   }
 }

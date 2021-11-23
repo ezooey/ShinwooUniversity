@@ -421,7 +421,7 @@ div.card1:hover {
 													</a>
 												</td>
 												<%}else{ 
-                                                		status = "미승인";%>
+                                                		status = "거절";%>
 												<td>
 													<a onclick="window.open('rejectDetail.rb?rno=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=500, height=270');">
 														<u><%= status %></u>

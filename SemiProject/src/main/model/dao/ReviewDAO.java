@@ -38,7 +38,7 @@ import review.model.vo.Review;
 			ResultSet rset = null;
 			ArrayList<Review> list = null;
 			
-			String query = prop.getProperty("selectReviewList");
+			String query = prop.getProperty("selectMainReviewList");
 			
 			try {
 				stmt = conn.createStatement();

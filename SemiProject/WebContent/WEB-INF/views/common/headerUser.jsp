@@ -37,7 +37,7 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
+                                    <li><a href="<%= request.getContextPath() %>/Library.Info">도서관 소개</a></li>
                                     <li><a href="<%= request.getContextPath() %>/reqbookForm.bo">도서 신청</a></li>
                                     <li><a href="searchBook.sr">도서 검색</a></li>
                                     <li><a href="<%= request.getContextPath() %>/reviewList.rv">독후감</a></li>
