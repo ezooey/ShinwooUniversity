@@ -203,30 +203,29 @@
 		#wholewhole {
 			width: auto;
 			background-color: #2980B9;
+			text-align:center;
 		}
 
 		#wholeslide-div {
-			width: 1130px;
+			width: 1030px;
 			height: 350px;
-			padding-left: 100px;
-			padding-right: 100px;
 			background-color: #2980B9;
 			margin: 0 auto;
 		}
 
 		#slider-div {
-			width: 1130px;
+			width: 1030px;
 			height: 300px;
 			background-color: #2980B9;
 			padding-top: 20px;
-			padding-right: 0px;
+			
 		}
 
 		.bookimage {
 			width: 95%;
 			height: auto;
 			margin-top: 35px;
-			margin-left: 20px;
+			margin-left: 35px;
 			max-width: 90%;
 			height: auto;
 			display: block;
@@ -377,25 +376,25 @@
 			<div id="wholewhole">
 				<div id="wholeslide-div">
 					<div id="slider-div">
-						<div class="book-div"><a href="https://www.naver.com"><img src="sample/image/book1.png"
+						<div class="book-div"><a href="https://www.naver.com"><img src="<%= request.getContextPath() %>/image/book1.png"
 									class="bookimage"></a></div>
-						<div class="book-div"><a href="https://www.naver.com"><img src="sample/image/book2.png"
+						<div class="book-div"><a href="https://www.naver.com"><img src="<%= request.getContextPath() %>/image/book2.png"
 									class="bookimage"></a></div>
-						<div class="book-div"><a href="https://www.naver.com"><img src="sample/image/book3.png"
+						<div class="book-div"><a href="https://www.naver.com"><img src="<%= request.getContextPath() %>/image/book3.png"
 									class="bookimage"></a></div>
-						<div class="book-div"><a href="https://www.naver.com"><img src="sample/image/book4.png"
+						<div class="book-div"><a href="https://www.naver.com"><img src="<%= request.getContextPath() %>/image/book4.png"
 									class="bookimage"></a></div>
-						<div class="book-div"><a href="https://www.naver.com"><img src="sample/image/book5.png"
+						<div class="book-div"><a href="https://www.naver.com"><img src="<%= request.getContextPath() %>/image/book5.png"
 									class="bookimage"></a></div>
-						<div class="book-div"><a href="https://www.naver.com"><img src="sample/image/book1.png"
+						<div class="book-div"><a href="https://www.naver.com"><img src="<%= request.getContextPath() %>/image/book1.png"
 									class="bookimage"></a></div>
-						<div class="book-div"><a href="https://www.naver.com"><img src="sample/image/book2.png"
+						<div class="book-div"><a href="https://www.naver.com"><img src="<%= request.getContextPath() %>/image/book2.png"
 									class="bookimage"></a></div>
-						<div class="book-div"><a href="https://www.naver.com"><img src="sample/image/book3.png"
+						<div class="book-div"><a href="https://www.naver.com"><img src="<%= request.getContextPath() %>/image/book3.png"
 									class="bookimage"></a></div>
-						<div class="book-div"><a href="https://www.naver.com"><img src="sample/image/book4.png"
+						<div class="book-div"><a href="https://www.naver.com"><img src="<%= request.getContextPath() %>/image/book4.png"
 									class="bookimage"></a></div>
-						<div class="book-div"><a href="https://www.google.com"><img src="sample/image/book5.png"
+						<div class="book-div"><a href="https://www.google.com"><img src="<%= request.getContextPath() %>/image/book5.png"
 									class="bookimage"></a></div>
 					</div>
 				</div>
