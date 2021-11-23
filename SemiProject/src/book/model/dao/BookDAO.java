@@ -51,7 +51,7 @@ public class BookDAO {
 			pstmt.setString(5, b.getPublisher());
 			pstmt.setString(6, b.getBookInfo());
 			pstmt.setString(7, b.getRefer());
-			pstmt.setDate(8, b.getReleseDate());
+			pstmt.setDate(8, b.getReleaseDate());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

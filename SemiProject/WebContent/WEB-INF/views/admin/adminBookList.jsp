@@ -161,18 +161,21 @@
 					<aside class="search_widget">
 						<div class="form-group">
 							<div class="input-group mb-3">
-								<div style="padding-right: 10px;">
+								<div style="padding-right: 10px; display:inline-block;">
 									<select name="searchAdBook">
 										<option value="all">전체 검색</option>
 										<option value="title">도서명</option>
 										<option value="author">저자명</option>
+										<option value="category">카테고리</option>
 									</select>
 								</div>
-								<input type="text" name="keyword" style="height: 42px;" class="form-control" placeholder='키워드를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '키워드를 입력하세요'">
-								<div class="input-group-append" style="height: 42px;">
-									<button class="btns" type="submit">
-										<i class="ti-search"></i>
-									</button>
+								<div style="display:inline-block;">
+									<input type="text" name="keyword" style="height: 42px;" class="form-control" placeholder='키워드를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '키워드를 입력하세요'">
+									<div class="input-group-append" style="height: 42px;">
+										<button class="btns" type="submit">
+											<i class="ti-search"></i>
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -291,7 +294,7 @@
     	<script>
 	    $('td').on("click", function(){
 	    	var num = $(this).parent().children().eq(1).text();
-	    	location.href='<%= request.getContextPath() %>/bookDetaildetail.bo?bNo=' + num;
+	    	location.href='<%= request.getContextPath() %>/bookDetail.bo?bNo=' + num;
 	    });
 	    
 	    function deleteOneBook(bNo){
@@ -313,6 +316,9 @@
 	    
 	    function deleteCheckedBook() {
 	    	var checked = $("input:checkbox[name=selectBook]:checked").length;
+	    	if(checked == 21){
+	    		checked--;
+	    	}
 	    	
 	    	var bool = confirm("정말로 삭제하시겠습니까?");
 	    	if(bool == true){
@@ -322,6 +328,17 @@
 	    		return false;
 	    	}
 		}
+	    
+	    $(document).ready(function() {
+	    	  $('#searchAdBook').change(function() {
+	    	    var result = $('#searchAdBook option:selected').val();
+	    	    if (result == 'category') {
+	    	      $('.div1').show();
+	    	    } else {
+	    	      $('.div1').hide();
+	    	    }
+	    	  }); 
+	    	}); 
     </script>
     <!-- JS here -->
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>

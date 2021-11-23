@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import book.model.vo.Book;
 import review.model.vo.PageInfo;
-import search.model.service.CategoryService;
 import search.model.service.SearchService;
 
 /**

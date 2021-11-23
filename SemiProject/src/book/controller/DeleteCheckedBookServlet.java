@@ -28,7 +28,16 @@ public class DeleteCheckedBookServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] bNo = request.getParameterValues("selectBook");
+		String[] temp  = request.getParameterValues("selectBook");
+		String[] bNo = null;
+		if(temp.length == 21) {
+			bNo = new String[20];
+			for(int i = 1; i < temp.length; i++) {
+				bNo[i - 1] = temp[i];
+			}
+		} else {
+			bNo = temp;
+		}
 		
 		int result = new BookService().deleteBook(bNo);
 		

@@ -54,6 +54,22 @@ public class Book {
 	}
 	
 	public Book(String bookNo, String bookTitle, int category, String author, String publisher, Date regDate,
+			int rentTotal, String ownYN, String bookInfo, String refer, Date releaseDate) {
+		super();
+		this.bookNo = bookNo;
+		this.bookTitle = bookTitle;
+		this.category = category;
+		this.author = author;
+		this.publisher = publisher;
+		this.regDate = regDate;
+		this.rentTotal = rentTotal;
+		this.ownYN = ownYN;
+		this.bookInfo = bookInfo;
+		this.refer = refer;
+		this.releaseDate = releaseDate;
+	}
+	
+	public Book(String bookNo, String bookTitle, int category, String author, String publisher, Date regDate,
 			int rentTotal, String ownYN, String bookInfo, String refer, Date releaseDate, String categoryName) {
 		super();
 		this.bookNo = bookNo;

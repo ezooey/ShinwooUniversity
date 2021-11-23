@@ -290,7 +290,7 @@
     	<script>
 	    $('td').on("click", function(){
 	    	var num = $(this).parent().children().eq(1).text();
-	    	location.href='<%= request.getContextPath() %>/bookDetaildetail.bo?bNo=' + num;
+	    	location.href='<%= request.getContextPath() %>/bookDetail.bo?bNo=' + num;
 	    });
 	    
 	    function deleteOneBook(bNo){
@@ -312,6 +312,10 @@
 	    
 	    function deleteCheckedBook() {
 	    	var checked = $("input:checkbox[name=selectBook]:checked").length;
+	    	
+	    	if(checked == 21) {
+	    		checked--;
+	    	}
 	    	
 	    	var bool = confirm("정말로 삭제하시겠습니까?");
 	    	if(bool == true){
