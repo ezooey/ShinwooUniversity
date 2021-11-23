@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, reqBook.model.vo.ReqBook"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, reqBook.model.vo.ReqBook,member.vo.Member"%>
 <%
 	ReqBook r = (ReqBook)request.getAttribute("r"); 
+	String writer = (String)request.getAttribute("writer");
 	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list");
 %>
     <meta charset="utf-8">
@@ -30,19 +31,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
-<script type="text/javascript">
 
-    function send() {
-
-        var data = document.myform.sender.value;
-
-        window.opener.sendMeData(data)
-
-        window.close();
-
-    }
-
-</script>
 
 </head>
 <body>
@@ -90,17 +79,18 @@
 		<br><br>
 		<div class="bottomBtn" align="center">
     	<input type="button" class="genric-btn primary circle" value="거절" onclick="reject();">
-    	<input type="button" class="genric-btn primary circle" value="승인" onclick="location.href='<%= request.getContextPath() %>/reqBook.confi?reqNo=<%= r.getReqBookNo() %>'">
+    	<input type="button" class="genric-btn primary circle" value="승인" onclick="location.href='<%= request.getContextPath() %>/reqBook.confi?reqNo=<%= r.getReqBookNo()%>&&writer=<%= writer %>&&bookName=<%= r.getReqBookTitle() %>'">
     	</div>
  		</form>
  
 		<script>
 			function reject (){
 				var Rreason = document.getElementById('reason1').value;
-				location.href='<%= request.getContextPath() %>/reqBook.def?reqNo=<%= r.getReqBookNo() %>&&reason=' + Rreason;
+				location.href='<%= request.getContextPath() %>/reqBook.def?reqNo=<%= r.getReqBookNo() %>&&reason=' + Rreason + "&&writer=<%= writer %>&&bookName=<%= r.getReqBookTitle() %>";
+			
 			}
 		</script>
-	
+		
 </body>
 
 </html>
