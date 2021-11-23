@@ -147,7 +147,10 @@ public class AdminDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			close(rset);
+			close(stmt);
+		}
 		return list;
 	}
 }

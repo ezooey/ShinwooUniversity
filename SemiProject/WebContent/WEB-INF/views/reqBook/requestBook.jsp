@@ -128,14 +128,15 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
                             <h3 class="mb-30">신청 도서 정보 입력</h3>
-                            <form action="<%= request.getContextPath() %>/request.bo" id="reqBook" name="reqBook" method="post">
+                            <form action="<%= request.getContextPath() %>/request.bo" id="reqBook" name="reqBook" onsubmit="return alreadyHave();" method="post">
                                 <div>
                                     <span class="reqTitle">도서명</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fa fa-book" aria-hidden="true"></i></div>
-                                        <input type="text" name="bookTitle" placeholder="도서명을 입력하세요" required
+                                        <input type="text" id="title" name="bookTitle" placeholder="도서명을 입력하세요" required
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '도서명을 입력하세요'"
                                             class="single-input">
+                                        <div id="message"></div>
                                         <div class="booksearch"><input type="button" class="genric-btn info circle booksearch" id="searchBook" value="도서 검색"></div>
                                     </div>
                                 </div>
@@ -144,7 +145,7 @@
                                     <span class="reqTitle">저자</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-pencil-alt"></i></div>
-                                        <input type="text" name="author" placeholder="저자를 입력하세요" required
+                                        <input type="text" id="author" name="author" placeholder="저자를 입력하세요" required
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '저자를 입력하세요'"
                                             class="single-input">
                                     </div>
@@ -153,7 +154,7 @@
                                     <span class="reqTitle">출판사</span>
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fas fa-bookmark"></i></div>
-                                        <input type="text" name="publisher" placeholder="출판사를 입력하세요" required
+                                        <input type="text" id="publisher" name="publisher" placeholder="출판사를 입력하세요" required
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = '출판사를 입력하세요'"
                                             class="single-input">
                                     </div>
@@ -204,13 +205,54 @@
             console.log(now);
         });
 
-        $("#reqBook").submit(function(){
-            alert("도서 신청이 완료되었습니다.");
-        });
-        
         document.getElementById('searchBook').onclick = function() {
-        	window.open('searchreqbook.bo', 'searchReqBook', 'width=500, height=300');
+        	var w = window.open('searchreqbook.bo', 'searchReqBook', 'width=500, height=300');
+        	
+        	w.onbeforeunload = checkBook;
+
 		}
+        
+        $('#title').on("propertychange change keyup paste input", checkBook);
+        $('#author').on("propertychange change keyup paste input", checkBook);
+        $('#publisher').on("propertychange change keyup paste input", checkBook);
+        
+        var flag = true;
+        
+        function checkBook() {
+        	var title = $('#title').val();
+        	var author = $('#author').val();
+        	var publisher = $('#publisher').val();
+			$.ajax({
+				url: 'checkExistBook.bo',
+				data: {title:title, author:author, publisher:publisher},
+				success: function(data) {
+					var isHave = data.trim();
+					console.log(data);
+					if(isHave == 'have'){
+						$('#message').css({'color':'red', 'font-size':'12px'});
+						
+						$('#message').html('&nbsp;&nbsp;&nbsp;<i class="fas fa-exclamation-triangle"></i> 이미 소장 중인 도서입니다.');
+						flag = false;
+					} else {
+						$('#message').html('');
+						flag = true;
+					}
+				},
+				error: function(data) {
+					console.log(data);
+				}
+			});
+		}
+        
+        function alreadyHave() {
+        	if(flag){
+        		alert("도서 신청이 완료되었습니다.");
+        	} else {
+        		alert("소장 중인 도서는 신청할 수 없습니다.");
+        		$('#title').focus();
+        	}
+        	return flag;
+        }
     </script>
     <!-- JS here -->
 

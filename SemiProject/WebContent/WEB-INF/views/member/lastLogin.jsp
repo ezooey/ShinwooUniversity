@@ -73,14 +73,14 @@
       }
    
       #logintable th{
-         color: #6785FF;
+         color: #93a7fb;
          text-align: left;
          padding-right: 10px;
          
       }
       #text{
          margin-top:-10px;
-         color: #6785FF;
+         color: #93a7fb;
          text-align:right;
          font-size:3px;
          font-weight:bold;

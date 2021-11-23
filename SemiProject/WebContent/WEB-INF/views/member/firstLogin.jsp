@@ -90,7 +90,7 @@
 		.red{
 			color:red;
 		}
-		input:read-only{background-color:#dedede}
+		input:read-only{background-color:#EAEAEA}
 		.confirm{
 			text-align:center;
 			font-size:3px;
@@ -229,9 +229,7 @@
 						
 					</div>
 				</td>
-				<td width="80px"><div id="isjungbok"><input type="button" class="genric-btn info-border" id="checkEmail" value="중복확인"></td></div>
-				
-				
+				<td width="80px"><div id="isjungbok"><input type="button" class="genric-btn info-border" id="checkEmail" value="중복확인"></div></td>
 			</tr>
 			<tr>
 				<td class="category" id="authEmail">인증하기 <span class="red">*</span></td>

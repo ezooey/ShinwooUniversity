@@ -93,7 +93,7 @@ public class RegisterBookServlet extends HttpServlet {
 			int result = new BookService().insertThumbnail(b, p);
 			
 			if(result >= 2) {
-				response.sendRedirect("insertForm.bo");
+				response.sendRedirect("ownBookList.li");
 			} else {
 				request.setAttribute("msg", "도서 등록 실패");
 				request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);

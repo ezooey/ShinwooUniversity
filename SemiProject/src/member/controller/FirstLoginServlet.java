@@ -48,7 +48,7 @@ public class FirstLoginServlet extends HttpServlet {
 		}
 		
 		if(!address2.equals("")) {
-			address = address1 + " " + address2;
+			address = address1 + "&&" + address2;
 		}
 		
 		String email = email1.concat(email2);

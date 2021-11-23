@@ -2,6 +2,9 @@ package reqBook.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+
+import book.model.vo.Book;
+
 import static common.JDBCTemplate.*;
 import reqBook.model.dao.ReqBookDAO;
 import reqBook.model.vo.ReqBook;
@@ -64,6 +67,16 @@ public class ReqBookService {
 		} else {
 			rollback(conn);
 		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int checkBookExist(Book b) {
+		Connection conn = getConnection();
+		
+		int result = nDAO.checkBookExist(conn, b);
 		
 		close(conn);
 		

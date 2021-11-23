@@ -43,7 +43,7 @@ public class ModifyInfoServlet extends HttpServlet {
 		String email = request.getParameter("email1") + "@" + request.getParameter("email2");
 		String address = null;
 		if(!request.getParameter("address2").trim().equals("")) {
-			address = request.getParameter("address1") + " " + request.getParameter("address2");
+			address = request.getParameter("address1") + "&&" + request.getParameter("address2");
 		}
 		
 		Member m = new Member();

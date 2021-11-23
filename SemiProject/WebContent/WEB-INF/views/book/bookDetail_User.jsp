@@ -2,6 +2,8 @@
     pageEncoding="UTF-8" import="book.model.vo.BookDetail"%>
 <% 
 	BookDetail b = (BookDetail)request.getAttribute("bookDetail");
+	int check = (Integer)request.getAttribute("check");
+	int curr = (Integer)request.getAttribute("currBorrow");
 %>
 <!doctype html>
 <html class="no-js">
@@ -9,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>도서 상세</title>
+    <title>도서 상세(User)</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -74,10 +76,15 @@
         }
         
         #homeNav{padding-left: 150px; padding-top: 15px;}
+        
         #homeNav>a{color: #666;}
+        
         .bookInfo{padding-left: 150px; padding-top: 25px; position: relative;}
+        
         #detail_simple{position: relative;}
+        
         #detail_simple>a{position: absolute;}
+        
         #ebookTag{
         	cursor: default;
         	font-size: 13px;
@@ -88,17 +95,21 @@
 	        background: rgba(102, 102, 102, 0.7); 
 	        z-index: 999;
         }
+        
         #bookName{
         	padding-left: 330px; 
         	text-decoration: none; 
         	margin-bottom: 30px;
         }
+        
         #title{color: black; margin-bottom: 0px;}
+        
         .simpleInfo{
         	font-size: 13px; 
         	color: #666;
         	cursor: default;
         }
+        
         #epub{
         	text-align: center;
         	display: inline-block;
@@ -109,11 +120,12 @@
         	color: black;
         	cursor: default;
         }
+        
         #borrow{
         	text-align: center;
         	display: inline-block;
         	width: 120px;
-        	height: 42px;
+        	height: 44px;
         	padding-top: 10px;
         	padding-bottom: 10px;
         	margin-top: 25px;
@@ -125,6 +137,24 @@
 			cursor: pointer;
 			border: 1px solid dimgray;
         }
+        
+        #borrowed, #notAllowed{
+        	text-align: center;
+        	display: inline-block;
+        	width: 120px;
+        	height: 44px;
+        	padding-top: 10px;
+        	padding-bottom: 10px;
+        	margin-top: 25px;
+        	border-radius: 5px;
+        	background: dimgray;
+        	color: white;
+        	font-size: 15px;
+			font-weight: bold;
+			cursor: default;
+			border: 1px solid dimgray;
+        }
+        
         #count{
         	display: inline-block;
         	text-align: center;
@@ -141,13 +171,18 @@
         	color: dimgray;
         	cursor: default;
         }
+        
         #tabBar{
         	position: relative; 
         	display: inline-block; 
         	text-align: center; 
-        	margin: 0 auto;}
+        	margin: 0 auto;
+        }
+        	
         #barLi{list-style: none; display: inline-block; margin: 0 auto;}
+        
         #tab1{float: left;}
+        
         #bookIntro{
         	display: inline-block; 
         	width: 100px;
@@ -161,11 +196,14 @@
         	border-radius: 5px;
         	cursor: default;
         }
+        
         #contents{
         	background: #f8f8f8;
         	color: dimgray;
         }
+        
         #bookIntro{border: 2px solid lightgray;}
+        
         #introduce{
         	margin-top: 30px;
         	margin-left: 150px;
@@ -177,13 +215,19 @@
         	color: dimgray;
         	border: 0px;
         }
+        
         #separate{
         	text-align: center;
         	margin: 0px auto;
         	width: 1000px;
         	color: #6785ff;
         }
+        
         hr{border-bottom: #888;}
+        
+        #imgFile{
+        	height: 218px;
+        }
     </style>
 </head>
 
@@ -213,7 +257,7 @@
         <div class="whole-wrap">
             <div class="container box_1170">
                 <div class="section-top-border">
-                	<form action="<%= request.getContextPath() %>/rentalBook.bo">
+                	<form id="rentalBook">
 	                    <div class="row">
 	                        <div id="homeNav">
 				    			<a id="btn_home" href="../common/main.html" role="button">홈</a> &gt; 
@@ -223,7 +267,7 @@
 					   	<hr>
 						<div class="row">
 						   	<div id="detail_simple" class="bookInfo">
-						   		<a id="bookImg"><img src="<%= request.getContextPath() %>/<%= b.getChangeName() %>"></a>
+						   		<a id="bookImg"><img id="imgFile" src="<%= request.getContextPath() %>/image/<%= b.getChangeName()%>"></a>
 						   		<a id="ebookTag">전자책</a>
 						   	</div>
 						   	<div id="bookName">
@@ -239,10 +283,14 @@
 						   		<br>
 						   		<span class="simpleInfo"><b>제공형태: &nbsp;&nbsp;</b></span><span id="epub">ePUB</span>
 						   		<br>
-						   		<button onclick="borrow(returnDay);" id="borrow">대출하기</button>
-						   		<% if(loginUser != null){%>
-						   			<input type="hidden" name="rId" value="<%= loginUser.getMemberId() %>">
-						   		<% } %>
+						   		<% if(check < 1 && curr < 2) { %>
+						   			<button id="borrow">대출하기</button>
+						   		<% } else if(check < 1 && curr >= 2) { %>
+						   			<button id="notAllowed" disabled>현재 대출 불가</button>
+						   		<% } else if(check >= 1) { %>
+						   			<button id="borrowed" disabled>대출중</button>
+						   		<% }%>
+						   		
 						   		<div id="count">대출   &nbsp;&nbsp; <span id="currentNum"><%= request.getAttribute("currBorrow") %></span> / <%= request.getAttribute("max") %></div>
 						   	</div>
 						   		<br><br>
@@ -252,7 +300,11 @@
 						   	<fieldset>
 							   	<hr id="separate">
 								<div id="introduce" name="bookProfile">
-									<%= b.getBookInfo() %>
+									<% if(b.getBookInfo() != null) { %>
+										<%= b.getBookInfo() %>
+									<% } else { %>
+										해당 도서 정보가 없습니다.
+									<% } %>
 								</div>
 								<br>
 								<div id="refer" name="refer">
@@ -277,25 +329,16 @@
   				return year + '-' + month + '-' + day;
    			}
 			var returnDay = rtDay(new Date());
-	  		var cur = <%= request.getAttribute("currBorrow") %>
-	  		var borrow = document.getElementById('borrow');
   				
-  			if(<%= request.getAttribute("check") %> < 1) {
-		  		function borrow(returnDay){
-		   				alert('도서가 대출되었습니다.\n' + returnDay + ' 까지 이용하실 수 있습니다.');
-				  		if(cur < 2){
-				  			cur = Number(cur) + 1;
-				  			document.getElementById('currentNum').innerHTML = cur;
-				  			borrow.innerText = '대출중';
-				  			borrow.onclick = null;
-				  		}
-		  			}
-		  	} else {
-		  		borrow.innerText = '대출중';
-		  		borrow.onclick = null;
-		  	}
-	  		
-	  		
+   			$('#borrow').click(function(){
+   				var rentalCheck = confirm('해당 도서를 대출하시겠습니까?');
+   				if(rentalCheck){
+   					alert('도서가 대출되었습니다.\n' + returnDay + '까지 이용하실 수 있습니다.');
+   					$('#rentalBook').attr('action', 'rentalBook.bo');
+   					$('#rentalBook').submit;
+   					location.href = '<%= request.getContextPath() %>/rentalBook.bo';
+   				}
+   			});
    		</script>
         <!-- End Align Area -->
     </main>
