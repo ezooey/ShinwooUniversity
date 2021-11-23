@@ -28,9 +28,10 @@
 											<li><a href="blog_details.html">도서 신청 확인</a></li>
 										</ul>
                                     </li>
-                                    <li><a href="contact.html">도서 관리</a>
+                                    <li><a>도서 관리</a>
                                     	<ul class="submenu">
 											<li><a href="<%= request.getContextPath() %>/insertForm.bo">도서 등록</a></li>
+		                                    <li><a href="<%= request.getContextPath() %>/ownBookList.li">전체 도서 목록 조회</a></li>
 		                                    <li><a href="<%= request.getContextPath() %>/rentalList.rt">대출 도서 목록 조회</a></li>
 											<li><a href="blog_details.html">신청 도서 목록 조회</a></li>
 										</ul>

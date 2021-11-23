@@ -30,7 +30,6 @@
                     </div>
                 </div>
                 <div class="header-right d-none d-lg-block">
-                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
                     <button type="button" class="genric-btn primary circle" id="login" onclick="location.href='<%= request.getContextPath() %>/loginForm.me'">로그인</button>
 				</div>
 			</div>	

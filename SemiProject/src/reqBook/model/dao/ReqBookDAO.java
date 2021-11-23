@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import book.model.vo.Book;
 import reqBook.model.vo.ReqBook;
 
 public class ReqBookDAO {
@@ -198,6 +199,35 @@ public class ReqBookDAO {
 			close(pstmt);
 		}
 		return rb;
+	}
+
+	public int checkBookExist(Connection conn, Book b) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("checkBookExist");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, b.getBookTitle());
+			pstmt.setString(2, b.getAuthor());
+			pstmt.setString(3, b.getPublisher());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }
 

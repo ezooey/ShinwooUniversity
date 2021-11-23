@@ -44,7 +44,7 @@
         }
         
         #passTable th{
-	       color: #6785FF;
+	       color: #93a7fb;
 	       text-align: left;
 	       padding-right: 10px;
         }

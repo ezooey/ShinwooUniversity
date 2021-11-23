@@ -4,7 +4,7 @@
 	//Member loginUser= (Member)session.getAttribute("loginUser");
  	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list"); 
  	ArrayList<BookRental> rentalList = (ArrayList)request.getAttribute("rentalList");
- 	System.out.println(rentalList.size());
+//  	System.out.println(rentalList.size());
 %>
 <!doctype html>
 <html class="no-js">
