@@ -161,21 +161,18 @@
 					<aside class="search_widget">
 						<div class="form-group">
 							<div class="input-group mb-3">
-								<div style="padding-right: 10px; display:inline-block;">
+								<div style="padding-right: 10px;">
 									<select name="searchAdBook">
 										<option value="all">전체 검색</option>
 										<option value="title">도서명</option>
 										<option value="author">저자명</option>
-										<option value="category">카테고리</option>
 									</select>
 								</div>
-								<div style="display:inline-block;">
-									<input type="text" name="keyword" style="height: 42px;" class="form-control" placeholder='키워드를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '키워드를 입력하세요'">
-									<div class="input-group-append" style="height: 42px;">
-										<button class="btns" type="submit">
-											<i class="ti-search"></i>
-										</button>
-									</div>
+								<input type="text" name="keyword" style="height: 42px;" id="shKeyword" class="form-control" placeholder='키워드를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '키워드를 입력하세요'">
+								<div class="input-group-append" style="height: 42px;" id="shBtn">
+									<button class="btns" type="submit">
+										<i class="ti-search"></i>
+									</button>
 								</div>
 							</div>
 						</div>
@@ -328,17 +325,6 @@
 	    		return false;
 	    	}
 		}
-	    
-	    $(document).ready(function() {
-	    	  $('#searchAdBook').change(function() {
-	    	    var result = $('#searchAdBook option:selected').val();
-	    	    if (result == 'category') {
-	    	      $('.div1').show();
-	    	    } else {
-	    	      $('.div1').hide();
-	    	    }
-	    	  }); 
-	    	}); 
     </script>
     <!-- JS here -->
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -386,6 +372,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </body>
 </html>

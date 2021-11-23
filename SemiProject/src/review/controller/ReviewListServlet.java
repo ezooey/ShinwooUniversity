@@ -65,8 +65,6 @@ public class ReviewListServlet extends HttpServlet {
 		
 		ArrayList<Review> list = new ReviewService().selectReviewList(pi);
 		
-		System.out.println(list);
-		
 		String page = null;
 		
 		if(list != null) {	//noticeList.jsp
