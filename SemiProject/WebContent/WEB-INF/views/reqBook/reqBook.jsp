@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, admin.model.vo.UserList" %>
-					 
-<%
-	ArrayList<UserList> uList = (ArrayList)request.getAttribute("uList");
-	String mi = (String)request.getAttribute("mi");
-
+    pageEncoding="UTF-8" import="member.vo.Member,java.util.ArrayList,review.model.vo.*"%>
+ <%
+	 boolean isAdmin = (Boolean)request.getAttribute("isAdmin");
+ 	ArrayList<ReviewBook> list = (ArrayList)request.getAttribute("list"); 
+ 	
 %>
 <!doctype html>
 <html class="no-js">
@@ -12,16 +11,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-       
-    <title>adminUserList</title>
+    <title>독후감 </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-	
-	
-	 <!-- favicon
+
+ <!-- favicon
 		============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <!-- Google Fonts
@@ -63,21 +60,11 @@
 		============================================ -->
     <link rel="stylesheet" href="css/metisMenu/metisMenu.min.css">
     <link rel="stylesheet" href="css/metisMenu/metisMenu-vertical.css">
-    <!-- calendar CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/calendar/fullcalendar.min.css">
-    <link rel="stylesheet" href="css/calendar/fullcalendar.print.min.css">
-    <!-- x-editor CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/editor/select2.css">
-    <link rel="stylesheet" href="css/editor/datetimepicker.css">
-    <link rel="stylesheet" href="css/editor/bootstrap-editable.css">
-    <link rel="stylesheet" href="css/editor/x-editor-style.css">
+
     <!-- normalize CSS
 		============================================ -->
     <link rel="stylesheet" href="css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="css/data-table/bootstrap-editable.css">
-    
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="style.css">
@@ -87,12 +74,21 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -109,16 +105,12 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/datatables.min.css"/>
-    
-    
 
     <style>
         #currentMenu {
             color: white;
             padding: 20px;
-            padding-left: 2.5%;
-            font-size: 30px;
+            font-size: 40px;
             font-weight: 700;
         }
 
@@ -152,40 +144,17 @@
             padding: 40px;
         }
         
-        .searchBar{
-        	padding-top: 10%;
-        	padding-left: 60%;
+        
+        tbody, tr, td{
+        	color:white;
+        	background:#A4A7B3;
         }
-        .paging1{
-        	padding-left: 47%;
-        }
-        .update {
-		  background: white;
-		  border: none;
-		  color: blue;
-		  text-align: center;
-		  text-decoration: none;
-		 
+		#chooseBook{
+			margin-top:20px;
+			margin-right:30px;
+			margin-bottom:30px;
 		}
-
-        .fa-image {
-            position: absolute;
-            top: 50%;
-            margin-top: 12px;
-            margin-left: 1%;
-            z-index: 1;
-        }
-
-        #imagePreview {
-            margin-top: 20px;
-            border: 1px solid #eee;
-        }
-
-        #imageP {
-            margin-top: 20px;
-            visibility: hidden;
-        }
-
+		
     </style>
 </head>
 
@@ -202,96 +171,68 @@
         </div>
     </div>
     <!-- Preloader Start -->
-   
-       <%@ include file="../common/header.jsp" %>
-      
+    
     <main>
-        <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
+       
+		<div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h2 id="currentMenu">회원 목록</h2>
+                <h2 id="currentMenu">책 검색</h2>
             </div>
         </div>
-
-        <!--? Start Align Area -->
-        <div class="whole-wrap">
-            <div class="container box_1170">
-                <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-md-8 mt-sm-30">
-                            
-                        </div>
-                    </div>
-                </div>
-		 <div class="breadcome-area">
-                <div class="container-fluid">
-                </div>
-            </div>
-        </div>
+        
         <!-- Static Table Start -->
-        <div class="data-table-area mg-b-15">
+       
+        <div style="width :300px; height : 200pxpx; background : bule;"></div>
+        <div class="data-table-area mg-b-15;" >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
-                                
                             </div>
                             <div class="sparkline13-graph">
-                                <div class="datatable-dashv1-list custom-datatable-overright">
+                              <div class="datatable-dashv1-list custom-datatable-overright">
                                     
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-pagination-switch="true" data-show-refresh="false" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
-                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar">
-                                        <thead>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
+                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar" style="text-align : center;">
+                                        <thead  style="text-align : center;">
                                             <tr>
-                                                <th data-field="id">아이디</th>
-                                                <th data-field="name" data-editable="false">이름</th>
-                                                <th data-field="email" data-editable="false">학과</th>
-                                                <th data-field="phone" data-editable="false">전화번호</th>
-                                                <th data-field="complete" data-editable="false">주소</th>
-                                                <th data-field="task" data-editable="false">이메일</th>
-                                                <th data-field="date" data-editable="false">변경</th>
+                                                <th data-field="state" data-select="false"></th>
+                                                <th data-field="photo" data-editable="false">책 사진</th>
+                                                <th data-field="name" data-editable="false">책명</th>
+                                                <th data-field="email" data-editable="false">카테고리</th>
+                                                <th data-field="phone" data-editable="false">저자</th>
+                                                <th data-field="task" data-editable="false">출판사 </th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	 <% for (int i = 0; i < uList.size(); i++) { %>
-                                            <tr>
-                                              <td>
-									        		<%= uList.get(i).getMemberId() %>
-									        		<input type="hidden" name="id" id="id" value="<%= uList.get(i).getMemberId()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getMemberName() %>
-									        		<input type="hidden" name="name" id="name" value="<%= uList.get(i).getMemberName()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getDepartment() %>
-									        		<input type="hidden" name="department" id="department" value="<%= uList.get(i).getDepartment()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getPhone() %>
-									        		<input type="hidden" name="phone" id="phone" value="<%= uList.get(i).getPhone()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getAddress() %>
-									        		<input type="hidden" name="address" id="address" value="<%= uList.get(i).getAddress()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getEmail() %>
-									        		<input type="hidden" name="email" id="email" value="<%= uList.get(i).getEmail()%>">
-									        	</td>
-									        	<td>
-													<a onclick="window.open('<%= request.getContextPath() %>/updateInfoForm.ui?mi=<%= uList.get(i).getMemberId() %>', 'updateInfoForm', 'width=1500, height=500')" id="update">변경</a>
-												</td>
-                                            </tr>
-                                            <% } %>
+                                             <% if(list.isEmpty()){ %>
+											<tr>
+												<td colspan="5">존재하는 책이 없습니다.</td>
+											</tr>
+											<% } else{%>
+													
+											<%		String bookName = null;
+													for(int i = 0; i < list.size(); i++){ %>
+											<tr><% 		if(list.get(i).getBookTitle().length()>20){
+														bookName = list.get(i).getBookTitle().substring(0, 20);
+														}else{
+														bookName = list.get(i).getBookTitle();
+														}%>
+											
+												<td style="vertical-align:middle"><input type="radio" name="book" value="<%= list.get(i).getBookTitle() %>,<%= list.get(i).getAuthor()%>,<%= list.get(i).getImageFile() %>,<%= list.get(i).getBookNo() %>"></td>
+												<td><img height="150px" id="titleImg" name="titleImg" src="<%= request.getContextPath() %>/<%= list.get(i).getImageFile() %>"></td>
+												<td><%= bookName %></td>
+												<td><%= list.get(i).getCateName() %></td>
+												<td><%= list.get(i).getAuthor() %></td>
+												<td><%= list.get(i).getPublisher() %></td>
+											</tr>
+											<%		} %>
+											<% } %>
+                                           
                                         </tbody>
-                                      
                                     </table>
-	                                <script type="text/javascript">
-											opener.document.location.reload();
-											self.close();
-									</script>
                                 </div>
                             </div>
                         </div>
@@ -299,76 +240,38 @@
                 </div>
             </div>
         </div>
-        <!-- Static Table End -->
-        
-        
-     </div>
-        <!-- End Align Area -->
-    </main>
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-padding">
-            <div class="container">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="single-footer-caption mb-30">
-                                <!-- logo -->
-                                <div class="footer-logo mb-35">
-                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-                                </div>
-                                <div class="footer-tittle">
-                                    <div class="footer-pera">
-                                        <p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
-                                    </div>
-                                </div>
-                                <!-- social -->
-                                <div class="footer-social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Services </h4>
-                                <ul>
-                                    <li><a href="#">- 주요 전화번호</a></li>
-                                    <li><a href="#">- 개인정보처리방침</a></li>
-                                    <li><a href="#">- 무단수집거부</a></li>
-                                    <li><a href="#">- 원격지원</a></li>
-                                    <li><a href="#">- 찾아오는길</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Contect</h4>
-                                <ul>
-                                    <li class="number"><a href="#">(02) 123-4567</a></li>
-                                    <li><a href="#">shinwoo@universty.kr</a></li>
-                                    <li><a href="#">서울시 강남구 역삼로</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        
-        <%@ include file="../common/footer.jsp" %>
+       
+  	
+
+ <div class="floating"><input type="button" id="chooseBook" value="선택하기" class="btn btn-dark" onclick="confirm();" style="float: right; margin-left: 10px;"></div>       
     
-    
+
+<script>
+	function confirm(){
+		 var obj_length = document.getElementsByName("book").length;
+		  var bookValue;
+	        for (var i=0; i<obj_length; i++) {
+	            if (document.getElementsByName("book")[i].checked == true) {
+	               	bookNo = document.getElementsByName("book")[i].value;
+	               	var bookArr = bookNo.split(',');
+	               	
+	              	opener.document.commentForm.uploadName.value=bookArr[0];
+	              	opener.document.commentForm.uploadName2.value=bookArr[1];
+	              	opener.document.commentForm.bookImg.src=bookArr[2];
+	              	opener.document.commentForm.uploadName3.value=bookArr[3];
+	              	
+	               	window.close();
+	            }
+	        }
+	        
+	}
+	
+
+</script>        
+        
+
     <!-- Scroll Up -->
-    <div id="back-top">
-        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
-    </div>
+   
     <script>
         $(function () {
             var now = new Date();
@@ -380,16 +283,14 @@
         });
     </script>
     <!-- JS here -->
-      <!-- jquery
-		============================================ -->
+    
+    
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <!-- bootstrap JS
 		============================================ -->
     <script src="js/bootstrap.min.js"></script>
     <!-- wow JS
-		============================================ -->
-    <script src="js/wow.min.js"></script>
-    <!-- price-slider JS
+		
 		============================================ -->
     <script src="js/jquery-price-slider.js"></script>
     <!-- meanmenu JS
@@ -406,12 +307,7 @@
     <script src="js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
 		============================================ -->
-    <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/scrollbar/mCustomScrollbar-active.js"></script>
-    <!-- metisMenu JS
-		============================================ -->
-    <script src="js/metisMenu/metisMenu.min.js"></script>
-    <script src="js/metisMenu/metisMenu-active.js"></script>
+ 
     <!-- data table JS
 		============================================ -->
     <script src="js/data-table/bootstrap-table.js"></script>
@@ -431,21 +327,19 @@
     <script src="js/editable/bootstrap-datetimepicker.js"></script>
     <script src="js/editable/bootstrap-editable.js"></script>
     <script src="js/editable/xediable-active.js"></script>
-    <!-- Chart JS
-		============================================ -->
-    <script src="js/chart/jquery.peity.min.js"></script>
-    <script src="js/peity/peity-active.js"></script>
-    <!-- tab JS
-		============================================ -->
-    <script src="js/tab.js"></script>
-    <!-- plugins JS
-		============================================ -->
-    <script src="js/plugins.js"></script>
-    <!-- main JS
-		============================================ -->
-   
-		
 
+    <!-- data table JS
+		============================================ -->
+    <script src="js/data-table/bootstrap-table.js"></script>
+    <script src="js/data-table/tableExport.js"></script>
+    <script src="js/data-table/data-table-active.js"></script>
+    <script src="js/data-table/bootstrap-table-editable.js"></script>
+    <script src="js/data-table/bootstrap-editable.js"></script>
+    <script src="js/data-table/bootstrap-table-resizable.js"></script>
+    <script src="js/data-table/colResizable-1.5.source.js"></script>
+    <script src="js/data-table/bootstrap-table-export.js"></script>
+  
+   
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>

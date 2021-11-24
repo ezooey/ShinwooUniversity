@@ -178,7 +178,11 @@
                     		<div class="emptyList">알림이 없습니다.</div>
                     	<% } else { %>
                     		<% for(Alarm a : aList) { %>
-								<div class="inquiry" onclick="confirmAl(<%= a.getAlarmNo() %>);">
+                    			<% if(a.getAlarmPt() == 1){ %>
+								<div class="inquiry" id="pt1" onclick="confirmAl(<%= a.getAlarmNo() %>);">
+								<%}else{ %>
+								<div class="inquiry" id="pt2" onclick="confirmAl(<%= a.getAlarmNo() %>);">
+								<%} %>
 								<input type="hidden" value="<%= a.getAlarmNo() %>">
 									<%= a.getAlarmCont() %>
 									
@@ -193,12 +197,19 @@
 						
                  
            <script>
-		$('.inquiry').mouseenter(function(){
-			$(this).parent().css({'background':'darkgray', 'cursor':'pointer'});
+		$('#pt1').mouseenter(function(){
+			$(this).css({'background':'lightblue', 'cursor':'pointer'});
 		}).mouseout(function(){
-			$(this).parent().css({'background':'none'});
+			$(this).css({'background':'none'});
 		});
 		
+		$('#pt2').mouseenter(function(){
+			$(this).css({'background':'lightgray', 'cursor':'pointer'});
+		}).mouseout(function(){
+			$(this).css({'background':'none'});
+		});
+		</script>
+		<script>
 		function confirmAl(no){
 			$.ajax({
   				url:'confirmAlarm.al',

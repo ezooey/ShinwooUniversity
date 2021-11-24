@@ -3,7 +3,6 @@
     
 <%
 	ArrayList<RentalBook> rList =  (ArrayList)request.getAttribute("rList");
-	System.out.println(rList);
 %>    
 <!doctype html>
 <html class="no-js">
@@ -118,7 +117,8 @@
         #currentMenu {
             color: white;
             padding: 20px;
-            font-size: 40px;
+            padding-left: 2.5%;
+            font-size: 30px;
             font-weight: 700;
         }
 
@@ -178,8 +178,8 @@
     <%@ include file="../common/header.jsp" %>
     <main>
         <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
                 <h2 id="currentMenu">대출 도서 목록</h2>
             </div>
         </div>
@@ -215,13 +215,14 @@
                                         data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-												<th data-field="id">No.</th>
-												<th data-field="no" data-editable="false">도서코드</th>
-												<th data-field="bookName" data-editable="false">도서명</th>
-												<th data-field="author" data-editable="false">저자</th>
+                                            	<th data-field="no" data-editable="false">도서코드</th>
+                                            	<th data-field="bookName" data-editable="false">도서명</th>
+                                            	<th data-field="author" data-editable="false">저자</th>
+												<th data-field="id">학번</th>
 												<th data-field="memberName" data-editable="false">대출자명</th>
 												<th data-field="retalDate" data-editable="false">대출일자</th>
 												<th data-field="returnDate" data-editable="false">반납일자</th>  
+												<th data-field="returnYN" data-editable="false">반납여부</th>  
 											</tr>  
 										</thead>  
 										<tbody>  
@@ -232,13 +233,14 @@
 											<% } else { %>
 											<%		for (int i = 0; i < rList.size(); i++) { %>
 											<tr>
+												<td><%= rList.get(i).getMemberId() %></td>
+												<td><%= rList.get(i).getMemberName() %></td>
 												<td><%= rList.get(i).getBookNo() %></td>
 												<td><%= rList.get(i).getBookTitle() %></td>
 												<td><%= rList.get(i).getAuthor() %></td>
-												<td><%= rList.get(i).getMemberId() %></td>
-												<td><%= rList.get(i).getMemberName() %></td>
 												<td><%= rList.get(i).getRentalDate() %></td>
 												<td><%= rList.get(i).getReturnDate() %></td>
+												<td><%= rList.get(i).getReturnYN() %></td>
 											</tr>
 											<%		} %>
 											<%	} %>
@@ -413,9 +415,7 @@
     <!-- main JS
 		============================================ -->
     <script src="js/main.js"></script>
-    <!-- tawk chat JS
-		============================================ -->
-    <script src="js/tawk-chat.js"></script>
+
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->

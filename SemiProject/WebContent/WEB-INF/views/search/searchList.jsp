@@ -50,7 +50,8 @@
 		#currentMenu {
             color: white;
             padding: 20px;
-            font-size: 40px;
+            padding-left: 2.5%;
+            font-size: 30px;
             font-weight: 700;
         }
 
@@ -130,7 +131,7 @@
          	
          }
          
-         .totalBook{zz
+         .totalBook{
          	margin-top: 100px;
          	width: 800px;
          	height: 400px;
@@ -149,12 +150,25 @@
 		  	width: 1500px;
 		  	height: 400px;
 		  }
-		  img{
-			  margin-bottom: 100px;
-		  }
+ 		  #titleImg{ 
+			  margin-bottom: 100px; 
+		  } 
 		  aside{
 		  	margin-top: 100px;
 		  }
+		  a:hover {color: black;}
+		  a{color : black;}
+		  
+		  
+		  button:hover{cursor: pointer;}
+  		#numBtn{background: white; border: 1px solid #eee; color: gray;}
+   		#choosen{background: #bfccff; border: 1px solid #eee; color: black;}
+  		.pagingArea button{background: white; color: black;}
+   		.pagingArea {padding: 10px;}
+   		.listBtn{background: #eee; border: 1px solid #eee; color: gray;}
+   		.fa-angle-double-left, .fa-angle-double-right, .fa-angle-left, .fa-angle-right{color: gray;}
+      
+ 		button:disabled{background: #eee; cursor: none;}
   </style>
 </head>
 <body>
@@ -174,8 +188,8 @@
 	   <%@ include file="../common/header.jsp" %>
 	<main>
 		<!--? Hero Start -->
-		<div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
-			<div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
+		<div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
+			<div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
 				<h2 id="currentMenu">도서 검색</h2>
 			</div>
 		</div>
@@ -195,17 +209,21 @@
 	     	<% 	for (int i = 0; i < bList.size(); i++) { %>
 	 		<div >	
 			 <div class="list-display whole">
-	     	 		<div class="list-display image"><h2><img height="300px" width="200px" id="titleImg" name="titleImg" src="<%= request.getContextPath() %>/image/<%= bList.get(i).getChangeName() %>"></h2></div>
+	     	 		<div class="list-display image">
+	     	 			<h2>
+	     	 				<a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= bList.get(i).getBookNo() %>'><img height="300px" width="200px" id="titleImg" name="titleImg" src="<%= request.getContextPath() %>/image/<%= bList.get(i).getChangeName() %>">
+	     	 			</h2>
+	     	 		</div>
      	 			<div class="list-display totalBook">
 	     	 			<ul>
-	     	 			<% System.out.println(request.getContextPath()); %>
-	     	 			<% System.out.println(bList.get(i).getChangeName()); %>
-	     	 				
-	     	 				<li><br><%= bList.get(i).getBookTitle() %><br></li>
+	     	 				<h2 id="bookTitle"><a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= bList.get(i).getBookNo() %>'><li><%= bList.get(i).getBookTitle() %><br><br></li></a></h2>
 	     	 				<li><%= bList.get(i).getBookNo() %></li>
-	     	 				<li><%= bList.get(i).getAuthor() %> | <%= bList.get(i).getPublisher() %> | <%= bList.get(i).getReleaseDate() %></li>
-	     	 				<li><textarea readonly><%= bList.get(i).getBookInfo() %></textarea></li>
-	     	 				<li>[대출 : <%= bList.get(i).getRentTotal() %> / 2]</li>
+	     	 				<li><%= bList.get(i).getAuthor() %> | <%= bList.get(i).getPublisher() %> | <%= bList.get(i).getReleaseDate() %><br><br></li>
+	     	 				<% if(bList.get(i).getBookInfo() != null){ %>	
+	     	 					<li><textarea readonly><%= bList.get(i).getBookInfo() %></textarea></li>	
+	     	 				<% } else {  %>
+	     	 						<li><textarea readonly> 책 정보 없음 </textarea></li>
+	     	 				<% } %>	
 	     	 				<li>
 	     	 			</ul>
 					</div>
@@ -215,10 +233,6 @@
 			</form>
              </div>
 		 </div>
-				
-				
-
-		 
 		<aside>
 		<div class="category">
 			<div class="blog_right_sidebar">
@@ -294,11 +308,11 @@
 		
 		<% if(categoryNo == 0){ %>
 				<%if(category != null){ %>
-					<div class="pagingArea" align="center">
+					<div class="pagingArea page-item" align="center">
 		        <!-- 맨처음으로 -->
-		        <button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=1&&category=<%= category %>&&kword=<%= kword %>'">&lt;&lt;</button>
+		        <button class="listBtn" id="startBtn" onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=1&&category=<%= category %>&&kword=<%= kword %>'"><i class="fas fa-angle-double-left"></i></button>
 		        <!-- 이전 페이지 -->
-		        <button id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()-1 %>&&category=<%= category %>&&kword=<%= kword %>'">&lt;</button>
+		        <button class="listBtn" id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()-1 %>&&category=<%= category %>&&kword=<%= kword %>'"><i class="fas fa-angle-left"></i></button>
 		        <script>
 		        	if(<%= pi.getCurrentPage()%> <=1 ){
 		        		$('#beforeBtn').prop('disabled', true);
@@ -307,27 +321,27 @@
 				<!-- 숫자버튼 -->
 				<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
 				<%		if(p == pi.getCurrentPage()) { %>
-							<button id="choosen" disabled><%= p %></button>
+							<button class="listBtn" id="choosen" disabled><%= p %></button>
 				<% 		} else {%>
-							<button id="numBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= p %>&&kword=<%= kword %>&&category=<%= category%>'"><%= p %></button>
+							<button class="listBtn" id="numBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= p %>&&kword=<%= kword %>&&category=<%= category%>'"><%= p %></button>
 				<%		} %>
 				<%	}	 %>
 				<!-- 다음페이지로 -->
-				<button id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()+1 %>&&kword=<%= kword %>&&category=<%= category%>'">&gt;</button>
+				<button class="listBtn" id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()+1 %>&&kword=<%= kword %>&&category=<%= category%>'"><i class="fas fa-angle-right"></i></button>
 				<script>
 					if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>){
 						$('#afterBtn').prop('disabled', true);
 					}
 				</script>
 				<!-- 맨 끝으로 -->
-				<button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=<%=pi.getMaxPage() %>&&kword=<%= kword %>&&category=<%= category%>'">&gt;&gt;</button>
+				<button class="listBtn" id="endBtn" onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=<%=pi.getMaxPage() %>&&kword=<%= kword %>&&category=<%= category%>'"><i class="fas fa-angle-double-right"></i></button>
 		       </div>
 			<%}else{ %>
-        <div class="pagingArea" align="center">
+        <div class="pagingArea page-item" align="center">
         <!-- 맨처음으로 -->
-        <button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=1'">&lt;&lt;</button>
+        <button class="listBtn" id="startBtn" onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=1'"><i class="fas fa-angle-double-left"></i></button>
         <!-- 이전 페이지 -->
-        <button id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()-1 %>'">&lt;</button>
+        <button class="listBtn" id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()-1 %>'"><i class="fas fa-angle-left"></i></button>
         <script>
         	if(<%= pi.getCurrentPage()%> <=1 ){
         		$('#beforeBtn').prop('disabled', true);
@@ -336,31 +350,31 @@
 		<!-- 숫자버튼 -->
 		<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
 		<%		if(p == pi.getCurrentPage()) { %>
-					<button id="choosen" disabled><%= p %></button>
+					<button class="listBtn" id="choosen" disabled><%= p %></button>
 		<% 		} else {%>
-					<button id="numBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= p %>'"><%= p %></button>
+					<button class="listBtn" id="numBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= p %>'"><%= p %></button>
 		<%		} %>
 		<%	}	 %>
 		<!-- 다음페이지로 -->
-		<button id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()+1 %>'">&gt;</button>
+		<button class="listBtn" id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()+1 %>'"><i class="fas fa-angle-right"></i></button>
 		<script>
 			if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>){
 				$('#afterBtn').prop('disabled', true);
 			}
 		</script>
 		<!-- 맨 끝으로 -->
-		<button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=<%=pi.getMaxPage() %>'">&gt;&gt;</button>
+		<button class="listBtn" id="endBtn" onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=<%=pi.getMaxPage() %>'"><i class="fas fa-angle-double-right"></i></button>
        </div>
        
        		<% } %>
      
        
 		<% } if(categoryNo != 0){ %>
-        <div class="pagingArea" align="center">
+        <div class="pagingArea page-item" align="center">
         <!-- 맨처음으로 -->
-        <button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=1&&categoryNo=<%= categoryNo %>'">&lt;&lt;</button>
+        <button class="listBtn" id="startBtn" onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=1&&categoryNo=<%= categoryNo %>'"><i class="fas fa-angle-double-left"></i></button>
         <!-- 이전 페이지 -->
-        <button id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()-1 %>&&categoryNo=<%= categoryNo %>'">&lt;</button>
+        <button class="listBtn" id="beforeBtn" onclick="location.href='<%=request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()-1 %>&&categoryNo=<%= categoryNo %>'"><i class="fas fa-angle-left"></i></button>
         <script>
         	if(<%= pi.getCurrentPage()%> <=1 ){
         		$('#beforeBtn').prop('disabled', true);
@@ -369,20 +383,20 @@
 		<!-- 숫자버튼 -->
 		<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
 		<%		if(p == pi.getCurrentPage()) { %>
-					<button id="choosen" disabled><%= p %></button>
+					<button class="listBtn" id="choosen" disabled><%= p %></button>
 		<% 		} else {%>
-					<button id="numBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= p %>&&categoryNo=<%= categoryNo %>'"><%= p %></button>
+					<button class="listBtn" id="numBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= p %>&&categoryNo=<%= categoryNo %>'"><%= p %></button>
 		<%		} %>
 		<%	}	 %>
 		<!-- 다음페이지로 -->
-		<button id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()+1 %>&&categoryNo=<%= categoryNo %>'">&gt;</button>
+		<button class="listBtn" id="afterBtn" onclick="location.href='<%= request.getContextPath()%>/searchBook.sr?currentPage=<%= pi.getCurrentPage()+1 %>&&categoryNo=<%= categoryNo %>'"><i class="fas fa-angle-right"></i></button>
 		<script>
 			if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>){
 				$('#afterBtn').prop('disabled', true);
 			}
 		</script>
 		<!-- 맨 끝으로 -->
-		<button onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=<%=pi.getMaxPage() %>&&categoryNo=<%= categoryNo %>'">&gt;&gt;</button>
+		<button class="listBtn" id="endBtn" onclick="location.href='<%= request.getContextPath() %>/searchBook.sr?currentPage=<%=pi.getMaxPage() %>&&categoryNo=<%= categoryNo %>'"><i class="fas fa-angle-double-right"></i></button>
        </div>
        
        <%} %>
@@ -441,5 +455,4 @@
     <script src="./assets/js/all.min.js"></script>
 
 </body>
-
 </html>

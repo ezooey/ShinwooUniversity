@@ -381,7 +381,7 @@
 				<td colspan="6">
 				<br><br>
 				<div id="memberEnroll">
-					<button type="submit" class="genric-btn info circle" onclick= "submitAlarm();">초기설정완료</button>
+					<button type="submit" class="genric-btn info circle" onclick= "return submitAlarm();">초기설정완료</button>
 				</div>
 				</td>
 			</tr>
@@ -472,16 +472,12 @@
 			 }else if(num < 0 || eng < 0 || spe < 0 ){
 			  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
 			  return false;
-			 }else {
-				console.log("통과"); 
-			    return true;
 			 }
 
-			if($('#password').val() != $('#passConfirm').val()){
+			if(document.getElementById('password').value != document.getElementById('passConfirm').value){
 				alert('비밀번호가 일치하지 않습니다.');
-				$('#password').val("");
 				$('#passConfirm').val("");
-				$('#password').focus();
+				$('#passConfirm').focus();
 				return false;
 			}
 			if($('#email').val() == ''){

@@ -142,7 +142,8 @@ public class AdminDAO {
 											rset.getString("member_id"),
 											rset.getString("member_name"),
 											rset.getDate("rental_date"),
-											rset.getDate("return_date"));
+											rset.getDate("return_date"),
+											rset.getString("return_yn"));
 				list.add(rb);
 			}
 		} catch (SQLException e) {

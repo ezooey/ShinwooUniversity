@@ -22,7 +22,7 @@
    }
 </style>
 </head>
- <body>
+ <body onload="getAlarmCount();">
     <header>
         <!-- Header Start -->
         <div class="header-area">
@@ -37,7 +37,7 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
+                                    <li><a href="<%= request.getContextPath() %>/Library.Info">도서관 소개</a></li>
                                     <li><a href="<%= request.getContextPath() %>/reqbookForm.bo">도서 신청</a></li>
                                     <li><a href="searchBook.sr">도서 검색</a></li>
                                     <li><a href="<%= request.getContextPath() %>/reviewList.rv">독후감</a></li>
@@ -51,12 +51,32 @@
                     <a id="question" onclick="location.href='<%= request.getContextPath() %>/questionList.li'" class="header-btn1">
                        <span class="questionIcon"><i class="far fa-comment-dots"></i>&nbsp;&nbsp;1:1 문의</span>
                     </a>
-                    <a onclick="window.open('alarmList.al?mId=<%= loginUser1.getMemberId() %>', 'alarmList', 'width=500, height=270');" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
+                    <a onclick="window.open('alarmList.al?mId=<%= loginUser1.getMemberId() %>', 'alarmList', 'width=500, height=270');" class="header-btn1"><img id="alarmImg" src="assets/img/icon/bell.png" alt=""></a>
                     <button type="button" class="genric-btn primary circle" id="login" onclick="location.href='<%= request.getContextPath() %>/logout.me'">로그아웃</button>
             </div>
          </div>   
       </div>      
         <!-- Header End -->
     </header>
+    <script>
+    	function getAlarmCount(){
+  			$.ajax({
+  				url:'getAlarm.al',
+  				data:{userId : <%= loginUser1.getMemberId() %>},
+  				success:function(data){
+  					console.log(data);
+  					if(data.trim()=='0'){//알림이 없으면
+  						
+  					}else{	//알림이 있으면
+  						document.getElementById('alarmImg').src = 'assets/img/icon/alarm.png';
+  					}
+  				},
+  				error:function(data){
+  					console.log(data);
+  					
+  				}
+  			});
+    	}
+    </script>
 </body>
 </html>

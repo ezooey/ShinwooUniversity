@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, admin.model.vo.UserList" %>
-					 
+    pageEncoding="UTF-8" import="java.util.ArrayList, reqBook.model.vo.ReqBook"%>
 <%
-	ArrayList<UserList> uList = (ArrayList)request.getAttribute("uList");
-	String mi = (String)request.getAttribute("mi");
 
+	ReqBook r = (ReqBook)request.getAttribute("r"); 
+	ArrayList<ReqBook> list = (ArrayList)request.getAttribute("list");
 %>
 <!doctype html>
 <html class="no-js">
@@ -12,16 +11,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-       
-    <title>adminUserList</title>
+    <title>도서 신청</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-	
-	
-	 <!-- favicon
+
+ <!-- favicon
 		============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <!-- Google Fonts
@@ -63,21 +60,11 @@
 		============================================ -->
     <link rel="stylesheet" href="css/metisMenu/metisMenu.min.css">
     <link rel="stylesheet" href="css/metisMenu/metisMenu-vertical.css">
-    <!-- calendar CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/calendar/fullcalendar.min.css">
-    <link rel="stylesheet" href="css/calendar/fullcalendar.print.min.css">
-    <!-- x-editor CSS
-		============================================ -->
-    <link rel="stylesheet" href="css/editor/select2.css">
-    <link rel="stylesheet" href="css/editor/datetimepicker.css">
-    <link rel="stylesheet" href="css/editor/bootstrap-editable.css">
-    <link rel="stylesheet" href="css/editor/x-editor-style.css">
+
     <!-- normalize CSS
 		============================================ -->
     <link rel="stylesheet" href="css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="css/data-table/bootstrap-editable.css">
-    
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="style.css">
@@ -87,12 +74,7 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-	
-	
-	
-	
-	
-	
+
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -109,16 +91,12 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/datatables.min.css"/>
-    
-    
 
     <style>
         #currentMenu {
             color: white;
             padding: 20px;
-            padding-left: 2.5%;
-            font-size: 30px;
+            font-size: 40px;
             font-weight: 700;
         }
 
@@ -151,41 +129,6 @@
         .section-top-border {
             padding: 40px;
         }
-        
-        .searchBar{
-        	padding-top: 10%;
-        	padding-left: 60%;
-        }
-        .paging1{
-        	padding-left: 47%;
-        }
-        .update {
-		  background: white;
-		  border: none;
-		  color: blue;
-		  text-align: center;
-		  text-decoration: none;
-		 
-		}
-
-        .fa-image {
-            position: absolute;
-            top: 50%;
-            margin-top: 12px;
-            margin-left: 1%;
-            z-index: 1;
-        }
-
-        #imagePreview {
-            margin-top: 20px;
-            border: 1px solid #eee;
-        }
-
-        #imageP {
-            margin-top: 20px;
-            visibility: hidden;
-        }
-
     </style>
 </head>
 
@@ -202,96 +145,113 @@
         </div>
     </div>
     <!-- Preloader Start -->
-   
-       <%@ include file="../common/header.jsp" %>
-      
-    <main>
-        <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h2 id="currentMenu">회원 목록</h2>
-            </div>
-        </div>
-
-        <!--? Start Align Area -->
-        <div class="whole-wrap">
-            <div class="container box_1170">
-                <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-md-8 mt-sm-30">
-                            
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <!-- Logo -->
+                <div class="header-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                    </div>
+                    <div class="menu-wrapper  d-flex align-items-center">
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="index.html">도서관 소개</a></li>
+                                    <li class="active"><a href="about.html">도서 신청</a></li>
+                                    <li><a href="services.html">도서 검색</a></li>
+                                    <li><a href="blog.html">독후감</a></li>
+                                    <li><a href="contact.html">마이페이지</a></li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
-		 <div class="breadcome-area">
-                <div class="container-fluid">
+                <div class="header-right d-none d-lg-block">
+                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
+                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
+                </div>
+                <!-- Mobile Menu -->
+                <div class="col-12">
+                    <div class="mobile_menu d-block d-lg-none"></div>
                 </div>
             </div>
         </div>
+        <!-- Header End -->
+    </header>
+        <!--? Hero Start -->
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
+                <h2 id="currentMenu">도서 신청</h2>
+            </div>
+        </div>
+
+        
         <!-- Static Table Start -->
-        <div class="data-table-area mg-b-15">
+       
+        <div style="width :300px; height : 200pxpx; background : bule;"></div>
+        <div class="data-table-area mg-b-15;" >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
-                                
                             </div>
                             <div class="sparkline13-graph">
-                                <div class="datatable-dashv1-list custom-datatable-overright">
-                                    
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-pagination-switch="true" data-show-refresh="false" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
-                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar">
+                              <div class="datatable-dashv1-list custom-datatable-overrigh" style=" text-align : center;">
+                                     <div id="toolbar">
+                       
+                                    </div>
+                                   
+                                    <table class="sampleTable" id="table" data-toggle="table" data-pagination="false" data-search="true" data-show-columns="false" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="false" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-                                                <th data-field="id">아이디</th>
-                                                <th data-field="name" data-editable="false">이름</th>
-                                                <th data-field="email" data-editable="false">학과</th>
-                                                <th data-field="phone" data-editable="false">전화번호</th>
-                                                <th data-field="complete" data-editable="false">주소</th>
-                                                <th data-field="task" data-editable="false">이메일</th>
-                                                <th data-field="date" data-editable="false">변경</th>
+                        
+                                                <th data-field="id">학번</th>
+                                                <th data-field="name" data-editable="false">도서명</th>
+                                                <th data-field="email" data-editable="false">저자</th>
+                                                <th data-field="phone" data-editable="false">출판사</th>
+                                                <th data-field="task" data-editable="false">신청자 성함 </th>
+                                                <th data-field="date" data-editable="false">신청날짜</th>
+                                                <th data-field="action">진행상태</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	 <% for (int i = 0; i < uList.size(); i++) { %>
-                                            <tr>
-                                              <td>
-									        		<%= uList.get(i).getMemberId() %>
-									        		<input type="hidden" name="id" id="id" value="<%= uList.get(i).getMemberId()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getMemberName() %>
-									        		<input type="hidden" name="name" id="name" value="<%= uList.get(i).getMemberName()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getDepartment() %>
-									        		<input type="hidden" name="department" id="department" value="<%= uList.get(i).getDepartment()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getPhone() %>
-									        		<input type="hidden" name="phone" id="phone" value="<%= uList.get(i).getPhone()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getAddress() %>
-									        		<input type="hidden" name="address" id="address" value="<%= uList.get(i).getAddress()%>">
-									        	</td>
-									        	<td>
-									        		<%= uList.get(i).getEmail() %>
-									        		<input type="hidden" name="email" id="email" value="<%= uList.get(i).getEmail()%>">
-									        	</td>
-									        	<td>
-													<a onclick="window.open('<%= request.getContextPath() %>/updateInfoForm.ui?mi=<%= uList.get(i).getMemberId() %>', 'updateInfoForm', 'width=1500, height=500')" id="update">변경</a>
-												</td>
-                                            </tr>
-                                            <% } %>
+                                           <% if(list.isEmpty()) {%>
+											<tr>
+												<td colspan="5">존재하는 신청도서가 없습니다.</td>
+											</tr>
+											<%} else { 
+												for(int i = 0; i < list.size(); i++){%>
+													<tr>
+									
+														<td><%= list.get(i).getReqWriterId() %></td>
+				 										<td><%= list.get(i).getReqBookTitle() %></td>
+														<td><%= list.get(i).getReqBookAuthor() %></td>
+														<td><%= list.get(i).getReqBookPub() %></td>	
+														<td><%= list.get(i).getReqBookWriter() %></td>	
+														
+														<td><%= list.get(i).getReqBookDate() %></td>
+														<td>
+														<input type = "hidden" name ="writer" value="<%= list.get(i).getReqWriterId()%>">
+														<input type="hidden" name ="reqStatus" value="<%=list.get(i).getStatus()%>">
+														<% if(list.get(i).getStatus()== 0) {%>
+															<div><a  style="cursor: pointer " onclick="window.open('reqBook.con?reqNo=<%= list.get(i).getReqBookNo() %>&&writer=<%= list.get(i).getReqWriterId() %>', 'rejectDetail', 'width=450, height=400');"><button class="genric-btn success">대기중</button></a></div>
+														<%}else if(list.get(i).getStatus()== 1){ %>
+															<div style="color : blue;"><a style="cursor: pointer" onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=270');">승인 완료</a></div>
+														<%}else{ %>
+															<div style="color : red;"><a style="cursor: pointer" onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=400');">거절 완료 </a></div>
+														<%} %>
+														</td>
+													</tr>
+												<%} %>
+											<%} %>
                                         </tbody>
-                                      
                                     </table>
-	                                <script type="text/javascript">
-											opener.document.location.reload();
-											self.close();
-									</script>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -299,12 +259,8 @@
                 </div>
             </div>
         </div>
-        <!-- Static Table End -->
         
-        
-     </div>
-        <!-- End Align Area -->
-    </main>
+
     <footer>
         <!-- Footer Start-->
         <div class="footer-area footer-padding">
@@ -360,11 +316,29 @@
                 </div>
             </div>
         </div>
-        
-        
-        <%@ include file="../common/footer.jsp" %>
-    
-    
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-center">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                        href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
     <!-- Scroll Up -->
     <div id="back-top">
         <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
@@ -380,16 +354,14 @@
         });
     </script>
     <!-- JS here -->
-      <!-- jquery
-		============================================ -->
+    
+    
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <!-- bootstrap JS
 		============================================ -->
     <script src="js/bootstrap.min.js"></script>
     <!-- wow JS
-		============================================ -->
-    <script src="js/wow.min.js"></script>
-    <!-- price-slider JS
+		
 		============================================ -->
     <script src="js/jquery-price-slider.js"></script>
     <!-- meanmenu JS
@@ -406,12 +378,7 @@
     <script src="js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
 		============================================ -->
-    <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/scrollbar/mCustomScrollbar-active.js"></script>
-    <!-- metisMenu JS
-		============================================ -->
-    <script src="js/metisMenu/metisMenu.min.js"></script>
-    <script src="js/metisMenu/metisMenu-active.js"></script>
+ 
     <!-- data table JS
 		============================================ -->
     <script src="js/data-table/bootstrap-table.js"></script>
@@ -431,21 +398,19 @@
     <script src="js/editable/bootstrap-datetimepicker.js"></script>
     <script src="js/editable/bootstrap-editable.js"></script>
     <script src="js/editable/xediable-active.js"></script>
-    <!-- Chart JS
-		============================================ -->
-    <script src="js/chart/jquery.peity.min.js"></script>
-    <script src="js/peity/peity-active.js"></script>
-    <!-- tab JS
-		============================================ -->
-    <script src="js/tab.js"></script>
-    <!-- plugins JS
-		============================================ -->
-    <script src="js/plugins.js"></script>
-    <!-- main JS
-		============================================ -->
-   
-		
 
+    <!-- data table JS
+		============================================ -->
+    <script src="js/data-table/bootstrap-table.js"></script>
+    <script src="js/data-table/tableExport.js"></script>
+    <script src="js/data-table/data-table-active.js"></script>
+    <script src="js/data-table/bootstrap-table-editable.js"></script>
+    <script src="js/data-table/bootstrap-editable.js"></script>
+    <script src="js/data-table/bootstrap-table-resizable.js"></script>
+    <script src="js/data-table/colResizable-1.5.source.js"></script>
+    <script src="js/data-table/bootstrap-table-export.js"></script>
+  
+   
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
