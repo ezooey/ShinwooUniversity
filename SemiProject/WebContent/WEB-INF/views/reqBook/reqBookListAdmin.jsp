@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>도서 신청</title>
+    <title>도서 신청 목록</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
@@ -96,7 +96,8 @@
         #currentMenu {
             color: white;
             padding: 20px;
-            font-size: 40px;
+            padding-left: 2.5%;
+            font-size: 30px;
             font-weight: 700;
         }
 
@@ -129,6 +130,14 @@
         .section-top-border {
             padding: 40px;
         }
+        
+        #table a:hover{
+        	font-weight: 900;
+        }
+        
+        footer {
+        	background: white;
+        }
     </style>
 </head>
 
@@ -145,46 +154,13 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-        <div class="header-area">
-            <div class="main-header header-sticky">
-                <!-- Logo -->
-                <div class="header-left">
-                    <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                    </div>
-                    <div class="menu-wrapper  d-flex align-items-center">
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="index.html">도서관 소개</a></li>
-                                    <li class="active"><a href="about.html">도서 신청</a></li>
-                                    <li><a href="services.html">도서 검색</a></li>
-                                    <li><a href="blog.html">독후감</a></li>
-                                    <li><a href="contact.html">마이페이지</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-right d-none d-lg-block">
-                    <a href="#" class="header-btn1"><img src="assets/img/icon/bell.png" alt=""></a>
-                    <button type="button" class="genric-btn primary circle" id="login">로그인</button>
-                </div>
-                <!-- Mobile Menu -->
-                <div class="col-12">
-                    <div class="mobile_menu d-block d-lg-none"></div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
+    <%@ include file="../common/header.jsp"%>
+        <!--? Hero Start -->
+    <main>
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h2 id="currentMenu">도서 신청</h2>
+                <h2 id="currentMenu">도서 신청 목록</h2>
             </div>
         </div>
 
@@ -239,7 +215,7 @@
 														<input type = "hidden" name ="writer" value="<%= list.get(i).getReqWriterId()%>">
 														<input type="hidden" name ="reqStatus" value="<%=list.get(i).getStatus()%>">
 														<% if(list.get(i).getStatus()== 0) {%>
-															<div><a  style="cursor: pointer " onclick="window.open('reqBook.con?reqNo=<%= list.get(i).getReqBookNo() %>&&writer=<%= list.get(i).getReqWriterId() %>', 'rejectDetail', 'width=450, height=400');"><button class="genric-btn success">대기중</button></a></div>
+															<div><a  style="cursor: pointer " onclick="window.open('reqBook.con?reqNo=<%= list.get(i).getReqBookNo() %>&&writer=<%= list.get(i).getReqWriterId() %>', 'rejectDetail', 'width=450, height=400');"><button class="genric-btn success-border small">대기중</button></a></div>
 														<%}else if(list.get(i).getStatus()== 1){ %>
 															<div style="color : blue;"><a style="cursor: pointer" onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=270');">승인 완료</a></div>
 														<%}else{ %>
@@ -259,90 +235,14 @@
                 </div>
             </div>
         </div>
-        
+    </main> 
 
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-padding">
-            <div class="container">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="single-footer-caption mb-30">
-                                <!-- logo -->
-                                <div class="footer-logo mb-35">
-                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-                                </div>
-                                <div class="footer-tittle">
-                                    <div class="footer-pera">
-                                        <p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
-                                    </div>
-                                </div>
-                                <!-- social -->
-                                <div class="footer-social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Services </h4>
-                                <ul>
-                                    <li><a href="#">- 주요 전화번호</a></li>
-                                    <li><a href="#">- 개인정보처리방침</a></li>
-                                    <li><a href="#">- 무단수집거부</a></li>
-                                    <li><a href="#">- 원격지원</a></li>
-                                    <li><a href="#">- 찾아오는길</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Contect</h4>
-                                <ul>
-                                    <li class="number"><a href="#">(02) 123-4567</a></li>
-                                    <li><a href="#">shinwoo@universty.kr</a></li>
-                                    <li><a href="#">서울시 강남구 역삼로</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- footer-bottom area -->
-        <div class="footer-bottom-area section-bg2" data-background="assets/img/gallery/footer-bg.png">
-            <div class="container">
-                <div class="footer-border">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-xl-12 ">
-                            <div class="footer-copy-right text-center">
-                                <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
-                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                        href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
-    </footer>
-    <!-- Scroll Up -->
-    <div id="back-top">
-        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
-    </div>
+	<%@ include file="../common/footer.jsp"%>
+	<div id="back-top">
+		<a title="Go to Top" href="#">
+			<i class="fas fa-level-up-alt"></i>
+		</a>
+	</div>
     <script>
         $(function () {
             var now = new Date();

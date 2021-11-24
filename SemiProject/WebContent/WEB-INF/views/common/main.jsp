@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
 <!-- CSS here -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -382,37 +383,45 @@
 		cursor: pointer;
 	}
 
-	  .answer {
-	    display: none;
-	    padding-bottom: 30px;
-	  }
-	  #faq-title {
-	    font-size: 25px;
-	  }
-	  .faq-content {
-	    border-bottom: 1px solid #e0e0e0;
-	  }
-	  .question {
-	    font-size: 19px;
-	    padding: 30px 0;
-	    cursor: pointer;
-	    border: none;
-	    outline: none;
-	    background: none;
-	    width: 100%;
-	    text-align: left;
-	  }
-	  .question:hover {
-	    color: #2962ff;
-	  }
-	  [id$="-toggle"] {
-	    margin-right: 15px;
-	  }
+  .answer {
+    display: none;
+    padding-bottom: 30px;
+  }
+  #faq-title {
+    font-size: 25px;
+  }
+  .faq-content {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .question {
+    font-size: 16px;
+    padding: 30px 0;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    
+  }
+  .question:hover {
+    color: #6785FF;
+  }
+  [id$="-toggle"] {
+    margin-right: 15px;
+  }
+
+  #reviewSelectTable td {
+   width : 10%;
+   text-align : center;
 	
-	  #reviewSelectTable td {
-	   width : 10%;
-	   text-align : center;
+  }
 	
+	.moreInfo{
+		background: #ededed;
+		color: black;
+		border: none;
+		float: right;
 	}
 </style>
 <script src="slider.js"></script>
@@ -676,7 +685,6 @@
 		<!-- 			</form> -->
 		<br>
 		<br>
-		<hr width=60%>
 		<br>
 		<br>
 
@@ -694,7 +702,6 @@
                            </script>
                            <script type="text/javascript"
                               src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
-                              
                            </script>
                         </div>
                      </div>
@@ -749,10 +756,12 @@
                         </li>
                      </ul>
                      <div id="tab-1" class="tab-content ">
+                     	<div>
+                        	<button type="button" class="moreInfo" onclick="location.href='<%= request.getContextPath() %>/reviewList.rv'">더보기 ></button>
+                        </div>
                         <div id="reviewSelectArea">
                         <table id="reviewSelectTable" >
                         <div class="header-right d-none d-lg-block" style="float: right;">
-                        <button type="button" class="genric-btn primary circle" onclick="location.href='<%= request.getContextPath() %>/reviewList.rv'">더보기 ></button>
                         </div>
                               <tr class="table-head">
                               
@@ -805,7 +814,9 @@
                                              tableAppend += "<tr><div>";
                                              
                                              
-                                             tableAppend += "<td><div>" + data[i].reviewTitle+ "</div></td>";
+                                             tableAppend += "<td><div>" + data[i].reviewTitle;
+                                             tableAppend += "<input type='hidden' name='rId' value='" + data[i].reviewNo + "'>";
+                                             tableAppend += "</div></td>";
                                              
                                              tableAppend += "<td><div>" + bookName + "</div></td>";
                                                                                          
@@ -830,7 +841,8 @@
                      <div id="tab-2" class="tab-content current">
                         <div class="whole-wrap">
                                  <div class="faq-content">
-                                   <div class="question" id="que-1"><span id="que-1-toggle">Q</span><span>도서관 방문 예약은 어떻게 해야하나요?</span></div>
+                                 <button type="button" class="moreInfo" onclick="location.href='<%= request.getContextPath() %>/Library.Info'">더보기 ></button>
+                                   <div class="question" id="que-1"><span id="que-1-toggle">Q</span><span>도서관 방문 예약은 어떻게 해야 하나요?</span></div>
                                    <div class="answer" id="ans-1"><p>도서관 방문 1일 전 홈페이지를 통한 온라인 예약 (*사전예약 필수)</p>
                                                          <p>※ 주말이나 휴관일 다음날 방문은 직전 평일 운영일에 예약</p>
                                                          <p>(예시: 방문일이 토, 일, 월요일인 경우 직전 금요일에 예약 /</p>
@@ -851,7 +863,6 @@
                                  <div class="answer" id="ans-4">자세한 문의는  1:1 문의를 이용해주시기 바랍니다.</div>
                                  </div><br>
                                  <div class="header-right d-none d-lg-block" style="float: right;">
-                        <button type="button" class="genric-btn primary circle" onclick="location.href='<%= request.getContextPath() %>/Library.Info'">더보기 ></button>
                         </div>   
                      </div>
                    </div>
@@ -877,8 +888,8 @@
     }
   }
 
-  items.forEach(item => item.addEventListener('mouseleave', openCloseAnswer));
-  items.forEach(item => item.addEventListener('mouseenter', openCloseAnswer));
+  items.forEach(item => item.addEventListener('click', openCloseAnswer));
+  items.forEach(item => item.addEventListener('click', openCloseAnswer));
 </script>
          
          <script>
@@ -890,7 +901,16 @@
                   $(this).addClass('current');
                   $("#" + tab_id).addClass('current');
                })
-            })
+            });
+            
+            $(document).on('click', '#reviewSelectTable td' , function(){
+            	var num = $(this).parent().find('input').val();
+    	    	location.href='<%= request.getContextPath() %>/detail.rv?rId=' + num;
+            });
+
+            $(document).on('mouseover', '#reviewSelectTable td' , function(){
+				$(this).css("cursor", "pointer");
+            });
          </script>
 		<!-- End Align Area -->
 	</main>

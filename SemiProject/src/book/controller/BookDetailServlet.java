@@ -32,7 +32,6 @@ public class BookDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String bNo = request.getParameter("bNo");
-		System.out.println(bNo);
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		String rId = null;
 		if(loginUser != null) {

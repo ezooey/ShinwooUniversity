@@ -27,7 +27,7 @@
                                 <!-- social -->
                                 <div class="footer-social">
                                     <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
                                     <a href="#"><i class="fab fa-pinterest-p"></i></a>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <h4>Contect</h4>
                                 <ul>
                                     <li class="number"><a href="#">(02) 123-4567</a></li>
-                                    <li><a href="#">shinwoo@universty.kr</a></li>
+                                    <li><a href="#">shinwoo@university.kr</a></li>
                                     <li><a href="#">서울시 강남구 역삼로</a></li>
                                 </ul>
                             </div>

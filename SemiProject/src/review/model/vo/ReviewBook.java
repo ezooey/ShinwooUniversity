@@ -1,5 +1,7 @@
 package review.model.vo;
 
+import java.sql.Date;
+
 public class ReviewBook {
 	private String bookNo;
 	private String bookTitle;
@@ -7,6 +9,7 @@ public class ReviewBook {
 	private String author;
 	private String imageFile;
 	private String publisher;
+	private Date releaseDate;
 	
 	public ReviewBook() {}
 
@@ -21,6 +24,18 @@ public class ReviewBook {
 		this.author = author;
 		this.imageFile = imageFile;
 		this.publisher = publisher;
+	}
+	
+	public ReviewBook(String bookNo, String bookTitle, String cateName, String author, String imageFile,
+			String publisher, Date releaseDate) {
+		super();
+		this.bookNo = bookNo;
+		this.bookTitle = bookTitle;
+		this.cateName = cateName;
+		this.author = author;
+		this.imageFile = imageFile;
+		this.publisher = publisher;
+		this.releaseDate = releaseDate;
 	}
 
 
@@ -86,12 +101,20 @@ public class ReviewBook {
 		this.publisher = publisher;
 	}
 
+	public Date getReleaseDate() {
+		return releaseDate;
+	}
 
-	
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ReviewBook [bookNo=" + bookNo + ", bookTitle=" + bookTitle + ", cateName=" + cateName + ", author="
-				+ author + ", imageFile=" + imageFile + ", publisher=" + publisher + "]";
+				+ author + ", imageFile=" + imageFile + ", publisher=" + publisher + ", releaseDate=" + releaseDate
+				+ "]";
 	}
 	
 	

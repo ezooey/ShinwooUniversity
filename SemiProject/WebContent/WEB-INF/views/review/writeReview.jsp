@@ -79,11 +79,11 @@
         .filebox .upload-name {
             display: inline-block;
             height: 40px;
-            padding: 0 45px;
+            padding: 0 10px;
             vertical-align: middle;
-            border: 1px solid #eee;
+            border: none;
             width: 86%;
-            color: #999999;
+            color: black;
             background-color: #ffffff00;
         }
 
@@ -123,6 +123,14 @@
         #imageP {
             margin-top: 20px;
             visibility: hidden;
+        }
+        
+        #bookSh {
+        	display: none;
+        }
+        
+        #title:focus, #content:focus{
+           border: 1px solid #6785FF;
         }
 
     </style>
@@ -189,21 +197,18 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="regTitle">책 선택</span>
                                             <div class="input-group-icon mt-10 filebox">
-                                            	<table>
-                                            	
-                                                <tr>
-                                                	<td rowspan="3"><img height="300px" id="bookImg" name="bookImg"></td>
-                                                </tr>
-                                                <tr>
-                                                	<td width="800px"><input type="text" class="upload-name" id="uploadName" name="uploadName" readonly></td>
-                                                	
-                                                </tr>
-                                                <tr>
-                                                <td><input type="text" class="upload-name" id="uploadName2" name="uploadName2" readonly></td>
-                                                
-                                                </tr>
+                                            	<table id="bookSh">
+	                                                <tr>
+	                                                	<td><img height="300px" id="bookImg" name="bookImg"></td>
+	                                                </tr>
+	                                                <tr>
+	                                                	<td width="800px">책 제목:<input type="text" class="upload-name" id="uploadName" name="uploadName" readonly></td>
+	                                                	
+	                                                </tr>
+	                                                <tr>
+	                                                <td>저자:<input type="text" class="upload-name" id="uploadName2" name="uploadName2" readonly></td>
+	                                                </tr>
                                                 </table>
                                                 <input type="hidden" id="uploadName3" name="uploadName3">
                                                 <button type="button" class="genric-btn success circle" id="findBook">책 찾기</button>
@@ -234,6 +239,7 @@
     <script>
     document.getElementById('findBook').onclick = function(){
 		window.open('findBook.rv', 'findBookForm', 'width=1550,height=1020');
+		$('#bookSh').css("display", "block");
 	}
     
     //function doornot(){

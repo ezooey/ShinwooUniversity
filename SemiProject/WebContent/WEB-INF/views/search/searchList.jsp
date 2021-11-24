@@ -153,9 +153,6 @@
  		  #titleImg{ 
 			  margin-bottom: 100px; 
 		  } 
-		  aside{
-		  	margin-top: 100px;
-		  }
 		  a:hover {color: black;}
 		  a{color : black;}
 		  
@@ -216,7 +213,7 @@
 	     	 		</div>
      	 			<div class="list-display totalBook">
 	     	 			<ul>
-	     	 				<h2 id="bookTitle"><a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= bList.get(i).getBookNo() %>'><li><%= bList.get(i).getBookTitle() %><br><br></li></a></h2>
+	     	 				<li><h2 id="bookTitle"><a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= bList.get(i).getBookNo() %>'><%= bList.get(i).getBookTitle() %><br><br></a></h2></li>
 	     	 				<li><%= bList.get(i).getBookNo() %></li>
 	     	 				<li><%= bList.get(i).getAuthor() %> | <%= bList.get(i).getPublisher() %> | <%= bList.get(i).getReleaseDate() %><br><br></li>
 	     	 				<% if(bList.get(i).getBookInfo() != null){ %>	
@@ -260,34 +257,34 @@
 					<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 					<ul class="list cat-list">
 						<li>
-							<a href="<%= request.getContextPath() %>/searchBook.sr" class="d-flex"><p>전체000</p></a>
+							<a href="<%= request.getContextPath() %>/searchBook.sr" class="d-flex"><p>전체</p></a>
 						</li>
 						<li>
-							<a onclick="category(100);" class="d-flex"><p>소설/시 100</p></a>
+							<a onclick="category(100);" class="d-flex"><p>소설/시</p></a>
 						</li>
 						<li>
-							<a onclick="category(200);" class="d-flex"><p>경제/경영200</p></a>
+							<a onclick="category(200);" class="d-flex"><p>경제/경영</p></a>
 						</li>
 						<li>
-							<a onclick="category(300);" class="d-flex"><p>자기계발 300</p></a>
+							<a onclick="category(300);" class="d-flex"><p>자기계발</p></a>
 						</li>
 						<li>
-							<a onclick="category(400);" class="d-flex"><p>인문/사회400</p></a>
+							<a onclick="category(400);" class="d-flex"><p>인문/사회</p></a>
 						</li>
 						<li>
-							<a onclick="category(500);" class="d-flex"><p>역사/종교/예술 500 </p></a>
+							<a onclick="category(500);" class="d-flex"><p>역사/종교/예술</p></a>
 						</li>
 						<li>
-							<a onclick="category(600);" class="d-flex"><p>과학/IT 600</p></a>
+							<a onclick="category(600);" class="d-flex"><p>과학/IT</p></a>
 						</li>
 						<li>
-							<a onclick="category(700);" class="d-flex"><p>취미/여행 700</p></a>
+							<a onclick="category(700);" class="d-flex"><p>취미/여행</p></a>
 						</li>
 						<li>
-							<a onclick="category(800);" class="d-flex"><p>어린이800</p></a>
+							<a onclick="category(800);" class="d-flex"><p>어린이</p></a>
 						</li>
 						<li>
-							<a onclick="category(900);" class="d-flex"><p>언어 900</p></a>
+							<a onclick="category(900);" class="d-flex"><p>언어</p></a>
 						</li>
 					</ul>
 				</aside>
