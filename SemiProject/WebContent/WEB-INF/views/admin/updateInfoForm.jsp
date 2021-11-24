@@ -18,14 +18,30 @@
 
   <style>
     .input-form {
-      max-width: 1600px;
       margin-top: 80px;
-      padding: 32px;
+      padding: 28px;
       background: #fff;
       -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
     }
+    .updateInfo{
+	    background: white;
+		border: none;
+		color: blue;
+		text-align: center;
+		text-decoration: none;
+    }
+	table{
+		text-align: center;
+	}
+	#id{
+		border:none;
+		text-align: center;
+	}
+	.text{
+		text-align: center;
+	}
   </style>
 </head>
 
@@ -35,36 +51,30 @@
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">회원 정보 변경</h4>
         <form action="<%= request.getContextPath() %>/userInfoUpdate.ui" method="post" class="validation-form" novalidate>
-			<div class="row">
-				<div class="col-md-8 mb-3">
-					<div class="row g-2">
-						<table class="table table-bordered">
-					       <thead>
-						        <tr align="center">  
-						           	<th>아이디</th>
-								    <th>이름</th>
-								    <th>학과</th>
-								    <th>전화번호</th>
-								    <th>주소</th>
-								    <th>이메일</th>
-								    <th>변경</th>  
-						        </tr>  
-					        </thead>
-					        <tbody>
-						        <tr>
-						        	<td><input type="text" name="id" value="<%= ul.getMemberId() %>" readonly></td>
-						        	<td><input type="text" name="name" value="<%= ul.getMemberName()%>"></td>
-						        	<td><input type="text" name="department" value="<%= ul.getDepartment() %>"></td>
-						        	<td><%= ul.getPhone() %></td>
-						        	<td width="50px"><%= ul.getAddress() %></td>
-						        	<td><input type="text" name="email" value="<%= ul.getEmail() %>"></td>
-						        	<td><button class="updateInfo" id="updateInfo" type="submit">완료</button></td>
-						        </tr>
-					        </tbody>
-					     </table> 
-					</div>
-				</div>
-			</div>
+			<table class="table">
+		       <thead>
+			        <tr align="center">  
+			           	<th scope="col">아이디</th>
+					    <th scope="col">이름</th>
+					    <th scope="col">학과</th>
+					    <th scope="col" width="200px">전화번호</th>
+					    <th scope="col" width="300px">주소</th>
+					    <th scope="col">이메일</th>
+					    <th scope="col" width="80px">변경</th>  
+			        </tr>  
+		        </thead>
+		        <tbody>
+			        <tr>
+			        	<td><input type="text" name="id" id="id" size="5" value="<%= ul.getMemberId() %>" readonly></td>
+			        	<td><input type="text" name="name" class="text" size="5" value="<%= ul.getMemberName()%>"></td>
+			        	<td><input type="text" name="department" class="text" value="<%= ul.getDepartment() %>"></td>
+			        	<td><%= ul.getPhone() %></td>
+			        	<td><%= ul.getAddress() %></td>
+			        	<td><input type="text" name="email" class="text" value="<%= ul.getEmail() %>"></td>
+			        	<td><button class="updateInfo" id="updateInfo" type="submit">완료</button></td>
+			        </tr>
+		        </tbody>
+		     </table> 
         </form>
       </div>
     </div>

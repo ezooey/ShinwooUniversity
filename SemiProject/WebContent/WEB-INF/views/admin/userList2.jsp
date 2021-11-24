@@ -117,7 +117,8 @@
         #currentMenu {
             color: white;
             padding: 20px;
-            font-size: 40px;
+            padding-left: 2.5%;
+            font-size: 30px;
             font-weight: 700;
         }
 
@@ -158,16 +159,13 @@
         .paging1{
         	padding-left: 47%;
         }
-        .updateInfo {
+        .update {
 		  background: white;
 		  border: none;
 		  color: blue;
 		  text-align: center;
 		  text-decoration: none;
 		 
-		  font-size: 16px;
-		
-		  cursor: pointer;
 		}
 
         .fa-image {
@@ -209,8 +207,8 @@
       
     <main>
         <!--? Hero Start -->
-        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 200px;">
-            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 200px;">
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
+            <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
                 <h2 id="currentMenu">회원 목록</h2>
             </div>
         </div>
@@ -283,11 +281,12 @@
 									        		<input type="hidden" name="email" id="email" value="<%= uList.get(i).getEmail()%>">
 									        	</td>
 									        	<td>
-													<a onclick="window.open('<%= request.getContextPath() %>/updateInfoForm.ui?mi=<%= uList.get(i).getMemberId() %>', 'updateInfoForm', 'width=1600, height=500')" id="update">변경</a>
+													<a onclick="window.open('<%= request.getContextPath() %>/updateInfoForm.ui?mi=<%= uList.get(i).getMemberId() %>', 'updateInfoForm', 'width=1500, height=500')" id="update">변경</a>
 												</td>
                                             </tr>
                                             <% } %>
                                         </tbody>
+                                      
                                     </table>
 	                                <script type="text/javascript">
 											opener.document.location.reload();

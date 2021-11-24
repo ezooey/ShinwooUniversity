@@ -10,11 +10,14 @@ public class RentalBook {
 	private String author;
 	private Date rentalDate;
 	private Date returnDate;
-
+	private String returnYN;
+	
 	public RentalBook() {}
 
-	public RentalBook(String bookNo, String bookTitle, String author, String memberId, String memberName,
-			Date rentalDate, Date returnDate) {
+	
+	
+	public RentalBook(String memberId, String memberName, String bookNo, String bookTitle, String author,
+			Date rentalDate, Date returnDate, String returnYN) {
 		super();
 		this.memberId = memberId;
 		this.memberName = memberName;
@@ -23,11 +26,26 @@ public class RentalBook {
 		this.author = author;
 		this.rentalDate = rentalDate;
 		this.returnDate = returnDate;
+		this.returnYN = returnYN;
 	}
+
+
 	public String getMemberId() {
 		return memberId;
 	}
 	
+	public String getReturnYN() {
+		return returnYN;
+	}
+
+
+
+	public void setReturnYN(String returnYN) {
+		this.returnYN = returnYN;
+	}
+
+
+
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
@@ -83,9 +101,9 @@ public class RentalBook {
 
 	@Override
 	public String toString() {
-		return "RentalBook [bookNo=" + bookNo + ", bookTitle=" + bookTitle + ", author=" + author + ", memberId="
-				+ memberId + ", memberName=" + memberName + ", rentalDate=" + rentalDate + ", returnDate=" + returnDate
-				+ "]";
+		return "RentalBook [memberId=" + memberId + ", memberName=" + memberName + ", bookNo=" + bookNo + ", bookTitle="
+				+ bookTitle + ", author=" + author + ", rentalDate=" + rentalDate + ", returnDate=" + returnDate
+				+ ", returnYN=" + returnYN + "]";
 	}
 	
 	

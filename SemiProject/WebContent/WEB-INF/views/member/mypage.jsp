@@ -92,181 +92,194 @@
 
 <title>마이페이지</title>
 <style>
-#currentMenu {
-	color: white;
-	padding: 20px;
-	padding-left: 2.5%;
-	font-size: 30px;
-	font-weight: 700;
-}
-
-#login {
-	margin: 20px;
-}
-
-.reqTitle {
-	padding-top: 10px;
-	padding-bottom: 3px;
-	display: block;
-}
-
-.bottomBtn {
-	float: right;
-	padding-top: 20px;
-}
-
-.bottomBtn input {
-	margin: 10px;
-}
-
-.noneList {
-	list-style: none;
-}
-
-.fa-check-circle {
-	color: #6785FF;
-}
-
-.section-top-border {
-	padding: 40px;
-}
-
-.firstdiv {
-	background: #6785FF;
-	height: 100px;
-	font-size: 30px;
-	text-align: left;
-	padding-left: 2.5%;
-	padding-top: 20px;
-	font-weight: 700;
-	color: white;
-}
-
-#personalInf {
-	margin-left: 18%;
-	margin-right: 18%;
-	border-radius: 2em;
-}
-
-.borrowed {
-	height: 100px;
-	padding-left: 160px;
-	font-size: 30px;
-	padding-top: 25px;
-	font-weight: bold;
-	color: gray;
-}
-
-.personal {
-	font-size: 20px;
-}
-
-.imgdiv {
-	text-align: center;
-	border-radius: 2em;
-}
-
-.borrowed button {
-	margin-left: 20px;
-	margin-top: -20px;
-	font-size: 15px;
-}
-
-.bookpage {
-	text-align: center;
-	margin-top: 40px;
-}
-
-.bookp {
-	display: inline-block;
-}
-
-#ddaydiv {
-	background: rgba(255, 0, 0, 0.5);
-}
-
-#dday {
-	color: red;
-}
-
-.card img {
-	width: 145px;
-}
-
-.card {
-	width: 160px;
-}
-
-.card-title {
-	font-size: 20px;
-}
-
-.card-body {
-	text-align: center;
-}
-
-.card-body button {
-	margin-top: 10px;
-}
-
-div.card {
-	border-radius: 2em;
-	margin-top: 10px;
-	opacity: 0.8;
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-div.card:hover {
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px
-		rgba(0, 0, 0, 0.22);
-	transform: scale(1.08);
-	top: 0;
-	left: 0;
-	opacity: 1;
-}
-
-div.card1:hover {
-	box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0);
-	transform: scale(1);
-	top: 0;
-	left: 0;
-	opacity: 6;
-}
-
-#my_modal {
-	display: none;
-	width: 300px;
-	padding: 20px 60px;
-	background-color: #fefefe;
-	border: 1px solid #888;
-	border-radius: 3px;
-}
-
-#my_modal .modal_close_btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-}
-
-#pwDiv {
-	width: 200px;
-	display: none;
-}
-
-.row {
-	width: 1100px;
-	display: inline-block;
-}
-
-.container-fluid {
-	width: 100%;
-	text-align: center;
-}
-
-.displayDiv {
-	font-size: 10;
-}
+	#currentMenu {
+		color: white;
+		padding: 20px;
+		padding-left: 2.5%;
+		font-size: 30px;
+		font-weight: 700;
+	}
+	
+	#login {
+		margin: 20px;
+	}
+	
+	.reqTitle {
+		padding-top: 10px;
+		padding-bottom: 3px;
+		display: block;
+	}
+	
+	.bottomBtn {
+		float: right;
+		padding-top: 20px;
+	}
+	
+	.bottomBtn input {
+		margin: 10px;
+	}
+	
+	.noneList {
+		list-style: none;
+	}
+	
+	.fa-check-circle {
+		color: #6785FF;
+	}
+	
+	.section-top-border {
+		padding: 40px;
+	}
+	
+	.firstdiv {
+		background: #6785FF;
+		height: 100px;
+		font-size: 30px;
+		text-align: left;
+		padding-left: 2.5%;
+		padding-top: 20px;
+		font-weight: 700;
+		color: white;
+	}
+	
+	#personalInf {
+		margin-left: 18%;
+		margin-right: 18%;
+		border-radius: 2em;
+	}
+	
+	.borrowed {
+		height: 100px;
+		padding-left: 20px;
+		font-size: 30px;
+		padding-top: 40px;
+		font-weight: bold;
+		color: gray;
+	}
+	
+	.personal {
+		font-size: 20px;
+	}
+	
+	.imgdiv {
+		text-align: center;
+		padding-top: 10px;
+		border-radius: 2em;
+	}
+	
+	.borrowed button {
+		margin-left: 20px;
+		margin-top: -20px;
+		font-size: 15px;
+	}
+	
+	.bookpage {
+		text-align: center;
+		margin-top: 40px;
+	}
+	
+	.bookp {
+		display: inline-block;
+	}
+	
+	#ddaydiv {
+		background: rgba(255, 0, 0, 0.5);
+	}
+	
+	#dday {
+		color: red;
+	}
+	
+	.card img {
+		width: 145px;
+	}
+	
+	.card {
+		width: 160px;
+	}
+	
+	.card-title {
+		font-size: 20px;
+	}
+	
+	.card-body {
+		text-align: center;
+	}
+	
+	.card-body button {
+		margin-top: 10px;
+	}
+	
+	div.card {
+		border-radius: 2em;
+		margin-top: 10px;
+		opacity: 0.8;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	
+	div.card:hover {
+		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px
+			rgba(0, 0, 0, 0.22);
+		transform: scale(1.08);
+		top: 0;
+		left: 0;
+		opacity: 1;
+	}
+	
+	div.card1:hover {
+		box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0);
+		transform: scale(1);
+		top: 0;
+		left: 0;
+		opacity: 6;
+	}
+	
+	#my_modal {
+		display: none;
+		width: 300px;
+		padding: 20px 60px;
+		background-color: #fefefe;
+		border: 1px solid #888;
+		border-radius: 3px;
+	}
+	
+	#my_modal .modal_close_btn {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+	
+	#pwDiv {
+		width: 200px;
+		display: none;
+	}
+	
+	.row {
+		width: 1100px;
+		display: inline-block;
+	}
+	
+	.container-fluid {
+		width: 100%;
+		text-align: center;
+	}
+	
+	.displayDiv {
+		font-size: 10;
+	}
+	
+	.rentalList {
+		background: #d2dbff;
+		padding: 50px;
+		border: none;
+		border-radius: 0px;
+	}
+	
+	.deck-margin {
+		margin-left: 15%;
+		margin-right: 15%;
+	}
 </style>
 </head>
 <body>
@@ -295,7 +308,7 @@ div.card1:hover {
 				<button type="button" onclick="location.href='<%= request.getContextPath() %>/borrowList.br'" class="genric-btn info circle">더 보기</button>
 			</div>
 				<br>
-			<div class="jumbotron" id="personalInf">
+			<div class="rentalList">
 
 				<% if(rentalList.isEmpty()){ %>
 				<div class="card-deck">
@@ -305,16 +318,14 @@ div.card1:hover {
 
 				</div>
 				<%}else{ %>
-				<div class="card-deck">
+				<div class="card-deck deck-margin">
 					<% 		for(int i = 0; i < rentalList.size(); i++){ %>
 					<% if(i == 3){ %>
 				</div>
 				<p></p>
-				<div class="card-deck">
+				<div class="card-deck deck-margin">
 					<% } %>
 					<% String bookT = rentalList.get(i).getBookTitle(); %>
-					<% if(bookT.length()>25){ %>
-					<% bookT = bookT.substring(0, 25); } %>
 					<div class="card">
 						<div class="imgdiv">
 							<img src="<%= request.getContextPath() %>/image/<%= rentalList.get(i).getImg() %>" class="card-img-top" alt="...">
