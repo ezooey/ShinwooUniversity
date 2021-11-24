@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>1:1 문의</title>
+    <title>1:1문의</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -125,7 +125,7 @@
 		.listBtn{background: #eee; border: 1px solid #eee; color: gray;}
 		.fa-angle-double-left, .fa-angle-double-right, .fa-angle-left, .fa-angle-right{color: gray;}
 		
-		button:disabled{background: #eee; cursor: none;}
+		button:disabled{background: #eee; cursor: default;}
 		
 		.ansTextarea {
 			width: 100%;
@@ -178,7 +178,7 @@
         <!--? Hero Start -->
         <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
-                <h2 id="currentMenu">1:1 문의</h2>
+                <h2 id="currentMenu">1:1문의</h2>
             </div>
         </div>
 
@@ -188,7 +188,7 @@
                 <div class="section-top-border">
                     <div class="req">
                     	<% if (qList.isEmpty()) { %>
-                    		<div class="emptyList">등록된 1:1 문의가 없습니다.</div>
+                    		<div class="emptyList">등록된 1:1문의가 없습니다.</div>
                     	<% } else { %>
                     		<% for(Question q : qList) { %>
                     		<% 		String answer = q.getAnswer() == null ? "아직 답변이 등록되지 않았습니다." : q.getAnswer(); %>

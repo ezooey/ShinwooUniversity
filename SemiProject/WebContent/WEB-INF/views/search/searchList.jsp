@@ -24,7 +24,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-  <title>adminSearchResult</title>
+  <title>도서 검색</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="manifest" href="site.webmanifest">
@@ -103,61 +103,62 @@
 		       
         .result{
         	width: 800px;
-        	 display: inline-block;
+        	display: inline-block;
         }
         
-         .category{
-         width:20%;
-         float: right;
-         position: absolute; top:350px; right:0px;
-         min-height:1px;
-         padding-right:15px;
-       	 display: inline-block;
-         }
+        .category{
+	        width:20%;
+	        float: right;
+	        position: absolute;
+	        top:350px;
+	        right:0px;
+	        min-height:1px;
+	        padding-right:15px;
+	       	display: inline-block;
+        }
          
-         .paging{
+        .paging{
          	float: left;
          	padding-left: 40%;
          }
          
-         .bookName{
+        .bookName{
          	text-decoration: none;
          	color: black;
-         }
-         .image{
-         	
+        }
+        .image{
          	width: 230px;
-         	height: 500px;
-         	
-         }
+         	height: 400px;
+        }
          
-         .totalBook{
+        .totalBook{
          	margin-top: 100px;
          	width: 800px;
          	height: 400px;
          	
-         }
-         textarea {
+        }
+        textarea {
 		    width: 100%;
 		    height: 6.25em;
 		    border: none;
 		    resize: none;
-		  }
-		  .list-display{
+		}
+		.list-display{
 		  	display: inline-block;
-		  }
-		  .whole{
+		}
+		.whole{
 		  	width: 1500px;
 		  	height: 400px;
-		  }
- 		  #titleImg{ 
-			  margin-bottom: 100px; 
-		  } 
-		  a:hover {color: black;}
-		  a{color : black;}
+		  	margin-left: 100px;
+		}
+ 		#titleImg{ 
+			margin-bottom: 170px;
+		} 
+		.titleA:hover {color: #6785FF;}
+		.titleA{color : black;}
 		  
 		  
-		  button:hover{cursor: pointer;}
+		button:hover{cursor: pointer;}
   		#numBtn{background: white; border: 1px solid #eee; color: gray;}
    		#choosen{background: #bfccff; border: 1px solid #eee; color: black;}
   		.pagingArea button{background: white; color: black;}
@@ -165,7 +166,12 @@
    		.listBtn{background: #eee; border: 1px solid #eee; color: gray;}
    		.fa-angle-double-left, .fa-angle-double-right, .fa-angle-left, .fa-angle-right{color: gray;}
       
- 		button:disabled{background: #eee; cursor: none;}
+ 		button:disabled{background: #eee; cursor: default;}
+ 		
+ 		.cateNo{
+ 			cursor: pointer;
+ 		}
+ 		
   </style>
 </head>
 <body>
@@ -208,23 +214,23 @@
 			 <div class="list-display whole">
 	     	 		<div class="list-display image">
 	     	 			<h2>
-	     	 				<a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= bList.get(i).getBookNo() %>'><img height="300px" width="200px" id="titleImg" name="titleImg" src="<%= request.getContextPath() %>/image/<%= bList.get(i).getChangeName() %>">
+	     	 				<a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= bList.get(i).getBookNo() %>'><img height="270px" width="180px" id="titleImg" name="titleImg" src="<%= request.getContextPath() %>/image/<%= bList.get(i).getChangeName() %>">
 	     	 			</h2>
 	     	 		</div>
      	 			<div class="list-display totalBook">
 	     	 			<ul>
-	     	 				<li><h2 id="bookTitle"><a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= bList.get(i).getBookNo() %>'><%= bList.get(i).getBookTitle() %><br><br></a></h2></li>
+	     	 				<li><h2 id="bookTitle"><a class="titleA" href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= bList.get(i).getBookNo() %>'><%= bList.get(i).getBookTitle() %><br><br></a></h2></li>
 	     	 				<li><%= bList.get(i).getBookNo() %></li>
 	     	 				<li><%= bList.get(i).getAuthor() %> | <%= bList.get(i).getPublisher() %> | <%= bList.get(i).getReleaseDate() %><br><br></li>
 	     	 				<% if(bList.get(i).getBookInfo() != null){ %>	
 	     	 					<li><textarea readonly><%= bList.get(i).getBookInfo() %></textarea></li>	
 	     	 				<% } else {  %>
-	     	 						<li><textarea readonly> 책 정보 없음 </textarea></li>
+	     	 						<li><textarea readonly style="cursor: default;"> 책 정보 없음 </textarea></li>
 	     	 				<% } %>	
 	     	 				<li>
 	     	 			</ul>
 					</div>
-			     </div> 
+			     </div>
 				</div>
 	         <% 	} %>
 			</form>
@@ -254,37 +260,37 @@
 				
 				</aside>
 				<aside class="single_sidebar_widget post_category_widget">
-					<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
+					<h4 class="widget_title" style="color: #2d2d2d; cursor: default;">Category</h4>
 					<ul class="list cat-list">
 						<li>
 							<a href="<%= request.getContextPath() %>/searchBook.sr" class="d-flex"><p>전체</p></a>
 						</li>
 						<li>
-							<a onclick="category(100);" class="d-flex"><p>소설/시</p></a>
+							<a onclick="category(100);" class="cateNo"><p>소설/시</p></a>
 						</li>
 						<li>
-							<a onclick="category(200);" class="d-flex"><p>경제/경영</p></a>
+							<a onclick="category(200);" class="cateNo"><p>경제/경영</p></a>
 						</li>
 						<li>
-							<a onclick="category(300);" class="d-flex"><p>자기계발</p></a>
+							<a onclick="category(300);" class="cateNo"><p>자기계발</p></a>
 						</li>
 						<li>
-							<a onclick="category(400);" class="d-flex"><p>인문/사회</p></a>
+							<a onclick="category(400);" class="cateNo"><p>인문/사회</p></a>
 						</li>
 						<li>
-							<a onclick="category(500);" class="d-flex"><p>역사/종교/예술</p></a>
+							<a onclick="category(500);" class="cateNo"><p>역사/종교/예술</p></a>
 						</li>
 						<li>
-							<a onclick="category(600);" class="d-flex"><p>과학/IT</p></a>
+							<a onclick="category(600);" class="cateNo"><p>과학/IT</p></a>
 						</li>
 						<li>
-							<a onclick="category(700);" class="d-flex"><p>취미/여행</p></a>
+							<a onclick="category(700);" class="cateNo"><p>취미/여행</p></a>
 						</li>
 						<li>
-							<a onclick="category(800);" class="d-flex"><p>어린이</p></a>
+							<a onclick="category(800);" class="cateNo"><p>어린이</p></a>
 						</li>
 						<li>
-							<a onclick="category(900);" class="d-flex"><p>언어</p></a>
+							<a onclick="category(900);" class="cateNo"><p>언어</p></a>
 						</li>
 					</ul>
 				</aside>

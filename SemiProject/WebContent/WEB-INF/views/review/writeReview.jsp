@@ -79,11 +79,11 @@
         .filebox .upload-name {
             display: inline-block;
             height: 40px;
-            padding: 0 10px;
+            padding: 0 45px;
             vertical-align: middle;
-            border: none;
+            border: 1px solid #eee;
             width: 86%;
-            color: black;
+            color: #999999;
             background-color: #ffffff00;
         }
 
@@ -125,12 +125,20 @@
             visibility: hidden;
         }
         
-        #bookSh {
-        	display: none;
+        .div1{
+        	width: 800px;
+        	height: 1200px;
+        }
+        
+        .div2{
+			width: 800px;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
         }
         
         #title:focus, #content:focus{
-           border: 1px solid #6785FF;
+        	border: 1px solid #6785FF;
         }
 
     </style>
@@ -163,8 +171,8 @@
             <div class="container box_1170">
                 <div class="section-top-border borderTop">
                     <div class="row">
-                        <div class="col-lg-8 col-md-8">
-                            <div>
+                        <div class="div1">
+                            <div class="div2">
                                 <form class="form-contact comment_form" action="<%= request.getContextPath() %>/insertReview.rv" id="commentForm" name="commentForm"
                                    method="post">
                                     <div class="row">
@@ -197,21 +205,23 @@
                                             </div>
                                         </div>
                                         <div>
+                                            <span class="regTitle">책을 선택해주세요</span>
                                             <div class="input-group-icon mt-10 filebox">
-                                            	<table id="bookSh">
-	                                                <tr>
-	                                                	<td><img height="300px" id="bookImg" name="bookImg"></td>
-	                                                </tr>
-	                                                <tr>
-	                                                	<td width="800px">책 제목:<input type="text" class="upload-name" id="uploadName" name="uploadName" readonly></td>
-	                                                	
-	                                                </tr>
-	                                                <tr>
-	                                                <td>저자:<input type="text" class="upload-name" id="uploadName2" name="uploadName2" readonly></td>
-	                                                </tr>
-                                                </table>
                                                 <input type="hidden" id="uploadName3" name="uploadName3">
                                                 <button type="button" class="genric-btn success circle" id="findBook">책 찾기</button>
+                                            	<table>
+                                                <tr>
+                                                	<td rowspan="3"><img height="300px" id="bookImg" name="bookImg"></td>
+                                                </tr>
+                                                <tr>
+                                                	<td width="800px"><input type="text" class="upload-name" id="uploadName" name="uploadName" placeholder="도서명" readonly></td>
+                                                	
+                                                </tr>
+                                                <tr>
+                                                <td><input type="text" class="upload-name" id="uploadName2" name="uploadName2" placeholder="저자" readonly></td>
+                                                
+                                                </tr>
+                                                </table>
                                                
                                                 <div id="imageP">
                                                     <span>사진 미리보기</span>
@@ -239,7 +249,6 @@
     <script>
     document.getElementById('findBook').onclick = function(){
 		window.open('findBook.rv', 'findBookForm', 'width=1550,height=1020');
-		$('#bookSh').css("display", "block");
 	}
     
     //function doornot(){

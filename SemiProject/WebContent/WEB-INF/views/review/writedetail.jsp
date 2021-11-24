@@ -130,10 +130,13 @@
 	.section-top-border {
 		padding-top: 30px;
 		padding-bottom: 30px;
+		width: 1000px;
+		height: 400px;
 	}
 	
 	td {
 		text-align: left !important;
+		height: 40px;
 	}
 	
 	#bookInfoDiv {
@@ -146,26 +149,38 @@
 	}
 	
 	.bookInfo {
+		position: relative;
 		padding-left: 150px;
 		padding-top: 25px;
-		position: relative;
+		width: 1200px;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 	
+    .detailImg {
+    	position: absolute;
+    	padding-right: 30px;
+    	padding-bottom: 100px;
+    	width: 180px;
+    	margin-left: 130px;
+    	margin-top: 50px;
+    }
+    
+	.simpleInfo {
+		font-size: 13px;
+		color: #666;
+		cursor: default;
+	}
 	
 	#bookName {
 		text-decoration: none;
 		display: inline-block;
 		padding-top: 50px;
+		padding-left: 340px;
 	}
 	
 	#title {
 		color: black;
-	}
-	
-	.simpleInfo {
-		font-size: 13px;
-		color: #666;
-		cursor: default;
 	}
 	
 	#epub {
@@ -192,9 +207,41 @@
     	padding-top: 10px;
     }
     
-    .detailImg {
-    	display: inline-block;
+    #tableDiv1{
+    	width: 900px;
+    	min-height: 800px;
     }
+    
+    #tableDiv2{
+		width: 900px;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		margin-left: 70px;
+    } 
+    
+    table{
+    	position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		margin-left: 250px;
+    }
+    
+	footer, main{
+		background: white;
+	}
+	
+	.btn3{
+		background: #6785FF;
+		color: white;
+		border-style: none;
+	}
+	
+	#recommBtn{
+		color: black;
+		cursor: pointer;
+	}
+	
 </style>
 </head>
 
@@ -252,11 +299,12 @@
 					</div>
 				</div>
 			</div>
+			<hr style="color: lightgray;">
 			<div class="whole-wrap">
 				<div class="container box_1170">
-					<div class="section-top-border">
-						<div class="row writeForm">
-							<table style="width: 1000px; height: 500px; margin: 100px; text-align: center; margin: auto;">
+					<div id="tableDiv1">
+						<div id="tableDiv2">
+							<table style="width: 1000px; height: 500px;">
 								<tr>
 									<td width="100px;">
 										<b>제목</b>
@@ -286,9 +334,19 @@
 								</tr>
 								<tr>
 									<td>
-										<b>내용</b>
+										<b>추천수</b>
 									</td>
 									<td>
+										<%= r.getRecommend() %>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<b>내용</b>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
 										<textarea cols="100" rows="24" readonly style="resize: none;"><%= r.getReviewContent() %></textarea>
 									</td>
 									<input type="hidden" name="reviewContent" value="<%= r.getReviewContent() %>">
@@ -296,15 +354,13 @@
 									<input type="hidden" name="reviewNo" value="<%= r.getReviewNo() %>">
 								</tr>
 								<tr>
-									<td>
-										추천수 :
-										<%= r.getRecommend() %></td>
 									<% if(loginUser != null){ %>
-									<td>
-										<button type="button" onclick="recommendRev(<%= r.getReviewNo() %>);">추천하기</button>
+									<td colspan="2">
+										<a id="recommBtn" onclick="recommendRev(<%= r.getReviewNo() %>);">추천하기 <i class="far fa-thumbs-up" style="color: #6785FF;"></i></a>
 									</td>
 									<%} %>
 								</tr>
+							</table>
 								<script>
 					                <% 
 					                String memberId = null;
@@ -331,17 +387,16 @@
 					        			});
 					                }
 	                			</script>
-							</table>
-							<div class="mt-10">
-								<div id="Btns">
-									<div id="detailDiv">
-										<% if(loginUser != null && loginUser.getMemberId().equals(r.getMemberId())){ %>
-										<input class="genric-btn info circle" type="submit" value="수정" style="float: right; margin-left: 10px;">
-										<input class="genric-btn info circle" type="button" value="글 삭제" onclick="deleteBoard();" style="float: right; margin-left: 10px;">
-										<% } %>
-										<input class="genric-btn info circle" type="button" value="목록으로" onclick="location.href='<%= request.getContextPath() %>/reviewList.rv'" style="float: right; margin-left: 10px;">
-									</div>
-								</div>
+						</div>
+					</div>
+					<div id="btnDiv">
+						<div id="Btns">
+							<div id="detailDiv">
+								<% if(loginUser != null && loginUser.getMemberId().equals(r.getMemberId())){ %>
+								<input class="genric-btn btn3 circle" type="submit" value="수정" style="float: right; margin-left: 10px;">
+								<input class="genric-btn btn3 circle" type="button" value="글 삭제" onclick="deleteBoard();" style="float: right; margin-left: 10px;">
+								<% } %>
+								<input class="genric-btn btn3 circle" type="button" value="목록으로" onclick="location.href='<%= request.getContextPath() %>/reviewList.rv'" style="float: right; margin-left: 10px;">
 							</div>
 						</div>
 					</div>

@@ -104,6 +104,11 @@
 			text-align: right;
 			margin-right: 30px;
 		}
+		
+		textarea:focus{
+			border: 1px solid #6785FF;
+		}
+		
     </style>
 </head>
 

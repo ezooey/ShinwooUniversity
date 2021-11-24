@@ -81,6 +81,23 @@
 		.divArea {
 			margin-bottom: 15px;
 		}
+		
+		.reqCont {
+			width: 800px;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		
+		.div1 {
+			width: 1000px;
+			height: 130px;
+		}
+		
+		.div2 {
+			width: 1000px;
+			height: 800px;
+		}
     </style>
 </head>
 
@@ -110,8 +127,8 @@
         <div class="whole-wrap">
             <div class="container box_1170">
                 <div class="section-top-border">
-                    <div class="row">
-                        <div class="col-md-8 mt-sm-30">
+                    <div class="div1">
+                        <div class="reqCont">
                             <h3 class="mb-20">도서 신청 시 유의 사항</h3>
                             <div>
                                 <ul class="noneList">
@@ -125,8 +142,8 @@
                     </div>
                 </div>
                 <div class="section-top-border borderTop">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8">
+                    <div class="div2">
+                        <div class="reqCont">
                             <h3 class="mb-30">신청 도서 정보 입력</h3>
                             <form action="<%= request.getContextPath() %>/request.bo" id="reqBook" name="reqBook" onsubmit="return alreadyHave();" method="post">
                                 <div>
