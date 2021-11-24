@@ -310,9 +310,21 @@
 					</td>
 				</tr>
 				<tr>
+				<% String add1 = null; %>
+				<% if(address1 == null){ %>
+				<% 		add1 = "";%>
+				<%}else{ %>
+				<% 		add1 = address1; %>
+				<% } %>
+				<% String add2 = null; %>
+				<% if(address2 == null){ %>
+				<% 		add2 = "";%>
+				<%}else{ %>
+				<% 		add2 = address2; %>
+				<% } %>
 					<td class="category">주소</td>
 					<td colspan="3">
-						<input class="single-input" type="text" name="address1" readonly value="<%=address1%>" />
+						<input class="single-input" type="text" name="address1" readonly value="<%=add1%>" />
 					</td>
 					<td width="100px" style="padding-left: 10px;">
 						<button type="button" class="genric-btn info-border" onclick="openZipSearch()">검색</button>
@@ -321,7 +333,7 @@
 				<tr>
 					<td class="category">상세 주소</td>
 					<td colspan="4">
-						<input class="single-input" type="text" name="address2" value="<%= address2 %>"/>
+						<input class="single-input" type="text" name="address2" value="<%= add2 %>"/>
 					</td>
 				</tr>
 				<tr>

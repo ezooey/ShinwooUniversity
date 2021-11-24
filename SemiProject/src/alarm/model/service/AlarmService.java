@@ -94,4 +94,14 @@ public class AlarmService {
       return result;
       
    }
+
+public int getAlarmCount(String userId) {
+	 Connection conn = getConnection();
+     
+	 int count = aDAO.getAlarmCount(conn, userId);
+     
+     close(conn);
+     
+     return count;
+}
 }

@@ -151,5 +151,32 @@ public class AlarmDAO {
 		      
 		      return result;
 		   }
+
+		public int getAlarmCount(Connection conn, String userId) {
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int count = 0;
+			
+			String query = prop.getProperty("getAlarmCount");
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, userId);
+				
+				rset = pstmt.executeQuery();
+				if(rset.next()) {
+					count = rset.getInt(1);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return count;
+		}
 		   
 }

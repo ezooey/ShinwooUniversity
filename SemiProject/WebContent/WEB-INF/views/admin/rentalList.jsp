@@ -3,7 +3,6 @@
     
 <%
 	ArrayList<RentalBook> rList =  (ArrayList)request.getAttribute("rList");
-	System.out.println(rList);
 %>    
 <!doctype html>
 <html class="no-js">
@@ -216,10 +215,10 @@
                                         data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
-												<th data-field="id">No.</th>
-												<th data-field="no" data-editable="false">도서코드</th>
-												<th data-field="bookName" data-editable="false">도서명</th>
-												<th data-field="author" data-editable="false">저자</th>
+                                            	<th data-field="no" data-editable="false">도서코드</th>
+                                            	<th data-field="bookName" data-editable="false">도서명</th>
+                                            	<th data-field="author" data-editable="false">저자</th>
+												<th data-field="id">학번</th>
 												<th data-field="memberName" data-editable="false">대출자명</th>
 												<th data-field="retalDate" data-editable="false">대출일자</th>
 												<th data-field="returnDate" data-editable="false">반납일자</th>  
@@ -234,11 +233,11 @@
 											<% } else { %>
 											<%		for (int i = 0; i < rList.size(); i++) { %>
 											<tr>
+												<td><%= rList.get(i).getMemberId() %></td>
+												<td><%= rList.get(i).getMemberName() %></td>
 												<td><%= rList.get(i).getBookNo() %></td>
 												<td><%= rList.get(i).getBookTitle() %></td>
 												<td><%= rList.get(i).getAuthor() %></td>
-												<td><%= rList.get(i).getMemberId() %></td>
-												<td><%= rList.get(i).getMemberName() %></td>
 												<td><%= rList.get(i).getRentalDate() %></td>
 												<td><%= rList.get(i).getReturnDate() %></td>
 												<td><%= rList.get(i).getReturnYN() %></td>

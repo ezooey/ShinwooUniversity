@@ -26,7 +26,7 @@ public class ScheduleRegister {
 	                            .build(),
 	                    newTrigger()
 	                            .withIdentity("defaultTrgger", Scheduler.DEFAULT_GROUP)
-	                            .withSchedule(cronSchedule("00 00 00 * * ?"))
+	                            .withSchedule(cronSchedule("00 29 16 * * ?"))
 	                            .build());
 	            
 	            scheduler.start();
