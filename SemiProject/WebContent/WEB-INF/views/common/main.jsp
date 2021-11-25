@@ -468,7 +468,7 @@
 					</div>
 					<div class="book-div">
 						<a href="#">
-							<img src="<%= request.getContextPath() %>/image/book5.png" class="bookimage">
+							<img src="<%= request.getContextPath() %>/image/book6.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
@@ -493,7 +493,7 @@
 					</div>
 					<div class="book-div">
 						<a href="#">
-							<img src="<%= request.getContextPath() %>/image/book5.png" class="bookimage">
+							<img src="<%= request.getContextPath() %>/image/book6.png" class="bookimage">
 						</a>
 					</div>
 				</div>

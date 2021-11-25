@@ -71,9 +71,11 @@ public class BookRentalDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			pstmt.setString(3, user);
+			pstmt.setString(1, user);
+			pstmt.setString(2, user);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			
 			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<BookRental>();
