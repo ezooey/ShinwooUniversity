@@ -74,20 +74,6 @@
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -109,7 +95,8 @@
         #currentMenu {
             color: white;
             padding: 20px;
-            font-size: 40px;
+            padding-left: 2.5%;
+            font-size: 30px;
             font-weight: 700;
         }
 
@@ -145,9 +132,10 @@
         
         
         tbody, tr, td{
-        	color:white;
-        	background:#A4A7B3;
+        	color:gray;
+        	background:white;
         }
+        
 		#chooseBook{
 			margin-top:20px;
 			margin-right:30px;
@@ -173,7 +161,7 @@
     
     <main>
        
-		<div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
+        <div class="slider-area2 section-bg2 hero-overly" style="background-color: #6785FF; height: 100px;">
             <div class="slider-height2 d-flex align-items-center" style="background-color: #6785FF; height: 100px;">
                 <h2 id="currentMenu">책 검색</h2>
             </div>
@@ -181,7 +169,6 @@
         
         <!-- Static Table Start -->
        
-        <div style="width :300px; height : 200pxpx; background : bule;"></div>
         <div class="data-table-area mg-b-15;" >
             <div class="container-fluid">
                 <div class="row">
@@ -192,7 +179,7 @@
                             <div class="sparkline13-graph">
                               <div class="datatable-dashv1-list custom-datatable-overright">
                                     
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
                                         data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar" style="text-align : center;">
                                         <thead  style="text-align : center;">
                                             <tr>
@@ -240,11 +227,8 @@
                 </div>
             </div>
         </div>
-       
-  	
-
  <div class="floating"><input type="button" id="chooseBook" value="선택하기" class="btn btn-dark" onclick="confirm();" style="float: right; margin-left: 10px;"></div>       
-    
+</main>
 
 <script>
 	function confirm(){
@@ -263,8 +247,12 @@
 	               	window.close();
 	            }
 	        }
-	        
-	}
+		}
+	
+    $(document).on("click", "[name='book']", function() {
+    	var offset = $('#chooseBook').offset();
+    	$('html').animate({scrollTop : offset.top}, 500);
+	});
 	
 
 </script>        

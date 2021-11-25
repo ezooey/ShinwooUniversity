@@ -46,7 +46,9 @@ public class ReviewBookDAO {
 									rset.getString("book_title"),
 									rset.getString("category_name"),
 									rset.getString("author"),
-									rset.getString("img"));
+									rset.getString("img"),
+									rset.getString("publisher"),
+									rset.getDate("release_date"));
 			}
 			
 		} catch (SQLException e) {

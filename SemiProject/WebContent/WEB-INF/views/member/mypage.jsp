@@ -143,27 +143,30 @@
 	}
 	
 	#personalInf {
-		margin-left: 18%;
-		margin-right: 18%;
-		border-radius: 2em;
+		margin-left: 13%;
+		margin-right: 13%;
+		margin-top: 15px;		
+		border: 1px solid #eee;
+		padding: 2%;
 	}
 	
 	.borrowed {
 		height: 100px;
-		padding-left: 20px;
-		font-size: 30px;
+		padding-left: 10%;
+		font-size: 26px;
 		padding-top: 40px;
 		font-weight: bold;
 		color: gray;
 	}
 	
 	.personal {
-		font-size: 20px;
+		font-size: 18px;
+		color: black;
 	}
 	
 	.imgdiv {
 		text-align: center;
-		padding-top: 10px;
+		padding-top: 20px;
 		border-radius: 2em;
 	}
 	
@@ -199,7 +202,12 @@
 	}
 	
 	.card-title {
+		color: black;
 		font-size: 20px;
+	}
+	
+	.card-text {
+		color: black;
 	}
 	
 	.card-body {
@@ -216,6 +224,8 @@
 		opacity: 0.8;
 		margin-left: 20px;
 		margin-right: 20px;
+		border: none;
+ 		background: #eee; 
 	}
 	
 	div.card:hover {
@@ -251,7 +261,7 @@
 	}
 	
 	#pwDiv {
-		width: 200px;
+		width: 500px;
 		display: none;
 	}
 	
@@ -270,16 +280,42 @@
 	}
 	
 	.rentalList {
-		background: #d2dbff;
-		padding: 50px;
-		border: none;
-		border-radius: 0px;
+		padding: 10px;
 	}
 	
 	.deck-margin {
 		margin-left: 15%;
 		margin-right: 15%;
 	}
+	
+	.moreInfo{
+		background: white;
+		border: none;
+		float: right;
+		color: gray;
+	}
+	
+	.infoBtn{
+		margin-left: 18%;
+		margin-right: 18%;
+		height: 20px;
+	}
+	
+	.whole-wrap{background: white;}
+	footer{background: white;}
+	a:hover{cursor: pointer;}
+	h5:hover{color: #93a7fb;}
+	
+	.display-2 {
+		color: #93a7fb;
+		margin-bottom: 20px;
+	}
+	
+	#userPwd{
+		background: #f0e9ff;
+		border: 1px solid #eee;
+	}
+	
 </style>
 </head>
 <body>
@@ -304,10 +340,12 @@
 		</div>
 		<div class="whole-wrap">
 			<div class="borrowed">
+				<i class="fas fa-book"></i>&nbsp;
 				대출 도서 목록
-				<button type="button" onclick="location.href='<%= request.getContextPath() %>/borrowList.br'" class="genric-btn info circle">더 보기</button>
 			</div>
-				<br>
+			<div class="infoBtn">
+				<button type="button" onclick="location.href='<%= request.getContextPath() %>/borrowList.br'" class="moreInfo">더 보기 <i class="fas fa-angle-right"></i></button>
+			</div>
 			<div class="rentalList">
 
 				<% if(rentalList.isEmpty()){ %>
@@ -331,10 +369,12 @@
 							<img src="<%= request.getContextPath() %>/image/<%= rentalList.get(i).getImg() %>" class="card-img-top" alt="...">
 						</div>
 						<div class="card-body">
-							<h5 class="card-title" <% if(rentalList.get(i).getDateCal() == 1){ %> id="dday" <%} %>><%= bookT %></h5>
+							<a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= rentalList.get(i).getBookNo() %>'>
+								<h5 class="card-title" <% if(rentalList.get(i).getDateCal() == 1){ %> id="dday" <%} %>><%= bookT %></h5>
+							</a>
 							<p class="card-text" <% if(rentalList.get(i).getDateCal() == 1){ %> id="dday" <%} %> align='center'>
 								D-<%= rentalList.get(i).getDateCal() %><br>
-								<button type="button" class="genric-btn <%if(rentalList.get(i).getDateCal() == 1){ %> danger <%} else{ %> primary<%} %> circle" onclick="returnBtn(<%= rentalList.get(i).getRentalCode() %>, '<%= rentalList.get(i).getBookTitle() %>')">반납하기</button>
+								<button type="button" class="genric-btn <%if(rentalList.get(i).getDateCal() == 1){ %> danger-border <%} else{ %> info-border <%} %>" onclick="returnBtn(<%= rentalList.get(i).getRentalCode() %>, '<%= rentalList.get(i).getBookTitle() %>')">반납하기</button>
 							</p>
 						</div>
 					</div>
@@ -376,22 +416,18 @@
 				   	}
 			    </script>
 			</div>
-			<p>
 				<br>
-			<div class="borrowed">신청한 도서목록</div>
+		<div class="borrowed">
+			<i class="fas fa-book"></i>&nbsp;
+			신청 도서 목록
 		</div>
-		<p>
-			<br>
-		<div style="width: 300px; height: 200pxpx; background: bule;"></div>
 		<div class="data-table-area mg-b-15">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="sparkline13-list">
-							<div class="sparkline13-hd"></div>
 							<div class="sparkline13-graph">
 								<div class="datatable-dashv1-list custom-datatable-overright">
-									<div id="toolbar"></div>
 									<table id="table" data-toggle="table" data-pagination="true" data-search="false" data-show-columns="false" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false" data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar" style="text-align: center;">
 										<thead style="text-align: center;">
 											<tr>
@@ -519,26 +555,25 @@
 	    </script>
 		<p>
 			<br>
-		<div class="borrowed">개인정보 수정</div>
-		<p>
-			<br>
-		<div class="jumbotron" id="personalInf">
+		<div class="borrowed">
+			<i class="fas fa-edit"></i>&nbsp;
+			개인 정보 수정
+		</div>
+		<div id="personalInf">
 			<h2 class="display-2">
-				안녕하세요
+				안녕하세요,
 				<%= loginUser.getMemberName().substring(0, 1) + "**" %>님!
 			</h2>
-			<p></p>
-			<p class="lead" style="font-size: 15px">개인정보수정은 비밀번호 입력 후 변경 가능합니다.</p>
+			<p class="lead" style="font-size: 12px; color: #93a7fb;">개인 정보 수정은 비밀번호 입력 후 가능합니다.</p>
 			<div id="pwDiv">
 				<input type="password" name="userPwd" id="userPwd" placeholder="비밀번호 입력">
-				<input type="button" id="goModify" value="확인">
+				<input type="button" id="goModify" class="genric-btn default-border small" value="확인">
 			</div>
 			<hr class="my-4">
 			<br>
 			<p class="personal">
 				학번 :
 				<%= loginUser.getMemberId().substring(0, 4) + "*****" %></p>
-			<br>
 			<%
 							   String phone = null;
 							   if(loginUser.getPhone() == null){
@@ -553,12 +588,11 @@
 				<%}else{%><%= phone %>
 				<%} %>
 			</p>
-			<br>
 			<p class="personal">
 				이메일 :
 				<%= loginUser.getEmail().substring(0,4) + "***" + "@naver.com" %></p>
-			<br> <br>
-			<a class="btn btn-primary btn-lg" role="button" href="javascript:confirmPw();">개인정보변경</a>
+			<br>
+			<a class="genric-btn info-border circle" role="button" href="javascript:confirmPw();">개인 정보 변경</a>
 
 
 			<script>
@@ -588,6 +622,7 @@
 		  			});
 		  		});
 		  </script>
+		</div>
 		</div>
 	</main>
 	<%@ include file="../common/footer.jsp"%>

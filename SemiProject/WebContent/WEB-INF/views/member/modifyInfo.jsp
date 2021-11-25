@@ -361,8 +361,13 @@
 	<!-- java script -->
 	<script>
 		$('#email1').change(function() {
-			$('#isjungbok').css("display", "block");
-			$('#emailAuth').attr("required", true);
+			if($('#email1').val() != '<%=email1%>'){
+				$('#isjungbok').css("display", "block");
+				$('#emailAuth').attr("required", true);
+			} else{
+				$('#isjungbok').css("display", "none");
+				$('#emailAuth').attr("required", false);			
+			}
 		});
 	</script>
 	<script>
@@ -370,7 +375,7 @@
 		var finalAuth;
 		
 		function authFunc(){
-			if(<%=email1%> != $('#email1').val()){
+			if($('#email1').val() != '<%=email1%>'){
 				$('#email1').attr('readonly',true);
 				var email = document.getElementById("email1").value + "@" + document.getElementById("email2").value;
 				$.ajax({
@@ -390,7 +395,7 @@
 		}
 		
   		$('#checkEmail').click(function(){
-  			if(<%=email1%> != $('#email1').val()){
+  			if($('#email1').val() != '<%=email1%>'){
 	  			var email = document.getElementById("email1").value + document.getElementById("email2").value;
 	
 				var button_joinus = document.getElementById('checkEmail');
@@ -423,7 +428,7 @@
 
 		var emailCheckYN = 'N';
 			function confirmAuthNum(){
-				if(<%=email1%> != $('#email1').val()){
+				if($('#email1').val() != '<%=email1%>'){
 					var emailAuth = document.getElementById("emailAuth").value;
 					
 					if((emailAuth+"").trim() == (finalAuth+"").trim()){

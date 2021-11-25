@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
        
-    <title>adminUserList</title>
+    <title>회원 목록 조회</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
@@ -167,6 +167,11 @@
 		  text-decoration: none;
 		 
 		}
+		
+		#update:hover {
+			cursor: pointer;
+			color: #6785FF;
+		}
 
         .fa-image {
             position: absolute;
@@ -185,7 +190,10 @@
             margin-top: 20px;
             visibility: hidden;
         }
-
+	
+		footer {
+			background: white;
+		}
     </style>
 </head>
 
@@ -240,7 +248,7 @@
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-pagination-switch="true" data-show-refresh="false" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-refresh="false" data-key-events="false" data-show-toggle="false" data-resizable="false" data-cookie="false"
                                         data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolbar">
                                         <thead>
                                             <tr>
@@ -269,19 +277,37 @@
 									        		<input type="hidden" name="department" id="department" value="<%= uList.get(i).getDepartment()%>">
 									        	</td>
 									        	<td>
-									        		<%= uList.get(i).getPhone() %>
+									        		<% String phone = uList.get(i).getPhone();
+									        			if(phone == null){
+									        				phone = "등록된 핸드폰 번호가 없습니다.";
+									        			}
+									        		%>
+									        		<%= phone %>
 									        		<input type="hidden" name="phone" id="phone" value="<%= uList.get(i).getPhone()%>">
 									        	</td>
 									        	<td>
-									        		<%= uList.get(i).getAddress() %>
-									        		<input type="hidden" name="address" id="address" value="<%= uList.get(i).getAddress()%>">
+									        		<%  String newAddr = "";
+									        			if(uList.get(i).getAddress() != null){
+										        			String[] addr = uList.get(i).getAddress().split("&&", -1); 
+										        			for(int a = 0; a < addr.length; a++){
+										        				if(a != 0){
+											        				newAddr += " ";
+										        				} 
+										        				newAddr += addr[a];
+										        			}
+									        			} else {
+									        				newAddr = "등록된 주소가 없습니다.";
+									        			}
+									        		%>
+									        		<%= newAddr %>
+									        		<input type="hidden" name="address" id="address" value="<%= newAddr %>">
 									        	</td>
 									        	<td>
 									        		<%= uList.get(i).getEmail() %>
 									        		<input type="hidden" name="email" id="email" value="<%= uList.get(i).getEmail()%>">
 									        	</td>
 									        	<td>
-													<a onclick="window.open('<%= request.getContextPath() %>/updateInfoForm.ui?mi=<%= uList.get(i).getMemberId() %>', 'updateInfoForm', 'width=1500, height=500')" id="update">변경</a>
+													<a onclick="window.open('<%= request.getContextPath() %>/updateInfoForm.ui?mi=<%= uList.get(i).getMemberId() %>', 'updateInfoForm', 'width=1500, height=320')" id="update">변경</a>
 												</td>
                                             </tr>
                                             <% } %>
@@ -300,85 +326,15 @@
             </div>
         </div>
         <!-- Static Table End -->
-        
-        
      </div>
         <!-- End Align Area -->
     </main>
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-padding">
-            <div class="container">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="single-footer-caption mb-30">
-                                <!-- logo -->
-                                <div class="footer-logo mb-35">
-                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-                                </div>
-                                <div class="footer-tittle">
-                                    <div class="footer-pera">
-                                        <p>(C)SHINWOO UNIVERSITY LIBRARY ALL RIGHTS RESERVED</p>
-                                    </div>
-                                </div>
-                                <!-- social -->
-                                <div class="footer-social">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Services </h4>
-                                <ul>
-                                    <li><a href="#">- 주요 전화번호</a></li>
-                                    <li><a href="#">- 개인정보처리방침</a></li>
-                                    <li><a href="#">- 무단수집거부</a></li>
-                                    <li><a href="#">- 원격지원</a></li>
-                                    <li><a href="#">- 찾아오는길</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Contect</h4>
-                                <ul>
-                                    <li class="number"><a href="#">(02) 123-4567</a></li>
-                                    <li><a href="#">shinwoo@universty.kr</a></li>
-                                    <li><a href="#">서울시 강남구 역삼로</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        
-        <%@ include file="../common/footer.jsp" %>
-    
-    
-    <!-- Scroll Up -->
-    <div id="back-top">
-        <a title="1:1 문의" href="#"><i class="fas fa-question"></i></a>
-    </div>
-    <script>
-        $(function () {
-            var now = new Date();
-            var year = now.getFullYear();
-            var month = now.getMonth() + 1;
-            var date = now.getDate();
-            $('input[name=reqDate]').val(year + '-' + month + '-' + date);
-            console.log(now);
-        });
-    </script>
+	<%@ include file="../common/footer.jsp"%>
+	<div id="back-top">
+		<a title="Go to Top" href="#">
+			<i class="fas fa-level-up-alt"></i>
+		</a>
+	</div>
     <!-- JS here -->
       <!-- jquery
 		============================================ -->
@@ -401,9 +357,6 @@
     <!-- sticky JS
 		============================================ -->
     <script src="js/jquery.sticky.js"></script>
-    <!-- scrollUp JS
-		============================================ -->
-    <script src="js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
 		============================================ -->
     <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
