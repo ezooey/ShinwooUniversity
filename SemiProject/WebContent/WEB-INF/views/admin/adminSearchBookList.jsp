@@ -125,11 +125,16 @@
     .tableBody{height:60px;}
     th, td {
   		vertical-align : middle;
+  		font-size: 14px;
 	}
 	.submitDiv1{
 		padding-top: 15px;
 		padding-right:100px;
 		margin-right:100px;
+	}
+	
+	#submitDiv{
+		margin-top: 20px;
 	}
 	
 	td {
@@ -217,7 +222,7 @@
 						<td><%=list.get(i).getPublisher()%></td>
 						<td><%=list.get(i).getReleaseDate()%></td>
 						<td><%=list.get(i).getRegDate()%></td>
-						<th><button type="button" class="genric-btn danger-border" onclick="deleteOneBook('<%=bookNo%>');">삭제</button></th>
+						<th><button type="button" class="genric-btn danger-border small" onclick="deleteOneBook('<%=bookNo%>');">삭제</button></th>
 						<% } %>
 					</tr>
 					<% } %>
