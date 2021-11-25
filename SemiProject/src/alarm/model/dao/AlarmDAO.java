@@ -90,7 +90,7 @@ public class AlarmDAO {
 		int result = 0;
 
 		String query = prop.getProperty("returnAlarm");
-
+		//INSERT INTO alarm VALUES(SEQ_ALARM.NEXTVAL, 1,?,?,'Y')
 		try {
 			for(int i = 0; i<list.size(); i++) {
 				pstmt = conn.prepareStatement(query);
