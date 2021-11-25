@@ -470,7 +470,7 @@
 												<%}else{ 
                                                 		status = "거절";%>
 												<td>
-													<a onclick="window.open('rejectDetail.rb?rno=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=500, height=270');">
+													<a onclick="window.open('rejectDetail.rb?rno=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=400, height=200');">
 														<u><%= status %></u>
 													</a>
 												</td>

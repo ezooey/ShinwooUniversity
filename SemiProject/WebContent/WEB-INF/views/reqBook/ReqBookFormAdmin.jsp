@@ -31,7 +31,26 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
-
+<style>
+	h2 {
+		margin-top: 10px;
+		color: #6785FF;
+	}
+	
+	.tableArea {
+		display: flex;
+		justify-content: center;
+	}
+	
+	textarea {
+		background: #f9f9ff;
+		border: solid 1px #eee;
+	}
+	
+	th, td {
+		padding-top: 10px;
+	}
+</style>
 
 </head>
 <body>
@@ -58,7 +77,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>도서 신청 사유</th>
+						<th colspan="4"><h3 align="center">도서 신청 사유 </h3></th>
 					</tr>
 					<tr>
 						<td colspan="4">
@@ -71,15 +90,17 @@
 		<br>
 		<form action="<%= request.getContextPath() %>/reqBook.def" method="post">
 		<h3 align="center">도서 신청 거절 사유 </h3>
+		<div class="tableArea">
 				<table>
 					<tr>
-						<td><textarea id="reason1" name="reason" cols="60" rows="5" style="resize:none;" placeholder="거절사유를 입력하시오"></textarea></td>
+						<td><textarea id="reason1" name="reason" cols="60" rows="5" style="resize:none;" placeholder="거절사유를 입력하세요"></textarea></td>
 					</tr>
 				</table>
-		<br><br>
+		</div>
+		<br>
 		<div class="bottomBtn" align="center">
-    	<input type="button" class="genric-btn primary circle" value="거절" onclick="reject();">
-    	<input type="button" class="genric-btn primary circle" value="승인" onclick="location.href='<%= request.getContextPath() %>/reqBook.confi?reqNo=<%= r.getReqBookNo()%>&&writer=<%= writer %>&&bookName=<%= r.getReqBookTitle() %>'">
+    	<input type="button" class="genric-btn info-border circle small" value="승인" onclick="location.href='<%= request.getContextPath() %>/reqBook.confi?reqNo=<%= r.getReqBookNo()%>&&writer=<%= writer %>&&bookName=<%= r.getReqBookTitle() %>'">
+    	<input type="button" class="genric-btn danger-border circle small" value="거절" onclick="reject();">
     	</div>
  		</form>
  
