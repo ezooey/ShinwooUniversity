@@ -920,6 +920,7 @@
 			<i class="fas fa-level-up-alt"></i>
 		</a>
 	</div>
+	</script>
 
 	<!-- JS here -->
 

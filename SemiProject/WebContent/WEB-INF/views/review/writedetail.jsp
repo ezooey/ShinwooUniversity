@@ -242,6 +242,15 @@
 		cursor: pointer;
 	}
 	
+	textarea{
+		background: #f9f9ff;
+		border: 1px solid #eee;
+	}
+	
+	.boldTitle {
+		color: #6785FF;
+	}
+	
 </style>
 </head>
 
@@ -307,34 +316,34 @@
 							<table style="width: 1000px; height: 500px;">
 								<tr>
 									<td width="100px;">
-										<b>제목</b>
+										<b class="boldTitle"><i class="fas fa-pen-nib"></i> &nbsp;제목</b>
 									</td>
 									<td><%= r.getReviewTitle() %></td>
 									<input type="hidden" name="reviewTitle" value="<%= r.getReviewTitle() %>">
 								</tr>
 								<tr>
 									<td>
-										<b>작성자</b>
+										<b class="boldTitle"><i class="fas fa-user-edit"></i> &nbsp;작성자</b>
 									</td>
 									<td><%= r.getReviewWriter() %></td>
 									<input type="hidden" name="reviewWriter" value="<%= r.getReviewWriter() %>">
 								</tr>
 								<tr>
 									<td>
-										<b>작성시간</b>
+										<b class="boldTitle"><i class="fas fa-clock"></i> &nbsp;작성시간</b>
 									</td>
 									<td><%= r.getReviewDate() %></td>
 									<input type="hidden" name="reviewDate" value="<%= r.getReviewDate() %>">
 								</tr>
 								<tr>
 									<td>
-										<b>조회수</b>
+										<b class="boldTitle"><i class="fas fa-eye"></i> &nbsp;조회수</b>
 									</td>
 									<td><%= r.getViews() %></td>
 								</tr>
 								<tr>
 									<td>
-										<b>추천수</b>
+										<b class="boldTitle"><i class="fas fa-heart"></i> &nbsp;추천수</b>
 									</td>
 									<td>
 										<%= r.getRecommend() %>
@@ -342,7 +351,7 @@
 								</tr>
 								<tr>
 									<td colspan="2">
-										<b>내용</b>
+										<b class="boldTitle"><i class="fas fa-edit"></i> &nbsp;내용</b>
 									</td>
 								</tr>
 								<tr>

@@ -93,10 +93,6 @@
 				</nav>
 			</div>
 			<div id="submitBtn"></div>
-<!-- 			<div style="text-align: center; margin-top: 20px"> -->
-<!-- 				<button type="button" class="genric-btn success circle selectBtn" id="selectOne">선택</button> -->
-<!-- 				<button type="button" class="genric-btn danger circle selectBtn" onclick="window.close()">취소</button> -->
-<!-- 			</div> -->
 		</div>
 	</div>
 
@@ -204,39 +200,6 @@
 	                    	$("#searchList").append(tableAppend);
                     	}
                     	
-//                         $("#searchList").append(
-//                         		"<input type='radio' name='selectBook' style='width:20px;height:20px;'>"
-//                         );
-//                         $("#searchList").append(
-//                         		"<input type='hidden' name='searchTitle' value='" + title + "'>"
-//                         );
-//                         $("#searchList").append(
-//                         		"<input type='hidden' name='searchAuthors' value='" + authors + "'>"
-//                         );
-//                         $("#searchList").append(
-//                         		"<input type='hidden' name='searchPub' value='" + publisher + "'>"
-//                         );
-//                         $("#searchList").append(
-//                         		"<input type='hidden' name='searchDate' value='" + redate + "'>"
-//                         );
-                        
-//                         $("#searchList").append("<img src='" + thumbnail + "'/><br>");
-//                         $("#searchList").append(
-//                             "<h2><a href='" + msg.documents[i].url + "'>" + title + "</a><" +
-//                             "/h2>"
-//                         );
-//                         $("#searchList").append("<strong>저자:</strong> " + authors + "<br>");
-//                         $("#searchList").append(
-//                             "<strong>출판사:</strong> " + publisher + "<br>"
-//                         );
-//                         $("#searchList").append(
-//                             "<strong>출판일:</strong> " + redate + "<br>"
-//                         );
-//                         $("#searchList").append(
-//                             "<strong>책 소개:</strong> " + contents + "...<br>"
-//                         );
-//                         $("#searchList").append("<hr>");
-                        
                     }
                     
                     $("#submitBtn").append("<div>");

@@ -138,6 +138,10 @@
         footer {
         	background: white;
         }
+        
+        tbody{
+        	font-size: 14px;
+        }
     </style>
 </head>
 
