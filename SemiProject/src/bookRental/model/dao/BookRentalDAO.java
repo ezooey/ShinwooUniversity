@@ -150,7 +150,8 @@ public class BookRentalDAO {
 		int result = 0;
 
 		String query = prop.getProperty("returnBookAuto");
-
+		//UPDATE BOOKRENTAL SET RETURN_YN = 'Y', RETURN_DATE = SYSDATE WHERE (RETURN_DATE <= SYSDATE - 1) AND RETURN_YN = 'N'
+		
 		try {
 			stmt = conn.createStatement();
 			result = stmt.executeUpdate(query);
@@ -208,6 +209,9 @@ public class BookRentalDAO {
 		ArrayList<BookRental> list = null;
 		
 		String query = prop.getProperty("selectReturnInfo");
+		//select book_title, rental_id from bookrental join book using (book_no)
+		//where return_date between SYSDATE - (INTERVAL '5' SECOND) AND SYSDATE + (INTERVAL '5' SECOND)
+		
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
@@ -217,22 +221,15 @@ public class BookRentalDAO {
 				BookRental br = new BookRental();
 				br.setBookTitle(rset.getString("book_title"));
 				br.setMemberId(rset.getString("rental_id"));
-				
-				
-				
 				list.add(br);
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(stmt);
 		}
-		
 		return list;
 	}
-	
-	
 }

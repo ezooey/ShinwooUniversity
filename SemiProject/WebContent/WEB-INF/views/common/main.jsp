@@ -438,53 +438,53 @@
 			<div id="wholeslide-div">
 				<div id="slider-div">
 					<div class="book-div">
-						<a href="https://www.naver.com">
-							<img src="sample/image/book1.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book1.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
-						<a href="https://www.naver.com">
-							<img src="sample/image/book2.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book2.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
-						<a href="https://www.naver.com">
-							<img src="sample/image/book3.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book3.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
-						<a href="https://www.naver.com">
-							<img src="sample/image/book4.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book4.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
-						<a href="https://www.naver.com">
-							<img src="sample/image/book5.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book5.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
-						<a href="https://www.naver.com">
-							<img src="sample/image/book1.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book1.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
-						<a href="https://www.naver.com">
-							<img src="sample/image/book2.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book2.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
-						<a href="https://www.naver.com">
-							<img src="sample/image/book3.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book3.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
-						<a href="https://www.naver.com">
-							<img src="sample/image/book4.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book4.png" class="bookimage">
 						</a>
 					</div>
 					<div class="book-div">
-						<a href="https://www.google.com">
-							<img src="sample/image/book5.png" class="bookimage">
+						<a href="#">
+							<img src="<%= request.getContextPath() %>/image/book5.png" class="bookimage">
 						</a>
 					</div>
 				</div>
