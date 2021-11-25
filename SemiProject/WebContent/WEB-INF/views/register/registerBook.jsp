@@ -121,6 +121,18 @@
         .divArea {
 			margin-bottom: 15px;
 		}
+		
+		.div1 {
+			width: 1000px;
+			height: 1150px;
+		}
+		
+		.regCont {
+			width: 800px;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
     </style>
 </head>
 
@@ -150,8 +162,8 @@
         <div class="whole-wrap">
             <div class="container box_1170">
                 <div class="section-top-border borderTop">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8">
+                    <div class="div1">
+                        <div class="regCont">
                             <h3 class="mb-30">등록 도서 정보 입력</h3>
                             <form action="<%= request.getContextPath() %>/register.bo" id="regBook" name="regBook" method="post" encType="multipart/form-data" onsubmit="return insertImg();">
                                 <div>

@@ -25,30 +25,6 @@ public class BookDetail {
 	public BookDetail() {}
 	
 	public BookDetail(String bookNo, String bookTitle, String author, String publisher, Date regDate, int rentTotal,
-			String ownYN, String bookInfo, String refer, Date releaseDate, String categoryName, String changeName, String filePath,
-			String rental_Id, Date rentalDate, Date returnDate, String returnYN, int categoryNo) {
-		super();
-		this.bookNo = bookNo;
-		this.bookTitle = bookTitle;
-		this.author = author;
-		this.publisher = publisher;
-		this.regDate = regDate;
-		this.rentTotal = rentTotal;
-		this.ownYN = ownYN;
-		this.bookInfo = bookInfo;
-		this.refer = refer;
-		this.releaseDate = releaseDate;
-		this.categoryName = categoryName;
-		this.changeName = changeName;
-		this.filePath = filePath;
-		this.rental_Id = rental_Id;
-		this.rentalDate = rentalDate;
-		this.returnDate = returnDate;
-		this.returnYN = returnYN;
-		this.categoryNo = categoryNo;
-	}
-	
-	public BookDetail(String bookNo, String bookTitle, String author, String publisher, Date regDate, int rentTotal,
 			String ownYN, String bookInfo, String refer, Date releaseDate, String categoryName, String changeName,
 			String filePath, String rental_Id, Date rentalDate, Date returnDate, String returnYN, int categoryNo) {
 		super();
