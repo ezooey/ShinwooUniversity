@@ -196,7 +196,7 @@ public class ReqBookDAO {
 	public int insertAlarm1(Connection conn, String writer, String bookName) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String reason = "��û�Ͻ� ����" + bookName + "�� �����Ǿ����ϴ�.";
+		String reason = "신청하신 도서 " + bookName + "이(가) 거절되었습니다.";
 
 		String query = "INSERT INTO ALARM VALUES(SEQ_ALARM.NEXTVAL,2,?,?,'N')";
 		try {
@@ -217,7 +217,7 @@ public class ReqBookDAO {
 	public int insertAlarm2(Connection conn, String writer, String bookName) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String reason = "��û�Ͻ� å" + bookName + "�� ���εǾ����ϴ�.";
+		String reason = "신청하신 도서 " + bookName + "이(가) 승인되었습니다.";
 
 		String query = "INSERT INTO ALARM VALUES(SEQ_ALARM.NEXTVAL,2,'" + reason + "',?,'N')";
 		try {
