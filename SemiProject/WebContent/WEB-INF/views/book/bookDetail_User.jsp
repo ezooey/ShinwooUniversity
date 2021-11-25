@@ -138,6 +138,23 @@
 			border: 1px solid dimgray;
         }
         
+        #borrow1{
+        	text-align: center;
+        	display: inline-block;
+        	width: 120px;
+        	height: 44px;
+        	padding-top: 10px;
+        	padding-bottom: 10px;
+        	margin-top: 25px;
+        	border-radius: 5px;
+        	background: gray;
+        	color: white;
+        	font-size: 15px;
+			font-weight: bold;
+			cursor: default;
+			border: 1px solid dimgray;
+        }
+        
         #borrowed, #notAllowed{
         	text-align: center;
         	display: inline-block;
@@ -239,6 +256,8 @@
         #imgFile{
         	height: 218px;
         }
+        
+        
     </style>
 </head>
 
@@ -295,7 +314,11 @@
 						   		<span class="simpleInfo"><b>제공형태: &nbsp;&nbsp;</b></span><span id="epub">ePUB</span>
 						   		<br>
 						   		<% if(check < 1 && curr < 2) { %>
+						   			<% if(!loginUser.getMemberId().equals("admin")){ %>
 						   			<button id="borrow">대출하기</button>
+						   			<% }else{ %>
+						   			<button id="borrow1">대출하기</button>
+						   			<%} %>
 						   		<% } else if(check < 1 && curr >= 2) { %>
 						   			<button id="notAllowed" disabled>현재 대출 불가</button>
 						   		<% } else if(check >= 1) { %>
@@ -354,6 +377,10 @@
    					$('#rentalBook').submit;
    					location.href = '<%= request.getContextPath() %>/rentalBook.bo';
    				}
+   			});
+   			
+   			$('#borrow1').click(function(){
+   				alert('학생만 이용 가능합니다.');
    			});
    		</script>
         <!-- End Align Area -->

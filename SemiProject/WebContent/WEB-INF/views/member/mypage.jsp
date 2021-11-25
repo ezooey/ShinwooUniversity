@@ -370,11 +370,11 @@
 						</div>
 						<div class="card-body">
 							<a href='<%= request.getContextPath() %>/bookDetail.bo?bNo=<%= rentalList.get(i).getBookNo() %>'>
-								<h5 class="card-title" <% if(rentalList.get(i).getDateCal() == 1){ %> id="dday" <%} %>><%= bookT %></h5>
+								<h5 class="card-title" <% if(rentalList.get(i).getDateCal() <= 1){ %> id="dday" <%} %>><%= bookT %></h5>
 							</a>
-							<p class="card-text" <% if(rentalList.get(i).getDateCal() == 1){ %> id="dday" <%} %> align='center'>
+							<p class="card-text" <% if(rentalList.get(i).getDateCal() <= 1){ %> id="dday" <%} %> align='center'>
 								D-<%= rentalList.get(i).getDateCal() %><br>
-								<button type="button" class="genric-btn <%if(rentalList.get(i).getDateCal() == 1){ %> danger-border <%} else{ %> info-border <%} %>" onclick="returnBtn(<%= rentalList.get(i).getRentalCode() %>, '<%= rentalList.get(i).getBookTitle() %>')">반납하기</button>
+								<button type="button" class="genric-btn <%if(rentalList.get(i).getDateCal() <= 1){ %> danger-border <%} else{ %> info-border <%} %>" onclick="returnBtn(<%= rentalList.get(i).getRentalCode() %>, '<%= rentalList.get(i).getBookTitle() %>')">반납하기</button>
 							</p>
 						</div>
 					</div>

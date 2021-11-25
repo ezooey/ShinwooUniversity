@@ -148,7 +148,7 @@
 	.listBtn{background: #eee; border: 1px solid #eee; color: gray;}
 	.fa-angle-double-left, .fa-angle-double-right, .fa-angle-left, .fa-angle-right{color: gray;}
 		
-	button:disabled{background: #eee; cursor: none;}
+	button:disabled{background: #eee; cursor: default;}
     </style>
 </head>
 <body>
