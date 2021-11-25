@@ -60,6 +60,7 @@ public class BookDetailDAO {
 				b.setCategoryName(rset.getString("CATEGORY_NAME"));
 				b.setFilePath(rset.getString("FILE_PATH"));
 				b.setChangeName(rset.getString("CHANGE_NAME"));
+				b.setCategoryNo(rset.getInt("CATEGORY_NO"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

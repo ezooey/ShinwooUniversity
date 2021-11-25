@@ -20,12 +20,13 @@ public class BookDetail {
 	private Date rentalDate;
 	private Date returnDate;
 	private String returnYN;
+	private int categoryNo;
 	
 	public BookDetail() {}
 	
 	public BookDetail(String bookNo, String bookTitle, String author, String publisher, Date regDate, int rentTotal,
 			String ownYN, String bookInfo, String refer, Date releaseDate, String categoryName, String changeName, String filePath,
-			String rental_Id, Date rentalDate, Date returnDate, String returnYN) {
+			String rental_Id, Date rentalDate, Date returnDate, String returnYN, int categoryNo) {
 		super();
 		this.bookNo = bookNo;
 		this.bookTitle = bookTitle;
@@ -44,6 +45,7 @@ public class BookDetail {
 		this.rentalDate = rentalDate;
 		this.returnDate = returnDate;
 		this.returnYN = returnYN;
+		this.categoryNo = categoryNo;
 	}
 	public String getBookNo() {
 		return bookNo;
@@ -147,13 +149,23 @@ public class BookDetail {
 	public void setReturnYN(String returnYN) {
 		this.returnYN = returnYN;
 	}
+	
+	public int getCategoryNo() {
+		return categoryNo;
+	}
+
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
+	}
+
 	@Override
 	public String toString() {
 		return "BookDetail [bookNo=" + bookNo + ", bookTitle=" + bookTitle + ", author=" + author + ", publisher="
 				+ publisher + ", regDate=" + regDate + ", rentTotal=" + rentTotal + ", ownYN=" + ownYN + ", bookInfo="
 				+ bookInfo + ", refer=" + refer + ", releaseDate=" + releaseDate + ", categoryName=" + categoryName
 				+ ", changeName=" + changeName + ", filePath=" + filePath + ", rental_Id=" + rental_Id + ", rentalDate="
-				+ rentalDate + ", returnDate=" + returnDate + ", returnYN=" + returnYN + "]";
+				+ rentalDate + ", returnDate=" + returnDate + ", returnYN=" + returnYN + ", categoryNo=" + categoryNo
+				+ "]";
 	}
 	
 }
