@@ -64,32 +64,26 @@ public class ReqBookDAO {
 		return list;
 	}
 
-	public ReqBook defineList(Connection conn, int reqNo) {
+	public int defineList(Connection conn, int reqNo) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ReqBook r = null;
+		int result = 0;
 
 		String query = prop.getProperty("defineList");
 
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, reqNo);
-			rset = pstmt.executeQuery();
+			result = pstmt.executeUpdate();
 
-			if (rset.next()) {
-				r = new ReqBook(rset.getInt("REQ_NO"), rset.getString("REQ_BOOK"), rset.getDate("REQ_DATE"),
-						rset.getString("REQ_PUB"), rset.getString("REQ_AUTHOR"), rset.getString("MEMBER_NAME"),
-						rset.getString("REQ_COMMENT"), rset.getString("REQ_REASON"), rset.getInt("PERMIT_STATUS"),
-						rset.getString("REQ_ID"));
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		return r;
+		return result;
 	}
 
 	public ReqBook sendReqinfo(Connection conn, int reqNo) {
@@ -119,31 +113,25 @@ public class ReqBookDAO {
 		return r;
 	}
 
-	public ReqBook confirmList(Connection conn, int reqNo) {
+	public int confirmList(Connection conn, int reqNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ReqBook r = null;
+		int result = 0;
 
 		String query = prop.getProperty("confirmList");
 
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, reqNo);
-			rset = pstmt.executeQuery();
-
-			if (rset.next()) {
-				r = new ReqBook(rset.getInt("REQ_NO"), rset.getString("REQ_BOOK"), rset.getDate("REQ_DATE"),
-						rset.getString("REQ_PUB"), rset.getString("REQ_AUTHOR"), rset.getString("MEMBER_NAME"),
-						rset.getString("REQ_COMMENT"), rset.getString("REQ_REASON"), rset.getInt("PERMIT_STATUS"),
-						rset.getString("REQ_ID"));
-			}
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		return r;
+		return result;
 	}
 
 	public ReqBook reqBookDetail(Connection conn, int reqNo) {

@@ -26,15 +26,21 @@ public class ReqBookService {
 
 	}
 
-	public ReqBook confirmList(int reqNo) {
+	public int confirmList(int reqNo) {
 
 		Connection conn = getConnection();
 
-		ReqBook r = rDAO.confirmList(conn, reqNo);
-
+		int result = rDAO.confirmList(conn, reqNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
 		close(conn);
 
-		return r;
+		return result;
 
 	}
 
@@ -61,14 +67,20 @@ public class ReqBookService {
 
 	}
 
-	public ReqBook defineList(int reqNo, String reason) {
+	public int defineList(int reqNo, String reason) {
 		Connection conn = getConnection();
 
-		ReqBook r = rDAO.defineList(conn, reqNo);
+		int result = rDAO.defineList(conn, reqNo);
 
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
 		close(conn);
 
-		return r;
+		return result;
 	}
 
 	public int insertReason(int reqNo, String reason) {

@@ -36,17 +36,17 @@ public class ReqBookConfirmAdminServlet extends HttpServlet {
 		String writer = request.getParameter("writer");
 		String bookName = request.getParameter("bookName");
 		
-		ReqBook r = new ReqBookService().confirmList(reqNo);
+		int result1 = new ReqBookService().confirmList(reqNo);
 		
-		int result = new AlarmService().insertAlarm2(writer,bookName);
+		int result2 = new AlarmService().insertAlarm2(writer,bookName);
 		
 		String page = null;
-		if(r != null) {
-			page = "WEB-INF/views/common/resultPage.jsp";
-			request.setAttribute("msg", " 승인 실패되셨습니다.");
-		} else {
+		if(result1 > 0 && result2 > 0) {
 			page = "WEB-INF/views/common/resultPage.jsp";
 			request.setAttribute("msg", "신청이 승인되었습니다.");
+		} else {
+			page = "WEB-INF/views/common/resultPage.jsp";
+			request.setAttribute("msg", " 승인 실패되셨습니다.");
 			
 		}
 		request.getRequestDispatcher(page).forward(request, response);

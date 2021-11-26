@@ -38,17 +38,13 @@ public class ReqBookdefineAdminServlet extends HttpServlet {
 		String writer = request.getParameter("writer");
 		String bookName = request.getParameter("bookName");
 		
-		System.out.println(writer);
-		
-		System.out.println(reason);
-		
-		ReqBook r = new ReqBookService().defineList(reqNo,reason);
+		int result3 = new ReqBookService().defineList(reqNo,reason);
 		int result = new ReqBookService().insertReason(reqNo,reason);
 		int result2 = new AlarmService().insertAlarm1(writer, bookName);
 		
 		
 		String page = null;
-		if(result > 0 && result2 > 0) {
+		if(result > 0 && result2 > 0 && result3 > 0) {
 			page = "WEB-INF/views/common/resultPage.jsp";
 			request.setAttribute("msg", "신청이 거절되었습니다.");
 		} else {

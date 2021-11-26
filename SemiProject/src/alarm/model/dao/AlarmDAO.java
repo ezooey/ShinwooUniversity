@@ -110,7 +110,7 @@ public class AlarmDAO {
 	   public int insertAlarm1(Connection conn, String writer, String bookName) {
 		      PreparedStatement pstmt = null;
 		      int result = 0;
-		      String reason = "신청하신 도서" + bookName + "이 거절되었습니다.";
+		      String reason = "신청하신 도서 " + bookName + "이 거절되었습니다.";
 		      
 		      String query = prop.getProperty("rejectBookAlarm");
 		      
@@ -133,7 +133,7 @@ public class AlarmDAO {
 		   public int insertAlarm2(Connection conn, String writer, String bookName) {
 		      PreparedStatement pstmt = null;
 		      int result = 0;
-		      String reason = "신청하신 책" + bookName + "이 승인되었습니다.";
+		      String reason = "신청하신 도서 " + bookName + "이 승인되었습니다.";
 		      
 		      String query = prop.getProperty("rejectBookAlarm");
 		      try {

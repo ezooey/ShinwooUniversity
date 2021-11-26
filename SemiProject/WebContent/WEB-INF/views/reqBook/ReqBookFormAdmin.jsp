@@ -99,7 +99,7 @@
 		</div>
 		<br>
 		<div class="bottomBtn" align="center">
-    	<input type="button" class="genric-btn info-border circle small" value="승인" onclick="location.href='<%= request.getContextPath() %>/reqBook.confi?reqNo=<%= r.getReqBookNo()%>&&writer=<%= writer %>&&bookName=<%= r.getReqBookTitle() %>'">
+    	<input type="button" class="genric-btn info-border circle small" value="승인" onclick="permit();">
     	<input type="button" class="genric-btn danger-border circle small" value="거절" onclick="reject();">
     	</div>
  		</form>
@@ -109,6 +109,16 @@
 				var Rreason = document.getElementById('reason1').value;
 				location.href='<%= request.getContextPath() %>/reqBook.def?reqNo=<%= r.getReqBookNo() %>&&reason=' + Rreason + "&&writer=<%= writer %>&&bookName=<%= r.getReqBookTitle() %>";
 			
+			}
+			
+			function permit() {
+				var permitR = document.getElementById('reason1');
+				if(permitR.value.trim() != ''){
+					alert('승인 시에는 거절 메시지를 입력할 수 없습니다.');
+					permitR.value = '';
+				} else{
+					location.href='<%= request.getContextPath() %>/reqBook.confi?reqNo=<%= r.getReqBookNo()%>&&writer=<%= writer %>&&bookName=<%= r.getReqBookTitle() %>';
+				}
 			}
 		</script>
 		
