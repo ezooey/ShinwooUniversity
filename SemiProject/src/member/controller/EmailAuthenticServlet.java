@@ -39,7 +39,7 @@ public class EmailAuthenticServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//원래는 인코딩 거쳐야함~
 				String receiver = request.getParameter("userEmail");
-				String title = "[JSP/Servlet] 유효 메일 확인";
+				String title = "[ShinwooUniversity] 유효 메일 확인";
 				int authNum = 100000 + (int)(Math.random()*899999);
 				String content = "본 메일은 현재 고객님의 메일이 <b>유효한지 확인</b>하기 위한 메일입니다.<br>회원님의 인증번호는 <b>" + authNum  + "</b>입니다.";	//html 꾸미기 가능
 				
