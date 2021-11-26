@@ -179,9 +179,9 @@
                     	<% } else { %>
                     		<% for(Alarm a : aList) { %>
                     			<% if(a.getAlarmPt() == 1){ %>
-								<div class="inquiry" id="pt1" onclick="confirmAl(<%= a.getAlarmNo() %>);">
+								<div class="inquiry pt1" onclick="confirmAl(<%= a.getAlarmNo() %>);">
 								<%}else{ %>
-								<div class="inquiry" id="pt2" onclick="confirmAl(<%= a.getAlarmNo() %>);">
+								<div class="inquiry pt2" onclick="confirmAl(<%= a.getAlarmNo() %>);">
 								<%} %>
 								<input type="hidden" value="<%= a.getAlarmNo() %>">
 									<%= a.getAlarmCont() %>
@@ -197,13 +197,13 @@
 						
                  
            <script>
-		$('#pt1').mouseenter(function(){
+		$('.pt1').mouseenter(function(){
 			$(this).css({'background':'lightblue', 'cursor':'pointer'});
 		}).mouseout(function(){
 			$(this).css({'background':'none'});
 		});
 		
-		$('#pt2').mouseenter(function(){
+		$('.pt2').mouseenter(function(){
 			$(this).css({'background':'lightgray', 'cursor':'pointer'});
 		}).mouseout(function(){
 			$(this).css({'background':'none'});
