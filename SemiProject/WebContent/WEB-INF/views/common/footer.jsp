@@ -50,7 +50,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Contect</h4>
+                                <h4>Contact</h4>
                                 <ul>
                                     <li class="number"><a href="#">(02) 123-4567</a></li>
                                     <li><a href="#">shinwoo@university.kr</a></li>

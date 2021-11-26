@@ -14,7 +14,7 @@
                 <!-- Logo -->
                 <div class="header-left">
                     <div class="logo">
-                        <a href="index.jsp"><img src="assets/img/logo/logo.png" alt=""></a>
+                        <a href="<%= request.getContextPath() %>"><img src="assets/img/logo/logo.png" alt=""></a>
                     </div>
                     <div class="menu-wrapper  d-flex align-items-center">
                         <!-- Main-menu -->
@@ -32,7 +32,7 @@
 											<li><a href="<%= request.getContextPath() %>/insertForm.bo">도서 등록</a></li>
 		                                    <li><a href="<%= request.getContextPath() %>/ownBookList.li">전체 도서 목록 조회</a></li>
 		                                    <li><a href="<%= request.getContextPath() %>/rentalList.rt">대출 도서 목록 조회</a></li>
-											<li><a href="<%= request.getContextPath() %>//reqBook.li">신청 도서 목록 조회</a></li>
+											<li><a href="<%= request.getContextPath() %>/reqBook.li">신청 도서 목록 조회</a></li>
 										</ul>
                                     </li>
                                     <li><a href="searchBook.sr">도서 검색</a></li>
