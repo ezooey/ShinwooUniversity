@@ -26,7 +26,7 @@ public class ScheduleRegister {
 	                            .build(),
 	                    newTrigger()
 	                            .withIdentity("defaultTrgger", Scheduler.DEFAULT_GROUP)
-	                            .withSchedule(cronSchedule("00 10 20 * * ?"))	// 크론표현식, 매일 00시 실행
+	                            .withSchedule(cronSchedule("00 30 11 * * ?"))	// 크론표현식, 매일 00시 실행
 	                            .build());
 	            
 	            scheduler.start();
