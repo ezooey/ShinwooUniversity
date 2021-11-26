@@ -13,14 +13,46 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/slicknav.css">
+	<link rel="stylesheet" href="assets/css/flaticon.css">
+	<link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
+	<link rel="stylesheet" href="assets/css/gijgo.css">
+	<link rel="stylesheet" href="assets/css/animate.min.css">
+	<link rel="stylesheet" href="assets/css/animated-headline.css">
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" href="assets/css/slick.css">
+	<link rel="stylesheet" href="assets/css/nice-select.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/all.min.css">
+	<style>
+		.area {
+			margin-top: 30px;
+		}
+		
+		.reject {
+			color: red;
+		}
+		
+		.lead {
+			font-size: 15px;
+		}
+		
+		.container{
+			text-align: center;
+		}
+	</style>
   </head>
   <body bgcolor='lightgray'>
-	<div class="jumbotron jumbotron-fluid">
+	<div class="area">
   <div class="container">
-    <h3 class="display-5">도서 신청이 거절되었습니다.</h3><br>
-    <p class="lead"><b>신청 의견</b> : <%= rb.getReqBookContent() %></p>
-    <p class="lead"><b>거절 사유</b> : <%= rb.getReqBookReason() %></p>
+    <h1 class="reject"><i class="fas fa-times-circle"></i> 도서 신청이 거절되었습니다.</h1><br>
+    <p class="lead"><i class="fas fa-edit"></i> <b>신청 의견</b> : <%= rb.getReqBookContent() %></p>
+    <p class="lead"><i class="fas fa-frown-open"></i> <b>거절 사유</b> : <%= rb.getReqBookReason() %></p><br>
+    <input type="button"  onclick="window.close();" class="genric-btn info-border circle small" value="닫기">
   </div>
 </div>
     <!-- Optional JavaScript -->

@@ -221,9 +221,9 @@
 														<% if(list.get(i).getStatus()== 0) {%>
 															<div><a  style="cursor: pointer " onclick="window.open('reqBook.con?reqNo=<%= list.get(i).getReqBookNo() %>&&writer=<%= list.get(i).getReqWriterId() %>', 'rejectDetail', 'width=450, height=400');"><button class="genric-btn success-border small">대기중</button></a></div>
 														<%}else if(list.get(i).getStatus()== 1){ %>
-															<div style="color : blue;"><a style="cursor: pointer" onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=270');">승인 완료</a></div>
+															<div style="color : blue;"><a style="cursor: pointer" onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=550, height=500');">승인 완료</a></div>
 														<%}else{ %>
-															<div style="color : red;"><a style="cursor: pointer" onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=450, height=400');">거절 완료 </a></div>
+															<div style="color : red;"><a style="cursor: pointer" onclick="window.open('reqBook.de?reqNo=<%= list.get(i).getReqBookNo() %>', 'rejectDetail', 'width=550, height=700');">거절 완료 </a></div>
 														<%} %>
 														</td>
 													</tr>
