@@ -28,12 +28,20 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
+    
+    <style>
+    	h1{
+    		margin-top: 10px;
+			color: #6785FF;
+    	}
+    </style>
 </head>    
 <body>
 	<h1 align="center"><%= request.getAttribute("msg") %></h1>
+	<br>
 	 <div class="bottomBtn">
 	<div align="center">
-		<button onclick="closeWin();">닫기</button>
+		<button class="genric-btn danger-border small" onclick="closeWin();">닫기</button>
 		<script>
 			function closeWin(){
 				opener.document.location.reload();
