@@ -159,7 +159,7 @@
         <div class="whole-wrap">
             <div class="container box_1170">
                 <div class="section-top-border borderTop">
-                    <div class="row" style="margin-left:300px;">
+                    <div class="row">
                         <div class="col-lg-8 col-md-8">
                             <div>
                                 <form class="form-contact comment_form" action="<%= request.getContextPath() %>/updateReviewComplete.rv" id="commentForm" name="commentForm"
